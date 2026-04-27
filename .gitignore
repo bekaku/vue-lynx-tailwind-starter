@@ -1,0 +1,33 @@
+# Local
+.DS_Store
+*.local
+*.log*
+
+# Dist
+lynx/node_modules
+lynx/dist/
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# TypeScript
+*.tsbuildinfo
+
+*~
+*.sw[mnpcod]
+.tmp
+*.tmp
+*.tmp.*
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+android/app/src/main/assets/public/
+/platforms
+/plugins
+android/.idea/compiler.xml
