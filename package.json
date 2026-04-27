@@ -8,7 +8,7 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "preview": "rspeedy preview",
-    "sync:android": "shx rm -rf ../android/app/src/main/assets/* && shx cp -r dist/* ../android/app/src/main/assets/"
+    "sync:android": "shx rm -rf android/app/src/main/assets/* && shx cp -r dist/* android/app/src/main/assets/"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

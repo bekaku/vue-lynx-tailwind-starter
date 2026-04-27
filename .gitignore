@@ -4,8 +4,8 @@
 *.log*
 
 # Dist
-lynx/node_modules
-lynx/dist/
+/node_modules
+/dist/
 
 # IDE
 .vscode/*
