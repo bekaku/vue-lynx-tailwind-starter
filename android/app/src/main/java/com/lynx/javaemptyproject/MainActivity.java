@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        String url = "main.lynx.bundle";
-        String url = "http://10.0.2.2:3000/main.lynx.bundle";
+        String url = "main.lynx.bundle";
+//        String url = "http://10.0.2.2:3000/main.lynx.bundle";
         System.out.println("MainActivity > onCreate " + url);
         lynxView.renderTemplateUrl(url, TemplateData.empty());
 
