@@ -13,14 +13,18 @@ import ComponentsListItem from '../pages/components/list-item.vue';
 import ComponentsButton from '../pages/components/button.vue';
 import ComponentsCard from '../pages/components/card.vue';
 import NotFound from '../pages/not-found.vue';
+import Grid from '../pages/grid.vue';
 import NativeLocalStorage from '../pages/native-local-storage.vue';
+import EventModifier from '../pages/event-modifier.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
     // memory history (similar to React Router's MemoryRouter).
     history: createMemoryHistory(),
     routes: [
-        { path: '/', name: 'home', component: Home },
+        { path: '/', redirect: '/home' },
+        { path: '/home', name: 'home', component: Home },
+        { path: '/event-modifier', name: 'EventModifier', component: EventModifier },
         {
             path: '/tabs-route',
             name: 'TabsRoute',
@@ -48,6 +52,7 @@ const router = createRouter({
         { path: '/components/list-item', name: 'ComponentsListItem', component: ComponentsListItem },
         { path: '/components/button', name: 'ComponentsButton', component: ComponentsButton },
         { path: '/components/card', name: 'ComponentsCard', component: ComponentsCard },
+        { path: '/grid', name: 'Grid', component: Grid },
         {
             path: '/:pathMatch(.*)*',
             name: 'not-found',

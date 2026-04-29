@@ -5,6 +5,12 @@ export const useBase = () => {
   const router = useRouter();
   const route = useRoute();
 
+
+  const isAndroid = SystemInfo.platform === 'Android';
+  const isIos = SystemInfo.platform === 'iOS';
+  const isWeb = SystemInfo.platform === 'web';
+  const platform = SystemInfo.platform;
+
   const isPathActive = (path: string) => computed(() => route.path === path).value
   const getFullPath = () => {
     return route.fullPath;
@@ -25,6 +31,10 @@ export const useBase = () => {
     onNavigateTo,
     onBack,
     getFullPath,
-    isPathActive
+    isPathActive,
+    platform,
+    isAndroid,
+    isIos,
+    isWeb
   };
 };

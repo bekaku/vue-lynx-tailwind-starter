@@ -2,7 +2,7 @@
 import Button from '@/components/ui/Button.vue';
 import Card from '@/components/ui/Card.vue';
 import Page from '@/components/ui/Page.vue';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -12,8 +12,8 @@ const handleTab = () => {
 </script>
 
 <template>
-  <Page>
-    <Toolbar title="Button" />
+   <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="Button" />
 
     <Card>
       <view class="flex flex-col gap-4 p-4">
@@ -26,5 +26,5 @@ const handleTab = () => {
         <Button variant="secondary" size="sm" label="Small Secondary" />
       </view>
     </Card>
-  </Page>
+  </view>
 </template>

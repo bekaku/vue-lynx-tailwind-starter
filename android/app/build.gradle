@@ -82,34 +82,42 @@ dependencies {
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.androidx.ui.test.manifest
     // lynx dependencies
-    implementation "org.lynxsdk.lynx:lynx:3.6.0"
-    implementation "org.lynxsdk.lynx:lynx-jssdk:3.6.0"
-    implementation "org.lynxsdk.lynx:lynx-trace:3.6.0"
-    implementation "org.lynxsdk.lynx:primjs:3.6.1"
+    implementation "org.lynxsdk.lynx:lynx:3.7.0"
+    implementation "org.lynxsdk.lynx:lynx-jssdk:3.7.0"
+    implementation "org.lynxsdk.lynx:lynx-trace:3.7.0"
+    implementation "org.lynxsdk.lynx:primjs:3.7.0"
+
+    compileOnly 'org.lynxsdk.lynx:lynx-processor:3.7.0'
+    annotationProcessor 'org.lynxsdk.lynx:lynx-processor:3.7.0'
+
 
     // integrating image-service
-    implementation "org.lynxsdk.lynx:lynx-service-image:3.6.0"
+    implementation "org.lynxsdk.lynx:lynx-service-image:3.7.0"
+
+    implementation 'com.github.bumptech.glide:glide:5.0.7'
+    annotationProcessor 'com.github.bumptech.glide:compiler:5.0.7'
+
 
     // image-service dependencies, if not added, images cannot be loaded; if the host APP needs to use other image libraries, you can customize the image-service and remove this dependency
-    implementation "com.facebook.fresco:fresco:3.6.0"
-    implementation "com.facebook.fresco:animated-gif:3.6.0"
-    implementation "com.facebook.fresco:animated-webp:3.6.0"
-    implementation "com.facebook.fresco:webpsupport:3.6.0"
-    implementation "com.facebook.fresco:animated-base:3.6.0"
+    implementation "com.facebook.fresco:fresco:2.6.0"
+    implementation "com.facebook.fresco:animated-gif:2.6.0"
+    implementation "com.facebook.fresco:animated-webp:2.6.0"
+    implementation "com.facebook.fresco:webpsupport:2.6.0"
+    implementation "com.facebook.fresco:animated-base:2.6.0"
 
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
 
     // integrating log-service
-    implementation "org.lynxsdk.lynx:lynx-service-log:3.6.0"
+    implementation "org.lynxsdk.lynx:lynx-service-log:3.7.0"
 
     // integrating http-service
-    implementation "org.lynxsdk.lynx:lynx-service-http:3.6.0"
+    implementation "org.lynxsdk.lynx:lynx-service-http:3.7.0"
 
     // add devtool's dependencies
-    implementation "org.lynxsdk.lynx:lynx-devtool:3.6.0"
-    implementation "org.lynxsdk.lynx:lynx-service-devtool:3.6.0"
+    implementation "org.lynxsdk.lynx:lynx-devtool:3.7.0"
+    implementation "org.lynxsdk.lynx:lynx-service-devtool:3.7.0"
 
     // add xelement's dependencies
-    implementation "org.lynxsdk.lynx:xelement:3.6.0"
-    implementation "org.lynxsdk.lynx:xelement-input:3.6.0"
+    implementation "org.lynxsdk.lynx:xelement:3.7.0"
+    implementation "org.lynxsdk.lynx:xelement-input:3.7.0"
 }

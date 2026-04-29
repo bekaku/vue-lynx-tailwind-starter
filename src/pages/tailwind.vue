@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue-lynx';
 import { useBase } from '@/composables/useBase';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import Button from '@/components/ui/Button.vue';
 import { useThemeStore } from '@/stores/themeStore';
 import Toggle from '@/components/ui/Toggle.vue';
@@ -41,15 +41,12 @@ const onTab = () => {
 </script>
 
 <template>
-  <view
-    class="w-full h-full flex flex-col bg-zinc-50"
-    :class="themeStore.themeClass"
-  >
-    <Toolbar title="Tailwind CSS">
+  <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="Tailwind CSS">
       <template #end>
         <Button variant="ghost" text-class="text-primary" label="Save" />
       </template>
-    </Toolbar>
+    </ToolBar>
     <scroll-view
       :class="['w-full h-full bg-background']"
       scroll-orientation="vertical"

@@ -20,7 +20,8 @@ const { onNavigateTo, isPathActive } = useBase();
     </view>
 
     <!-- 2. ส่วนของ Tab Bar (เทียบเท่า <ion-tab-bar>) -->
-    <TabBar :style="{ paddingBottom: bottom + 'px' }">
+    <TabBar>
+    <!-- <TabBar :style="{ paddingBottom: bottom + 'px' }"> -->
       <TabButton
         label="Home"
         :active="isPathActive('/tabs-route')"

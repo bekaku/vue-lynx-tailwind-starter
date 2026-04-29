@@ -10,6 +10,7 @@ interface Props {
   disabled?: boolean;
   class?: string;
   to?: string;
+  id?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -43,6 +44,7 @@ const handleTap = (e: any) => {
         props.class,
       )
     "
+    :id="id"
     @tap="handleTap"
   >
     <view class="flex flex-row items-center gap-1 flex-1">

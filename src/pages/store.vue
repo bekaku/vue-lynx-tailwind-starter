@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Card from '@/components/ui/Card.vue';
 import Page from '@/components/ui/Page.vue';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import CardContent from '@/components/ui/CardContent.vue';
 import { useCounterStore } from '../stores/counterStore';
 
@@ -9,8 +9,8 @@ const counter = useCounterStore();
 </script>
 
 <template>
-  <Page>
-    <Toolbar title="About page" />
+   <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="About page" />
 
     <Card>
       <CardContent>
@@ -50,5 +50,5 @@ const counter = useCounterStore();
         </view>
       </CardContent>
     </Card>
-  </Page>
+  </view>
 </template>

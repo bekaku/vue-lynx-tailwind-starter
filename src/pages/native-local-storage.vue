@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button.vue';
 import Card from '@/components/ui/Card.vue';
 import CardContent from '@/components/ui/CardContent.vue';
 import Page from '@/components/ui/Page.vue';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import { useStorage } from '@/composables/useStorage';
 import { onMounted, ref } from 'vue-lynx';
 import { useRoute } from 'vue-router';
@@ -45,8 +45,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Page>
-    <Toolbar title="Native Local Storage Module" />
+  <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="Native Local Storage Module" />
 
     <Card>
       <CardContent>
@@ -57,7 +57,7 @@ onMounted(async () => {
           <!-- <input v-model="username" placeholder="พิมพ์ชื่อ..." /> -->
 
           <view class="flex flex-row gap-2">
-            <Button  label="Save" @tab="handleSave" />
+            <Button label="Save" @tab="handleSave" />
             <Button label="Load" @tab="handleLoad" />
             <Button label="Delete" variant="destructive" @tab="handleDelete" />
             <Button label="Clear" @tab="handleClear" />
@@ -65,5 +65,5 @@ onMounted(async () => {
         </view>
       </CardContent>
     </Card>
-  </Page>
+  </view>
 </template>

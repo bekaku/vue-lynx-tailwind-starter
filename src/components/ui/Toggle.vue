@@ -7,6 +7,8 @@ const { isDark } = useTheme();
 const props = withDefaults(
   defineProps<{
     modelValue?: boolean;
+    disabled?: boolean;
+    id?: string;
   }>(),
   {
     modelValue: false,
@@ -14,14 +16,15 @@ const props = withDefaults(
 );
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
-  tab: [value: boolean];
+  tab: [value: boolean, event: any];
 }>();
-const handleTap = () => {
+const handleTap = (e: any) => {
+  if (props.disabled) {
+    return;
+  }
   const newValue = !props.modelValue;
-
   emit('update:modelValue', newValue);
-
-  emit('tab', newValue);
+  emit('tab', newValue, e);
 };
 </script>
 
@@ -31,6 +34,7 @@ const handleTap = () => {
       'w-10 h-6 rounded-full p-0.5',
       modelValue ? `bg-primary` : !isDark ? 'bg-zinc-300' : 'bg-zinc-600',
     ]"
+    :id="id"
     @tap="handleTap"
   >
     <view

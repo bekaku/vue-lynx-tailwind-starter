@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Card from '@/components/ui/Card.vue';
 import Page from '@/components/ui/Page.vue';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import CardContent from '@/components/ui/CardContent.vue';
 const route = useRoute();
 const router = useRouter();
@@ -35,8 +35,8 @@ function goBack() {
 </script>
 
 <template>
-  <Page>
-    <Toolbar title="User Detail" />
+  <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="User Detail" />
 
     <Card>
       <CardContent>
@@ -87,5 +87,5 @@ function goBack() {
         </view>
       </CardContent>
     </Card>
-  </Page>
+  </view>
 </template>

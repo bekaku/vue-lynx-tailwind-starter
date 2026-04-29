@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button.vue';
 import Card from '@/components/ui/Card.vue';
 import CardContent from '@/components/ui/CardContent.vue';
 import Page from '@/components/ui/Page.vue';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import { onMounted, ref } from 'vue-lynx';
 import { useRoute } from 'vue-router';
 
@@ -16,8 +16,8 @@ onMounted(()=>{
 </script>
 
 <template>
-  <Page>
-    <Toolbar title="Tab chat" />
+   <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="Tab chat" />
   
     <Card>
       <text :style="{ fontSize: '12px', color: '#888', marginBottom: '8px' }">Status: {{ status }}</text>
@@ -47,5 +47,5 @@ onMounted(()=>{
         </view>
       </CardContent>
     </Card>
-  </Page>
+  </view>
 </template>

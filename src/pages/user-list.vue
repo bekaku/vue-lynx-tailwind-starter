@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 import Card from '@/components/ui/Card.vue';
 import Page from '@/components/ui/Page.vue';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import CardContent from '@/components/ui/CardContent.vue';
 const router = useRouter();
 
@@ -18,8 +18,8 @@ function goToUser(id: number) {
 </script>
 
 <template>
-  <Page>
-    <Toolbar title="User List" />
+  <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="User List" />
 
     <Card>
       <CardContent>
@@ -65,5 +65,5 @@ function goToUser(id: number) {
         </view>
       </CardContent>
     </Card>
-  </Page>
+  </view>
 </template>

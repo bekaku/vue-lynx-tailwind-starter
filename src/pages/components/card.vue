@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Page from '@/components/ui/Page.vue';
-import Toolbar from '@/components/ui/Toolbar.vue';
+import ToolBar from '@/components/ui/ToolBar.vue';
 import Card from '@/components/ui/Card.vue';
 import CardHeader from '@/components/ui/CardHeader.vue';
 import CardTitle from '@/components/ui/CardTitle.vue';
@@ -17,8 +17,8 @@ const handleTab = () => {
 </script>
 
 <template>
-  <Page>
-    <Toolbar title="Card" />
+   <view class="w-full h-full flex flex-col bg-background">
+    <ToolBar title="Card" />
 
     <Card class="w-full">
       <CardHeader>
@@ -45,5 +45,5 @@ const handleTab = () => {
         <Button variant="default" label="Deploy" class="w-[48%]" />
       </CardFooter>
     </Card>
-  </Page>
+  </view>
 </template>

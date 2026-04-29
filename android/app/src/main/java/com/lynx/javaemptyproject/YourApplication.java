@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -11,10 +12,14 @@ import com.facebook.imagepipeline.memory.PoolConfig;
 import com.facebook.imagepipeline.memory.PoolFactory;
 import com.lynx.devtoolwrapper.LynxDevtoolCardListener;
 import com.lynx.devtoolwrapper.LynxDevtoolGlobalHelper;
+import com.lynx.javaemptyproject.elements.GlideImageUI;
+import com.lynx.javaemptyproject.elements.LynxExplorerInput;
 import com.lynx.service.image.LynxImageService;
 import com.lynx.service.log.LynxLogService;
 import com.lynx.service.devtool.LynxDevToolService;
 import com.lynx.tasm.LynxEnv;
+import com.lynx.tasm.behavior.Behavior;
+import com.lynx.tasm.behavior.LynxContext;
 import com.lynx.tasm.service.LynxServiceCenter;
 
 public class YourApplication extends Application {
@@ -22,6 +27,7 @@ public class YourApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i("lynx", "YourApplication > onCreate");
         initLynxService();
         initLynxEnv();
     }
@@ -47,6 +53,14 @@ public class YourApplication extends Application {
                 null,
                 null
         );
+
+        LynxEnv.inst().addBehavior(new Behavior("explorer-input") {
+            @Override
+            public LynxExplorerInput createUI(LynxContext context) {
+                Log.i("lynx", "addBehavior LynxExplorerInput");
+                return new LynxExplorerInput(context);
+            }
+        });
         // 打开 Lynx Debug 开关
         LynxEnv.inst().enableLynxDebug(true);
         // 打开 Lynx DevTool 开关
