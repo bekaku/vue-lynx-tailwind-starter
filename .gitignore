@@ -31,4 +31,4 @@ android/app/src/main/assets/public/
 /platforms
 /plugins
 android/.idea/compiler.xml
-# android/app/src/main/assets/*
+android/app/src/main/assets/*

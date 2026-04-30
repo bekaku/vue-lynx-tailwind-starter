@@ -6,7 +6,7 @@ const props = defineProps<{ class?: string }>()
 <template>
   <view 
     :class="cn(
-      'w-full flex flex-row items-center justify-around bg-white border-t border-border', 
+      'w-full flex flex-row items-center justify-around bg-card border-t border-border', 
       props.class
     )"
   >

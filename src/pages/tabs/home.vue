@@ -19,13 +19,11 @@ onMounted(()=>{
     <ToolBar title="Tab home" />
 
     <Card>
-        <text :style="{ fontSize: '12px', color: '#888', marginBottom: '8px' }">Status: {{ status }}</text>
       <CardContent>
         <text
           :style="{
             fontSize: '20px',
             fontWeight: 'bold',
-            color: '#111',
             marginBottom: '8px',
           }"
         >

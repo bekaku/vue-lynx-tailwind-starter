@@ -74,8 +74,6 @@ dependencies {
     // integrating image-service
     implementation libs.lynx.service.image
 
-//    compileOnly 'org.lynxsdk.lynx:lynx-processor:3.7.0'
-//    annotationProcessor 'org.lynxsdk.lynx:lynx-processor:3.7.0'
     kapt libs.lynx.processor
 
     implementation libs.glide

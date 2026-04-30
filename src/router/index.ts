@@ -16,6 +16,7 @@ import NotFound from '../pages/not-found.vue';
 import Grid from '../pages/grid.vue';
 import NativeLocalStorage from '../pages/native-local-storage.vue';
 import EventModifier from '../pages/event-modifier.vue';
+import Icons from '../pages/icons.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
@@ -23,8 +24,15 @@ const router = createRouter({
     history: createMemoryHistory(),
     routes: [
         { path: '/', redirect: '/home' },
-        { path: '/home', name: 'home', component: Home },
+        { path: '/home', name: 'Home', component: Home },
+        { path: '/about', name: 'about', component: About },
+        { path: '/components/list-item', name: 'ComponentsListItem', component: ComponentsListItem },
+        { path: '/components/button', name: 'ComponentsButton', component: ComponentsButton },
+        { path: '/components/card', name: 'ComponentsCard', component: ComponentsCard },
         { path: '/event-modifier', name: 'EventModifier', component: EventModifier },
+        { path: '/icons', name: 'Icons', component: Icons },
+        { path: '/grid', name: 'Grid', component: Grid },
+        { path: '/native-local-storage', name: 'NativeLocalStorage', component: NativeLocalStorage },
         {
             path: '/tabs-route',
             name: 'TabsRoute',
@@ -42,17 +50,11 @@ const router = createRouter({
                 },
             ]
         },
-        { path: '/native-local-storage', name: 'NativeLocalStorage', component: NativeLocalStorage },
-        { path: '/tabs-keepalive', name: 'TabsKeepalive', component: TabsKeepalive },
-        { path: '/about', name: 'about', component: About },
-        { path: '/user-list', name: 'user-list', component: UserList },
-        { path: '/users-detail/:id', name: 'user-detail', component: UserDetail },
         { path: '/store', name: 'store', component: Store },
         { path: '/tailwind', name: 'tailwind', component: Tailwind },
-        { path: '/components/list-item', name: 'ComponentsListItem', component: ComponentsListItem },
-        { path: '/components/button', name: 'ComponentsButton', component: ComponentsButton },
-        { path: '/components/card', name: 'ComponentsCard', component: ComponentsCard },
-        { path: '/grid', name: 'Grid', component: Grid },
+        { path: '/tabs-keepalive', name: 'TabsKeepalive', component: TabsKeepalive },
+        { path: '/user-list', name: 'user-list', component: UserList },
+        { path: '/users-detail/:id', name: 'user-detail', component: UserDetail },
         {
             path: '/:pathMatch(.*)*',
             name: 'not-found',

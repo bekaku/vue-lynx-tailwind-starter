@@ -38,10 +38,13 @@ public class GlideImageUI extends LynxUI<ImageView> {
 
     @LynxProp(name = "src")
     public void setSrc(String src) {
-        Log.w("lynx", "glideimageUI.java > setSrc :"+src);
         if (src != null && !src.isEmpty()) {
+            String loadUrl = src;
+            if (src.startsWith("/")) {
+                loadUrl = "file:///android_asset" + src;
+            }
             Glide.with(mContext)
-                    .load(src)
+                    .load(loadUrl)
                     .into(mView);
         } else {
             Glide.with(mContext).clear(mView);
