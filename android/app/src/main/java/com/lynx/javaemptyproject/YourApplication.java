@@ -54,6 +54,13 @@ public class YourApplication extends Application {
                 null
         );
 
+        LynxEnv.inst().addBehavior(new Behavior("glide-image") {
+            @Override
+            public GlideImageUI createUI(LynxContext context) {
+                return new GlideImageUI(context);
+            }
+        });
+
         LynxEnv.inst().addBehavior(new Behavior("explorer-input") {
             @Override
             public LynxExplorerInput createUI(LynxContext context) {

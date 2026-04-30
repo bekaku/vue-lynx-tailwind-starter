@@ -1,16 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt")
 }
 
 android {
     namespace 'com.lynx.javaemptyproject'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.lynx.javaemptyproject"
         minSdk 24
-        targetSdk 34
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
@@ -27,42 +29,24 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.1'
-    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion '1.5.14'
+//    }
     packaging {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
 }
-//configurations.configureEach {
-//    resolutionStrategy {
-//        force 'com.facebook.fresco:fresco:3.2.0'
-//        force 'com.facebook.fresco:ui-common:3.2.0'
-//        force 'com.facebook.fresco:imagepipeline:3.2.0'
-//        force 'com.facebook.fresco:imagepipeline-base:3.2.0'
-//        force 'com.facebook.fresco:imagepipeline-native:3.2.0'
-//        force 'com.facebook.fresco:memory-type-ashmem:3.2.0'
-//        force 'com.facebook.fresco:memory-type-native:3.2.0'
-//        force 'com.facebook.fresco:memory-type-java:3.2.0'
-//        force 'com.facebook.fresco:nativeimagefilters:3.2.0'
-//        force 'com.facebook.fresco:nativeimagetranscoder:3.2.0'
-//        force 'com.facebook.fresco:animated-gif:3.2.0'
-//        force 'com.facebook.fresco:animated-webp:3.2.0'
-//        force 'com.facebook.fresco:webpsupport:3.2.0'
-//        force 'com.facebook.fresco:animated-base:3.2.0'
-//    }
-//}
 dependencies {
 
     implementation libs.androidx.core.ktx
@@ -82,42 +66,42 @@ dependencies {
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.androidx.ui.test.manifest
     // lynx dependencies
-    implementation "org.lynxsdk.lynx:lynx:3.7.0"
-    implementation "org.lynxsdk.lynx:lynx-jssdk:3.7.0"
-    implementation "org.lynxsdk.lynx:lynx-trace:3.7.0"
-    implementation "org.lynxsdk.lynx:primjs:3.7.0"
-
-    compileOnly 'org.lynxsdk.lynx:lynx-processor:3.7.0'
-    annotationProcessor 'org.lynxsdk.lynx:lynx-processor:3.7.0'
-
+    implementation libs.lynx
+    implementation libs.lynx.jssdk
+    implementation libs.lynx.trace
+    implementation libs.primjs
 
     // integrating image-service
-    implementation "org.lynxsdk.lynx:lynx-service-image:3.7.0"
+    implementation libs.lynx.service.image
 
-    implementation 'com.github.bumptech.glide:glide:5.0.7'
-    annotationProcessor 'com.github.bumptech.glide:compiler:5.0.7'
+//    compileOnly 'org.lynxsdk.lynx:lynx-processor:3.7.0'
+//    annotationProcessor 'org.lynxsdk.lynx:lynx-processor:3.7.0'
+    kapt libs.lynx.processor
+
+    implementation libs.glide
+    kapt libs.glide.compiler
 
 
     // image-service dependencies, if not added, images cannot be loaded; if the host APP needs to use other image libraries, you can customize the image-service and remove this dependency
-    implementation "com.facebook.fresco:fresco:2.6.0"
-    implementation "com.facebook.fresco:animated-gif:2.6.0"
-    implementation "com.facebook.fresco:animated-webp:2.6.0"
-    implementation "com.facebook.fresco:webpsupport:2.6.0"
-    implementation "com.facebook.fresco:animated-base:2.6.0"
+    implementation libs.fresco
+    implementation libs.animated.gif
+    implementation libs.animated.webp
+    implementation libs.webpsupport
+    implementation libs.animated.base
 
-    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+    implementation libs.okhttp
 
     // integrating log-service
-    implementation "org.lynxsdk.lynx:lynx-service-log:3.7.0"
+    implementation libs.lynx.service.log
 
     // integrating http-service
-    implementation "org.lynxsdk.lynx:lynx-service-http:3.7.0"
+    implementation libs.lynx.service.http
 
     // add devtool's dependencies
-    implementation "org.lynxsdk.lynx:lynx-devtool:3.7.0"
-    implementation "org.lynxsdk.lynx:lynx-service-devtool:3.7.0"
+    implementation libs.lynx.devtool
+    implementation libs.lynx.service.devtool
 
     // add xelement's dependencies
-    implementation "org.lynxsdk.lynx:xelement:3.7.0"
-    implementation "org.lynxsdk.lynx:xelement-input:3.7.0"
+    implementation libs.xelement
+    implementation libs.xelement.input
 }

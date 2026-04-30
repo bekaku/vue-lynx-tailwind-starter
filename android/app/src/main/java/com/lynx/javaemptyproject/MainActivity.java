@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private LynxView buildLynxView() {
-        LynxEnv.inst().addBehavior(new Behavior("glide-image") {
-            @Override
-            public GlideImageUI createUI(LynxContext context) {
-                return new GlideImageUI(context);
-            }
-        });
+//        LynxEnv.inst().addBehavior(new Behavior("glide-image") {
+//            @Override
+//            public GlideImageUI createUI(LynxContext context) {
+//                return new GlideImageUI(context);
+//            }
+//        });
 
         LynxViewBuilder viewBuilder = new LynxViewBuilder();
         viewBuilder.addBehaviors(new XElementBehaviors().create());

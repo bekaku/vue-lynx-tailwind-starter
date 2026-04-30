@@ -10,7 +10,7 @@ export function useAndroidBack() {
 
     const handleBackPress = () => {
         console.log('useAndroidBack > handleBack, current path:', route.path);
-        const rootPages = ['/', '/tabs', '/tabs/home', '/tabs/chat'];
+        const rootPages = ['/', '/home', '/tabs', '/tabs/home', '/tabs/chat'];
 
         if (rootPages.includes(route.path)) {
             console.log('At root page, exiting app...');
