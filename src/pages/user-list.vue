@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import Card from '@/components/ui/Card.vue';
-import Page from '@/components/ui/Page.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
-import CardContent from '@/components/ui/CardContent.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BasePage from '@/components/base/BasePage.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
 const router = useRouter();
 
 const users = [
@@ -19,10 +19,10 @@ function goToUser(id: number) {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="User List" />
+    <BaseToolBar title="User List" />
 
-    <Card>
-      <CardContent>
+    <BaseCard>
+      <BaseCardContent>
         <text
           :style="{
             fontSize: '20px',
@@ -63,7 +63,7 @@ function goToUser(id: number) {
           </view>
           <text :style="{ fontSize: '14px', color: '#1a73e8' }">→</text>
         </view>
-      </CardContent>
-    </Card>
+      </BaseCardContent>
+    </BaseCard>
   </view>
 </template>

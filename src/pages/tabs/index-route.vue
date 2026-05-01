@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TabBar from '@/components/ui/TabBar.vue';
-import TabButton from '@/components/ui/TabButton.vue';
+import BaseTabBar from '@/components/base/BaseTabBar.vue';
+import BaseTabButton from '@/components/base/BaseTabButton.vue';
 import { useBase } from '@/composables/useBase';
 import { useSafeArea } from '@/composables/useSafeArea';
 import { RouterView } from 'vue-router';
@@ -15,9 +15,9 @@ const { onNavigateTo, isPathActive } = useBase();
       <RouterView />
     </view>
 
-    <TabBar class="py-2">
-      <!-- <TabBar :style="{ paddingBottom: bottom + 'px' }"> -->
-      <TabButton
+    <BaseTabBar class="py-2">
+      <!-- <BaseTabBar :style="{ paddingBottom: bottom + 'px' }"> -->
+      <BaseTabButton
         label="Home"
         :active="isPathActive('/tabs-route')"
         @tab="onNavigateTo('/tabs-route', true)"
@@ -25,9 +25,9 @@ const { onNavigateTo, isPathActive } = useBase();
         <template #icon>
           <IconLucide icon="house" />
         </template>
-      </TabButton>
+      </BaseTabButton>
 
-      <TabButton
+      <BaseTabButton
         label="Chat"
         :active="isPathActive('/tabs-route/chat')"
         @tab="onNavigateTo('/tabs-route/chat', true)"
@@ -35,9 +35,9 @@ const { onNavigateTo, isPathActive } = useBase();
         <template #icon>
            <IconLucide icon="messageCircle" />
         </template>
-      </TabButton>
+      </BaseTabButton>
 
-      <TabButton
+      <BaseTabButton
         label="Settings"
         :active="isPathActive('/tabs-route/settings')"
         @tab="onNavigateTo('/tabs-route/settings', true)"
@@ -45,7 +45,7 @@ const { onNavigateTo, isPathActive } = useBase();
         <template #icon>
           <IconLucide icon="settings" />
         </template>
-      </TabButton>
-    </TabBar>
+      </BaseTabButton>
+    </BaseTabBar>
   </view>
 </template>

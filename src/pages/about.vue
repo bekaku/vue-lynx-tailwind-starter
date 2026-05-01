@@ -1,53 +1,19 @@
 <script setup lang="ts">
-import Card from '@/components/ui/Card.vue';
-import CardContent from '@/components/ui/CardContent.vue';
-import Page from '@/components/ui/Page.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
-import { reactive } from 'vue-lynx';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
-const active = reactive({
-  outer: false,
-  middle: false,
-  inner: false,
-});
-
-// 2. ฟังก์ชัน flash จัดการ State ได้ตรงๆ ไม่ต้องสลับ Context (Main Thread <-> Background) ให้วุ่นวาย
-const flash = (key: 'outer' | 'middle' | 'inner') => {
-  active[key] = true;
-  setTimeout(() => {
-    active[key] = false;
-  }, 200);
-};
-
-// 3. Event Handlers
-const handleOuterTap = (e: any) => {
-  // if (e.target !== e.currentTarget) return;
-  console.log('outer', e);
-  flash('outer');
-};
-
-const handleMiddleTap = (e: any) => {
-  // if (e.target !== e.currentTarget) return;
-  console.log('middle', e);
-  flash('middle');
-};
-
-const handleInnerTap = (e: any) => {
-  // event.stopPropagation()
-  console.log('inner', e);
-  flash('inner');
-};
 </script>
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="About page" />
+    <BaseToolBar title="About page" />
 
-    <Card>
-      <CardContent>
+    <BaseCard>
+      <BaseCardContent>
         <text
           :style="{
             fontSize: '20px',
@@ -66,8 +32,8 @@ const handleInnerTap = (e: any) => {
         <text :style="{ fontSize: '12px', color: '#999', marginTop: '12px' }">
           Current path: {{ route.fullPath }}
         </text>
-      </CardContent>
-    </Card>
+      </BaseCardContent>
+    </BaseCard>
   </view>
 </template>
 <style scoped></style>

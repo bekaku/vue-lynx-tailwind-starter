@@ -24,12 +24,13 @@ const props = withDefaults(
       :class="
         cn(
           'bg-card p-1',
-          !square ? 'rounded-lg' : '',
+          !square ? 'rounded-xl' : '',
           !flat ? 'shadow-sm' : '',
           border && !flat ? 'border border-border' : '',
           props.class,
         )
       "
+      :style="{boxShadow: '0 8px 16px rgba(0, 0, 0, 0.08)'}"
     >
       <slot />
     </view>

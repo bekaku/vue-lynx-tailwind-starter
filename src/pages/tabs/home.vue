@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import Card from '@/components/ui/Card.vue';
-import Page from '@/components/ui/Page.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
-import CardContent from '@/components/ui/CardContent.vue';
-import Button from '@/components/ui/Button.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BasePage from '@/components/base/BasePage.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BaseButton from '@/components/base/BaseButton.vue';
 import { onMounted, ref } from 'vue-lynx';
 const status = ref('mounted')
 const route = useRoute();
@@ -16,10 +16,10 @@ onMounted(()=>{
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="Tab home" />
+    <BaseToolBar title="Tab home" />
 
-    <Card>
-      <CardContent>
+    <BaseCard>
+      <BaseCardContent>
         <text
           :style="{
             fontSize: '20px',
@@ -40,10 +40,10 @@ onMounted(()=>{
 
         <view class="p-4 flex flex-row gap-2">
           <text>{{ counter }}</text>
-          <Button label="-" class="bg-red-500" @tab="counter--"/>
-          <Button label="+" class="bg-green-500" @tab="counter++"/>
+          <BaseButton label="-" class="bg-red-500" @tab="counter--"/>
+          <BaseButton label="+" class="bg-green-500" @tab="counter++"/>
         </view>
-      </CardContent>
-    </Card>
+      </BaseCardContent>
+    </BaseCard>
   </view>
 </template>

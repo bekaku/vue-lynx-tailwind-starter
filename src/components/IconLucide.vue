@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/utils/appUtil';
-import AppImage from './ui/AppImage.vue';
+import BaseImage from './base/BaseImage.vue';
 import { iconMap } from '@/libs/lucideIcons';
 import type { BaseLucideIcon } from '@/libs/lucideIcons';
 
@@ -34,7 +34,7 @@ const currentIconKey = computed(() => {
 });
 </script>
 <template>
-  <AppImage
+  <BaseImage
     v-if="iconMap[currentIconKey]"
     :src="iconMap[currentIconKey]"
     :class="cn(props.class)"
@@ -42,5 +42,5 @@ const currentIconKey = computed(() => {
       width: props.size + 'px',
       height: props.size + 'px',
     }"
-  ></AppImage>
+  ></BaseImage>
 </template>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { cn } from '@/utils/appUtil';
-import Button from './Button.vue';
+import BaseButton from './BaseButton.vue';
 import { useBase } from '@/composables/useBase';
 import type { TollbarProps } from '@/types/props';
-import BackButton from './BackButton.vue';
+import BaseBackButton from './BaseBackButton.vue';
 
 const { onNavigateTo } = useBase();
 const props = withDefaults(defineProps<TollbarProps>(), {
@@ -26,7 +26,7 @@ const onTab = () => {
   >
     <view class="flex flex-row items-center justify-start min-w-[60px]">
       <slot name="start">
-        <BackButton v-if="showBackButton" v-bind="props.backButton" />
+        <BaseBackButton v-if="showBackButton" v-bind="props.backButton" />
       </slot>
     </view>
 

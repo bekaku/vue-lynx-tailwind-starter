@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Card from '@/components/ui/Card.vue';
-import Page from '@/components/ui/Page.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
-import CardContent from '@/components/ui/CardContent.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BasePage from '@/components/base/BasePage.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
 const route = useRoute();
 const router = useRouter();
 
@@ -36,10 +36,10 @@ function goBack() {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="User Detail" />
+    <BaseToolBar title="User Detail" />
 
-    <Card>
-      <CardContent>
+    <BaseCard>
+      <BaseCardContent>
         <text
           @tap="goBack"
           :style="{ fontSize: '14px', color: '#1a73e8', marginBottom: '12px' }"
@@ -85,7 +85,7 @@ function goBack() {
             User not found (id: {{ userId }})
           </text>
         </view>
-      </CardContent>
-    </Card>
+      </BaseCardContent>
+    </BaseCard>
   </view>
 </template>

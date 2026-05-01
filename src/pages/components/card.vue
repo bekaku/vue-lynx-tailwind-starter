@@ -1,32 +1,32 @@
 <script setup lang="ts">
-import Page from '@/components/ui/Page.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
-import Card from '@/components/ui/Card.vue';
-import CardHeader from '@/components/ui/CardHeader.vue';
-import CardTitle from '@/components/ui/CardTitle.vue';
-import CardDescription from '@/components/ui/CardDescription.vue';
-import CardContent from '@/components/ui/CardContent.vue';
-import CardFooter from '@/components/ui/CardFooter.vue';
-import Button from '@/components/ui/Button.vue'; // ปุ่มที่ทำไว้ตอนแรก
+import BasePage from '@/components/base/BasePage.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
+import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
+import BaseCardDescription from '@/components/base/BaseCardDescription.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BaseCardFooter from '@/components/base/BaseCardFooter.vue';
+import BaseButton from '@/components/base/BaseButton.vue'; // ปุ่มที่ทำไว้ตอนแรก
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const handleTab = () => {
-  console.log('Button tapped!');
+  console.log('BaseButton tapped!');
 };
 </script>
 
 <template>
    <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="Card" />
+    <BaseToolBar title="BaseCard" />
 
-    <Card class="w-full">
-      <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
-      </CardHeader>
+    <BaseCard class="w-full">
+      <BaseCardHeader>
+        <BaseCardTitle>Create project</BaseCardTitle>
+        <BaseCardDescription>Deploy your new project in one-click.</BaseCardDescription>
+      </BaseCardHeader>
 
-      <CardContent>
+      <BaseCardContent>
         <view class="flex flex-col gap-4">
           <!-- จำลอง Form Input หรือเนื้อหาอื่นๆ -->
           <view class="flex flex-col gap-2">
@@ -38,12 +38,12 @@ const handleTab = () => {
             </view>
           </view>
         </view>
-      </CardContent>
+      </BaseCardContent>
 
-      <CardFooter class="justify-between">
-        <Button variant="outline" label="Cancel" class="w-[48%]" />
-        <Button variant="default" label="Deploy" class="w-[48%]" />
-      </CardFooter>
-    </Card>
+      <BaseCardFooter class="justify-between">
+        <BaseButton variant="outline" label="Cancel" class="w-[48%]" />
+        <BaseButton variant="default" label="Deploy" class="w-[48%]" />
+      </BaseCardFooter>
+    </BaseCard>
   </view>
 </template>

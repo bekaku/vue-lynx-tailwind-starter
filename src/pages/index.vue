@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import IconLucide from '@/components/IconLucide.vue';
 import ThemeToggle from '@/components/ThemeToggle.vue';
-import Card from '@/components/ui/Card.vue';
-import CardHeader from '@/components/ui/CardHeader.vue';
-import CardTitle from '@/components/ui/CardTitle.vue';
-import Item from '@/components/ui/Item.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
+import BaseButton from '@/components/base/BaseButton.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BaseCardFooter from '@/components/base/BaseCardFooter.vue';
+import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
+import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
+import BaseItem from '@/components/base/BaseItem.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useBase } from '@/composables/useBase';
 import { useScrollRestore } from '@/composables/useScrollRestore';
 import { useTheme } from '@/composables/useTheme';
@@ -20,11 +23,11 @@ const menuItems = ref<LabelValue<any>[]>([
   { label: 'About', value: '/about' },
   { label: 'Button', value: '/components/button' },
   { label: 'Card', value: '/components/card' },
-  { label: 'Card', value: '/components/card' },
   { label: 'Event modifier', value: '/event-modifier' },
   { label: 'Grid', value: '/grid' },
   { label: 'Icons', value: '/icons' },
-  { label: 'List Item', value: '/components/list-item' },
+  { label: 'Input', value: '/components/input' },
+  { label: 'List BaseItem', value: '/components/list-item' },
   { label: 'Native LocalStorage', value: '/native-local-storage' },
   { label: 'Notfound', value: '/components/not-foudn' },
   { label: 'Users', value: '/user-list' },
@@ -33,11 +36,6 @@ const menuItems = ref<LabelValue<any>[]>([
   { label: 'Tabs Keepalive', value: '/tabs-keepalive' },
 ]);
 
-const inputValue = ref('');
-const handleInput = (e: any) => {
-  // const currentValue = e.detail.value.trim();
-  console.log('handleInput', e);
-};
 const handleTheme = (e: any) => {
   console.log('index.vue > handleTheme', e);
   if (themeToggleRef.value) {
@@ -48,36 +46,24 @@ const handleTheme = (e: any) => {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar :show-back-button="false" title="Vue Lynx" />
+    <BaseToolBar :show-back-button="false" title="Vue Lynx" />
     <scroll-view
       :class="['flex-1 w-full']"
       scroll-orientation="vertical"
       :scroll-top="scrollTop"
       @scroll="onScroll"
     >
-      <view class="input-card-url">
-        <text class="bold-text">Card URL</text>
-        <explorer-input
-          id="input-id"
-          class="input-box"
-          @input="handleInput"
-          :value="inputValue"
-          placeholder="Enter Card URL"
-        />
-        <view class="connect-button">
-          <text class="button-text">Go</text>
-        </view>
-      </view>
+      
 
-      <Card class="w-full">
-        <CardHeader>
-          <CardTitle>Vue Lynx</CardTitle>
+      <BaseCard class="w-full">
+        <BaseCardHeader>
+          <BaseCardTitle>Vue Lynx</BaseCardTitle>
           <text class="text-muted text-sm">
             Vue Lynx Starter Template By Chanavee platform: {{ platform }}
           </text>
-        </CardHeader>
+        </BaseCardHeader>
 
-        <Item
+        <BaseItem
           title="Dark"
           description="Swith theme Dark|Light"
           button
@@ -94,8 +80,8 @@ const handleTheme = (e: any) => {
           <template #end>
             <ThemeToggle disabled ref="themeToggleRef" />
           </template>
-        </Item>
-        <Item
+        </BaseItem>
+        <BaseItem
           v-for="(item, index) in menuItems"
           :key="item.value"
           :title="item.label || ''"
@@ -108,8 +94,8 @@ const handleTheme = (e: any) => {
               <IconLucide :size="14" icon="chevronRight" />
             </view>
           </template>
-        </Item>
-      </Card>
+        </BaseItem>
+      </BaseCard>
     </scroll-view>
   </view>
 </template>

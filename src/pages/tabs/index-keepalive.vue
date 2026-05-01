@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TabBar from '@/components/ui/TabBar.vue';
-import TabButton from '@/components/ui/TabButton.vue';
+import BaseTabBar from '@/components/base/BaseTabBar.vue';
+import BaseTabButton from '@/components/base/BaseTabButton.vue';
 import { useBase } from '@/composables/useBase';
 import TabsChat from '@/pages/tabs/chat.vue';
 import TabsHome from '@/pages/tabs/home.vue';
@@ -44,8 +44,8 @@ const switchTab = (tabName: string) => {
       </view>
     </view>
 
-    <TabBar class="py-2">
-      <TabButton
+    <BaseTabBar class="py-2">
+      <BaseTabButton
         label="Home"
         :active="activeTab === 'home'"
         @tab="switchTab('home')"
@@ -53,9 +53,9 @@ const switchTab = (tabName: string) => {
         <template #icon>
           <IconLucide icon="house" />
         </template>
-      </TabButton>
+      </BaseTabButton>
 
-      <TabButton
+      <BaseTabButton
         label="Chat"
         :active="activeTab === 'chat'"
         @tab="switchTab('chat')"
@@ -63,9 +63,9 @@ const switchTab = (tabName: string) => {
         <template #icon>
            <IconLucide icon="messageCircle" />
         </template>
-      </TabButton>
+      </BaseTabButton>
 
-      <TabButton
+      <BaseTabButton
         label="Settings"
         :active="activeTab === 'settings'"
         @tab="switchTab('settings')"
@@ -73,7 +73,7 @@ const switchTab = (tabName: string) => {
         <template #icon>
            <IconLucide icon="settings" />
         </template>
-      </TabButton>
-    </TabBar>
+      </BaseTabButton>
+    </BaseTabBar>
   </view>
 </template>

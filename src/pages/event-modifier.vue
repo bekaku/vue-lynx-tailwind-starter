@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ToolBar from '@/components/ui/ToolBar.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { reactive, ref } from 'vue-lynx';
 
 const counterA = ref(0) // plain @tap — inner tap fires both inner and outer handlers (+2)
@@ -38,7 +38,7 @@ const handleInnerTap = (e: any) => {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="event-modifier" />
+    <BaseToolBar title="event-modifier" />
 
     <view
       @tap="handleOuterTap"

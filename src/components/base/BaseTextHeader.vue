@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /*
-    <TextHeader>
+    <BaseTextHeader>
       <text class="text-muted">Flex Basis</text>
-    </TextHeader>
+    </BaseTextHeader>
 */
 import { cn } from '@/utils/appUtil';
 

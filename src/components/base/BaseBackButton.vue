@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useBase } from '@/composables/useBase';
-import Button from './Button.vue';
+import BaseButton from './BaseButton.vue';
 import type { BackButtonProps } from '@/types/props';
 
 const { onNavigateTo, onBack } = useBase();
@@ -18,5 +18,5 @@ const onTab = () => {
 </script>
 
 <template>
-  <Button variant="ghost" :text-class="textClass" label="Back" @tab="onTab" />
+  <BaseButton variant="ghost" :text-class="textClass" label="Back" @tab="onTab" />
 </template>

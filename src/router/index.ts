@@ -12,6 +12,7 @@ import TabsChat from '../pages/tabs/chat.vue';
 import ComponentsListItem from '../pages/components/list-item.vue';
 import ComponentsButton from '../pages/components/button.vue';
 import ComponentsCard from '../pages/components/card.vue';
+import ComponentsInput from '../pages/components/input.vue';
 import NotFound from '../pages/not-found.vue';
 import Grid from '../pages/grid.vue';
 import NativeLocalStorage from '../pages/native-local-storage.vue';
@@ -29,6 +30,7 @@ const router = createRouter({
         { path: '/components/list-item', name: 'ComponentsListItem', component: ComponentsListItem },
         { path: '/components/button', name: 'ComponentsButton', component: ComponentsButton },
         { path: '/components/card', name: 'ComponentsCard', component: ComponentsCard },
+        { path: '/components/input', name: 'ComponentsInput', component: ComponentsInput },
         { path: '/event-modifier', name: 'EventModifier', component: EventModifier },
         { path: '/icons', name: 'Icons', component: Icons },
         { path: '/grid', name: 'Grid', component: Grid },

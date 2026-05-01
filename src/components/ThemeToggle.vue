@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Toggle from '@/components/ui/Toggle.vue';
+import BaseToggle from '@/components/base/BaseToggle.vue';
 import { useThemeStore } from '@/stores/themeStore';
 import { ref } from 'vue-lynx';
 const themeStore = useThemeStore();
@@ -32,8 +32,8 @@ defineExpose({
 <template>
   <view>
     <slot>
-      <!-- <Toggle v-model="darkEnabled" @update:modelValue="onToggleTheme" @tab="handleTab" /> -->
-      <Toggle
+      <!-- <BaseToggle v-model="darkEnabled" @update:modelValue="onToggleTheme" @tab="handleTab" /> -->
+      <BaseToggle
         v-model="darkEnabled"
         id="app-theme-switch"
         :disabled="disabled"

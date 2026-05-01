@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue-lynx';
 import { useBase } from '@/composables/useBase';
-import ToolBar from '@/components/ui/ToolBar.vue';
-import Button from '@/components/ui/Button.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import BaseButton from '@/components/base/BaseButton.vue';
 import { useThemeStore } from '@/stores/themeStore';
-import Toggle from '@/components/ui/Toggle.vue';
-import Card from '@/components/ui/Card.vue';
+import BaseToggle from '@/components/base/BaseToggle.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
 const { onNavigateTo, getFullPath } = useBase();
 const themeStore = useThemeStore();
 const { setTheme, themeNames } = themeStore;
@@ -42,11 +42,11 @@ const onTab = () => {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="Tailwind CSS">
+    <BaseToolBar title="Tailwind CSS">
       <template #end>
-        <Button variant="ghost" text-class="text-primary" label="Save" />
+        <BaseButton variant="ghost" text-class="text-primary" label="Save" />
       </template>
-    </ToolBar>
+    </BaseToolBar>
     <scroll-view
       :class="['w-full h-full bg-background']"
       scroll-orientation="vertical"
@@ -61,7 +61,7 @@ const onTab = () => {
           </text>
         </view>
 
-        <Card :margin="false">
+        <BaseCard :margin="false">
           <view class="p-4 pb-0 flex flex-col gap-1">
             <text class="text-card-foreground text-lg font-semibold"
               >Theme</text
@@ -71,7 +71,7 @@ const onTab = () => {
             </text>
           </view>
           <view class="p-4 flex flex-row gap-2">
-            <Button
+            <BaseButton
               v-for="t in themeNames"
               :key="t"
               :class="'flex-1 '"
@@ -79,9 +79,9 @@ const onTab = () => {
               variant="primary"
             />
           </view>
-        </Card>
+        </BaseCard>
 
-        <!-- Card: Theme Switcher -->
+        <!-- BaseCard: Theme Switcher -->
         <view class="bg-card rounded-lg border border-border flex flex-col">
           <view class="p-4 pb-0 flex flex-col gap-1">
             <text class="text-card-foreground text-lg font-semibold"
@@ -118,7 +118,7 @@ const onTab = () => {
           </view>
         </view>
 
-        <!-- Card: Profile -->
+        <!-- BaseCard: Profile -->
         <view class="bg-card rounded-lg border border-border flex flex-col">
           <view class="p-4 pb-0 flex flex-col gap-1">
             <text class="text-card-foreground text-lg font-semibold"
@@ -201,7 +201,7 @@ const onTab = () => {
           </view>
         </view>
 
-        <!-- Card: Notifications -->
+        <!-- BaseCard: Notifications -->
         <view class="bg-card rounded-lg border border-border flex flex-col">
           <view class="p-4 pb-0 flex flex-col gap-1">
             <text class="text-card-foreground text-lg font-semibold">
@@ -226,7 +226,7 @@ const onTab = () => {
                   Receive push notifications on your device.
                 </text>
               </view>
-              <Toggle v-model="pushEnabled" class="bg-red-500" />
+              <BaseToggle v-model="pushEnabled" class="bg-red-500" />
             </view>
 
             <view class="h-px bg-border" />
@@ -244,12 +244,12 @@ const onTab = () => {
                   Receive email digests and updates.
                 </text>
               </view>
-              <Toggle v-model="emailEnabled" />
+              <BaseToggle v-model="emailEnabled" />
             </view>
           </view>
         </view>
 
-        <!-- Card: Danger Zone -->
+        <!-- BaseCard: Danger Zone -->
         <view
           class="bg-card rounded-lg border border-destructive flex flex-col"
         >

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Button from '@/components/ui/Button.vue';
-import Card from '@/components/ui/Card.vue';
-import CardContent from '@/components/ui/CardContent.vue';
-import Page from '@/components/ui/Page.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
+import BaseButton from '@/components/base/BaseButton.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BasePage from '@/components/base/BasePage.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useStorage } from '@/composables/useStorage';
 import { onMounted, ref } from 'vue-lynx';
 import { useRoute } from 'vue-router';
@@ -46,10 +46,10 @@ onMounted(async () => {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="Native Local Storage Module" />
+    <BaseToolBar title="Native Local Storage Module" />
 
-    <Card>
-      <CardContent>
+    <BaseCard>
+      <BaseCardContent>
         <view class="flex flex-col p-4 gap-4">
           <text>ชื่อที่บันทึกไว้: {{ savedUsername }}</text>
 
@@ -57,13 +57,13 @@ onMounted(async () => {
           <!-- <input v-model="username" placeholder="พิมพ์ชื่อ..." /> -->
 
           <view class="flex flex-row gap-2">
-            <Button label="Save" @tab="handleSave" />
-            <Button label="Load" @tab="handleLoad" />
-            <Button label="Delete" variant="destructive" @tab="handleDelete" />
-            <Button label="Clear" @tab="handleClear" />
+            <BaseButton label="Save" @tab="handleSave" />
+            <BaseButton label="Load" @tab="handleLoad" />
+            <BaseButton label="Delete" variant="destructive" @tab="handleDelete" />
+            <BaseButton label="Clear" @tab="handleClear" />
           </view>
         </view>
-      </CardContent>
-    </Card>
+      </BaseCardContent>
+    </BaseCard>
   </view>
 </template>

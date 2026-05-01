@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import Card from '@/components/ui/Card.vue';
-import CardContent from '@/components/ui/CardContent.vue';
-import CardDescription from '@/components/ui/CardDescription.vue';
-import CardHeader from '@/components/ui/CardHeader.vue';
-import CardTitle from '@/components/ui/CardTitle.vue';
-import Page from '@/components/ui/Page.vue';
-import TextHeader from '@/components/ui/TextHeader.vue';
-import ToolBar from '@/components/ui/ToolBar.vue';
+import BaseCard from '@/components/base/BaseCard.vue';
+import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BaseCardDescription from '@/components/base/BaseCardDescription.vue';
+import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
+import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
+import BasePage from '@/components/base/BasePage.vue';
+import BaseTextHeader from '@/components/base/BaseTextHeader.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -14,13 +14,13 @@ const route = useRoute();
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <ToolBar title="Flexbox & Grid" />
+    <BaseToolBar title="Flexbox & Grid" />
 
     <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
-      <Card>
-        <CardHeader>
-          <CardTitle>Flex Row</CardTitle>
-        </CardHeader>
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>Flex Row</BaseCardTitle>
+        </BaseCardHeader>
         <view
           class="w-full border border-border rounded-md p-1 flex flex-row gap-2"
         >
@@ -101,12 +101,12 @@ const route = useRoute();
             <text class="text-white">03</text>
           </view>
         </view>
-      </Card>
+      </BaseCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Flex Col</CardTitle>
-        </CardHeader>
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>Flex Col</BaseCardTitle>
+        </BaseCardHeader>
         <view
           class="w-full border border-border rounded-md p-1 flex flex-col gap-2"
         >
@@ -134,14 +134,14 @@ const route = useRoute();
             <text class="text-white">03</text>
           </view>
         </view>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>flex-wrap</CardTitle>
-          <CardDescription>
+      </BaseCard>
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>flex-wrap</BaseCardTitle>
+          <BaseCardDescription>
             Utilities for controlling how flex items wrap.
-          </CardDescription>
-        </CardHeader>
+          </BaseCardDescription>
+        </BaseCardHeader>
 
         <text class="text-muted pt-3">flex-nowrap</text>
         <view
@@ -172,15 +172,15 @@ const route = useRoute();
             <text class="text-white">basis-128</text>
           </view>
         </view>
-      </Card>
+      </BaseCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>flex</CardTitle>
-          <CardDescription>
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>flex</BaseCardTitle>
+          <BaseCardDescription>
             Utilities for controlling how flex items both grow and shrink.
-          </CardDescription>
-        </CardHeader>
+          </BaseCardDescription>
+        </BaseCardHeader>
         <text class="text-muted pt-3">Basic example</text>
 
         <view class="w-full border border-border rounded-md p-1 flex gap-2">
@@ -233,16 +233,16 @@ const route = useRoute();
             <text class="text-white">size-14 flex-none</text>
           </view>
         </view>
-      </Card>
+      </BaseCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>grid-column</CardTitle>
-          <CardDescription>
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>grid-column</BaseCardTitle>
+          <BaseCardDescription>
             Utilities for controlling how elements are sized and placed across
             grid columns.
-          </CardDescription>
-        </CardHeader>
+          </BaseCardDescription>
+        </BaseCardHeader>
         <text class="text-muted pt-3">Basic columns</text>
         <view
           class="w-full border border-border rounded-md p-1 grid grid-cols-3 gap-2"
@@ -280,15 +280,15 @@ const route = useRoute();
             <text class="text-white">05</text>
           </view>
         </view>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>justify-content</CardTitle>
-          <CardDescription>
+      </BaseCard>
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>justify-content</BaseCardTitle>
+          <BaseCardDescription>
             Utilities for controlling how flex and grid items are positioned
             along a container's main axis.
-          </CardDescription>
-        </CardHeader>
+          </BaseCardDescription>
+        </BaseCardHeader>
         <text class="text-muted pt-3">justify-start</text>
         <view
           class="w-full border border-border rounded-md p-1 flex justify-start gap-2"
@@ -377,16 +377,16 @@ const route = useRoute();
             <text class="text-white">03</text>
           </view>
         </view>
-      </Card>
+      </BaseCard>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>align-items</CardTitle>
-          <CardDescription>
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>align-items</BaseCardTitle>
+          <BaseCardDescription>
             Utilities for controlling how flex and grid items are positioned
             along a container's cross axis.
-          </CardDescription>
-        </CardHeader>
+          </BaseCardDescription>
+        </BaseCardHeader>
 
         <text class="text-muted pt-3">items-stretch</text>
         <view
@@ -502,7 +502,7 @@ const route = useRoute();
 
        
 
-      </Card>
+      </BaseCard>
     </scroll-view>
   </view>
 </template>
