@@ -27,6 +27,7 @@ const menuItems = ref<LabelValue<any>[]>([
   { label: 'Grid', value: '/grid' },
   { label: 'Icons', value: '/icons' },
   { label: 'Input', value: '/components/input' },
+  { label: 'Keepalive', value: '/keepalive' },
   { label: 'List BaseItem', value: '/components/list-item' },
   { label: 'Native LocalStorage', value: '/native-local-storage' },
   { label: 'Notfound', value: '/components/not-foudn' },
@@ -74,7 +75,7 @@ const handleTheme = (e: any) => {
               class="w-8 h-8 rounded-full flex items-center justify-center"
               :class="[!isDark ? 'bg-zinc-100' : 'bg-zinc-700']"
             >
-              <IconLucide :size="24" icon="sunMoon" />
+              <IconLucide :size="24" name="sunMoon" />
             </view>
           </template>
           <template #end>
@@ -91,7 +92,7 @@ const handleTheme = (e: any) => {
           <template #end>
             <view class="w-8 h-8 flex items-center justify-center">
               <!-- <text class="text-zinc-400 text-xs">❯</text> -->
-              <IconLucide :size="14" icon="chevronRight" />
+              <IconLucide :size="14" name="chevronRight" />
             </view>
           </template>
         </BaseItem>

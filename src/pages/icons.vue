@@ -23,9 +23,9 @@ const route = useRoute();
       <BaseCardContent>
         <view class="w-full flex flex-row gap-2">
           <!-- <image :src="iconHouse" class="w-8 h-8" /> -->
-          <IconLucide :size="24" icon="house" />
-          <IconLucide :size="24" icon="settings" />
-          <IconLucide :size="24" icon="sunMoon" />
+          <IconLucide :size="24" name="house" />
+          <IconLucide :size="24" name="settings" />
+          <IconLucide :size="24" name="sunMoon" />
         </view>
       </BaseCardContent>
     </BaseCard>

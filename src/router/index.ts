@@ -18,13 +18,14 @@ import Grid from '../pages/grid.vue';
 import NativeLocalStorage from '../pages/native-local-storage.vue';
 import EventModifier from '../pages/event-modifier.vue';
 import Icons from '../pages/icons.vue';
+import Keepalive from '../pages/keepalive.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
     // memory history (similar to React Router's MemoryRouter).
     history: createMemoryHistory(),
     routes: [
-        { path: '/', redirect: '/home' },
+        { path: '/', redirect: '/keepalive' },
         { path: '/home', name: 'Home', component: Home },
         { path: '/about', name: 'about', component: About },
         { path: '/components/list-item', name: 'ComponentsListItem', component: ComponentsListItem },
@@ -34,6 +35,7 @@ const router = createRouter({
         { path: '/event-modifier', name: 'EventModifier', component: EventModifier },
         { path: '/icons', name: 'Icons', component: Icons },
         { path: '/grid', name: 'Grid', component: Grid },
+        { path: '/keepalive', name: 'Keepalive', component: Keepalive },
         { path: '/native-local-storage', name: 'NativeLocalStorage', component: NativeLocalStorage },
         {
             path: '/tabs-route',

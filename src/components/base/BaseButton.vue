@@ -5,16 +5,16 @@ import { useTheme } from '@/composables/useTheme';
 const { isDark } = useTheme();
 // 1. Variants สำหรับ <view> (Container)
 const buttonVariants = cva(
-  'flex flex-row items-center justify-center rounded-md transition-all disabled:opacity-50',
+  'flex flex-row items-center justify-center rounded-md transition-all disabled:opacity-50 active:opacity-80',
   {
     variants: {
       variant: {
         default: !isDark.value
-          ? 'bg-zinc-900 active:bg-zinc-800'
-          : 'bg-zinc-800 active:bg-zinc-700',
-        primary: 'bg-primary active:bg-primary-ripple',
-        destructive: 'bg-red-500 active:bg-red-600',
-        outline: 'border border-zinc-200 bg-transparent active:bg-zinc-100',
+          ? 'bg-zinc-900'
+          : 'bg-zinc-800',
+        primary: 'bg-primary',
+        destructive: 'bg-red-500',
+        outline: `border bg-transparent ${!isDark.value ? 'border-zinc-200  active:bg-zinc-100' : 'border-zinc-500 active:bg-zinc-700'}`,
         secondary: 'bg-zinc-100 active:bg-zinc-200',
         ghost: !isDark.value ?'bg-transparent active:bg-zinc-100' :'bg-transparent active:bg-zinc-800',
         link: 'bg-transparent',
@@ -93,6 +93,7 @@ const handleTap = (e: any) => {
     :class="cn(buttonVariants({ variant, size }), props.class)"
     @tap="handleTap"
   >
+  <slot name="start"/>
     <slot>
       <text
         v-if="label"
@@ -101,5 +102,6 @@ const handleTap = (e: any) => {
         {{ label }}
       </text>
     </slot>
+    <slot name="end"/>
   </view>
 </template>

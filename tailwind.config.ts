@@ -13,6 +13,7 @@ const config: Config = {
         background: 'var(--color-background)',
         foreground: 'var(--color-foreground)',
         ripple: 'var(--color-ripple)',
+        inputborder: 'var(--color-border-input)',
         card: {
           DEFAULT: 'var(--color-card)',
           foreground: 'var(--color-card-foreground)',

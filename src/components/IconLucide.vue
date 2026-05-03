@@ -7,12 +7,12 @@ import type { BaseLucideIcon } from '@/libs/lucideIcons';
 import { useTheme } from '@/composables/useTheme';
 import { computed } from 'vue-lynx';
 
-
 const props = withDefaults(
   defineProps<{
-    icon: BaseLucideIcon;
+    name: BaseLucideIcon;
     size?: number;
     class?: string;
+    dark?: boolean;
     autoTheme?: boolean;
   }>(),
   {
@@ -20,17 +20,22 @@ const props = withDefaults(
     autoTheme: true,
   },
 );
-const {isDark} = useTheme();
+const { isDark } = useTheme();
 const currentIconKey = computed(() => {
-  if (props.autoTheme && isDark.value) {
-    const darkKey = `${props.icon}Dark`;
-    
+  const darkKey = `${props.name}Dark`;
+  if (props.dark) {
     if (darkKey in iconMap) {
       return darkKey as keyof typeof iconMap;
     }
   }
-  
-  return props.icon;
+
+  if (props.autoTheme && isDark.value) {
+    if (darkKey in iconMap) {
+      return darkKey as keyof typeof iconMap;
+    }
+  }
+
+  return props.name;
 });
 </script>
 <template>

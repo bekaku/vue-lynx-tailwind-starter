@@ -31,6 +31,7 @@
   --color-border: rgb(244, 244, 245);
   --color-ripple: rgb(244, 244, 245);
   --text-body: #000000;
+  --color-border-input: rgb(228, 228, 231);
 }
 
 .theme-dark {
@@ -52,12 +53,26 @@
   --color-border: rgb(39, 39, 42);
   --color-ripple: rgb(63, 63, 70);
   --text-body: #fff;
+  --color-border-input: rgb(113, 113, 123);
 }
 
 @layer base {
   text {
     @apply font-sans;
     color: var(--text-body);
+  }
+  input {
+    @apply font-sans;
+    color: var(--text-body);
+  }
+}
+
+.bg-input {
+  background-color: #fff;
+}
+.theme-dark {
+  .bg-input {
+    background-color: rgb(39, 39, 42);
   }
 }
 

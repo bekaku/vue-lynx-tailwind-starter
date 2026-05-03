@@ -51,7 +51,7 @@ const switchTab = (tabName: string) => {
         @tab="switchTab('home')"
       >
         <template #icon>
-          <IconLucide icon="house" />
+          <IconLucide name="house" />
         </template>
       </BaseTabButton>
 
@@ -61,7 +61,7 @@ const switchTab = (tabName: string) => {
         @tab="switchTab('chat')"
       >
         <template #icon>
-           <IconLucide icon="messageCircle" />
+           <IconLucide name="messageCircle" />
         </template>
       </BaseTabButton>
 
@@ -71,7 +71,7 @@ const switchTab = (tabName: string) => {
         @tab="switchTab('settings')"
       >
         <template #icon>
-           <IconLucide icon="settings" />
+           <IconLucide name="settings" />
         </template>
       </BaseTabButton>
     </BaseTabBar>
