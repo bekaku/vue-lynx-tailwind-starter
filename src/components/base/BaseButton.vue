@@ -3,20 +3,19 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/appUtil';
 import { useTheme } from '@/composables/useTheme';
 const { isDark } = useTheme();
-// 1. Variants สำหรับ <view> (Container)
 const buttonVariants = cva(
   'flex flex-row items-center justify-center rounded-md transition-all disabled:opacity-50 active:opacity-80',
   {
     variants: {
       variant: {
-        default: !isDark.value
-          ? 'bg-zinc-900'
-          : 'bg-zinc-800',
-        primary: 'bg-primary',
+        dark: !isDark.value ? 'bg-zinc-900' : 'bg-zinc-800',
+        default: 'bg-primary',
         destructive: 'bg-red-500',
         outline: `border bg-transparent ${!isDark.value ? 'border-zinc-200  active:bg-zinc-100' : 'border-zinc-500 active:bg-zinc-700'}`,
         secondary: 'bg-zinc-100 active:bg-zinc-200',
-        ghost: !isDark.value ?'bg-transparent active:bg-zinc-100' :'bg-transparent active:bg-zinc-800',
+        ghost: !isDark.value
+          ? 'bg-transparent active:bg-zinc-100'
+          : 'bg-transparent active:bg-zinc-800',
         link: 'bg-transparent',
       },
       size: {
@@ -33,17 +32,18 @@ const buttonVariants = cva(
   },
 );
 
-// 2. Variants สำหรับ <text> (Typography) - แก้ปัญหา Native ไม่ Inherit สี
 const textVariants = cva('font-medium text-center', {
   variants: {
     variant: {
       default: 'text-zinc-50',
-      primary: 'text-zinc-50',
+      dark: 'text-zinc-50',
       destructive: 'text-zinc-50',
       outline: !isDark.value ? 'text-zinc-900' : 'text-zinc-100',
       secondary: 'text-zinc-900',
       ghost: !isDark.value ? 'text-zinc-900' : 'text-zinc-100',
-      link: !isDark.value ? 'text-zinc-900 underline' : 'text-zinc-100 underline',
+      link: !isDark.value
+        ? 'text-zinc-900 underline'
+        : 'text-zinc-100 underline',
     },
     size: {
       default: 'text-sm',
@@ -58,7 +58,6 @@ const textVariants = cva('font-medium text-center', {
   },
 });
 
-// ดึง Type ออกมาเพื่อใช้กำหนด Props
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 
 interface Props {
@@ -66,7 +65,7 @@ interface Props {
   size?: ButtonVariants['size'];
   class?: string;
   textClass?: string;
-  label?: string; // แนะนำให้รับ label เป็น prop สำหรับกรณีใช้งานทั่วไป
+  label?: string;
   disabled?: boolean;
 }
 
@@ -77,13 +76,13 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  (e: 'tab', payload: any): void;
+  (e: 'tap', payload: any): void;
 }>();
 
 // Lynx นิยมใช้ @tap (หรือ @bindtap) สำหรับเหตุการณ์การสัมผัส
 const handleTap = (e: any) => {
   if (!props.disabled) {
-    emit('tab', e);
+    emit('tap', e);
   }
 };
 </script>
@@ -93,7 +92,7 @@ const handleTap = (e: any) => {
     :class="cn(buttonVariants({ variant, size }), props.class)"
     @tap="handleTap"
   >
-  <slot name="start"/>
+    <slot v-if="$slots.start" name="start" />
     <slot>
       <text
         v-if="label"
@@ -102,6 +101,6 @@ const handleTap = (e: any) => {
         {{ label }}
       </text>
     </slot>
-    <slot name="end"/>
+    <slot v-if="$slots.end" name="end" />
   </view>
 </template>

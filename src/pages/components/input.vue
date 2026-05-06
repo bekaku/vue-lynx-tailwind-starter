@@ -1,20 +1,18 @@
 <script setup lang="ts">
+import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
-import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import BaseCardFooter from '@/components/base/BaseCardFooter.vue';
-import { ref } from 'vue-lynx';
-import { useRoute } from 'vue-router';
-import BaseButton from '@/components/base/BaseButton.vue';
 import BaseInput from '@/components/base/BaseInput.vue';
-import IconLucide from '@/components/IconLucide.vue';
 import BaseTextarea from '@/components/base/BaseTextarea.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import IconLucide from '@/components/IconLucide.vue';
+import { ref } from 'vue-lynx';
 
-const route = useRoute();
 
-const inputValue = ref('inputValue');
-const inputValue2 = ref('inputValue2');
-const inputValue3 = ref('inputValue3');
+const inputValue = ref('');
+const inputValue2 = ref('');
+const inputValue3 = ref('');
 const inputNumber = ref(999);
 const inputTextarea = ref('inputTextarea');
 const handleInput = (e: any) => {
@@ -36,9 +34,22 @@ const handleConfirm = (e: any) => {
     <BaseToolBar title="About page" />
 
     <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
+      <view class="input-card-url bg-card">
+        <text class="bold-text">Card URL</text>
+        <explorer-input
+          id="input-id"
+          class="input-box"
+          @input="handleInput"
+          :value="inputValue"
+          placeholder="Enter BaseCard URL"
+        />
+        <view class="connect-button">
+          <text class="button-text">Go</text>
+        </view>
+      </view>
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Custom Native Element</text>
+          <!-- <text class="font-bold">Custom Native Element</text>
 
           <view class="w-full">
             <explorer-input
@@ -48,11 +59,11 @@ const handleConfirm = (e: any) => {
               :value="inputValue"
               placeholder="Enter BaseCard URL"
             />
-          </view>
+          </view> -->
         </BaseCardContent>
 
         <BaseCardFooter class="justify-between">
-          <BaseButton variant="primary" label="Go" class="w-full" />
+          <BaseButton  label="Go" class="w-full" />
         </BaseCardFooter>
       </BaseCard>
 
@@ -60,7 +71,7 @@ const handleConfirm = (e: any) => {
         <BaseCardContent>
           <text class="font-bold">Build in Element '{{ inputValue2 }}'</text>
 
-          <view class="w-full p-3 m-2 border border-zinc-200 rounded-md">
+          <view class="w-full p-3 m-2 border-inputborder bg-input rounded-md">
             <input
               placeholder="search"
               :value="inputValue2"
@@ -70,12 +81,12 @@ const handleConfirm = (e: any) => {
         </BaseCardContent>
 
         <BaseCardFooter class="justify-between">
-          <BaseButton variant="primary" label="Go" class="w-full" />
+          <BaseButton label="Go" class="w-full" />
         </BaseCardFooter>
       </BaseCard>
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Component Input {{ inputValue3 }}</text>
+          <text class="font-bold">Component Input '{{ inputValue3 }}'</text>
 
           <BaseInput
             class="my-4"

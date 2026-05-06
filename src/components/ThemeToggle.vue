@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import BaseToggle from '@/components/base/BaseToggle.vue';
+import { useTheme } from '@/composables/useTheme';
 import { useThemeStore } from '@/stores/themeStore';
 import { ref } from 'vue-lynx';
+const { onSetTheme } = useTheme();
 const themeStore = useThemeStore();
-const { setTheme, themeNames } = themeStore;
-
 const props = withDefaults(
   defineProps<{
     disabled?: boolean;
@@ -19,7 +19,7 @@ const handleTab = (dark: boolean) => {
   }
 };
 const toggleTheme = (dark: boolean) => {
-  setTheme(dark ? 'dark' : 'light');
+  onSetTheme(dark ? 'dark' : 'light');
   darkEnabled.value = dark;
 };
 const onToggleTheme = (dark: boolean) => {
@@ -32,12 +32,12 @@ defineExpose({
 <template>
   <view>
     <slot>
-      <!-- <BaseToggle v-model="darkEnabled" @update:modelValue="onToggleTheme" @tab="handleTab" /> -->
+      <!-- <BaseToggle v-model="darkEnabled" @update:modelValue="onToggleTheme" @tap="handleTab" /> -->
       <BaseToggle
         v-model="darkEnabled"
         id="app-theme-switch"
         :disabled="disabled"
-        @tab="handleTab"
+        @tap="handleTab"
       />
     </slot>
   </view>

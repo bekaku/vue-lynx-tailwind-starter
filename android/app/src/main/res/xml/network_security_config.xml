@@ -3,7 +3,7 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">givedeefive.com</domain>
         <!--    <domain includeSubdomains="true">localhost</domain>-->
-        <domain includeSubdomains="true">192.168.7.129</domain>
+        <domain includeSubdomains="true">192.168.7.128</domain>
         <domain includeSubdomains="true">10.0.2.2</domain>
         <domain includeSubdomains="true">api.givedeefive.com</domain>
         <domain includeSubdomains="true">cdn.givedeefive.com</domain>

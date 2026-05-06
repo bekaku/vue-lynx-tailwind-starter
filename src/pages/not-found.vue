@@ -14,6 +14,6 @@ const goHome = () => {
     <text class="text-6xl font-bold mb-2">404</text>
     <text class="text-lg text-zinc-500 mb-8">Oops! BasePage not found.</text>
 
-    <BaseButton label="Back to Home" @tab="goHome" />
+    <BaseButton label="Back to Home" @tap="goHome" />
   </view>
 </template>

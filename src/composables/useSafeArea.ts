@@ -1,29 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ref, onMounted } from 'vue-lynx'
+import { useBase } from './useBase'
 
-const top = ref(0)
-const bottom = ref(0)
-const left = ref(0)
-const right = ref(0)
+
 
 export function useSafeArea() {
+    const { isNativeAvailable, isIos, isAndroid } = useBase()
+    const top = ref(isAndroid ? 40 : isIos ? 47 : 0)
+    const bottom = ref(isAndroid ? 24 : isIos ? 34 : 0)
+    const left = ref(0)
+    const right = ref(0)
 
-    const loadSafeArea = () => {
+    const safeAreaTop = ref<string | number>()
+    const safeAreaBottom = ref<string | number>()
+    const loadSafeArea = async () => {
         try {
-            const info = (globalThis as any)?.lynx?.getSystemInfo?.()
 
-            if (info?.safeAreaInsets) {
-                top.value = info.safeAreaInsets.top || 0
-                bottom.value = info.safeAreaInsets.bottom || 0
-                left.value = info.safeAreaInsets.left || 0
-                right.value = info.safeAreaInsets.right || 0
-            } else {
-                // fallback สำหรับ simulator
-                bottom.value = 34
+            if (isNativeAvailable) {
+                NativeModules.DeviceInfoModule.getStatusBarHeight((value: string | number) => {
+                    safeAreaTop.value= value
+                });
+                NativeModules.DeviceInfoModule.getSafeAreaBottom((value: string | number) => {
+                    safeAreaBottom.value= value
+                });
             }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+            if (lynx.__globalProps.safeAreaInsets) {
+                console.log('useSafeArea', lynx.__globalProps.safeAreaInsets)
+                const { top: topValue, bottom: bottomValue } = lynx.__globalProps.safeAreaInsets;
+                top.value = topValue || 40
+                bottom.value = bottomValue || 24
+            }
+
         } catch (e: any) {
-            bottom.value = 34
+            console.warn('useSafeArea', e)
+            top.value = 40
+            bottom.value = 24
         }
     }
 
@@ -33,6 +45,8 @@ export function useSafeArea() {
         top,
         bottom,
         left,
-        right
+        right,
+        safeAreaTop,
+        safeAreaBottom
     }
 }

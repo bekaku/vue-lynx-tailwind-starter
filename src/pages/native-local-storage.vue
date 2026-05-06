@@ -57,10 +57,10 @@ onMounted(async () => {
           <!-- <input v-model="username" placeholder="พิมพ์ชื่อ..." /> -->
 
           <view class="flex flex-row gap-2">
-            <BaseButton label="Save" @tab="handleSave" />
-            <BaseButton label="Load" @tab="handleLoad" />
-            <BaseButton label="Delete" variant="destructive" @tab="handleDelete" />
-            <BaseButton label="Clear" @tab="handleClear" />
+            <BaseButton label="Save" @tap="handleSave" />
+            <BaseButton label="Load" @tap="handleLoad" />
+            <BaseButton label="Delete" variant="destructive" @tap="handleDelete" />
+            <BaseButton label="Clear" @tap="handleClear" />
           </view>
         </view>
       </BaseCardContent>

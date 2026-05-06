@@ -1,42 +1,46 @@
 <script setup lang="ts">
 import IconLucide from '@/components/IconLucide.vue';
 import ThemeToggle from '@/components/ThemeToggle.vue';
-import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
-import BaseCardContent from '@/components/base/BaseCardContent.vue';
-import BaseCardFooter from '@/components/base/BaseCardFooter.vue';
-import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
-import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
 import BaseItem from '@/components/base/BaseItem.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useBase } from '@/composables/useBase';
 import { useScrollRestore } from '@/composables/useScrollRestore';
 import { useTheme } from '@/composables/useTheme';
 import type { LabelValue } from '@/types/common';
-import { ref, useTemplateRef } from 'vue-lynx';
+import { onMounted, ref, useTemplateRef } from 'vue-lynx';
 const { scrollTop, onScroll } = useScrollRestore();
 const { isDark } = useTheme();
 const { platform } = useBase();
 const themeToggleRef = useTemplateRef<any>('themeToggleRef');
 const menuItems = ref<LabelValue<any>[]>([
-  { label: 'Tailwind CSS', value: '/tailwind' },
-  { label: 'About', value: '/about' },
-  { label: 'Button', value: '/components/button' },
-  { label: 'Card', value: '/components/card' },
+  { label: 'Action Sheet', value: '/action-sheet' },
+  { label: 'Alert', value: '/alert' },
+  { label: 'Badge', value: '/badge' },
+  { label: 'Button', value: '/button' },
+  { label: 'Card', value: '/card' },
+  { label: 'Confirm dialog', value: '/confirm-dialog' },
+  { label: 'Dialog', value: '/dialog' },
   { label: 'Event modifier', value: '/event-modifier' },
   { label: 'Grid', value: '/grid' },
   { label: 'Icons', value: '/icons' },
-  { label: 'Input', value: '/components/input' },
-  { label: 'Keepalive', value: '/keepalive' },
-  { label: 'List BaseItem', value: '/components/list-item' },
+  { label: 'Image', value: '/image' },
+  { label: 'Image picker', value: '/image-picker' },
+  { label: 'Input', value: '/input' },
+  { label: 'Keep alive', value: '/keepalive' },
+  { label: 'List Item', value: '/list-item' },
   { label: 'Native LocalStorage', value: '/native-local-storage' },
-  { label: 'Notfound', value: '/components/not-foudn' },
+  { label: 'Notfound', value: '/not-foudn' },
   { label: 'Users', value: '/user-list' },
   { label: 'Stores', value: '/store' },
+  { label: 'Tailwind CSS', value: '/tailwind' },
   { label: 'Tabs Route', value: '/tabs-route' },
   { label: 'Tabs Keepalive', value: '/tabs-keepalive' },
 ]);
 
+onMounted(() => {
+  // const info = lynx.getSystemInfoSync();
+});
 const handleTheme = (e: any) => {
   console.log('index.vue > handleTheme', e);
   if (themeToggleRef.value) {
@@ -54,27 +58,22 @@ const handleTheme = (e: any) => {
       :scroll-top="scrollTop"
       @scroll="onScroll"
     >
-      
-
       <BaseCard class="w-full">
-        <BaseCardHeader>
-          <BaseCardTitle>Vue Lynx</BaseCardTitle>
-          <text class="text-muted text-sm">
-            Vue Lynx Starter Template By Chanavee platform: {{ platform }}
-          </text>
-        </BaseCardHeader>
+        <view class="flex flex-col p-[14px]">
+          <text class="text-xl font-semibold tracking-tight">Vue Lynx </text>
+          <text class="text-sm text-muted"
+            >Vue Lynx Starter Template By Chanavee platform:{{ platform }}</text
+          >
+        </view>
 
         <BaseItem
           title="Dark"
           description="Swith theme Dark|Light"
           button
-          @tab="handleTheme"
+          @tap="handleTheme"
         >
           <template #start>
-            <view
-              class="w-8 h-8 rounded-full flex items-center justify-center"
-              :class="[!isDark ? 'bg-zinc-100' : 'bg-zinc-700']"
-            >
+            <view class="flex items-center justify-center">
               <IconLucide :size="24" name="sunMoon" />
             </view>
           </template>
@@ -91,7 +90,6 @@ const handleTheme = (e: any) => {
         >
           <template #end>
             <view class="w-8 h-8 flex items-center justify-center">
-              <!-- <text class="text-zinc-400 text-xs">❯</text> -->
               <IconLucide :size="14" name="chevronRight" />
             </view>
           </template>

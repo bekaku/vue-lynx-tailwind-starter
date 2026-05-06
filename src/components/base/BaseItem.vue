@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const { onNavigateTo } = useBase();
 const emit = defineEmits<{
-  (e: 'tab', payload: any): void;
+  (e: 'tap', payload: any): void;
 }>();
 
 const handleTap = (e: any) => {
@@ -28,7 +28,7 @@ const handleTap = (e: any) => {
     if (props.to) {
       onNavigateTo(props.to);
     }
-    emit('tab', e);
+    emit('tap', e);
   }
 };
 </script>
@@ -48,7 +48,8 @@ const handleTap = (e: any) => {
     @tap="handleTap"
   >
     <view class="flex flex-row items-center gap-1 flex-1">
-      <slot name="start" />
+      <slot v-if="$slots.start" name="start" />
+
       <view class="flex flex-col justify-center">
         <text class="text-sm font-medium">
           {{ title }}
@@ -60,7 +61,7 @@ const handleTap = (e: any) => {
       </view>
     </view>
 
-    <view class="flex flex-row items-center justify-end pl-2">
+    <view v-if="$slots.end" class="flex flex-row items-center justify-end pl-2">
       <slot name="end" />
     </view>
   </view>

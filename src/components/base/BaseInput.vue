@@ -35,7 +35,7 @@ const props = withDefaults(
 );
 const emit = defineEmits<{
   'update:modelValue': [value: string];
-  tab: [value: boolean, event: any];
+  tap: [value: boolean, event: any];
   blur: [event: any];
   confirm: [event: any];
   focus: [event: any];
@@ -91,7 +91,7 @@ const handleBlur = (e: any) => {
         )
       "
     >
-      <slot name="start" />
+      <slot v-if="$slots.start" name="start" />
 
       <input
         ref="appInputRef"
@@ -118,7 +118,7 @@ const handleBlur = (e: any) => {
         @confirm="emit('confirm', $event)"
       />
 
-      <slot name="end" />
+      <slot v-if="$slots.end" name="end" />
     </view>
     <view v-if="$slots.bottom" class="mt-0.5">
       <slot name="bottom" />

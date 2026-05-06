@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useBase } from '@/composables/useBase';
 import { useSafeArea } from '@/composables/useSafeArea';
 import { cn } from '@/utils/appUtil';
 const { bottom, top } = useSafeArea();

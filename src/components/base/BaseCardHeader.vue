@@ -1,11 +1,22 @@
 <script setup lang="ts">
-import { cn } from '../../utils/appUtil'
+import { useBase } from '@/composables/useBase';
+import { defaultAndroidPaddingFix } from '@/libs/constant';
+import { cn } from '@/utils/appUtil';
 
-const props = defineProps<{ class?: string }>()
+const props = defineProps<{ class?: string }>();
+const { isAndroid } = useBase();
 </script>
 
 <template>
-  <view :class="cn('flex flex-col gap-1.5 pl-4 pt-4 pr-4 pb-2', props.class)">
+  <view
+    :class="
+      cn(
+        'flex flex-col my-0 px-[14px]',
+        isAndroid ? 'android-padding-fix' : 'py-[14px]',
+        props.class,
+      )
+    "
+  >
     <slot />
   </view>
 </template>

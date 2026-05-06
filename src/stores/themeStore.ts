@@ -4,7 +4,6 @@ import { computed } from 'vue-lynx';
 import type { ThemeName } from '@/types/common';
 
 export const useThemeStore = defineStore('themeStore', () => {
-
   const themeNames: ThemeName[] = ['dark', 'light'];
 
   const currentTheme = ref<ThemeName>('light');
@@ -13,7 +12,6 @@ export const useThemeStore = defineStore('themeStore', () => {
   const isDark = computed(() => currentTheme.value === 'dark');
 
   function setTheme(name: ThemeName) {
-    
     currentTheme.value = name;
   }
 

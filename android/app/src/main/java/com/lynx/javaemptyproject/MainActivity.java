@@ -3,24 +3,25 @@ package com.lynx.javaemptyproject;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.lynx.javaemptyproject.elements.GlideImageUI;
-import com.lynx.javaemptyproject.modules.AppModule;
-import com.lynx.javaemptyproject.modules.NativeLocalStorageModule;
+import com.lynx.javaemptyproject.modules.ImagePickerModule;
 import com.lynx.react.bridge.JavaOnlyArray;
-import com.lynx.tasm.LynxEnv;
 import com.lynx.tasm.LynxError;
 import com.lynx.tasm.LynxView;
 import com.lynx.tasm.LynxViewBuilder;
 import com.lynx.tasm.LynxViewClient;
 import com.lynx.tasm.TemplateData;
-import com.lynx.tasm.behavior.Behavior;
-import com.lynx.tasm.behavior.LynxContext;
 import com.lynx.xelement.XElementBehaviors;
 
 public class MainActivity extends AppCompatActivity {
+    private ImagePickerModule activeImagePickerModule;
+
+    public void setActiveImagePickerModule(ImagePickerModule module) {
+        this.activeImagePickerModule = module;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         String url = "main.lynx.bundle";
 //        String url = "http://10.0.2.2:3000/main.lynx.bundle";
-        System.out.println("MainActivity > onCreate " + url);
+//        String url = "http://192.168.7.128:3000/main.lynx.bundle";
         lynxView.renderTemplateUrl(url, TemplateData.empty());
 
         // open switch page
@@ -52,20 +53,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private LynxView buildLynxView() {
-//        LynxEnv.inst().addBehavior(new Behavior("glide-image") {
-//            @Override
-//            public GlideImageUI createUI(LynxContext context) {
-//                return new GlideImageUI(context);
-//            }
-//        });
-
         LynxViewBuilder viewBuilder = new LynxViewBuilder();
         viewBuilder.addBehaviors(new XElementBehaviors().create());
         viewBuilder.setTemplateProvider(new DemoTemplateProvider(this));
-//        return viewBuilder.build(this);
-        viewBuilder.registerModule("AppModule", AppModule.class);
-        viewBuilder.registerModule("NativeLocalStorageModule", NativeLocalStorageModule.class);
-
+//        viewBuilder.registerModule("AppModule", AppModule.class);
+//        viewBuilder.registerModule("NativeLocalStorageModule", NativeLocalStorageModule.class);
+//        viewBuilder.registerModule("DeviceInfoModule", DeviceInfoModule.class);
+//        viewBuilder.registerModule("ImagePickerModule", ImagePickerModule.class);
 
 //        viewBuilder.addBehavior(new Behavior("glide-image", false) {
 //            @Override
@@ -73,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 //                return new GlideImageUI(context);
 //            }
 //        });
-
         LynxView lynxView = viewBuilder.build(this);
         lynxView.addLynxViewClient(new LynxViewClient() {
             @Override
@@ -83,5 +76,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return lynxView;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        ImagePickerModule.handleActivityResult(requestCode, resultCode, data);
+        if (activeImagePickerModule != null) {
+            activeImagePickerModule.handleActivityResult(this, requestCode, resultCode, data);
+        }
     }
 }

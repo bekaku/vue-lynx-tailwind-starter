@@ -4,6 +4,7 @@ import BaseTabButton from '@/components/base/BaseTabButton.vue';
 import { useBase } from '@/composables/useBase';
 import TabsChat from '@/pages/tabs/chat.vue';
 import TabsHome from '@/pages/tabs/home.vue';
+import TabsSetting from '@/pages/tabs/setting.vue';
 import { reactive, ref } from 'vue-lynx';
 const { onNavigateTo, isPathActive } = useBase();
 import IconLucide from '@/components/IconLucide.vue';
@@ -42,36 +43,50 @@ const switchTab = (tabName: string) => {
       >
         <TabsChat />
       </view>
+      <view
+        v-if="renderedTabs['settings']"
+        class="absolute inset-0"
+        :style="{
+          opacity: activeTab === 'settings' ? 1 : 0,
+          pointerEvents: activeTab === 'settings' ? 'auto' : 'none',
+        }"
+      >
+        <TabsSetting />
+      </view>
     </view>
 
     <BaseTabBar class="py-2">
       <BaseTabButton
         label="Home"
         :active="activeTab === 'home'"
-        @tab="switchTab('home')"
+        @tap="switchTab('home')"
       >
         <template #icon>
-          <IconLucide name="house" />
+          <IconLucide :name="activeTab !== 'home' ? 'house' : 'houseBlue'" />
         </template>
       </BaseTabButton>
 
       <BaseTabButton
         label="Chat"
         :active="activeTab === 'chat'"
-        @tab="switchTab('chat')"
+        @tap="switchTab('chat')"
       >
         <template #icon>
-           <IconLucide name="messageCircle" />
+          <IconLucide
+            :name="activeTab !== 'chat' ? 'messageCircle' : 'messageCircleBlue'"
+          />
         </template>
       </BaseTabButton>
 
       <BaseTabButton
         label="Settings"
         :active="activeTab === 'settings'"
-        @tab="switchTab('settings')"
+        @tap="switchTab('settings')"
       >
         <template #icon>
-           <IconLucide name="settings" />
+          <IconLucide
+            :name="activeTab !== 'settings' ? 'settings' : 'settingsBlue'"
+          />
         </template>
       </BaseTabButton>
     </BaseTabBar>

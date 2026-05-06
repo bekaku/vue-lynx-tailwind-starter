@@ -10,6 +10,7 @@ export const useBase = () => {
   const isIos = SystemInfo.platform === 'iOS';
   const isWeb = SystemInfo.platform === 'web';
   const platform = SystemInfo.platform;
+  const isNativeAvailable = typeof NativeModules !== 'undefined' && !!NativeModules.NativeLocalStorageModule;
 
   const isPathActive = (path: string) => computed(() => route.path === path).value
   const getFullPath = () => {
@@ -32,6 +33,7 @@ export const useBase = () => {
     onBack,
     getFullPath,
     isPathActive,
+    isNativeAvailable,
     platform,
     isAndroid,
     isIos,

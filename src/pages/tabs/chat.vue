@@ -40,8 +40,8 @@ onMounted(()=>{
         </text>
         <view class="p-4 flex flex-row gap-2">
           <text>{{ counter }}</text>
-          <BaseButton label="-" class="bg-red-500" @tab="counter--" />
-          <BaseButton label="+" class="bg-green-500" @tab="counter++" />
+          <BaseButton label="-" class="bg-red-500" @tap="counter--" />
+          <BaseButton label="+" class="bg-green-500" @tap="counter++" />
         </view>
       </BaseCardContent>
     </BaseCard>

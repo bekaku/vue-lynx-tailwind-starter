@@ -41,7 +41,7 @@ const props = withDefaults(
 );
 const emit = defineEmits<{
   'update:modelValue': [value: string];
-  tab: [value: boolean, event: any];
+  tap: [value: boolean, event: any];
   blur: [event: any];
   confirm: [event: any];
   focus: [event: any];

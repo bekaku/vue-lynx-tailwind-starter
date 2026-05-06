@@ -38,6 +38,9 @@ const onTab = () => {
   console.log('onTab');
   onNavigateTo('/');
 };
+const onManulSetTheme = (t: any) => {
+  console.log('onManulSetTheme', t);
+};
 </script>
 
 <template>
@@ -60,26 +63,6 @@ const onTab = () => {
             Manage your account and preferences.
           </text>
         </view>
-
-        <BaseCard :margin="false">
-          <view class="p-4 pb-0 flex flex-col gap-1">
-            <text class="text-card-foreground text-lg font-semibold"
-              >Theme</text
-            >
-            <text class="text-muted-foreground text-sm">
-              Switch design tokens at runtime via CSS variables.
-            </text>
-          </view>
-          <view class="p-4 flex flex-row gap-2">
-            <BaseButton
-              v-for="t in themeNames"
-              :key="t"
-              :class="'flex-1 '"
-              :label="t[0].toUpperCase() + t.slice(1)"
-              variant="primary"
-            />
-          </view>
-        </BaseCard>
 
         <!-- BaseCard: Theme Switcher -->
         <view class="bg-card rounded-lg border border-border flex flex-col">
@@ -215,7 +198,7 @@ const onTab = () => {
           <view class="p-4 flex flex-col gap-3">
             <!-- Switch row: Push -->
             <view
-              class="flex flex-row items-center justify-between"
+              class="flex flex-row items-center justify-between p-2 active:bg-ripple"
               @tap="togglePush"
             >
               <view class="flex flex-col">
@@ -226,14 +209,14 @@ const onTab = () => {
                   Receive push notifications on your device.
                 </text>
               </view>
-              <BaseToggle v-model="pushEnabled" class="bg-red-500" />
+              <BaseToggle v-model="pushEnabled" disabled class="bg-red-500" />
             </view>
 
             <view class="h-px bg-border" />
 
             <!-- Switch row: Email -->
             <view
-              class="flex flex-row items-center justify-between"
+              class="flex flex-row items-center justify-between p-2 active:bg-ripple"
               @tap="toggleEmail"
             >
               <view class="flex flex-col">
@@ -244,7 +227,7 @@ const onTab = () => {
                   Receive email digests and updates.
                 </text>
               </view>
-              <BaseToggle v-model="emailEnabled" />
+              <BaseToggle v-model="emailEnabled" disabled />
             </view>
           </view>
         </view>

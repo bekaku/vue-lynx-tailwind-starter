@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useBase } from '@/composables/useBase';
 import { useTheme } from '@/composables/useTheme';
+import { defaultAndroidPaddingFix } from '@/libs/constant';
 import { cn } from '@/utils/appUtil';
 
 interface Props {
@@ -13,10 +15,11 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  (e: 'tab'): void;
+  (e: 'tap'): void;
 }>();
 
 const { isDark } = useTheme();
+const { isAndroid } = useBase();
 </script>
 
 <template>
@@ -27,9 +30,12 @@ const { isDark } = useTheme();
         props.class,
       )
     "
-    @tap="emit('tab')"
+    @tap="emit('tap')"
   >
-    <slot name="icon" />
+    <view :class="isAndroid ? 'android-padding-fix' : ''">
+      <slot name="icon" />
+    </view>
+
     <text
       :class="
         cn(

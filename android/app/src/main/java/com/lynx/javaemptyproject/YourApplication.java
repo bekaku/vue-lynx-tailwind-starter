@@ -12,8 +12,12 @@ import com.facebook.imagepipeline.memory.PoolConfig;
 import com.facebook.imagepipeline.memory.PoolFactory;
 import com.lynx.devtoolwrapper.LynxDevtoolCardListener;
 import com.lynx.devtoolwrapper.LynxDevtoolGlobalHelper;
-import com.lynx.javaemptyproject.elements.GlideImageUI;
-import com.lynx.javaemptyproject.elements.LynxExplorerInput;
+import com.lynx.javaemptyproject.ui.elements.GlideImageUI;
+import com.lynx.javaemptyproject.modules.ImagePickerModule;
+import com.lynx.javaemptyproject.ui.elements.LynxExplorerInput;
+import com.lynx.javaemptyproject.modules.AppModule;
+import com.lynx.javaemptyproject.modules.DeviceInfoModule;
+import com.lynx.javaemptyproject.modules.NativeLocalStorageModule;
 import com.lynx.service.image.LynxImageService;
 import com.lynx.service.log.LynxLogService;
 import com.lynx.service.devtool.LynxDevToolService;
@@ -53,7 +57,10 @@ public class YourApplication extends Application {
                 null,
                 null
         );
-
+        LynxEnv.inst().registerModule("AppModule", AppModule.class);
+        LynxEnv.inst().registerModule("NativeLocalStorageModule", NativeLocalStorageModule.class);
+        LynxEnv.inst().registerModule("DeviceInfoModule", DeviceInfoModule.class);
+        LynxEnv.inst().registerModule("ImagePickerModule", ImagePickerModule.class);
         LynxEnv.inst().addBehavior(new Behavior("glide-image") {
             @Override
             public GlideImageUI createUI(LynxContext context) {

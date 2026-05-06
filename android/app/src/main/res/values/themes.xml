@@ -2,4 +2,12 @@
 <resources>
 
     <style name="Theme.JavaEmptyProject" parent="@style/Theme.AppCompat.Light.NoActionBar" />
+
+<!--    <style name="Theme.JavaEmptyProject" parent="@style/Theme.AppCompat.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Make status and navigation bar transparent &ndash;&gt;-->
+<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+<!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+<!--        <item name="android:windowTranslucentNavigation">true</item>-->
+<!--    </style>-->
 </resources>

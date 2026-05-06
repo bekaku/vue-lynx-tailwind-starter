@@ -16,7 +16,7 @@ const props = withDefaults(
 );
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
-  tab: [value: boolean, event: any];
+  tap: [value: boolean, event: any];
 }>();
 const handleTap = (e: any) => {
   if (props.disabled) {
@@ -24,7 +24,7 @@ const handleTap = (e: any) => {
   }
   const newValue = !props.modelValue;
   emit('update:modelValue', newValue);
-  emit('tab', newValue, e);
+  emit('tap', newValue, e);
 };
 </script>
 

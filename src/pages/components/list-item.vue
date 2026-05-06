@@ -44,12 +44,12 @@ const handleItemClick = (item: string) => {
     <BaseToolBar class="mb-2" title="List BaseItem"> </BaseToolBar>
 
     <BaseCard>
-      <BaseItem title="Profile" button @tab="handleItemClick('Profile')" />
+      <BaseItem title="Profile" button @tap="handleItemClick('Profile')" />
       <BaseItem
         title="Notifications"
         description="Manage your push notifications"
         button
-        @tab="handleItemClick('Notifications')"
+        @tap="handleItemClick('Notifications')"
       />
 
       <BaseItem

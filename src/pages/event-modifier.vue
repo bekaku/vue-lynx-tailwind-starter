@@ -3,7 +3,7 @@ import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { reactive, ref } from 'vue-lynx';
 
 const counterA = ref(0) // plain @tap — inner tap fires both inner and outer handlers (+2)
-const counterB = ref(0) // @tap.stop — inner tap only fires inner handler (+1)
+const counterB = ref(0) // :catchtap — inner tap only fires inner handler (+1)
 const active = reactive({
   outer: false,
   middle: false,
@@ -19,20 +19,24 @@ const flash = (key: 'outer' | 'middle' | 'inner') => {
 
 // 3. Event Handlers
 const handleOuterTap = (e: any) => {
-   if (e.target.id !== 'outer') return;
-  console.log('outer',e);
+    console.log('outer',e);
+  //  if (e.target.id !== 'outer') return;
   flash('outer');
 };
 
 const handleMiddleTap = (e: any) => {
-  if (e.target.id !== 'middle') return;
   console.log('middle',e);
+  // if (e.target.id !== 'middle') return;
   flash('middle');
 };
 
 const handleInnerTap = (e: any) => {
   console.log('inner', e);
   flash('inner');
+};
+const onCounterCatchTap = (e: any) => {
+  console.log('onCounterCatchTap', e);
+  counterB.value++
 };
 </script>
 
@@ -48,14 +52,14 @@ const handleInnerTap = (e: any) => {
       <text>Outer {{ active.outer ? '(active)' : '(inactive)' }}</text>
 
       <view
-        @tap="handleMiddleTap"
+        :catchtap="handleMiddleTap"
         :class="['box middle', active.middle ? 'active' : '']"
         id="middle"
       >
         <text>Middle {{ active.middle ? '(active)' : '(inactive)' }}</text>
 
         <view
-          @tap.stop="handleInnerTap"
+          :catchtap="handleInnerTap"
           :class="['box inner', active.inner ? 'active' : '']"
           id="inner"
         >
@@ -73,7 +77,7 @@ const handleInnerTap = (e: any) => {
     <!-- Section header -->
     <view :style="{ padding: '10px 14px', backgroundColor: '#fde8d8' }">
       <text :style="{ fontSize: '14px', fontWeight: 'bold', color: '#cc5500' }">
-        @tap  vs  @tap.stop
+        @tap  vs  :catchtap
       </text>
       <text :style="{ fontSize: '11px', color: '#664', marginTop: '2px' }">
         Tap Inner — left counter jumps by 2 (propagates to outer), right by 1 (.stop blocks it)
@@ -82,7 +86,7 @@ const handleInnerTap = (e: any) => {
 
     <!-- Side-by-side panels -->
     <view :style="{ display: 'flex', flexDirection: 'row' }">
-      <!-- Without .stop -->
+      <!-- Without :catchtap -->
       <view :style="{ flex: 1, display: 'flex', flexDirection: 'column', padding: '10px', alignItems: 'center' }">
         <text :style="{ fontSize: '11px', color: '#888', marginBottom: '6px' }">@tap</text>
 
@@ -93,7 +97,7 @@ const handleInnerTap = (e: any) => {
         <!-- Outer ring — tight padding so the tappable outer area is clearly just the border -->
         <view
           @tap="counterA++"
-          :style="{ padding: '10px', backgroundColor: '#fff3e8', borderRadius: '8px', borderWidth: '2px', borderColor: '#cc5500', borderStyle: 'solid', alignItems: 'center' }"
+          :style="{ padding: '16px', backgroundColor: '#fff3e8', borderRadius: '8px', borderWidth: '2px', borderColor: '#cc5500', borderStyle: 'solid', alignItems: 'center' }"
         >
           <!-- Inner button -->
           <view
@@ -113,9 +117,9 @@ const handleInnerTap = (e: any) => {
       <!-- Divider -->
       <view :style="{ width: '1px', backgroundColor: '#eee' }" />
 
-      <!-- With .stop -->
+      <!-- With :catchtap -->
       <view :style="{ flex: 1, display: 'flex', flexDirection: 'column', padding: '10px', alignItems: 'center' }">
-        <text :style="{ fontSize: '11px', color: '#888', marginBottom: '6px' }">@tap.stop</text>
+        <text :style="{ fontSize: '11px', color: '#888', marginBottom: '6px' }">:catchtap</text>
 
         <!-- Counter display -->
         <text :style="{ fontSize: '44px', fontWeight: 'bold', color: '#cc5500', lineHeight: '48px' }">{{ counterB }}</text>
@@ -124,14 +128,14 @@ const handleInnerTap = (e: any) => {
         <!-- Outer ring -->
         <view
           @tap="counterB++"
-          :style="{ padding: '10px', backgroundColor: '#fff3e8', borderRadius: '8px', borderWidth: '2px', borderColor: '#cc5500', borderStyle: 'solid', alignItems: 'center' }"
+          :style="{ padding: '16px', backgroundColor: '#fff3e8', borderRadius: '8px', borderWidth: '2px', borderColor: '#cc5500', borderStyle: 'solid', alignItems: 'center' }"
         >
-          <!-- Inner button with .stop -->
+          <!-- Inner button with catchtap -->
           <view
-            @tap.stop="counterB++"
+            :catchtap="onCounterCatchTap"
             :style="{ paddingTop: '8px', paddingBottom: '8px', paddingLeft: '16px', paddingRight: '16px', backgroundColor: '#cc5500', borderRadius: '5px', alignItems: 'center' }"
           >
-            <text :style="{ color: '#fff', fontSize: '12px', fontWeight: 'bold' }">Tap me (.stop)</text>
+            <text :style="{ color: '#fff', fontSize: '12px', fontWeight: 'bold' }">Tap me (catchtap)</text>
           </view>
         </view>
         <text :style="{ fontSize: '10px', color: '#cc5500', marginTop: '4px' }">← border tap still works</text>

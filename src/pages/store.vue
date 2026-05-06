@@ -18,7 +18,6 @@ const counter = useCounterStore();
           :style="{
             fontSize: '16px',
             fontWeight: 'bold',
-            color: '#333',
             marginBottom: '8px',
           }"
         >

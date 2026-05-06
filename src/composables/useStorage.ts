@@ -1,9 +1,12 @@
+import { useBase } from "./useBase";
+
 export const useStorage = () => {
-    const isAvailable = typeof NativeModules !== 'undefined' && !!NativeModules.NativeLocalStorageModule;
+
+    const { isNativeAvailable } = useBase();
     const memoryFallback: Record<string, string> = {};
 
     const setItem = (key: string, value: string): void => {
-        if (isAvailable) {
+        if (isNativeAvailable) {
             NativeModules.NativeLocalStorageModule.setStorageItem(key, value);
         } else {
             console.log(`[Storage] Fallback: Saving '${key}' to memory.`);
@@ -13,7 +16,7 @@ export const useStorage = () => {
 
     const getItem = (key: string): Promise<string | null> => {
         return new Promise((resolve) => {
-            if (isAvailable) {
+            if (isNativeAvailable) {
                 NativeModules.NativeLocalStorageModule.getStorageItem(key, (value: string) => {
                     resolve(value);
                 });
@@ -26,7 +29,7 @@ export const useStorage = () => {
 
     const removeItem = (key: string): Promise<boolean> => {
         return new Promise((resolve) => {
-            if (isAvailable) {
+            if (isNativeAvailable) {
                 NativeModules.NativeLocalStorageModule.removeStorageItem(key, (success: boolean) => {
                     resolve(success);
                 });
@@ -39,7 +42,7 @@ export const useStorage = () => {
     };
 
     const clear = (): void => {
-        if (isAvailable) {
+        if (isNativeAvailable) {
             NativeModules.NativeLocalStorageModule.clearStorage();
         } else {
             console.log('[Storage] Fallback: Clearing memory storage.');
@@ -53,6 +56,6 @@ export const useStorage = () => {
         getItem,
         removeItem,
         clear,
-        isAvailable
+        isNativeAvailable
     };
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+declare const lynx: any;
 declare let NativeModules: {
   NativeLocalStorageModule: {
     setStorageItem(key: string, value: string): void;
@@ -7,6 +9,19 @@ declare let NativeModules: {
   };
   AppModule: {
     exitApp(): void
+  }
+  DeviceInfoModule: {
+    getStatusBarHeight(callback: (value: string | number) => void): void;
+    getSafeAreaBottom(callback: (value: string | number) => void): void;
+    setStatusBarStyle(
+      colorHex: string,
+      isDarkText: boolean,
+      callback?: (success: boolean) => void
+    ): void;
+  }
+  ImagePickerModule: {
+    pickImage(): Promise<string>;
+    pickMultipleImages(): Promise<string[]>;
   }
 };
 declare const SystemInfo: {
@@ -47,7 +62,7 @@ declare const SystemInfo: {
   /**
    * The platform of the current device.
    */
-  readonly platform: 'Android' | 'iOS' | 'macOS' | 'windows' | 'headless' |'web';
+  readonly platform: 'Android' | 'iOS' | 'macOS' | 'windows' | 'headless' | 'web';
 
   /**
    * The JavaScript engine currently used.

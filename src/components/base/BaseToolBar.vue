@@ -4,7 +4,8 @@ import BaseButton from './BaseButton.vue';
 import { useBase } from '@/composables/useBase';
 import type { TollbarProps } from '@/types/props';
 import BaseBackButton from './BaseBackButton.vue';
-
+import { useSafeArea } from '@/composables/useSafeArea';
+const { safeAreaTop, safeAreaBottom } = useSafeArea();
 const { onNavigateTo } = useBase();
 const props = withDefaults(defineProps<TollbarProps>(), {
   showBackButton: true,
@@ -19,10 +20,13 @@ const onTab = () => {
   <view
     :class="
       cn(
-        'flex flex-row items-center justify-between w-full h-14 px-4  border-b border-border bg-card',
+        'flex flex-row items-center justify-between w-full min-h-14 px-4 pb-[1px]  border-b border-border bg-card',
         props.class,
       )
     "
+    :style="{
+      paddingTop: safeAreaTop + 'px'
+    }"
   >
     <view class="flex flex-row items-center justify-start min-w-[60px]">
       <slot name="start">
@@ -32,7 +36,9 @@ const onTab = () => {
 
     <view class="flex flex-1 flex-row items-center justify-center">
       <slot>
-        <text v-if="props.title" class="font-semibold text-lg">{{ props.title }}</text>
+        <text v-if="props.title" class="font-semibold text-lg">{{
+          props.title
+        }}</text>
       </slot>
     </view>
 

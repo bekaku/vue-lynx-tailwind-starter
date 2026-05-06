@@ -1,11 +1,8 @@
-package com.lynx.javaemptyproject.elements;
-
-import static java.security.AccessController.getContext;
+package com.lynx.javaemptyproject.ui.elements;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;

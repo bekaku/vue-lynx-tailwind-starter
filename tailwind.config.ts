@@ -22,6 +22,17 @@ const config: Config = {
           DEFAULT: 'var(--color-primary)',
           foreground: 'var(--color-primary-foreground)',
           ripple: 'var(--color-primary-ripple)',
+          50: '#eef6ff',
+          100: '#d9eaff',
+          200: '#bcdbff',
+          300: '#8ec5ff',
+          400: '#59a6ff',
+          500: '#2b7fff',
+          600: '#1b63f5',
+          700: '#144de1',
+          800: '#173fb6',
+          900: '#193a8f',
+          950: '#142457'
         },
         secondary: {
           DEFAULT: 'var(--color-secondary)',

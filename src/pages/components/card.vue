@@ -17,33 +17,115 @@ const handleTab = () => {
 </script>
 
 <template>
-   <view class="w-full h-full flex flex-col bg-background">
+  <view class="w-full h-full flex flex-col bg-background">
     <BaseToolBar title="BaseCard" />
+    <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
+      <BaseCard class="w-full">
+        <BaseCardHeader>
+          <BaseCardTitle>Basic Card</BaseCardTitle>
+          <BaseCardDescription>
+            Deploy your new project in one-click.
+          </BaseCardDescription>
+        </BaseCardHeader>
 
-    <BaseCard class="w-full">
-      <BaseCardHeader>
-        <BaseCardTitle>Create project</BaseCardTitle>
-        <BaseCardDescription>Deploy your new project in one-click.</BaseCardDescription>
-      </BaseCardHeader>
+        <BaseCardContent class="pt-0">
+          <text
+            >Tailwind CSS includes a vast, beautiful color palette out of the
+            box, carefully crafted by expert designers and suitable for a wide
+            range of different design styles.</text
+          >
+        </BaseCardContent>
 
-      <BaseCardContent>
-        <view class="flex flex-col gap-4">
-          <!-- จำลอง Form Input หรือเนื้อหาอื่นๆ -->
-          <view class="flex flex-col gap-2">
-            <text class="text-sm font-medium text-zinc-900">Name</text>
-            <view
-              class="h-10 px-3 border border-zinc-200 rounded-md bg-white flex flex-row items-center"
-            >
-              <text class="text-sm text-zinc-500">My Lynx App</text>
-            </view>
-          </view>
-        </view>
-      </BaseCardContent>
+        <view class="h-[0.5px] w-full border-b border-border my-2"></view>
+        <BaseCardFooter class="justify-between gap-2">
+          <BaseButton variant="outline" label="Cancel" class="flex-1" />
+          <BaseButton variant="default" label="Deploy" class="flex-1" />
+        </BaseCardFooter>
+      </BaseCard>
 
-      <BaseCardFooter class="justify-between">
-        <BaseButton variant="outline" label="Cancel" class="w-[48%]" />
-        <BaseButton variant="default" label="Deploy" class="w-[48%]" />
-      </BaseCardFooter>
-    </BaseCard>
+      <BaseCard flat class="w-full">
+        <BaseCardHeader>
+          <BaseCardTitle>Flat</BaseCardTitle>
+          <BaseCardDescription> This is a description </BaseCardDescription>
+        </BaseCardHeader>
+
+        <BaseCardContent class="pt-0">
+          <text
+            >Tailwind CSS includes a vast, beautiful color palette out of the
+            box, carefully crafted by expert designers and suitable for a wide
+            range of different design styles.</text
+          >
+        </BaseCardContent>
+
+        <view class="h-[0.5px] w-full border-b border-border my-2"></view>
+        <BaseCardFooter class="justify-between gap-2">
+          <BaseButton variant="outline" label="Cancel" class="flex-1" />
+          <BaseButton variant="default" label="Deploy" class="flex-1" />
+        </BaseCardFooter>
+      </BaseCard>
+
+      <BaseCard square class="w-full">
+        <BaseCardHeader>
+          <BaseCardTitle>Square</BaseCardTitle>
+          <BaseCardDescription> This is a description </BaseCardDescription>
+        </BaseCardHeader>
+
+        <BaseCardContent class="pt-0">
+          <text
+            >Tailwind CSS includes a vast, beautiful color palette out of the
+            box, carefully crafted by expert designers and suitable for a wide
+            range of different design styles.</text
+          >
+        </BaseCardContent>
+
+        <view class="h-[0.5px] w-full border-b border-border my-2"></view>
+        <BaseCardFooter class="justify-between gap-2">
+          <BaseButton variant="outline" label="Cancel" class="flex-1" />
+          <BaseButton variant="default" label="Deploy" class="flex-1" />
+        </BaseCardFooter>
+      </BaseCard>
+
+      <BaseCard flat square class="w-full">
+        <BaseCardHeader>
+          <BaseCardTitle>Flat Square</BaseCardTitle>
+          <BaseCardDescription> This is a description </BaseCardDescription>
+        </BaseCardHeader>
+
+        <BaseCardContent class="pt-0">
+          <text
+            >Tailwind CSS includes a vast, beautiful color palette out of the
+            box, carefully crafted by expert designers and suitable for a wide
+            range of different design styles.</text
+          >
+        </BaseCardContent>
+
+        <view class="h-[0.5px] w-full border-b border-border my-2"></view>
+        <BaseCardFooter class="justify-between gap-2">
+          <BaseButton variant="outline" label="Cancel" class="flex-1" />
+          <BaseButton variant="default" label="Deploy" class="flex-1" />
+        </BaseCardFooter>
+      </BaseCard>
+
+      <BaseCard flat square :margin="false" class="w-full">
+        <BaseCardHeader>
+          <BaseCardTitle>No Margin</BaseCardTitle>
+          <BaseCardDescription> This is a description </BaseCardDescription>
+        </BaseCardHeader>
+
+        <BaseCardContent class="pt-0">
+          <text
+            >Tailwind CSS includes a vast, beautiful color palette out of the
+            box, carefully crafted by expert designers and suitable for a wide
+            range of different design styles.</text
+          >
+        </BaseCardContent>
+
+        <view class="h-[0.5px] w-full border-b border-border my-2"></view>
+        <BaseCardFooter class="justify-between gap-2">
+          <BaseButton variant="outline" label="Cancel" class="flex-1" />
+          <BaseButton variant="default" label="Deploy" class="flex-1" />
+        </BaseCardFooter>
+      </BaseCard>
+    </scroll-view>
   </view>
 </template>

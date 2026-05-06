@@ -15,35 +15,48 @@ const { onNavigateTo, isPathActive } = useBase();
       <RouterView />
     </view>
 
-    <BaseTabBar class="py-2">
-      <!-- <BaseTabBar :style="{ paddingBottom: bottom + 'px' }"> -->
+    <BaseTabBar class="py-1">
       <BaseTabButton
         label="Home"
         :active="isPathActive('/tabs-route')"
-        @tab="onNavigateTo('/tabs-route', true)"
+        @tap="onNavigateTo('/tabs-route', true)"
       >
         <template #icon>
-          <IconLucide name="house" />
+            <IconLucide
+              :name="!isPathActive('/tabs-route') ? 'house' : 'houseBlue'"
+            />
         </template>
       </BaseTabButton>
 
       <BaseTabButton
         label="Chat"
         :active="isPathActive('/tabs-route/chat')"
-        @tab="onNavigateTo('/tabs-route/chat', true)"
+        @tap="onNavigateTo('/tabs-route/chat', true)"
       >
         <template #icon>
-           <IconLucide name="messageCircle" />
+          <IconLucide
+            :name="
+              !isPathActive('/tabs-route/chat')
+                ? 'messageCircle'
+                : 'messageCircleBlue'
+            "
+          />
         </template>
       </BaseTabButton>
 
       <BaseTabButton
         label="Settings"
         :active="isPathActive('/tabs-route/settings')"
-        @tab="onNavigateTo('/tabs-route/settings', true)"
+        @tap="onNavigateTo('/tabs-route/settings', true)"
       >
         <template #icon>
-          <IconLucide name="settings" />
+          <IconLucide
+            :name="
+              !isPathActive('/tabs-route/settings')
+                ? 'settings'
+                : 'settingsBlue'
+            "
+          />
         </template>
       </BaseTabButton>
     </BaseTabBar>
