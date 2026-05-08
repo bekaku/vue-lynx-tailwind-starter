@@ -10,7 +10,7 @@ import TabsKeepalive from '../pages/tabs/index-keepalive.vue';
 import TabsHome from '../pages/tabs/home.vue';
 import TabsChat from '../pages/tabs/chat.vue';
 import TabsSetting from '../pages/tabs/setting.vue';
-import ComponentsListItem from '../pages/components/list-item.vue';
+import ComponentsItem from '../pages/components/item.vue';
 import ComponentsButton from '../pages/components/button.vue';
 import ComponentsCard from '../pages/components/card.vue';
 import ComponentsInput from '../pages/components/input.vue';
@@ -27,6 +27,16 @@ import ActionSheet from '../pages/action-sheet.vue';
 import Dialog from '../pages/dialog.vue';
 import ConfirmDialog from '../pages/confirm-dialog.vue';
 import ImagePicker from '../pages/image-picker.vue';
+import Popover from '../pages/popover.vue';
+import ScrollView from '../pages/scroll-view.vue';
+import List from '../pages/list.vue';
+import ListColumn from '../pages/list-column.vue';
+import ListWaterfall from '../pages/list-waterfall.vue';
+import InifiniteLoadPage from '../pages/inifinite-load.vue';
+import FetchDataFeed from '../pages/fetch-data/feed.vue';
+import FetchDataFeedDetail from '../pages/fetch-data/feed-detail.vue';
+import Loading from '../pages/loading.vue';
+import Skeleton from '../pages/skeleton.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
@@ -42,15 +52,25 @@ const router = createRouter({
         { path: '/card', name: 'ComponentsCard', component: ComponentsCard },
         { path: '/confirm-dialog', name: 'ConfirmDialog', component: ConfirmDialog },
         { path: '/dialog', name: 'Dialog', component: Dialog },
-        { path: '/input', name: 'ComponentsInput', component: ComponentsInput },
         { path: '/event-modifier', name: 'EventModifier', component: EventModifier },
+        { path: '/fetch-data/feed', name: 'FetchDataFeed', component: FetchDataFeed },
+        { path: '/fetch-data/feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
+        { path: '/grid', name: 'Grid', component: Grid },
+        { path: '/input', name: 'ComponentsInput', component: ComponentsInput },
+        { path: '/inifinite-load', name: 'InifiniteLoadPage', component: InifiniteLoadPage },
         { path: '/icons', name: 'Icons', component: Icons },
         { path: '/image', name: 'Image', component: Image },
         { path: '/image-picker', name: 'ImagePicker', component: ImagePicker },
-        { path: '/grid', name: 'Grid', component: Grid },
+        { path: '/item', name: 'ComponentsItem', component: ComponentsItem },
         { path: '/keepalive', name: 'Keepalive', component: Keepalive },
-        { path: '/list-item', name: 'ComponentsListItem', component: ComponentsListItem },
+        { path: '/loading', name: 'Loading', component: Loading },
+        { path: '/list', name: 'List', component: List },
+        { path: '/list-column', name: 'ListColumn', component: ListColumn },
+        { path: '/list-waterfall', name: 'ListWaterfall', component: ListWaterfall },
         { path: '/native-local-storage', name: 'NativeLocalStorage', component: NativeLocalStorage },
+        { path: '/popover', name: 'Popover', component: Popover },
+        { path: '/scroll-view', name: 'ScrollView', component: ScrollView },
+        { path: '/skeleton', name: 'Skeleton', component: Skeleton },
         { path: '/store', name: 'store', component: Store },
         { path: '/tailwind', name: 'tailwind', component: Tailwind },
         { path: '/tabs-keepalive', name: 'TabsKeepalive', component: TabsKeepalive },

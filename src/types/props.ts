@@ -1,11 +1,12 @@
-import type { AppColor, IconSetType } from "./common"
+import type { BaseLucideIcon } from "@/libs/lucideIcons"
+import type { AppColor } from "./common"
 
-export interface IconProps {
-    name: string
-    iconSet?: IconSetType
-    size?: number
-    color?: AppColor | undefined
-    additionalReplce?: string
+export interface LucideIconProps {
+    name: BaseLucideIcon;
+    size?: number;
+    class?: string;
+    dark?: boolean;
+    autoTheme?: boolean;
 }
 export interface RBACProps {
     permissions?: string[];
@@ -38,8 +39,6 @@ export interface ButtonProps {
     label?: string;
     href?: string;
     avatar?: AvatarProps;
-    icon?: IconProps;
-    iconRight?: IconProps;
     iconOnly?: boolean;
     round?: boolean;
     outline?: boolean;
@@ -48,13 +47,6 @@ export interface ButtonProps {
     type?: 'button' | 'reset' | 'submit';
     to?: string;
     rbac?: RBACProps;
-}
-export interface IconProps {
-    name: string
-    iconSet?: IconSetType
-    size?: number
-    color?: AppColor | undefined
-    additionalReplce?: string
 }
 export interface BadgeProps {
     color?: AppColor;

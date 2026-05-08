@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import { useTheme } from '@/composables/useTheme';
 import { useAndroidBack } from '@/composables/useAndroidBack';
 import { useSafeArea } from '@/composables/useSafeArea';
-import { useBase } from './composables/useBase';
+import { useTheme } from '@/composables/useTheme';
 import { onMounted } from 'vue-lynx';
+import { RouterView } from 'vue-router';
 const { themeClass, onInit } = useTheme();
-const { safeAreaTop, safeAreaBottom } = useSafeArea();
-const { isAndroid, isIos } = useBase();
+const { safeAreaBottom } = useSafeArea();
 useAndroidBack();
 onMounted(() => {
   onInit();
@@ -23,5 +21,11 @@ onMounted(() => {
     }"
   >
     <RouterView />
+
+    <!-- <RouterView v-slot="{ Component, route }">
+      <Transition name="fade" mode="out-in" :duration="200">
+        <component :is="Component" :key="route.fullPath" />
+      </Transition>
+    </RouterView> -->
   </view>
 </template>

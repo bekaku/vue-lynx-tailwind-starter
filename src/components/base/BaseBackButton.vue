@@ -19,9 +19,9 @@ const onTab = () => {
 </script>
 
 <template>
-  <BaseButton variant="ghost" :text-class="textClass" class="pl-1 pr-3" @tap="onTab">
+  <BaseButton variant="ghost" size="icon" rounded :text-class="textClass" @tap="onTab">
     <template #start>
-      <IconLucide name="chevronLeft" />
+      <IconLucide name="arrowLeft" />
     </template>
   </BaseButton>
 </template>

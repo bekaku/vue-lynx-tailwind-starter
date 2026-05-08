@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useBase } from '@/composables/useBase';
+import { useDevice } from '@/composables/useDevice';
 import { useSafeArea } from '@/composables/useSafeArea';
 import { cn } from '@/utils/appUtil';
 import { computed } from 'vue-lynx';
@@ -34,7 +34,7 @@ const emit = defineEmits<{
   requestclose: [e: any];
   showoverlay: [e: any];
 }>();
-const { isWeb, isAndroid } = useBase();
+const { isWeb, isAndroid } = useDevice();
 const { safeAreaBottom } = useSafeArea();
 const getOverlayStyle = computed(() => {
   if (!isWeb) {

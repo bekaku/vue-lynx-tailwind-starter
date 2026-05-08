@@ -1,8 +1,8 @@
-import { useBase } from "./useBase";
+import { useDevice } from "./useDevice";
 
 export const useStorage = () => {
 
-    const { isNativeAvailable } = useBase();
+    const { isNativeAvailable } = useDevice();
     const memoryFallback: Record<string, string> = {};
 
     const setItem = (key: string, value: string): void => {

@@ -8,14 +8,19 @@ import IconLucide from '@/components/IconLucide.vue';
 import type { BaseLucideIcon } from '@/libs/lucideIcons';
 
 const icons: BaseLucideIcon[] = [
+  'arrowLeft',
+  'camera',
   'chevronLeft',
   'chevronRight',
+  'ellipsisVertical',
   'messageCircle',
-  'moveLeft',
+  'heart',
   'house',
+  'image',
   'settings',
   'sunMoon',
   'trash',
+  'user',
   'x',
 ];
 </script>
@@ -30,7 +35,7 @@ const icons: BaseLucideIcon[] = [
         </BaseCardHeader>
         <BaseCardContent>
           <text class="text-muted py-3">Auto Dark | Light</text>
-          <view class="w-full flex flex-row gap-2">
+          <view class="w-full flex flex-row flex-wrap gap-2">
             <IconLucide
               v-for="(item, index) in icons"
               :key="item"
@@ -40,7 +45,7 @@ const icons: BaseLucideIcon[] = [
           </view>
 
           <text class="text-muted py-3">Dark</text>
-          <view class="w-full flex flex-row gap-2 p-2 bg-zinc-800">
+          <view class="w-full flex flex-row gap-2 flex-wrap p-2 bg-zinc-800">
             <IconLucide
               v-for="(item, index) in icons"
               :key="item"

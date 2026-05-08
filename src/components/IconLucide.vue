@@ -1,25 +1,16 @@
 <script setup lang="ts">
+import { iconMap } from '@/libs/lucideIcons';
 import { cn } from '@/utils/appUtil';
 import BaseImage from './base/BaseImage.vue';
-import { iconMap } from '@/libs/lucideIcons';
-import type { BaseLucideIcon } from '@/libs/lucideIcons';
 
 import { useTheme } from '@/composables/useTheme';
+import type { LucideIconProps } from '@/types/props';
 import { computed } from 'vue-lynx';
 
-const props = withDefaults(
-  defineProps<{
-    name: BaseLucideIcon;
-    size?: number;
-    class?: string;
-    dark?: boolean;
-    autoTheme?: boolean;
-  }>(),
-  {
-    size: 24,
-    autoTheme: true,
-  },
-);
+const props = withDefaults(defineProps<LucideIconProps>(), {
+  size: 24,
+  autoTheme: true,
+});
 const { isDark } = useTheme();
 const currentIconKey = computed(() => {
   const darkKey = `${props.name}Dark`;

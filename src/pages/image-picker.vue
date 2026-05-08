@@ -1,15 +1,17 @@
 <script setup lang="ts">
+import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
-import BasePage from '@/components/base/BasePage.vue';
-import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
-import { useBase } from '@/composables/useBase';
-import { ref } from 'vue-lynx';
-import BaseImage from '@/components/base/BaseImage.vue';
 import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
 import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
-const { isNativeAvailable } = useBase();
+import BaseImage from '@/components/base/BaseImage.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import IconLucide from '@/components/IconLucide.vue';
+import { useDevice } from '@/composables/useDevice';
+import { ref } from 'vue-lynx';
+const { isNativeAvailable } = useDevice();
 const selectedImageUri = ref<string | null>(null);
+const photoUri = ref<string | null>(null);
 const selectedImages = ref<string[]>([]);
 const isLoading = ref(false);
 
@@ -49,6 +51,19 @@ const handlePickMultiple = async () => {
     console.error('❌ Image selection failed:', error);
   } finally {
     isLoading.value = false;
+  }
+};
+
+const handleTakePhoto = async () => {
+  try {
+    const photoUriResponse = await NativeModules.ImagePickerModule.takePhoto();
+    console.log(
+      '📸 Photo taken successfully. The file is located at:',
+      photoUriResponse,
+    );
+    photoUri.value = photoUriResponse;
+  } catch (error) {
+    console.error('❌ Cancellation or photo taking failed.:', error);
   }
 };
 /*
@@ -114,10 +129,6 @@ const uploadImage = async (fileUri: string) => {
           <BaseCardTitle>Single Image</BaseCardTitle>
         </BaseCardHeader>
         <BaseCardContent>
-          <view class="p-2">
-            <text>selectedImageUri: {{ selectedImageUri }} </text></view
-          >
-
           <view class="flex justify-center">
             <view
               class="w-64 h-64 bg-background rounded-2xl border-2 border-dashed border-border flex items-center justify-center overflow-hidden"
@@ -134,14 +145,16 @@ const uploadImage = async (fileUri: string) => {
             </view>
           </view>
         </BaseCardContent>
-        <view
-          class="px-6 py-3 bg-primary rounded-full active:bg-primary/80"
+
+        <BaseButton
           @tap="handlePickImage"
+          class="m-3"
+          :label="isLoading ? 'Opening...' : 'Select a photo from the album.'"
         >
-          <text class="text-primary-foreground font-semibold text-base">
-            {{ isLoading ? 'Opening...' : 'Select a photo from the album.' }}
-          </text>
-        </view>
+          <template #start>
+            <IconLucide name="image" dark class="mr-1" />
+          </template>
+        </BaseButton>
       </BaseCard>
 
       <BaseCard>
@@ -149,11 +162,7 @@ const uploadImage = async (fileUri: string) => {
           <BaseCardTitle>Multiple Image</BaseCardTitle>
         </BaseCardHeader>
         <BaseCardContent>
-          <view class="p-2">
-            <text>selectedImages: {{ selectedImages }} </text></view
-          >
-
-          <view class="flex flex-row flex-wrap gap-2">
+          <view class="flex flex-row flex-wrap gap-2 justify-center">
             <view
               v-for="(uri, index) in selectedImages"
               :key="index"
@@ -163,16 +172,50 @@ const uploadImage = async (fileUri: string) => {
             </view>
           </view>
         </BaseCardContent>
-        <view
-          class="px-4 py-3 bg-primary rounded-full items-center justify-center"
+        <BaseButton
           @tap="handlePickMultiple"
+          class="m-3"
+          :label="
+            isLoading ? 'Opening...' : 'Select multiple photo from the album.'
+          "
         >
-          <text class="text-primary-foreground font-semibold text-base">
-            {{
-              isLoading ? 'Opening...' : 'Select multiple photo from the album.'
-            }}
-          </text>
-        </view>
+          <template #start>
+            <IconLucide name="image" dark class="mr-1" />
+          </template>
+        </BaseButton>
+      </BaseCard>
+
+      <BaseCard>
+        <BaseCardHeader>
+          <BaseCardTitle>Take photo</BaseCardTitle>
+        </BaseCardHeader>
+        <BaseCardContent>
+          <view class="flex justify-center">
+            <view
+              class="w-64 h-64 bg-background rounded-2xl border-2 border-dashed border-border flex items-center justify-center overflow-hidden"
+            >
+              <BaseImage
+                v-if="photoUri"
+                :src="photoUri"
+                class="w-full h-full"
+                fit="cover"
+              />
+              <text v-else class="text-muted-foreground">
+                No image has been take yet.
+              </text>
+            </view>
+          </view>
+        </BaseCardContent>
+
+        <BaseButton
+          @tap="handleTakePhoto"
+          class="m-3"
+          :label="isLoading ? 'Opening...' : 'Take a photo from camera.'"
+        >
+          <template #start>
+            <IconLucide name="camera" dark class="mr-1" />
+          </template>
+        </BaseButton>
       </BaseCard>
     </scroll-view>
   </view>

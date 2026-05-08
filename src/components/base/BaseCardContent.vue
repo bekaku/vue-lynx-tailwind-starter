@@ -2,9 +2,10 @@
 import { useBase } from '@/composables/useBase';
 import { cn } from '../../utils/appUtil';
 import { defaultAndroidPaddingFix } from '@/libs/constant';
+import { useDevice } from '@/composables/useDevice';
 
 const props = defineProps<{ class?: string }>();
-const { isAndroid } = useBase();
+const { isAndroid } = useDevice();
 </script>
 
 <template>

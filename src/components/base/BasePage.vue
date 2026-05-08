@@ -7,7 +7,7 @@ const props = defineProps<{ class?: string }>();
 </script>
 
 <template>
-  <view :class="cn('w-full h-full flex flex-col  bg-background', props.class)">
+  <view :class="cn('w-full h-full flex flex-col bg-background', props.class)">
     <slot />
   </view>
 </template>

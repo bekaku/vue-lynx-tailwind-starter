@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme';
 import { cn } from '@/utils/appUtil';
-import { nextTick, onMounted, ref, useTemplateRef } from 'vue-lynx';
+import { nextTick, onMounted, ref, useTemplateRef, watch } from 'vue-lynx';
 
 const props = withDefaults(
   defineProps<{
@@ -37,6 +37,8 @@ const props = withDefaults(
     type: 'text',
     bounces: true,
     enableScrollBar: false,
+    lineSpacing: undefined,
+    maxlines: 4,
   },
 );
 const emit = defineEmits<{
@@ -51,14 +53,30 @@ const emit = defineEmits<{
 const { isDark } = useTheme();
 const isFocused = ref(false);
 const appTextareaRef = useTemplateRef<any>('appTextareaRef');
+
+const val = ref(props.modelValue);
 onMounted(async () => {
   await nextTick();
-  // console.log('appTextareaRef', appTextareaRef.value);
-  // if (appTextareaRef.value && props.modelValue) {
-  //   console.log('setValue', props.modelValue);
-  //   appTextareaRef.value.invoke('setValue', props.modelValue);
-  // }
 });
+const onManualSetVal = async (val: string) => {
+  await nextTick();
+  if (appTextareaRef.value && val) {
+    appTextareaRef.value
+      .invoke({
+        method: 'setValue',
+        params: {
+          value: val,
+        },
+        success: (res: any) => {
+          console.log('setValue success!');
+        },
+        fail: (err: any) => {
+          console.error('setValue error:', err);
+        },
+      })
+      .exec();
+  }
+};
 const handleInput = (e: any) => {
   console.log('handleInput', e);
   const currentValue = e.detail.value.trim();
@@ -75,6 +93,16 @@ const handleBlur = (e: any) => {
   isFocused.value = false;
   emit('blur', e);
 };
+
+watch(
+  val,
+  (newValue, oldValue) => {
+    if (newValue) {
+      onManualSetVal(newValue);
+    }
+  },
+  { once: true, immediate: true },
+);
 </script>
 <template>
   <view :class="cn('flex flex-col w-full gap-1.5', props.class)">
@@ -111,6 +139,32 @@ const handleBlur = (e: any) => {
           )
         "
         style="border: none; outline: none; box-shadow: none"
+        :value="props.modelValue"
+        :type="props.type"
+        :maxlength="props.maxlength"
+        :placeholder="props.placeholder"
+        :bounces="props.bounces"
+        :enableScrollBar="props.enableScrollBar"
+        :lineSpacing="props.lineSpacing"
+        :maxlines="props.maxlines"
+        :inputFilter="props.inputFilter"
+        :iosAutoCorrect="props.iosAutoCorrect"
+        :iosSpellCheck="props.iosSpellCheck"
+        :showSoftInputOnFocus="props.showSoftInputOnFocus"
+        :bindinput="handleInput"
+      />
+
+      <!-- <textarea
+        ref="appTextareaRef"
+        :class="
+          cn(
+            'flex-1 min-h-[80px] bg-transparent border-0 border-none outline-none placeholder:text-muted-foreground text-sm',
+            'focus:outline-none focus:ring-0 focus:border-transparent',
+            !isDark ? 'text-zinc-900' : 'text-zinc-200',
+            props.textareaClass,
+          )
+        "
+        style="border: none; outline: none; box-shadow: none"
         :type="props.type"
         :disabled="props.disabled"
         :readonly="props.readonly"
@@ -128,8 +182,9 @@ const handleBlur = (e: any) => {
         @focus="handleFocus"
         @blur="handleBlur"
         @input="handleInput"
+        :bindinput="handleInput"
         @confirm="emit('confirm', $event)"
-      />
+      /> -->
     </view>
 
     <view v-if="$slots.bottom" class="mt-0.5">

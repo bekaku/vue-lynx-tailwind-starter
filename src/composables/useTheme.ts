@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useThemeStore } from '@/stores/themeStore';
-import { storeToRefs } from 'pinia';
-import { useBase } from './useBase';
 import type { ThemeName } from '@/types/common';
+import { storeToRefs } from 'pinia';
+import { useDevice } from './useDevice';
 import { useStorage } from './useStorage';
 
 export const useTheme = () => {
   const themeStore = useThemeStore();
-  const { isNativeAvailable } = useBase()
+  const { isNativeAvailable } = useDevice()
   const { setTheme } = themeStore;
   const { isDark, themeClass } = storeToRefs(themeStore)
   const { setItem, getItem } = useStorage();

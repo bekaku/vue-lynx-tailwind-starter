@@ -17,22 +17,40 @@ import x from '@/assets/icons/lucide/x.png';
 import xDark from '@/assets/icons/lucide/x-dark.png';
 import chevronLeft from '@/assets/icons/lucide/chevron-left.png';
 import chevronLeftDark from '@/assets/icons/lucide/chevron-left-dark.png';
-import moveLeft from '@/assets/icons/lucide/move-left.png';
-import moveLeftDark from '@/assets/icons/lucide/move-left-dark.png';
+import arrowLeft from '@/assets/icons/lucide/arrow-left.png';
+import arrowLeftDark from '@/assets/icons/lucide/arrow-left-dark.png';
+import user from '@/assets/icons/lucide/user.png';
+import userDark from '@/assets/icons/lucide/user-dark.png';
+import image from '@/assets/icons/lucide/image.png';
+import imageDark from '@/assets/icons/lucide/image-dark.png';
+import camera from '@/assets/icons/lucide/camera.png';
+import cameraDark from '@/assets/icons/lucide/camera-dark.png';
+import ellipsisVertical from '@/assets/icons/lucide/ellipsis-vertical.png';
+import ellipsisVerticalDark from '@/assets/icons/lucide/ellipsis-vertical-dark.png';
+import heart from '@/assets/icons/lucide/heart.png';
+import heartDark from '@/assets/icons/lucide/heart-dark.png';
 
 export const iconMap = {
+    camera: camera,
+    cameraDark: cameraDark,
     chevronLeft: chevronLeft,
     chevronLeftDark: chevronLeftDark,
     chevronRight: chevronRight,
     chevronRightDark: chevronRightDark,
+    ellipsisVertical: ellipsisVertical,
+    ellipsisVerticalDark: ellipsisVerticalDark,
+    heart: heart,
+    heartDark: heartDark,
     house: house,
     houseDark: houseDark,
     houseBlue: houseBlue,
+    image: image,
+    imageDark: imageDark,
     messageCircle: messageCircle,
     messageCircleDark: messageCircleDark,
     messageCircleBlue: messageCircleBlue,
-    moveLeft: moveLeft,
-    moveLeftDark: moveLeftDark,
+    arrowLeft: arrowLeft,
+    arrowLeftDark: arrowLeftDark,
     sunMoon: sunMoon,
     sunMoonDark: sunMoonDark,
     settings: settings,
@@ -40,17 +58,24 @@ export const iconMap = {
     settingsBlue: settingsBlue,
     trash: trash,
     trashDark: trashDark,
+    user: user,
+    userDark: userDark,
     x: x,
     xDark: xDark,
 } as const;
 export type LucideIcon = keyof typeof iconMap;
 export type BaseLucideIcon =
-    'chevronLeft'
+    'arrowLeft'
+    | 'camera'
+    | 'chevronLeft'
     | 'chevronRight'
+    | 'ellipsisVertical'
+    | 'heart'
     | 'house'
+    | 'image'
     | 'messageCircle'
-    | 'moveLeft'
     | 'sunMoon'
     | 'settings'
     | 'trash'
+    | 'user'
     | 'x';

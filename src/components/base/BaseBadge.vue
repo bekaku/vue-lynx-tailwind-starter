@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { cva, type VariantProps } from 'class-variance-authority';
+import { useDevice } from '@/composables/useDevice';
 import { cn } from '@/utils/appUtil';
-import { useBase } from '@/composables/useBase';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 const badgeVariants = cva(
   'flex flex-row items-center justify-center rounded-full border',
@@ -47,7 +47,7 @@ const props = withDefaults(
     variant: 'default',
   },
 );
-const { isAndroid } = useBase();
+const { isAndroid } = useDevice();
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useBase } from '@/composables/useBase';
+import { useDevice } from '@/composables/useDevice';
 import { useTheme } from '@/composables/useTheme';
 import { cn } from '@/utils/appUtil';
 
@@ -19,7 +20,7 @@ const emit = defineEmits<{
   'update:modelValue': [value: string];
 }>();
 const { isDark } = useTheme();
-const { isAndroid } = useBase();
+const { isAndroid } = useDevice();
 
 /*<BaseDialog v-model:visible="isOpen"> */
 const handleModelName = (e: any) => {
@@ -61,6 +62,9 @@ defineExpose({
     "
     @tap="handleTap"
   >
+   <view v-if="$slots.default" :class="isAndroid ? 'py-[-14px]' : ''">
+          <slot />
+        </view>
     <slot v-if="$slots.start" name="start" />
     <view :catchtap="handleCatchTap" :class="$style.card"></view>
     <view :class="[$style.card, isAndroid ? 'android-padding-fix' : '']"></view>

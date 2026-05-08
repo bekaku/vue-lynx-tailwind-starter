@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useBase } from '@/composables/useBase';
+import { useDevice } from '@/composables/useDevice';
 import { computed } from 'vue-lynx';
 
 const props = withDefaults(
@@ -20,7 +20,7 @@ const emit = defineEmits<{
   startplay: [event: any];
   tap: [event: any];
 }>();
-const { isAndroid } = useBase();
+const { isAndroid } = useDevice();
 const nativeMode = computed(() => {
   switch (props.fit) {
     case 'cover':

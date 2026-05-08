@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ref, onMounted } from 'vue-lynx'
-import { useBase } from './useBase'
+import { onMounted, ref } from 'vue-lynx'
+import { useDevice } from './useDevice'
 
 
 
 export function useSafeArea() {
-    const { isNativeAvailable, isIos, isAndroid } = useBase()
+    const { isNativeAvailable, isIos, isAndroid } = useDevice()
     const top = ref(isAndroid ? 40 : isIos ? 47 : 0)
     const bottom = ref(isAndroid ? 24 : isIos ? 34 : 0)
     const left = ref(0)

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { computed } from 'vue-lynx';
 import { useRouter, useRoute } from 'vue-router';
 
@@ -6,11 +7,6 @@ export const useBase = () => {
   const route = useRoute();
 
 
-  const isAndroid = SystemInfo.platform === 'Android';
-  const isIos = SystemInfo.platform === 'iOS';
-  const isWeb = SystemInfo.platform === 'web';
-  const platform = SystemInfo.platform;
-  const isNativeAvailable = typeof NativeModules !== 'undefined' && !!NativeModules.NativeLocalStorageModule;
 
   const isPathActive = (path: string) => computed(() => route.path === path).value
   const getFullPath = () => {
@@ -27,16 +23,35 @@ export const useBase = () => {
   const onBack = () => {
     router.back();
   };
+  const getParam = (field: string): any => {
+    if (!field) {
+      return;
+    }
+    return route.params ? route.params[field] : null;
+  };
+  const getQuery = (field: string): any => {
+    if (!field) {
+      return;
+    }
+    return route.query ? route.query[field] : null;
+  };
 
+  const getParamNumber = (att: string): number => {
+    const val = getParam(att);
+    return val != undefined ? +val : 0;
+  };
+  const getQueryNumber = (att: string): number => {
+    const val = getQuery(att);
+    return val != undefined ? +val : 0;
+  };
   return {
     onNavigateTo,
     onBack,
     getFullPath,
     isPathActive,
-    isNativeAvailable,
-    platform,
-    isAndroid,
-    isIos,
-    isWeb
+    getParam,
+    getParamNumber,
+    getQuery,
+    getQueryNumber,
   };
 };

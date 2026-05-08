@@ -18,13 +18,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+import androidx.core.content.FileProvider;
+
 public class ImagePickerModule extends LynxModule {
     public static final String NAME = "ImagePickerModule";
     public static final int IMAGE_PICKER_REQUEST_CODE = 10001;
     public static final int MULTIPLE_IMAGE_PICKER_REQUEST_CODE = 10002;
+    public static final int TAKE_PHOTO_REQUEST_CODE = 10003;
 
     private Promise currentPromise;
     private final LynxContext lynxContext;
+    private String currentPhotoPath;
 
     public ImagePickerModule(Context context) {
         super(context);
@@ -73,13 +77,52 @@ public class ImagePickerModule extends LynxModule {
         try {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("image/*");
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true); // 🌟 พระเอกของเรา สั่งให้เลือกได้หลายรูป!
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             activity.startActivityForResult(Intent.createChooser(intent, "Select Pictures"), MULTIPLE_IMAGE_PICKER_REQUEST_CODE);
         } catch (Exception e) {
             if (this.currentPromise != null) {
                 this.currentPromise.reject("PICKER_ERROR", e.getMessage());
                 this.currentPromise = null;
             }
+        }
+    }
+
+    @LynxMethod
+    public void takePhoto(Promise promise) {
+        Activity activity = (Activity) lynxContext.getContext();
+        if (!(activity instanceof MainActivity)) {
+            promise.reject("ACTIVITY_ERROR", "Activity is not MainActivity");
+            return;
+        }
+
+        MainActivity mainActivity = (MainActivity) activity;
+        mainActivity.setActiveImagePickerModule(this);
+        this.currentPromise = promise;
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = new File(activity.getCacheDir(), "camera_image_" + System.currentTimeMillis() + ".jpg");
+                currentPhotoPath = photoFile.getAbsolutePath();
+            } catch (Exception ex) {
+                currentPromise.reject("FILE_ERROR", "Could not create file for photo");
+                currentPromise = null;
+                return;
+            }
+
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(activity,
+                        activity.getPackageName() + ".fileprovider",
+                        photoFile);
+
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                activity.startActivityForResult(takePictureIntent, TAKE_PHOTO_REQUEST_CODE);
+            }
+        } else {
+            currentPromise.reject("CAMERA_ERROR", "No camera app found");
+            currentPromise = null;
         }
     }
 
@@ -114,7 +157,7 @@ public class ImagePickerModule extends LynxModule {
                     String actualFilePath = copyUriToCache(context, uri);
 //                    currentPromise.resolve(uri.toString());
                     if (actualFilePath != null) {
-                        currentPromise.resolve(actualFilePath); // จะได้ file:///data/user/0/...
+                        currentPromise.resolve(actualFilePath);
                     } else {
                         currentPromise.reject("COPY_ERROR", "Failed to process image");
                     }
@@ -155,6 +198,20 @@ public class ImagePickerModule extends LynxModule {
                     currentPromise.reject("USER_CANCELLED", "User cancelled");
             }
             currentPromise = null;
+        } else if (requestCode == TAKE_PHOTO_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (currentPhotoPath != null && currentPromise != null) {
+                    currentPromise.resolve("file://" + currentPhotoPath);
+                } else if (currentPromise != null) {
+                    currentPromise.reject("FILE_ERROR", "Photo path not found");
+                }
+            } else {
+                if (currentPromise != null) {
+                    currentPromise.reject("USER_CANCELLED", "User cancelled camera");
+                }
+            }
+            currentPromise = null;
+            currentPhotoPath = null;
         }
     }
 }

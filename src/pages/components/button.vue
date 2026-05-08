@@ -18,8 +18,7 @@ const handleTab = () => {
     <BaseToolBar title="Button" />
     <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
       <BaseCard>
-
-         <BaseTextHeader>Row</BaseTextHeader>
+        <BaseTextHeader>Row</BaseTextHeader>
         <view class="flex flex-row gap-2 p-4">
           <BaseButton class="flex-1" label="flex-1" />
           <BaseButton class="flex-1" variant="destructive" label="flex-1" />
@@ -33,6 +32,17 @@ const handleTab = () => {
         <view class="flex flex-row justify-end gap-2 p-4">
           <BaseButton class="flex-none" label="flex-none" />
           <BaseButton class="flex-none" label="flex-none" />
+        </view>
+
+        <text class="px-2 text-muted">Rounded</text>
+        <view class="flex flex-row justify-start gap-2 p-4">
+          <BaseButton class="flex-none" rounded label="Rounded" />
+          <BaseButton rounded size="icon">
+            <IconLucide  name="messageCircle" dark />
+          </BaseButton>
+          <BaseButton variant="ghost" rounded size="icon">
+            <IconLucide  name="camera" />
+          </BaseButton>
         </view>
 
         <BaseTextHeader>Column</BaseTextHeader>

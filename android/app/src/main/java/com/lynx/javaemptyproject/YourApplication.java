@@ -18,6 +18,7 @@ import com.lynx.javaemptyproject.ui.elements.LynxExplorerInput;
 import com.lynx.javaemptyproject.modules.AppModule;
 import com.lynx.javaemptyproject.modules.DeviceInfoModule;
 import com.lynx.javaemptyproject.modules.NativeLocalStorageModule;
+import com.lynx.service.http.LynxHttpService;
 import com.lynx.service.image.LynxImageService;
 import com.lynx.service.log.LynxLogService;
 import com.lynx.service.devtool.LynxDevToolService;
@@ -57,6 +58,7 @@ public class YourApplication extends Application {
                 null,
                 null
         );
+        LynxServiceCenter.inst().registerService(LynxHttpService.INSTANCE);
         LynxEnv.inst().registerModule("AppModule", AppModule.class);
         LynxEnv.inst().registerModule("NativeLocalStorageModule", NativeLocalStorageModule.class);
         LynxEnv.inst().registerModule("DeviceInfoModule", DeviceInfoModule.class);

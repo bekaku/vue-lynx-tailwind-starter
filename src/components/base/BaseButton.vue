@@ -4,7 +4,7 @@ import { cn } from '@/utils/appUtil';
 import { useTheme } from '@/composables/useTheme';
 const { isDark } = useTheme();
 const buttonVariants = cva(
-  'flex flex-row items-center justify-center rounded-md transition-all disabled:opacity-50 active:opacity-80',
+  'flex flex-row items-center justify-center transition-all disabled:opacity-50 active:opacity-80',
   {
     variants: {
       variant: {
@@ -67,19 +67,20 @@ interface Props {
   textClass?: string;
   label?: string;
   disabled?: boolean;
+  rounded?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'default',
   size: 'default',
   disabled: false,
+  rounded: false,
 });
 
 const emit = defineEmits<{
   (e: 'tap', payload: any): void;
 }>();
 
-// Lynx นิยมใช้ @tap (หรือ @bindtap) สำหรับเหตุการณ์การสัมผัส
 const handleTap = (e: any) => {
   if (!props.disabled) {
     emit('tap', e);
@@ -89,7 +90,7 @@ const handleTap = (e: any) => {
 
 <template>
   <view
-    :class="cn(buttonVariants({ variant, size }), props.class)"
+    :class="cn(!rounded ? 'rounded-md' : 'rounded-full', buttonVariants({ variant, size }), props.class)"
     @tap="handleTap"
   >
     <slot v-if="$slots.start" name="start" />

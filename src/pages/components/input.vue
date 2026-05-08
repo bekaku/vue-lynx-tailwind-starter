@@ -7,14 +7,34 @@ import BaseInput from '@/components/base/BaseInput.vue';
 import BaseTextarea from '@/components/base/BaseTextarea.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import IconLucide from '@/components/IconLucide.vue';
-import { ref } from 'vue-lynx';
-
+import { onMounted, ref } from 'vue-lynx';
 
 const inputValue = ref('');
 const inputValue2 = ref('');
 const inputValue3 = ref('');
 const inputNumber = ref(999);
-const inputTextarea = ref('inputTextarea');
+const inputTextarea = ref('default textarea value');
+
+const inputTextareaRef = ref<any>(null);
+onMounted(async () => {
+  // console.log('inputTextareaRef', inputTextareaRef.value);
+  // if (inputTextareaRef.value) {
+  //   inputTextareaRef.value
+  //     .invoke({
+  //       method: 'setValue',
+  //       params: {
+  //         value: 'Test inital textarea value',
+  //       },
+  //       success: (res: any) => {
+  //         console.log('setValue success!');
+  //       },
+  //       fail: (err: any) => {
+  //         console.error('setValue error:', err);
+  //       },
+  //     })
+  //     .exec();
+  // }
+});
 const handleInput = (e: any) => {
   // const currentValue = e.detail.value.trim();
   console.log('handleInput', e);
@@ -23,6 +43,11 @@ const handleInput2 = (e: any) => {
   const currentValue = e.detail.value.trim();
   inputValue2.value = currentValue;
   console.log('handleInput', e);
+};
+const handleTextarea = (e: any, from: string) => {
+  const currentValue = e.detail.value.trim();
+  inputTextarea.value = currentValue;
+  console.log('handleTextarea', 'from', from, e);
 };
 const handleConfirm = (e: any) => {
   console.log('handleConfirm', e);
@@ -34,42 +59,40 @@ const handleConfirm = (e: any) => {
     <BaseToolBar title="About page" />
 
     <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
-      <view class="input-card-url bg-card">
-        <text class="bold-text">Card URL</text>
-        <explorer-input
-          id="input-id"
-          class="input-box"
-          @input="handleInput"
-          :value="inputValue"
-          placeholder="Enter BaseCard URL"
-        />
-        <view class="connect-button">
-          <text class="button-text">Go</text>
-        </view>
-      </view>
       <BaseCard>
         <BaseCardContent>
-          <!-- <text class="font-bold">Custom Native Element</text>
-
-          <view class="w-full">
+          <text class="font-bold">Custom Native Element</text>
+          <view
+            class="flex flex-col justify-center items-center w-full"
+            :style="{ height: '55px' }"
+          >
             <explorer-input
-              id="input-id"
-              class="input-box"
+              :style="{
+                display: 'flex',
+                alignItems: 'flex-start',
+                margin: '0% 5% 5% 5%',
+                background: 'transparent',
+                borderWidth: '0px 0px 1px',
+                borderColor: '#0000000a',
+                height: '20%',
+                width: '90%',
+              }"
               @input="handleInput"
               :value="inputValue"
               placeholder="Enter BaseCard URL"
             />
-          </view> -->
+          </view>
         </BaseCardContent>
 
         <BaseCardFooter class="justify-between">
-          <BaseButton  label="Go" class="w-full" />
+          <BaseButton label="Go" class="w-full" />
         </BaseCardFooter>
       </BaseCard>
 
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Build in Element '{{ inputValue2 }}'</text>
+          <text class="font-bold">Build in Element</text>
+          <text class="text-sm text-muted">'{{ inputValue2 }}'</text>
 
           <view class="w-full p-3 m-2 border-inputborder bg-input rounded-md">
             <input
@@ -86,7 +109,8 @@ const handleConfirm = (e: any) => {
       </BaseCard>
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Component Input '{{ inputValue3 }}'</text>
+          <text class="font-bold">Component Input</text>
+          <text class="text-sm text-muted">'{{ inputValue3 }}'</text>
 
           <BaseInput
             class="my-4"
@@ -122,9 +146,8 @@ const handleConfirm = (e: any) => {
 
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Component Textarea {{ inputTextarea }}</text>
-
-          <!-- <textarea placeholder="Test textarea" v-model="inputTextarea" class="w-full border border-blue-500" @input="handleInput"/> -->
+          <text class="font-bold">Component Textarea</text>
+          <text class="text-sm text-muted">'{{ inputTextarea }}'</text>
 
           <BaseTextarea
             class="my-4"

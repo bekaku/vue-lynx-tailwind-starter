@@ -11,6 +11,7 @@
     "sync:android": "shx rm -rf android/app/src/main/assets/* && shx cp -r dist/* android/app/src/main/assets/"
   },
   "dependencies": {
+    "@tanstack/vue-query": "^5.100.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "pinia": "^3.0.4",

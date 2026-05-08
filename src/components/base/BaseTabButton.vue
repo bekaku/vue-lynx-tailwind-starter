@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { useBase } from '@/composables/useBase';
+import { useDevice } from '@/composables/useDevice';
 import { useTheme } from '@/composables/useTheme';
-import { defaultAndroidPaddingFix } from '@/libs/constant';
 import { cn } from '@/utils/appUtil';
 
 interface Props {
@@ -19,7 +18,7 @@ const emit = defineEmits<{
 }>();
 
 const { isDark } = useTheme();
-const { isAndroid } = useBase();
+const { isAndroid } = useDevice();
 </script>
 
 <template>

@@ -22,6 +22,7 @@ declare let NativeModules: {
   ImagePickerModule: {
     pickImage(): Promise<string>;
     pickMultipleImages(): Promise<string[]>;
+    takePhoto(): Promise<string>;
   }
 };
 declare const SystemInfo: {

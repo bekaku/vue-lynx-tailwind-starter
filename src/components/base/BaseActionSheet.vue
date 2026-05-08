@@ -130,7 +130,7 @@ const handleCatchTap = (e: any) => {
       <view
         :class="
           cn(
-            'relative w-full bg-card border-t border-border rounded-t-2xl pb-8 pt-3 px-4 flex flex-col slide-up-animate',
+            'relative w-full bg-card rounded-t-2xl pb-8 pt-3 px-4 flex flex-col slide-up-animate',
             props.class,
           )
         "

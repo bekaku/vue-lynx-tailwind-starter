@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { cn } from '@/utils/appUtil';
-import BaseButton from './BaseButton.vue';
 import { useBase } from '@/composables/useBase';
-import type { TollbarProps } from '@/types/props';
-import BaseBackButton from './BaseBackButton.vue';
 import { useSafeArea } from '@/composables/useSafeArea';
+import type { TollbarProps } from '@/types/props';
+import { cn } from '@/utils/appUtil';
+import BaseBackButton from './BaseBackButton.vue';
 const { safeAreaTop, safeAreaBottom } = useSafeArea();
 const { onNavigateTo } = useBase();
 const props = withDefaults(defineProps<TollbarProps>(), {
