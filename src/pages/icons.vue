@@ -10,6 +10,8 @@ import type { BaseLucideIcon } from '@/libs/lucideIcons';
 const icons: BaseLucideIcon[] = [
   'arrowLeft',
   'camera',
+  'chevronDown',
+  'chevronUp',
   'chevronLeft',
   'chevronRight',
   'ellipsisVertical',

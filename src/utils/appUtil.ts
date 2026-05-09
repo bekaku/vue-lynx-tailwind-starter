@@ -17,6 +17,12 @@ export function stripHtml(html: string): string {
     .replace(/&[#\w]+;/g, (m) => entityMap[m] ?? m);
 }
 
+export const cleanUrl = (rawUrl: string) => {
+  return rawUrl
+    .replace(/&#x2F;/g, '/')   // แปลง &#x2F; กลับเป็น /
+    .replace(/&amp;/g, '&')   // แปลง &amp; กลับเป็น & (เผื่อมี query parameters)
+    .replace(/&quot;/g, '"'); // แปลงเผื่อไว้
+};
 export function pluralize(n: number, singular: string, plural?: string): string {
   return n === 1 ? `${n} ${singular}` : `${n} ${plural ?? singular + 's'}`;
 }

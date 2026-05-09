@@ -79,10 +79,12 @@
   text {
     @apply font-sans;
     color: var(--text-body);
+    font-size: 15px;
   }
   input {
     @apply font-sans;
     color: var(--text-body);
+    font-size: 15px;
   }
 }
 

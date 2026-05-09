@@ -16,30 +16,30 @@ const { isDark } = useTheme();
     <BaseCard>
       <view class="flex flex-row flex-wrap gap-2 p-4">
         <BaseBadge>
-          <text class="text-white">Badge</text>
+          <text class="text-white text-xs">Badge</text>
         </BaseBadge>
 
         <BaseBadge variant="secondary">
-          <text :class="!isDark ? 'text-zinc-900' : 'text-zinc-100'"
+          <text class="text-xs" :class="!isDark ? 'text-zinc-900' : 'text-zinc-100'"
             >Secondary</text
           >
         </BaseBadge>
 
         <BaseBadge variant="destructive">
-          <text class="text-white">Destructive</text>
+          <text class="text-white text-xs">Destructive</text>
         </BaseBadge>
 
         <BaseBadge variant="outline">Outline</BaseBadge>
 
         <BaseBadge variant="destructive">
           <view class="flex flex-row gap-[2px] items-center">
-            <IconLucide dark name="messageCircle" :size="18" />
-            <text class="text-white"> 50 </text>
+            <IconLucide dark name="messageCircle" :size="16" />
+            <text class="text-white text-xs"> 50 </text>
           </view>
         </BaseBadge>
 
         <BaseBadge class="bg-green-500" text-class="text-lg ">
-          <text class="text-white"> Custom Size </text>
+          <text class="text-white text-xs"> Custom Size </text>
         </BaseBadge>
       </view>
 
@@ -54,7 +54,7 @@ const { isDark } = useTheme();
             variant="destructive"
             class="absolute -top-1 -right-1 h-5 w-5 p-0"
           >
-            <text class="text-white">1</text>
+            <text class="text-white text-xs">1</text>
           </BaseBadge>
         </view>
 
@@ -69,7 +69,7 @@ const { isDark } = useTheme();
             label="On"
             class="bg-green-500 absolute -bottom-1 -right-1 border-2 border-background"
           >
-            <text class="text-white">On</text>
+            <text class="text-white text-xs">On</text>
           </BaseBadge>
         </view>
 

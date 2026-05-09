@@ -11,7 +11,7 @@ const { isAndroid } = useDevice();
 <template>
   <view
     :class="
-      cn('flex flex-col px-4', isAndroid ? 'py-[-4px]' : 'pt-[8px] pb-[16px]', props.class)
+      cn('flex flex-col px-4', isAndroid ? 'py-[-14px]' : 'pt-[8px] pb-[16px]', props.class)
     "
   >
     <slot />

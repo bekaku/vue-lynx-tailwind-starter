@@ -52,7 +52,7 @@ const handleMenuItemClick = (itemName: string) => {
                 :key="index"
                 :title="item.label || ''"
                 button
-                :title-medium="false"
+                :title-bold="false"
                 :whitespace-nowrap="true"
                 :separator="false"
                 @tap="

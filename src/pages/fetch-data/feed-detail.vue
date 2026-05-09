@@ -2,7 +2,9 @@
 import BaseAlert from '@/components/base/BaseAlert.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BaseContentText from '@/components/base/BaseContentText.vue';
 import BaseLoading from '@/components/base/BaseLoading.vue';
+import BaseSkeleton from '@/components/base/BaseSkeleton.vue';
 import BaseSpinner from '@/components/base/BaseSpinner.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import CommentItem from '@/components/test/CommentItem.vue';
@@ -37,25 +39,20 @@ const feedScrollViewRef = useTemplateRef<any>('feedScrollViewRef');
 const { getParam } = useBase();
 
 const itemId = computed<string>(() => getParam('id'));
-const {
-  // data,
-  // isLoading,
-  error,
-  execute,
-} = useFetch<ItemDetail>();
+const { data, isLoading, error, execute } = useFetch<ItemDetail>();
 
 onMounted(() => {
-  // onLoadData();
+  onLoadData();
 });
-const { data, isLoading, isFetching, isError } = useQuery({
-  queryKey: computed(() => ['item', itemId.value]),
-  queryFn: () =>
-    execute(`/item/${itemId.value}`, {
-      method: 'GET',
-    }),
-  staleTime: 5 * 60 * 1000,
-  placeholderData: keepPreviousData,
-});
+// const { data, isLoading, isFetching, isError } = useQuery({
+//   queryKey: computed(() => ['item', itemId.value]),
+//   queryFn: () =>
+//     execute(`/item/${itemId.value}`, {
+//       method: 'GET',
+//     }),
+//   staleTime: 5 * 60 * 1000,
+//   placeholderData: keepPreviousData,
+// });
 const onLoadData = async () => {
   try {
     const response = await execute(`/item/${itemId.value}`, {
@@ -102,8 +99,52 @@ const onScrollToTop = () => {
         :class="['flex-1 w-full']"
         scroll-orientation="vertical"
       >
-        <view v-if="isLoading || isFetching" class="flex justify-center py-2">
-          <BaseSpinner show />
+        <view v-if="isLoading">
+          <!-- <BaseSpinner show /> -->
+          <view
+            class="bg-card flex flex-col mb-[10px] gap-2"
+            :style="{ padding: '16px' }"
+          >
+            <BaseSkeleton width="w-full" :style="{ height: '35px' }" />
+            <BaseSkeleton :style="{ height: '10px', width: '30%' }" />
+            <BaseSkeleton :style="{ height: '10px', width: '70%' }" />
+            <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
+            <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
+            <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
+          </view>
+
+          <view
+            v-for="i in 5"
+            :key="i"
+            class="bg-card flex flex-col gap-2"
+            :style="{ padding: '14px' }"
+          >
+            <view class="flex flex-row gap-2">
+              <BaseSkeleton
+                width="w-[32px]"
+                height="h-[32px]"
+                rounded="rounded-full"
+              />
+              <view class="flex-1 flex flex-col gap-2">
+                <BaseSkeleton :style="{ height: '15px' }" />
+                  <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
+              <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
+
+              </view>
+
+              <BaseSkeleton
+                rounded="rounded-full"
+                :style="{ height: '10px', width: '10px' }"
+              />
+            </view>
+            <view class="flex flex-col gap-2" :style="{ paddingLeft: '40px' }">
+            
+              <view class="flex flex-row gap-2">
+                <BaseSkeleton :style="{ height: '10px', width: '15%' }" />
+                <BaseSkeleton :style="{ height: '10px', width: '15%' }" />
+              </view>
+            </view>
+          </view>
         </view>
         <view v-else-if="error">
           <BaseAlert variant="destructive" title="Error" :description="error">
@@ -143,20 +184,15 @@ const onScrollToTop = () => {
               </view>
 
               <view class="py-[0.5em]">
-                <text :style="{ fontSize: '0.9em', lineHeight: '1.5em' }">
-                  {{ stripHtml(data.content) }}
-                </text>
+                <BaseContentText :content="data.content" />
               </view>
             </BaseCardContent>
           </BaseCard>
 
           <BaseCard flat :margin="false" square class="mt-[15px]">
-            <BaseCardContent>
-              <view
-                class="flex flex-row items-center"
-                :style="{ padding: '1em 0', gap: '8px' }"
-              >
-                <text class="text-md text-muted">
+            <view :style="{ paddingLeft: '16px', paddingRight: '16px' }">
+              <view class="flex flex-row items-center" :style="{ gap: '4px' }">
+                <text class="text-md text-muted pt-3">
                   {{
                     data.comments && data.comments.length
                       ? data.comments.length + ' comments'
@@ -165,12 +201,13 @@ const onScrollToTop = () => {
                 </text>
               </view>
               <CommentItem
-                v-for="comment in data.comments"
+                v-for="(comment, index) in data.comments"
                 :key="comment.id"
+                :index="index"
                 :comment="comment"
                 :depth="0"
               />
-            </BaseCardContent>
+            </view>
           </BaseCard>
         </template>
       </scroll-view>

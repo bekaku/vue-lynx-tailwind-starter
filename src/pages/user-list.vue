@@ -154,7 +154,9 @@ const users = [
           :to="`/users-detail/${user.id}`"
         >
           <template #start>
-            <BaseAvatar :src="user.image" :fallback="index + ''" />
+            <view>
+              <BaseAvatar :src="user.image" :fallback="index + ''" />
+            </view>
           </template>
           <template #end>
             <view class="w-8 h-8 flex items-center justify-center">

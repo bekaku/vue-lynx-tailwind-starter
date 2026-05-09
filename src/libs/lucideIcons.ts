@@ -30,9 +30,19 @@ import ellipsisVerticalDark from '@/assets/icons/lucide/ellipsis-vertical-dark.p
 import heart from '@/assets/icons/lucide/heart.png';
 import heartDark from '@/assets/icons/lucide/heart-dark.png';
 
+import chevronDown from '@/assets/icons/lucide/chevron-down.png';
+import chevronDownDark from '@/assets/icons/lucide/chevron-down-dark.png';
+import chevronUp from '@/assets/icons/lucide/chevron-up.png';
+import chevronUpDark from '@/assets/icons/lucide/chevron-up-dark.png';
+
+
 export const iconMap = {
     camera: camera,
     cameraDark: cameraDark,
+    chevronDown:chevronDown,
+    chevronDownDark:chevronDownDark,
+    chevronUp:chevronUp,
+    chevronUpDark:chevronUpDark,
     chevronLeft: chevronLeft,
     chevronLeftDark: chevronLeftDark,
     chevronRight: chevronRight,
@@ -67,6 +77,8 @@ export type LucideIcon = keyof typeof iconMap;
 export type BaseLucideIcon =
     'arrowLeft'
     | 'camera'
+    |'chevronDown'
+    |'chevronUp'
     | 'chevronLeft'
     | 'chevronRight'
     | 'ellipsisVertical'

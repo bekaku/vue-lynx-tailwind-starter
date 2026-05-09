@@ -20,7 +20,7 @@ const badgeVariants = cva(
   },
 );
 
-const textVariants = cva('text-xs font-semibold leading-none', {
+const textVariants = cva('text-xs leading-none', {
   variants: {
     variant: {
       default: 'text-white',
@@ -63,7 +63,7 @@ const { isAndroid } = useDevice();
   >
     <view :class="cn(textVariants({ variant }))">
       <slot>
-        <text :class="props.textClass">{{ props.label }}</text>
+        <text :class="props.textClass" class="text-xs">{{ props.label }}</text>
       </slot>
     </view>
   </view>

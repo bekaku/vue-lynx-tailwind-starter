@@ -37,12 +37,15 @@ import FetchDataFeed from '../pages/fetch-data/feed.vue';
 import FetchDataFeedDetail from '../pages/fetch-data/feed-detail.vue';
 import Loading from '../pages/loading.vue';
 import Skeleton from '../pages/skeleton.vue';
+import TestPage from '../pages/test/index.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
     // memory history (similar to React Router's MemoryRouter).
     history: createMemoryHistory(),
     routes: [
+        // { path: '/', redirect: '/fetch-data/feed-detail/48067119' },
+        // { path: '/', redirect: '/test' },
         { path: '/', redirect: '/home' },
         { path: '/home', name: 'Home', component: Home },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },
@@ -72,6 +75,7 @@ const router = createRouter({
         { path: '/scroll-view', name: 'ScrollView', component: ScrollView },
         { path: '/skeleton', name: 'Skeleton', component: Skeleton },
         { path: '/store', name: 'store', component: Store },
+        { path: '/test', name: 'TestPage', component: TestPage },
         { path: '/tailwind', name: 'tailwind', component: Tailwind },
         { path: '/tabs-keepalive', name: 'TabsKeepalive', component: TabsKeepalive },
         {

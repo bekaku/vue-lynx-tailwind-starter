@@ -10,18 +10,19 @@ interface Props {
   separator?: boolean;
   disabled?: boolean;
   whitespaceNowrap?: boolean;
-  titleMedium?: boolean;
+  titleBold?: boolean;
   class?: string;
   to?: string;
   id?: string;
   index?: number;
+  top?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   button: false,
   disabled: false,
   separator: true,
-  titleMedium: true,
+  titleBold: true,
   whitespaceNowrap: false,
 });
 const { onNavigateTo } = useBase();
@@ -48,10 +49,12 @@ const handleLongpress = (e: any) => {
   <view
     :class="
       cn(
-        'flex flex-row items-center justify-between py-2 px-[16px] bg-card',
+        'flex flex-row items-center justify-between  pl-[16px] bg-card',
         props.button && !props.disabled ? 'active:bg-ripple' : '',
         props.disabled ? 'opacity-50' : '',
         props.separator ? 'border-b border-border' : '',
+        !isAndroid ? 'py-2' : 'py-2',
+        !props.top ? 'items-center' : 'items-start',
         props.class,
       )
     "
@@ -59,18 +62,18 @@ const handleLongpress = (e: any) => {
     @longpress="handleLongpress"
     @tap="handleTap"
   >
-    <view class="flex flex-row items-center flex-1 gap-1">
-      <view v-if="$slots.start">
-        <slot name="start" />
-      </view>
+    <view
+      class="flex flex-row flex-1 gap-2"
+      :class="cn(!props.top ? 'items-center' : 'items-start')"
+    >
+      <slot v-if="$slots.start" name="start" />
 
       <view class="flex flex-col flex-1 justify-start">
         <text
           v-if="title"
-          class="text-sm"
           :class="{
             'whitespace-nowrap': whitespaceNowrap,
-            'font-medium': titleMedium,
+            'font-medium': titleBold,
           }"
         >
           {{ title }}
@@ -78,7 +81,7 @@ const handleLongpress = (e: any) => {
 
         <text
           v-if="description"
-          class="text-xs text-muted mt-0.5"
+          class="text-sm text-muted mt-0.5"
           :class="{ 'whitespace-nowrap': whitespaceNowrap }"
         >
           {{ description }}
@@ -89,7 +92,11 @@ const handleLongpress = (e: any) => {
       </view>
     </view>
 
-    <view v-if="$slots.end" class="flex flex-row items-center justify-end pl-2">
+    <view
+      v-if="$slots.end"
+      class="flex flex-row justify-end"
+      :class="cn(!props.top ? 'items-center' : 'items-start')"
+    >
       <slot name="end" />
     </view>
   </view>

@@ -111,6 +111,7 @@ const handleLongpress = (e: any) => {
           :key="item.value"
           :title="item.label || ''"
           button
+          :title-bold="false"
           :to="item.value"
         >
           <template #end>

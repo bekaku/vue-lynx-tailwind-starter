@@ -46,7 +46,7 @@ const textVariants = cva('font-medium text-center', {
         : 'text-zinc-100 underline',
     },
     size: {
-      default: 'text-sm',
+      default: 'text-md',
       sm: 'text-xs',
       lg: 'text-base',
       icon: 'text-sm', // ปกติ Icon จะไม่ใช้ Text size นี้ แต่อาจมีไว้เผื่อ fallback

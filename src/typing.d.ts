@@ -9,6 +9,7 @@ declare let NativeModules: {
   };
   AppModule: {
     exitApp(): void
+    openUrl(url: string): void;
   }
   DeviceInfoModule: {
     getStatusBarHeight(callback: (value: string | number) => void): void;

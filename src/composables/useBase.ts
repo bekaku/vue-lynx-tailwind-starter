@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { computed } from 'vue-lynx';
 import { useRouter, useRoute } from 'vue-router';
+import { useDevice } from './useDevice';
 
 export const useBase = () => {
   const router = useRouter();
   const route = useRoute();
+
+  const { isNativeAvailable } = useDevice()
 
 
 
@@ -44,6 +47,13 @@ export const useBase = () => {
     const val = getQuery(att);
     return val != undefined ? +val : 0;
   };
+
+  const openExternalUri = (uri: string) => {
+    if (!isNativeAvailable || !uri) {
+      return;
+    }
+    NativeModules.AppModule.openUrl(uri);
+  }
   return {
     onNavigateTo,
     onBack,
@@ -53,5 +63,6 @@ export const useBase = () => {
     getParamNumber,
     getQuery,
     getQueryNumber,
+    openExternalUri
   };
 };

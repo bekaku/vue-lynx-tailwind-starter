@@ -3,6 +3,8 @@ package com.lynx.javaemptyproject.modules;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
+import android.net.Uri;
 
 import com.lynx.jsbridge.LynxMethod;
 import com.lynx.jsbridge.LynxModule;
@@ -41,6 +43,18 @@ public class AppModule extends LynxModule {
             });
         } else {
             System.out.println("AppModule > Error: Cannot find Activity context to finish.");
+        }
+    }
+
+    @LynxMethod
+    public void openUrl(String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Context currentContext = mContext;
+            currentContext.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

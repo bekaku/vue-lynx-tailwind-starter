@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue-lynx';
+import { useDevice } from '@/composables/useDevice';
 import { pluralize, stripHtml } from '@/utils/appUtil';
+import { ref } from 'vue-lynx';
+import BaseAvatar from '../base/BaseAvatar.vue';
+import BaseButton from '../base/BaseButton.vue';
 import BaseItem from '../base/BaseItem.vue';
 import IconLucide from '../IconLucide.vue';
-import BaseButton from '../base/BaseButton.vue';
-import BaseAvatar from '../base/BaseAvatar.vue';
-import BaseRipple from '../base/BaseRipple.vue';
-import { useBase } from '@/composables/useBase';
-import { useDevice } from '@/composables/useDevice';
+import BaseContentText from '../base/BaseContentText.vue';
 
 interface CommentData {
   id: number;
@@ -20,6 +19,7 @@ interface CommentData {
 defineProps<{
   comment: CommentData;
   depth?: number;
+  index?: number;
 }>();
 const { isAndroid } = useDevice();
 const open = ref(false);
@@ -32,39 +32,57 @@ const onUserTap = (e: any, user?: string) => {
 <template>
   <view
     v-if="comment && comment.user"
-    class="flex flex-col border-t"
-    :style="{ paddingLeft: `${(depth ?? 0) * 8}px` }"
+    class="relative flex flex-col"
+    :style="{ paddingLeft: `${(depth ?? 0) * 10}px` }"
   >
+    <view
+      class="absolute top-0 bottom-0 w-[1px] bg-border"
+      :style="{ left: `${(depth ?? 0) * 10}px` }"
+    ></view>
     <BaseItem
       :separator="false"
-      class="pl-0"
-      :class="isAndroid ? 'py-[-10px]' : ''"
+      class="pl-0 bg-transparent"
+      top
     >
       <template #start>
         <BaseAvatar
-          class="mr-[6px]"
           :class="[
             depth && depth > 0 ? 'h-[24px] w-[24px]' : 'h-[32px] w-[32px]',
           ]"
-          src="https://i.pravatar.cc/128"
+          :src="
+            index
+              ? index % 2 !== 0
+                ? 'https://randomuser.me/api/portraits/men/1.jpg'
+                : 'https://randomuser.me/api/portraits/women/21.jpg'
+              : 'https://i.pravatar.cc/128'
+          "
           :fallback="comment.id + ''"
         />
       </template>
-      <view class="flex flex-row" :style="{ gap: '6px' }">
+      <view class="flex flex-row items-center" :style="{ gap: '6px' }">
         <text
-          :style="{
-            fontSize: '0.9em',
-            textDecorationLine: 'underline',
-          }"
+          class="text-base font-semibold"
           :catchtap="(event: any) => onUserTap(event, comment?.user)"
         >
           {{ comment.user }}
         </text>
         <text class="text-muted" :style="{ fontSize: '0.9em' }">
-          {{ comment.time_ago }}
+          {{
+            comment.time_ago
+          }}
         </text>
       </view>
+       <view
+        class="rounded-lg active:opacity-80 self-start max-w-full"
+      >
+
+      <BaseContentText :content="comment.content" />
+        <!-- <text :style="{ lineHeight: '1.5em' }">
+          {{ stripHtml(comment.content) }}
+        </text> -->
+      </view>
       <template #end>
+          
         <BaseButton
           size="icon"
           variant="ghost"
@@ -77,49 +95,47 @@ const onUserTap = (e: any, user?: string) => {
     </BaseItem>
 
     <!-- Comment body -->
-    <view :class="[depth && depth > 0 ? 'ml-[30px]' : 'ml-[38px]']">
-      <view
-        class="bg-content-item py-[0.5em] px-[0.5em] rounded-lg active:opacity-80 w-fit"
+    <view :style="{marginLeft:depth && depth > 0 ?'40px':'48px'}">
+      <!-- <view
+        class="bg-content-item py-[0.5em] px-[0.5em] rounded-lg active:opacity-80 self-start max-w-full"
       >
-        <text :style="{ fontSize: '0.9em', lineHeight: '1.5em' }">
+        <text :style="{ lineHeight: '1.5em' }">
           {{ stripHtml(comment.content) }}
         </text>
-      </view>
+      </view> -->
       <view
         class="flex flex-row mb-[0.5em] py-[0.5em] px-[0.5em] gap-2 items-center"
       >
-        <view class="active:bg-ripple flex gap-1 items-center">
-          <text class="text-sm">Love it</text>
+        <view class="active:bg-ripple rounded-sm flex gap-1 items-center">
+          <text class="text-sm text-muted">Love it</text>
           <IconLucide name="heart" :size="16" />
           <text class="text-sm text-muted">1.9k</text>
         </view>
 
         <text class="text-sm text-muted">|</text>
-        <view class="active:bg-ripple flex gap-1 items-center">
-          <text class="text-sm">Reply it</text>
+        <view class="active:bg-ripple rounded-sm flex gap-1 items-center">
+          <text class="text-sm text-muted">Reply it</text>
           <text class="text-sm text-muted">{{ comment.comments.length }}</text>
         </view>
       </view>
 
       <!-- Toggle children -->
-      <view v-if="comment.comments && comment.comments.length">
+      <view v-if="comment.comments && comment.comments.length" :style="{paddingLeft:'0.5em'}">
         <view
           :style="{
-            backgroundColor: open ? 'transparent' : '#fffbf2',
             borderRadius: '4px',
-            padding: open ? '0' : '0.3em 0.5em',
+            padding: '0.3em 0.5em',
             alignSelf: 'flex-start',
-            marginBottom: open ? '0' : '0.5em',
+            marginBottom: '0.5em',
           }"
+          class="bg-content-item flex gap-2 active:bg-ripple"
           @tap="open = !open"
         >
+          <IconLucide :name="open ? 'chevronUp' : 'chevronDown'" :size="16" />
           <text class="text-muted" :style="{ fontSize: '0.9em' }">
             {{
-              open
-                ? '[-]'
-                : '[+] ' +
-                  pluralize(comment.comments.length, 'reply', 'replies') +
-                  ' collapsed'
+              (!open ? 'View ' : 'Hide ') +
+              pluralize(comment.comments.length, 'reply', 'replies')
             }}
           </text>
         </view>
@@ -129,8 +145,9 @@ const onUserTap = (e: any, user?: string) => {
     <!-- Nested comments -->
     <template v-if="open && comment.comments">
       <CommentItem
-        v-for="child in comment.comments"
+        v-for="(child, index) in comment.comments"
         :key="child.id"
+        :index="index"
         :comment="child"
         :depth="(depth ?? 0) + 1"
       />

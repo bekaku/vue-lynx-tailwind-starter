@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.JavaEmptyProject" parent="@style/Theme.AppCompat.Light.NoActionBar" />
+    <style name="Theme.JavaEmptyProject" parent="@style/Theme.AppCompat.Light.NoActionBar">
+<!--        <item name="android:windowBackground">@color/splash_bg_color</item>-->
+        <item name="android:windowSplashScreenBackground" tools:targetApi="31">@color/splash_bg_color</item>
+    </style>
 
 <!--    <style name="Theme.JavaEmptyProject" parent="@style/Theme.AppCompat.DayNight.NoActionBar">-->
 <!--        &lt;!&ndash; Make status and navigation bar transparent &ndash;&gt;-->
