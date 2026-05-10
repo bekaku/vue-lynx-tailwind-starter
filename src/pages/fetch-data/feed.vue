@@ -2,6 +2,7 @@
 import BaseAlert from '@/components/base/BaseAlert.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseItem from '@/components/base/BaseItem.vue';
 import BaseLoading from '@/components/base/BaseLoading.vue';
 import BaseSpinner from '@/components/base/BaseSpinner.vue';
@@ -13,6 +14,7 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/vue-query';
+import { ChevronLeft, ChevronRight } from 'lucide-static';
 import { computed, onMounted, ref, useTemplateRef } from 'vue-lynx';
 
 interface FeedItem {
@@ -69,6 +71,7 @@ const { data, isLoading, isFetching, isError } = useQuery({
 });
 const onLoadFeedData = async (feed: string) => {
   console.log('onLoadData', feed);
+  page.value = 1;
   currentFeed.value = feed;
   onScrollToTop();
   // onLoadData();
@@ -123,7 +126,6 @@ const goNext = () => {
     console.log('goNext');
   }
 };
-
 </script>
 
 <template>
@@ -149,27 +151,37 @@ const goNext = () => {
         class="bg-hn-card flex flex-row items-center justify-center border-b border-border"
         :style="{ padding: '15px 30px', gap: '1em' }"
       >
-        <text
-          :class="[hasPrev ? 'text-primary' : 'text-muted']"
-          :style="{
-            fontSize: '15px',
-            opacity: hasPrev ? 1 : 0.5,
-          }"
+        <BaseButton
+          variant="ghost"
+          size="sm"
+          label="prev"
+          :disabled="!hasPrev"
+          text-class="text-primary"
           @tap="goPrev"
         >
-          &lt; prev
-        </text>
+          <template #start>
+            <BaseIcon :name="ChevronLeft" color="#2b7fff" ::auto="false" />
+          </template>
+        </BaseButton>
+
         <text :style="{ fontSize: '15px' }"> {{ page }}/{{ maxPage }} </text>
-        <text
-          :class="[hasNext ? 'text-primary' : 'text-muted']"
-          :style="{
-            fontSize: '15px',
-            opacity: hasNext ? 1 : 0.5,
-          }"
+
+        <BaseButton
+          variant="ghost"
+          size="sm"
+          label="more"
+          :disabled="!hasNext"
+          text-class="text-primary"
           @tap="goNext"
         >
-          more &gt;
-        </text>
+          <template #start>
+            <BaseIcon
+              :name="ChevronRight"
+              color="#2b7fff"
+              :auto="false"
+            />
+          </template>
+        </BaseButton>
       </view>
     </view>
     <view class="flex-1 flex flex-col">

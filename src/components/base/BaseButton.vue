@@ -4,7 +4,7 @@ import { cn } from '@/utils/appUtil';
 import { useTheme } from '@/composables/useTheme';
 const { isDark } = useTheme();
 const buttonVariants = cva(
-  'flex flex-row items-center justify-center transition-all disabled:opacity-50 active:opacity-80',
+  'flex flex-row items-center justify-center transition-all',
   {
     variants: {
       variant: {
@@ -90,7 +90,9 @@ const handleTap = (e: any) => {
 
 <template>
   <view
-    :class="cn(!rounded ? 'rounded-md' : 'rounded-full', buttonVariants({ variant, size }), props.class)"
+    :class="cn(!rounded ? 'rounded-md' : 'rounded-full', buttonVariants({ variant, size }), 
+    props.disabled ? 'opacity-50 pointer-events-none' : 'active:opacity-80',
+    props.class)"
     @tap="handleTap"
   >
     <slot v-if="$slots.start" name="start" />

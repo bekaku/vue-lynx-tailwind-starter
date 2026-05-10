@@ -49,7 +49,7 @@ const handleLongpress = (e: any) => {
   <view
     :class="
       cn(
-        'flex flex-row items-center justify-between  pl-[16px] bg-card',
+        'flex flex-row items-center justify-between  px-[14px] bg-card',
         props.button && !props.disabled ? 'active:bg-ripple' : '',
         props.disabled ? 'opacity-50' : '',
         props.separator ? 'border-b border-border' : '',

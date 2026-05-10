@@ -11,7 +11,7 @@ const { isAndroid } = useDevice();
     :class="
       cn(
         'flex flex-col my-0 px-[14px]',
-        isAndroid ? 'android-padding-fix' : 'py-[14px]',
+        !isAndroid ?  'py-[14px]' : 'pb-[-18px]',
         props.class,
       )
     "

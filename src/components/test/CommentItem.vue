@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useDevice } from '@/composables/useDevice';
-import { pluralize, stripHtml } from '@/utils/appUtil';
+import { pluralize } from '@/utils/appUtil';
+import { ChevronDown, ChevronUp, EllipsisVertical, Heart, MessageCircleMore } from 'lucide-static';
 import { ref } from 'vue-lynx';
 import BaseAvatar from '../base/BaseAvatar.vue';
 import BaseButton from '../base/BaseButton.vue';
+import BaseContentText from '../base/BaseContentText.vue';
+import BaseIcon from '../base/BaseIcon.vue';
 import BaseItem from '../base/BaseItem.vue';
 import IconLucide from '../IconLucide.vue';
-import BaseContentText from '../base/BaseContentText.vue';
 
 interface CommentData {
   id: number;
@@ -89,7 +91,7 @@ const onUserTap = (e: any, user?: string) => {
           rounded
           class="h-[18px] w-[18px]"
         >
-          <IconLucide :size="16" name="ellipsisVertical" />
+           <BaseIcon :name="EllipsisVertical" :size="16"/>
         </BaseButton>
       </template>
     </BaseItem>
@@ -108,13 +110,14 @@ const onUserTap = (e: any, user?: string) => {
       >
         <view class="active:bg-ripple rounded-sm flex gap-1 items-center">
           <text class="text-sm text-muted">Love it</text>
-          <IconLucide name="heart" :size="16" />
+           <BaseIcon :name="Heart" :size="16"/>
           <text class="text-sm text-muted">1.9k</text>
         </view>
 
         <text class="text-sm text-muted">|</text>
         <view class="active:bg-ripple rounded-sm flex gap-1 items-center">
           <text class="text-sm text-muted">Reply it</text>
+          <BaseIcon :name="MessageCircleMore" :size="16"/>
           <text class="text-sm text-muted">{{ comment.comments.length }}</text>
         </view>
       </view>
@@ -126,12 +129,13 @@ const onUserTap = (e: any, user?: string) => {
             borderRadius: '4px',
             padding: '0.3em 0.5em',
             alignSelf: 'flex-start',
-            marginBottom: '0.5em',
           }"
           class="bg-content-item flex gap-2 active:bg-ripple"
           @tap="open = !open"
         >
-          <IconLucide :name="open ? 'chevronUp' : 'chevronDown'" :size="16" />
+          <!-- <IconLucide :name="open ? 'chevronUp' : 'chevronDown'" :size="16" /> -->
+
+          <BaseIcon :name="open ? ChevronUp : ChevronDown" :size="16"/>
           <text class="text-muted" :style="{ fontSize: '0.9em' }">
             {{
               (!open ? 'View ' : 'Hide ') +

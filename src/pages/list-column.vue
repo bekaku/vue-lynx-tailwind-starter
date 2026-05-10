@@ -27,7 +27,7 @@ const onScrolltolower = (e: any) => {
     <BaseToolBar title="List column" />
 
     <list
-      class="h-full w-full"
+      class="h-full w-full px-2"
       scroll-orientation="vertical"
       list-type="flow"
       :span-count="2"

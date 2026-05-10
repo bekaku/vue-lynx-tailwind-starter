@@ -10,17 +10,17 @@ import TabsKeepalive from '../pages/tabs/index-keepalive.vue';
 import TabsHome from '../pages/tabs/home.vue';
 import TabsChat from '../pages/tabs/chat.vue';
 import TabsSetting from '../pages/tabs/setting.vue';
-import ComponentsItem from '../pages/components/item.vue';
-import ComponentsButton from '../pages/components/button.vue';
-import ComponentsCard from '../pages/components/card.vue';
-import ComponentsInput from '../pages/components/input.vue';
+import ComponentsItem from '../pages/item.vue';
+import ComponentsButton from '../pages/button.vue';
+import ComponentsCard from '../pages/card.vue';
+import ComponentsInput from '../pages/input.vue';
 
 import Grid from '../pages/grid.vue';
 import NativeLocalStorage from '../pages/native-local-storage.vue';
 import EventModifier from '../pages/event-modifier.vue';
 import Icons from '../pages/icons.vue';
 import Keepalive from '../pages/keepalive.vue';
-import Image from '../pages/components/image.vue';
+import Image from '../pages/image.vue';
 import Badge from '../pages/badge.vue';
 import Alert from '../pages/alert.vue';
 import ActionSheet from '../pages/action-sheet.vue';
@@ -44,9 +44,8 @@ const router = createRouter({
     // memory history (similar to React Router's MemoryRouter).
     history: createMemoryHistory(),
     routes: [
-        // { path: '/', redirect: '/fetch-data/feed-detail/48067119' },
-        // { path: '/', redirect: '/test' },
-        { path: '/', redirect: '/home' },
+        // { path: '/', redirect: '/fetch-data/feed-detail/48080587' },
+        { path: '/', redirect: '/Home' },
         { path: '/home', name: 'Home', component: Home },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },
         { path: '/alert', name: 'Alert', component: Alert },

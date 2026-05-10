@@ -55,7 +55,7 @@ const { isAndroid } = useDevice();
     :class="
       cn(
         badgeVariants({ variant }),
-        isAndroid ? 'py-[-8px]' : 'py-[3px]',
+        isAndroid ? 'py-[-14px]' : 'py-[3px]',
         'px-[5px]',
         props.class,
       )

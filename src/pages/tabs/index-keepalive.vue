@@ -7,7 +7,8 @@ import TabsHome from '@/pages/tabs/home.vue';
 import TabsSetting from '@/pages/tabs/setting.vue';
 import { reactive, ref } from 'vue-lynx';
 const { onNavigateTo, isPathActive } = useBase();
-import IconLucide from '@/components/IconLucide.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
+import { Cog, House, MessageCircle } from 'lucide-static';
 const activeTab = ref('home');
 const renderedTabs = reactive<Record<string, boolean>>({
   home: true,
@@ -62,7 +63,7 @@ const switchTab = (tabName: string) => {
         @tap="switchTab('home')"
       >
         <template #icon>
-          <IconLucide :name="activeTab !== 'home' ? 'house' : 'houseBlue'" />
+          <BaseIcon :name="House" :color="activeTab !== 'home' ?  '#18181b': '#3b82f6'" :auto="activeTab !== 'home'"/>
         </template>
       </BaseTabButton>
 
@@ -72,9 +73,7 @@ const switchTab = (tabName: string) => {
         @tap="switchTab('chat')"
       >
         <template #icon>
-          <IconLucide
-            :name="activeTab !== 'chat' ? 'messageCircle' : 'messageCircleBlue'"
-          />
+          <BaseIcon :name="MessageCircle" :color="activeTab !== 'chat' ?  '#18181b': '#3b82f6'" :auto="activeTab !== 'chat'"/>
         </template>
       </BaseTabButton>
 
@@ -84,9 +83,7 @@ const switchTab = (tabName: string) => {
         @tap="switchTab('settings')"
       >
         <template #icon>
-          <IconLucide
-            :name="activeTab !== 'settings' ? 'settings' : 'settingsBlue'"
-          />
+            <BaseIcon :name="Cog" :color="activeTab !== 'settings' ?  '#18181b': '#3b82f6'" :auto="activeTab !== 'settings'"/>
         </template>
       </BaseTabButton>
     </BaseTabBar>

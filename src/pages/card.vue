@@ -7,10 +7,14 @@ import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
 import BaseCardDescription from '@/components/base/BaseCardDescription.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseCardFooter from '@/components/base/BaseCardFooter.vue';
-import BaseButton from '@/components/base/BaseButton.vue'; // ปุ่มที่ทำไว้ตอนแรก
+import BaseButton from '@/components/base/BaseButton.vue';
+import BaseImage from '@/components/base/BaseImage.vue';
 import { useRoute } from 'vue-router';
+import BaseContentText from '@/components/base/BaseContentText.vue';
 
 const route = useRoute();
+const contentText =
+  'Tailwind CSS includes a vast, beautiful color palette out of the box, carefully crafted by expert designers and suitable for a wide range of different design styles. https://lucide.dev/icons/';
 const handleTab = () => {
   console.log('BaseButton tapped!');
 };
@@ -29,11 +33,28 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <text
-            >Tailwind CSS includes a vast, beautiful color palette out of the
-            box, carefully crafted by expert designers and suitable for a wide
-            range of different design styles.</text
-          >
+          <BaseContentText :content="contentText" />
+        </BaseCardContent>
+
+        <view class="h-[0.5px] w-full border-b border-border my-2"></view>
+        <BaseCardFooter class="justify-between gap-2">
+          <BaseButton variant="outline" label="Cancel" class="flex-1" />
+          <BaseButton variant="default" label="Deploy" class="flex-1" />
+        </BaseCardFooter>
+      </BaseCard>
+      <BaseCard class="w-full">
+        <BaseImage
+          class="w-full h-[150px]"
+          src="https://images.unsplash.com/photo-1734983234384-5a3edcec48ce?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          fit="cover"
+        />
+        <BaseCardHeader>
+          <BaseCardTitle>Basic Card</BaseCardTitle>
+          <BaseCardDescription> This is a description. </BaseCardDescription>
+        </BaseCardHeader>
+
+        <BaseCardContent class="pt-0">
+          <BaseContentText :content="contentText" />
         </BaseCardContent>
 
         <view class="h-[0.5px] w-full border-b border-border my-2"></view>
@@ -50,7 +71,7 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <text
+          <text :style="{ fontSize: '15px', lineHeight: '1.5em' }"
             >Tailwind CSS includes a vast, beautiful color palette out of the
             box, carefully crafted by expert designers and suitable for a wide
             range of different design styles.</text

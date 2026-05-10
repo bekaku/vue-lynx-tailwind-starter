@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useBase } from '@/composables/useBase';
+import { useDevice } from '@/composables/useDevice';
 
-const { isWeb } = useBase();
+const { isWeb } = useDevice();
 const props = withDefaults(
   defineProps<{
     index: number;

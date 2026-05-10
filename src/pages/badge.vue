@@ -5,7 +5,8 @@ import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import BaseBadge from '@/components/base/BaseBadge.vue';
 import BaseAvatar from '@/components/base/BaseAvatar.vue';
 import { useTheme } from '@/composables/useTheme';
-import IconLucide from '@/components/IconLucide.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
+import { Bell } from 'lucide-static';
 const { isDark } = useTheme();
 </script>
 
@@ -33,7 +34,7 @@ const { isDark } = useTheme();
 
         <BaseBadge variant="destructive">
           <view class="flex flex-row gap-[2px] items-center">
-            <IconLucide dark name="messageCircle" :size="16" />
+            <BaseIcon :name="Bell" :auto="false" color="#fff" :size="16" />
             <text class="text-white text-xs"> 50 </text>
           </view>
         </BaseBadge>

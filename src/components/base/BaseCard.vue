@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useDevice } from '@/composables/useDevice';
 import { cn } from '@/utils/appUtil';
 
 const props = withDefaults(
@@ -16,17 +17,19 @@ const props = withDefaults(
     margin: true,
   },
 );
+const {isAndroid} = useDevice();
 </script>
 
 <template>
-  <view :class="{ 'p-4': margin }">
+  <view class="bg-transparent" :class="{ 'p-4': margin }">
     <view
       :class="
         cn(
-          'bg-card px-1 py-0',
+          'bg-card pt-0 pb-0 overflow-hidden',
           !square ? 'rounded-xl' : '',
           !flat ? 'shadow-sm' : '',
           border && !flat ? 'border border-border' : '',
+          isAndroid ? 'py-[-18px]' : '',
           props.class,
         )
       "

@@ -28,9 +28,10 @@
   --color-success-foreground: rgba(255, 255, 255, 1);
   --color-muted: rgb(113, 113, 123);
   --color-muted-foreground: rgba(113, 113, 122, 1);
-  --color-border: rgb(228, 228, 231);
+  --color-border: rgb(244, 244, 245);
+  /* --color-border: rgb(228, 228, 231); */
   --color-ripple: rgb(244, 244, 245);
-  --text-body: #000000;
+  --text-body: rgb(24, 24, 27);
   --color-border-input: rgb(228, 228, 231);
 
   --color-zinc-50: #fafafa;
@@ -62,8 +63,8 @@
   --color-success-foreground: rgba(255, 255, 255, 1);
   --color-muted: rgb(159, 159, 169);
   --color-muted-foreground: rgba(161, 161, 170, 1);
-  --color-border: rgb(63, 63, 70);
-  /* --color-border: rgb(39, 39, 42); */
+  /* --color-border: rgb(63, 63, 70); */
+  --color-border: rgb(39, 39, 42);
   --color-ripple: rgb(63, 63, 70);
   --text-body: #fff;
   --color-border-input: rgb(113, 113, 123);

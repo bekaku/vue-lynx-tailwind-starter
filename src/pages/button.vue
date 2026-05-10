@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
-import BasePage from '@/components/base/BasePage.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseTextHeader from '@/components/base/BaseTextHeader.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import IconLucide from '@/components/IconLucide.vue';
+import { Camera, Cog, DatabaseSearch, House, MessageCircle, User } from 'lucide-static';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -38,10 +38,10 @@ const handleTab = () => {
         <view class="flex flex-row justify-start gap-2 p-4">
           <BaseButton class="flex-none" rounded label="Rounded" />
           <BaseButton rounded size="icon">
-            <IconLucide  name="messageCircle" dark />
+              <BaseIcon :name="MessageCircle" :auto="false" color="#fff" />
           </BaseButton>
           <BaseButton variant="ghost" rounded size="icon">
-            <IconLucide  name="camera" />
+            <BaseIcon :name="Camera"/>
           </BaseButton>
         </view>
 
@@ -63,26 +63,26 @@ const handleTab = () => {
 
           <BaseButton label="Icon left">
             <template #start>
-              <IconLucide name="messageCircle" dark class="mr-1" />
+               <BaseIcon :name="MessageCircle" :auto="false" color="#fff" class="mr-1"/>
             </template>
           </BaseButton>
 
           <BaseButton variant="ghost" label="Icon left">
             <template #start>
-              <IconLucide name="house" class="mr-1" />
+              <BaseIcon :name="House" class="mr-1"/>
             </template>
           </BaseButton>
           <BaseButton variant="ghost" label="Icon right">
             <template #end>
-              <IconLucide name="settings" class="ml-1" />
+               <BaseIcon :name="User" class="mr-1"/>
             </template>
           </BaseButton>
           <BaseButton variant="ghost" label="Icon both">
             <template #start>
-              <IconLucide name="house" class="mr-1" />
+                <BaseIcon :name="Cog" class="mr-1"/>
             </template>
             <template #end>
-              <IconLucide name="messageCircle" class="ml-1" />
+                 <BaseIcon :name="DatabaseSearch" class="ml-1"/>
             </template>
           </BaseButton>
         </view>

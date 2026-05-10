@@ -5,7 +5,7 @@ import { cleanUrl, stripHtml } from '@/utils/appUtil';
 import { useBase } from '@/composables/useBase';
 
 const props = defineProps<{
-  content: string;
+  content: string | undefined;
   class?: any;
 }>();
 const { openExternalUri } = useBase();
@@ -64,7 +64,7 @@ const handleLinkTap = (url: string | undefined) => {
 </script>
 
 <template>
-  <text class="flex-wrap" :class="props.class" :style="{ lineHeight: '1.5em' }">
+  <text class="flex-wrap leading-relaxed" :class="props.class" :style="{ lineHeight: '1.5em' }">
     <template v-for="(part, index) in parsedContent" :key="index">
       <text
         v-if="part.type === 'link'"

@@ -2,12 +2,14 @@
 import IconLucide from '@/components/IconLucide.vue';
 import ThemeToggle from '@/components/ThemeToggle.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseItem from '@/components/base/BaseItem.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useDevice } from '@/composables/useDevice';
 import { useScrollRestore } from '@/composables/useScrollRestore';
 import { useTheme } from '@/composables/useTheme';
 import type { LabelValue } from '@/types/common';
+import { BadgeCheck, ChevronRight, SunMoon } from 'lucide-static';
 import { onMounted, ref, useTemplateRef } from 'vue-lynx';
 const { scrollTop, onScroll } = useScrollRestore();
 const { isDark } = useTheme();
@@ -75,21 +77,24 @@ const handleLongpress = (e: any) => {
     >
       <BaseCard class="w-full">
         <view class="flex flex-col p-[14px]">
-          <text class="text-xl font-semibold tracking-tight">Vue Lynx </text>
+          <text class="text-xl font-bold tracking-tight">Vue Lynx </text>
           <text class="text-sm text-muted">
-            Vue Lynx Starter Template By Chanavee platform:{{ platform }}
+            Vue Lynx Starter Template By Chanavee platform : {{ platform }}
           </text>
         </view>
 
         <BaseItem
           title="Dark"
-          description="Swith theme Dark|Light"
+          description="Swith theme Dark/Light"
           button
           @tap="handleTheme"
         >
           <template #start>
             <view class="flex items-center justify-center">
-              <IconLucide :size="24" name="sunMoon" />
+              <BaseIcon
+              :name="SunMoon"
+              :size="26"
+            />
             </view>
           </template>
           <template #end>
@@ -103,7 +108,11 @@ const handleLongpress = (e: any) => {
           @longpress="handleLongpress"
         >
           <template #end>
-            <text class="text-sm text-muted">longpress : {{ longpress }}</text>
+            <BaseIcon
+              :name="BadgeCheck"
+              :color="longpress ? '#00c950' : '#6a7282'"
+              :auto="false"
+            />
           </template>
         </BaseItem>
         <BaseItem
@@ -116,7 +125,8 @@ const handleLongpress = (e: any) => {
         >
           <template #end>
             <view class="w-8 h-8 flex items-center justify-center">
-              <IconLucide :size="14" name="chevronRight" />
+              <BaseIcon :size="14" :name="ChevronRight" color="#71717b" />
+              <!-- <IconLucide :size="14" name="chevronRight" /> -->
             </view>
           </template>
         </BaseItem>

@@ -1,5 +1,6 @@
 import type { BaseLucideIcon } from "@/libs/lucideIcons"
-import type { AppColor } from "./common"
+import type { AppColor, IconSetType } from "./common"
+
 
 export interface LucideIconProps {
     name: BaseLucideIcon;
@@ -63,6 +64,17 @@ export interface BadgeProps {
 export interface BackButtonProps {
     textClass?: string;
     defaultHref?: string;
+}
+
+export interface IconProps {
+    name: string
+    iconSet?: IconSetType
+    size?: number
+    color?: string
+    additionalReplce?: string
+    class?: string | string[];
+    svgClass?: string ;
+    auto?: boolean ;
 }
 export interface TollbarProps {
     class?: string;

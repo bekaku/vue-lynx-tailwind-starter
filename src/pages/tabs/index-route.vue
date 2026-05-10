@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseTabBar from '@/components/base/BaseTabBar.vue';
 import BaseTabButton from '@/components/base/BaseTabButton.vue';
 import { useBase } from '@/composables/useBase';
 import { useSafeArea } from '@/composables/useSafeArea';
+import { Cog, House, MessageCircle } from 'lucide-static';
 import { RouterView } from 'vue-router';
-import IconLucide from '@/components/IconLucide.vue';
 const { bottom } = useSafeArea();
 const { onNavigateTo, isPathActive } = useBase();
 </script>
@@ -22,9 +23,11 @@ const { onNavigateTo, isPathActive } = useBase();
         @tap="onNavigateTo('/tabs-route', true)"
       >
         <template #icon>
-            <IconLucide
-              :name="!isPathActive('/tabs-route') ? 'house' : 'houseBlue'"
-            />
+          <BaseIcon
+            :name="House"
+            :color="!isPathActive('/tabs-route') ? '#18181b' : '#3b82f6'"
+            :auto="!isPathActive('/tabs-route')"
+          />
         </template>
       </BaseTabButton>
 
@@ -34,12 +37,10 @@ const { onNavigateTo, isPathActive } = useBase();
         @tap="onNavigateTo('/tabs-route/chat', true)"
       >
         <template #icon>
-          <IconLucide
-            :name="
-              !isPathActive('/tabs-route/chat')
-                ? 'messageCircle'
-                : 'messageCircleBlue'
-            "
+          <BaseIcon
+            :name="MessageCircle"
+            :color="!isPathActive('/tabs-route/chat') ? '#18181b' : '#3b82f6'"
+            :auto="!isPathActive('/tabs-route/chat')"
           />
         </template>
       </BaseTabButton>
@@ -50,12 +51,12 @@ const { onNavigateTo, isPathActive } = useBase();
         @tap="onNavigateTo('/tabs-route/settings', true)"
       >
         <template #icon>
-          <IconLucide
-            :name="
-              !isPathActive('/tabs-route/settings')
-                ? 'settings'
-                : 'settingsBlue'
+          <BaseIcon
+            :name="Cog"
+            :color="
+              !isPathActive('/tabs-route/settings') ? '#18181b' : '#3b82f6'
             "
+            :auto="!isPathActive('/tabs-route/settings')"
           />
         </template>
       </BaseTabButton>

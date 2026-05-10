@@ -12,9 +12,12 @@
     "copy:android": "shx rm -rf android/app/src/main/assets && shx mkdir -p android/app/src/main/assets && shx cp -r dist/* android/app/src/main/assets/"
   },
   "dependencies": {
+    "@quasar/extras": "^1.18.0",
     "@tanstack/vue-query": "^5.100.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "d3": "^7.9.0",
+    "lucide-static": "^1.14.0",
     "pinia": "^3.0.4",
     "tailwind-merge": "^3.5.0",
     "vue": "^3.5.33",

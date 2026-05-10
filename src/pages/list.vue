@@ -72,8 +72,8 @@ const onScrollToTop = () => {
     <view class="w-full flex p-2 gap-2">
       <BaseButton
         variant="outline"
-        label="Scroll to item 8"
-        @tap="onScrollToItem(8)"
+        label="Scroll to item 5"
+        @tap="onScrollToItem(5)"
       />
       <BaseButton
         variant="outline"
@@ -89,7 +89,7 @@ const onScrollToTop = () => {
 
     <list
       ref="myListRef"
-      class="h-full w-full flex-1"
+      class="h-full w-full flex-1 px-2"
       scroll-orientation="vertical"
       list-type="single"
       :span-count="1"

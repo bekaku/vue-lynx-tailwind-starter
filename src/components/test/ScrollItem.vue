@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { useDevice } from '@/composables/useDevice';
 import { computed } from 'vue-lynx';
 import BaseImage from '../base/BaseImage.vue';
-import { useBase } from '@/composables/useBase';
-const { isWeb } = useBase();
+import BaseCard from '@/components/base/BaseCard.vue';
+const { isWeb } = useDevice();
 const props = withDefaults(
   defineProps<{
     index: number;
@@ -15,25 +16,25 @@ const props = withDefaults(
   {
     virtical: true,
     sticky: false,
-    height:'160px'
+    height: '160px',
   },
 );
 const getStickyStyle = computed(() => {
   if (!props.sticky) {
     return {
-      width: 'calc(100% - 10px)',
+      width: '100%',
       height: props.height,
     };
   } else {
     return !isWeb
       ? {
-          width: 'calc(100% - 10px)',
+          width: '100%',
           height: props.height,
           position: 'sticky',
           top: '0px',
         }
       : {
-          width: 'calc(100% - 10px)',
+          width: '100%',
           height: props.height,
           position: 'sticky',
           top: '0px',
@@ -43,7 +44,7 @@ const getStickyStyle = computed(() => {
 });
 </script>
 <template>
-  <view
+  <!-- <view
     v-if="virtical"
     :style="getStickyStyle"
     class="my-2 overflow-hidden border border-border"
@@ -58,11 +59,41 @@ const getStickyStyle = computed(() => {
       :src="src"
       fit="scale-down"
     />
+  </view> -->
+  <view v-if="virtical" :style="getStickyStyle" :flatten="false">
+    <BaseCard :margin="false">
+      <BaseImage
+        :style="{ width: '100%', height: '120px' }"
+        :src="src"
+        fit="cover"
+      />
+      <view class="p-2">
+        <text class="text-xs">
+          {{ `item-${props.index}-sticky-${sticky}` }}
+        </text>
+      </view>
+    </BaseCard>
   </view>
-  <view v-else class="w-[200px] h-[160px] ml-[10px] bg-black overflow-hidden">
+  <BaseCard
+    v-else
+    :margin="false"
+    class="w-[200px] h-[160px] mr-[10px] overflow-hidden"
+  >
+    <BaseImage
+      :style="{ width: '100%', height: '120px' }"
+      :src="src"
+      fit="cover"
+    />
+    <view class="p-2">
+      <text class="text-xs">
+        {{ `item-${props.index}` }}
+      </text>
+    </view>
+  </BaseCard>
+  <!-- <view v-else class="w-[200px] h-[160px] ml-[10px] bg-black overflow-hidden">
     <text class="px-[3px] text-xs bg-black text-white">
       {{ `item-${props.index}` }}
     </text>
     <BaseImage class="w-full h-[150px]" :src="src" fit="scale-down" />
-  </view>
+  </view> -->
 </template>

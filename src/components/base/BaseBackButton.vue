@@ -3,6 +3,8 @@ import { useBase } from '@/composables/useBase';
 import BaseButton from './BaseButton.vue';
 import type { BackButtonProps } from '@/types/props';
 import IconLucide from '../IconLucide.vue';
+import BaseIcon from './BaseIcon.vue';
+import { ArrowLeft } from 'lucide-static';
 
 const { onNavigateTo, onBack } = useBase();
 const props = withDefaults(defineProps<BackButtonProps>(), {
@@ -21,7 +23,8 @@ const onTab = () => {
 <template>
   <BaseButton variant="ghost" size="icon" rounded :text-class="textClass" @tap="onTab">
     <template #start>
-      <IconLucide name="arrowLeft" />
+      <!-- <IconLucide name="arrowLeft" /> -->
+      <BaseIcon :name="ArrowLeft" />
     </template>
   </BaseButton>
 </template>

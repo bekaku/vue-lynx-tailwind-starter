@@ -4,6 +4,11 @@ export type AppColor = 'primary' | 'secondary' | 'destructive' | 'success' | 'mu
 export type ThemeName = 'dark' | 'light';
 export type FileMimeType = 'IMAGE' | 'VIDEO' | 'FILE' | 'DIRECTORY';
 export type UploadStatus = 'UPLOADING' | 'COMPLETED' | 'FAILED';
+export type IconSetType =
+  | 'svg'
+  | 'quasar-bootstrap-icons'
+  | 'quasar-line-awesome'
+  | 'quasar-mdi';
 export interface Id {
   id?: number | string | null;
 }

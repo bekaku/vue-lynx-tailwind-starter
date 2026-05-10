@@ -8,18 +8,6 @@ import StickyItem from '@/components/test/StickyItem.vue';
 import { images } from '@/libs/mock/images';
 import BaseButton from '@/components/base/BaseButton.vue';
 const myScrollViewRef = ref<any>(null);
-const menuItems = ref<LabelValue<any>[]>([
-  {
-    label: 'User account',
-    value: 'user-account',
-    lucideIcon: { name: 'messageCircle', size: 18 },
-  },
-  {
-    label: 'Settings',
-    value: 'settings',
-    lucideIcon: { name: 'settings', size: 18 },
-  },
-]);
 
 const onScroll = (e: any) => {
   // console.log('onScroll', e);
@@ -128,7 +116,7 @@ const onScrollToTop = () => {
       <scroll-view
         ref="myScrollViewRef"
         scroll-orientation="vertical"
-        class="ml-[5px] pl-[5px] pb-[55px]"
+        class="ml-[5px] pl-[5px] pb-[55px] px-2"
         :style="{ width: '100%', height: '100%' }"
         @scroll="onScroll"
         @scrolltoupper="onScrolltoupper"
