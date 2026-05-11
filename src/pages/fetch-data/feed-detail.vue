@@ -3,16 +3,16 @@ import BaseAlert from '@/components/base/BaseAlert.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseContentText from '@/components/base/BaseContentText.vue';
-import BaseLoading from '@/components/base/BaseLoading.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseSkeleton from '@/components/base/BaseSkeleton.vue';
-import BaseSpinner from '@/components/base/BaseSpinner.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import CommentItem from '@/components/test/CommentItem.vue';
 import { useBase } from '@/composables/useBase';
+import { useDevice } from '@/composables/useDevice';
 import { useFetch } from '@/composables/useFetch';
-import { isAbsoluteUrl, stripHtml, toHost } from '@/utils/appUtil';
-import { keepPreviousData, useQuery } from '@tanstack/vue-query';
-import { computed, onMounted, useTemplateRef } from 'vue-lynx';
+import { isAbsoluteUrl, toHost } from '@/utils/appUtil';
+import { Clock, User } from 'lucide-static';
+import { computed, onMounted, useTemplateRef } from 'vue';
 
 interface ItemDetail {
   id: number;
@@ -35,7 +35,7 @@ interface CommentData {
 }
 
 const feedScrollViewRef = useTemplateRef<any>('feedScrollViewRef');
-
+const { isWeb } = useDevice();
 const { getParam } = useBase();
 
 const itemId = computed<string>(() => getParam('id'));
@@ -88,6 +88,9 @@ const onScrollToTop = () => {
   }
   onScrollToItem(0);
 };
+const onScroll = (e: any) => {
+  console.log('onScroll', e);
+};
 </script>
 
 <template>
@@ -98,6 +101,7 @@ const onScrollToTop = () => {
         ref="feedScrollViewRef"
         :class="['flex-1 w-full']"
         scroll-orientation="vertical"
+        @scroll="onScroll"
       >
         <view v-if="isLoading">
           <!-- <BaseSpinner show /> -->
@@ -127,9 +131,8 @@ const onScrollToTop = () => {
               />
               <view class="flex-1 flex flex-col gap-2">
                 <BaseSkeleton :style="{ height: '15px' }" />
-                  <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
-              <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
-
+                <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
+                <BaseSkeleton :style="{ height: '10px', width: '100%' }" />
               </view>
 
               <BaseSkeleton
@@ -138,7 +141,6 @@ const onScrollToTop = () => {
               />
             </view>
             <view class="flex flex-col gap-2" :style="{ paddingLeft: '40px' }">
-            
               <view class="flex flex-row gap-2">
                 <BaseSkeleton :style="{ height: '10px', width: '15%' }" />
                 <BaseSkeleton :style="{ height: '10px', width: '15%' }" />
@@ -168,30 +170,61 @@ const onScrollToTop = () => {
               >
                 {{ toHost(data.url) }}
               </text>
-              <view class="flex flex-row flex-wrap mt-[8px] gap-[4px]">
+              <view class="flex flex-row flex-wrap items-center mt-[8px] gap-[4px]">
                 <text class="text-muted text-sm">
                   {{ data.points }} points | by
                 </text>
+                 <BaseIcon :name="User" :size="15" color="#71717a" />
                 <text
                   class="text-muted text-sm underline"
                   :catchtap="(event: any) => onUserTap(event, data?.user)"
                 >
                   {{ data.user }}
                 </text>
+
+                <BaseIcon :name="Clock" :size="15" color="#71717a" />
                 <text class="text-muted text-sm">
                   {{ data.time_ago }}
                 </text>
               </view>
 
               <view class="py-[0.5em]">
-                <BaseContentText :content="data.content" />
+                <BaseContentText
+                  :ellipsis="{ rows: 3, showMore: true }"
+                  :content="data.content"
+                />
               </view>
             </BaseCardContent>
           </BaseCard>
 
-          <BaseCard flat :margin="false" square class="mt-[15px]">
+          <view
+            :style="{
+              padding: '16px',
+              position: 'sticky',
+              top: '0px',
+              zIndex: isWeb ? 25 : 0,
+            }"
+            class="flex flex-col gap-2 bg-card"
+            :sticky="true"
+            :flatten="false"
+          >
+            <text v-if="data" class="text-md text-muted">
+              {{
+                data.comments && data.comments.length
+                  ? data.comments.length + ' comments'
+                  : 'No comments yet'
+              }}</text
+            >
+          </view>
+
+          <BaseCard flat :margin="false" square class="my-[15px]">
             <view :style="{ paddingLeft: '16px', paddingRight: '16px' }">
-              <view class="flex flex-row items-center" :style="{ gap: '4px' }">
+              <!-- <view
+                class="flex flex-row items-center"
+                :style="{ gap: '4px', position: 'sticky', top: '0px' }"
+                sticky
+                :flatten="false"
+              >
                 <text class="text-md text-muted pt-3">
                   {{
                     data.comments && data.comments.length
@@ -199,7 +232,7 @@ const onScrollToTop = () => {
                       : 'No comments yet'
                   }}
                 </text>
-              </view>
+              </view> -->
               <CommentItem
                 v-for="(comment, index) in data.comments"
                 :key="comment.id"
@@ -212,10 +245,5 @@ const onScrollToTop = () => {
         </template>
       </scroll-view>
     </view>
-
-    <!-- <BaseLoading
-      v-model:visible="isLoading"
-      description="Please wait while loading..."
-    /> -->
   </view>
 </template>

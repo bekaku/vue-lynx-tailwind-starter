@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme';
 import { cn } from '@/utils/appUtil';
-import { nextTick, onMounted, ref, useTemplateRef, watch } from 'vue-lynx';
+import { nextTick, onMounted, ref, useTemplateRef, watch } from 'vue';
 
 const props = withDefaults(
   defineProps<{

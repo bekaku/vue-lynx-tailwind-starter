@@ -1,15 +1,22 @@
 <script setup lang="ts">
-defineProps<{
-  show: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    show: boolean;
+    width?: string;
+  }>(),
+  {
+    width: '28px',
+    show: false,
+  },
+);
 </script>
 
 <template>
   <view
     v-if="show"
     :style="{
-      width: '28px',
-      height: '28px',
+      width: props.width,
+      height: props.width,
       borderRadius: '14px',
       borderWidth: '3px',
       borderColor: '#eee',
@@ -24,7 +31,11 @@ defineProps<{
 
 <style>
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

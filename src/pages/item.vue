@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseItem from '@/components/base/BaseItem.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import IconLucide from '@/components/IconLucide.vue';
 import type { LabelValue } from '@/types/common';
-import { ref } from 'vue-lynx';
+import { SunMoon, User } from 'lucide-static';
+import { ref } from 'vue';
 
 const menuItems = ref<LabelValue<any>[]>([
   { label: 'Tailwind CSS', value: '/tailwind' },
@@ -46,7 +47,7 @@ const handleItemClick = (item: string) => {
       <BaseCardContent>
         <BaseItem title="Profile" button @tap="handleItemClick('Profile')">
           <template #start>
-            <IconLucide name="user" />
+            <BaseIcon :name="User" />
           </template>
         </BaseItem>
         <BaseItem
@@ -63,7 +64,7 @@ const handleItemClick = (item: string) => {
           class="border-b-0"
         >
           <template #start>
-            <IconLucide name="sunMoon" />
+              <BaseIcon  :name="SunMoon" />
           </template>
 
           <template #end>

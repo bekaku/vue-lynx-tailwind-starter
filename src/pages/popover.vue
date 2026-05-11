@@ -1,27 +1,26 @@
 <script setup lang="ts">
+import IconLucide from '@/components/IconLucide.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
+import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
-import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import BaseBadge from '@/components/base/BaseBadge.vue';
-import BaseAvatar from '@/components/base/BaseAvatar.vue';
-import { useTheme } from '@/composables/useTheme';
-import IconLucide from '@/components/IconLucide.vue';
-import BasePopover from '@/components/base/BasePopover.vue';
-import BaseButton from '@/components/base/BaseButton.vue';
-import { ref } from 'vue';
-import type { LabelValue } from '@/types/common';
 import BaseItem from '@/components/base/BaseItem.vue';
+import BasePopover from '@/components/base/BasePopover.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import type { LabelValue } from '@/types/common';
+import { ChevronDown, ChevronUp, Settings, UserRoundPen } from 'lucide-static';
+import { ref } from 'vue';
 
 const menuItems = ref<LabelValue<any>[]>([
   {
     label: 'User account',
     value: 'user-account',
-    lucideIcon: { name: 'messageCircle', size: 18 },
+    icon: { name: UserRoundPen, size: 18 },
   },
   {
     label: 'Settings',
     value: 'settings',
-    lucideIcon: { name: 'settings', size: 18 },
+    icon: { name: Settings, size: 18 },
   },
 ]);
 
@@ -39,7 +38,12 @@ const handleMenuItemClick = (itemName: string) => {
         <BasePopover position="bottom-left">
           <template #trigger="{ isOpen }">
             <BaseButton>
-              <text class="text-white"> Options {{ isOpen ? '▲' : '▼' }} </text>
+              <text class="text-white"> Options</text>
+              <BaseIcon
+                color="#fff"
+                :auto="false"
+                :name="isOpen ? ChevronUp : ChevronDown"
+              />
             </BaseButton>
           </template>
 
@@ -64,10 +68,7 @@ const handleMenuItemClick = (itemName: string) => {
               >
                 <template #start>
                   <view class="flex items-center justify-center">
-                    <IconLucide
-                      v-if="item.lucideIcon"
-                      v-bind="item.lucideIcon"
-                    />
+                    <BaseIcon v-if="item.icon" v-bind="item.icon" />
                   </view>
                 </template>
               </BaseItem>
@@ -92,9 +93,12 @@ const handleMenuItemClick = (itemName: string) => {
         <BasePopover position="bottom-left">
           <template #trigger="{ isOpen }">
             <BaseButton>
-              <text class="text-white">
-                bottom-left {{ isOpen ? '▲' : '▼' }}
-              </text>
+              <text class="text-white"> bottom-left</text>
+              <BaseIcon
+                color="#fff"
+                :auto="false"
+                :name="isOpen ? ChevronUp : ChevronDown"
+              />
             </BaseButton>
           </template>
 
@@ -107,9 +111,12 @@ const handleMenuItemClick = (itemName: string) => {
         <BasePopover position="bottom-right">
           <template #trigger="{ isOpen }">
             <BaseButton>
-              <text class="text-white">
-                bottom-right {{ isOpen ? '▲' : '▼' }}
-              </text>
+              <text class="text-white"> bottom-right</text>
+              <BaseIcon
+                color="#fff"
+                :auto="false"
+                :name="isOpen ? ChevronUp : ChevronDown"
+              />
             </BaseButton>
           </template>
 
@@ -122,9 +129,12 @@ const handleMenuItemClick = (itemName: string) => {
         <BasePopover position="top-left">
           <template #trigger="{ isOpen }">
             <BaseButton>
-              <text class="text-white">
-                top-left {{ isOpen ? '▲' : '▼' }}
-              </text>
+              <text class="text-white"> top-left</text>
+              <BaseIcon
+                color="#fff"
+                :auto="false"
+                :name="isOpen ? ChevronUp : ChevronDown"
+              />
             </BaseButton>
           </template>
 
@@ -137,9 +147,12 @@ const handleMenuItemClick = (itemName: string) => {
         <BasePopover position="top-right">
           <template #trigger="{ isOpen }">
             <BaseButton>
-              <text class="text-white">
-                top-right {{ isOpen ? '▲' : '▼' }}
-              </text>
+              <text class="text-white"> top-right</text>
+              <BaseIcon
+                color="#fff"
+                :auto="false"
+                :name="isOpen ? ChevronUp : ChevronDown"
+              />
             </BaseButton>
           </template>
 

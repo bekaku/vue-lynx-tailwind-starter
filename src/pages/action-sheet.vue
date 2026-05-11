@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import IconLucide from '@/components/IconLucide.vue';
 import BaseActionSheet from '@/components/base/BaseActionSheet.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useTheme } from '@/composables/useTheme';
-import { ref } from 'vue-lynx';
+import { Trash } from 'lucide-static';
+import { ref } from 'vue';
 const { isDark } = useTheme();
 const isOpen = ref(false);
 const eventItems = ref<string[]>([]);
@@ -44,7 +45,7 @@ const handleShow = (e: any) => {
         Open Action Sheet isOpen : {{ isOpen }}
       </text>
     </view>
-     <text class="p-2"> eventItems {{ eventItems }}</text>
+    <text class="p-2"> eventItems {{ eventItems }}</text>
 
     <BaseActionSheet
       v-model:visible="isOpen"
@@ -55,25 +56,30 @@ const handleShow = (e: any) => {
       @requestclose="handleRequestclose"
       @showoverlay="handleShow"
     >
-      <BaseButton
-        variant="destructive"
-        label="Delete"
-        :catchtap="(e: any) => handleAction(e, 'delete')"
+      <scroll-view
+        :class="['flex-1 w-full gap-2 px-2']"
+        scroll-orientation="vertical"
       >
-        <template #start>
-          <IconLucide name="trash" dark class="mr-1" />
-        </template>
-      </BaseButton>
-      <BaseButton
-        variant="secondary"
-        label="Archive"
-        :catchtap="(e: any) => handleAction(e, 'archive')"
-      />
-      <BaseButton
-        variant="outline"
-        label="Cancel"
-        :catchtap="(e: any) => handleCatchTapClose(e)"
-      />
+        <BaseButton
+          variant="destructive"
+          label="Delete"
+          :catchtap="(e: any) => handleAction(e, 'delete')"
+        >
+          <template #start>
+            <BaseIcon :name="Trash" />
+          </template>
+        </BaseButton>
+        <BaseButton
+          variant="secondary"
+          label="Archive"
+          :catchtap="(e: any) => handleAction(e, 'archive')"
+        />
+        <BaseButton
+          variant="outline"
+          label="Cancel"
+          :catchtap="(e: any) => handleCatchTapClose(e)"
+        />
+      </scroll-view>
     </BaseActionSheet>
   </view>
 </template>

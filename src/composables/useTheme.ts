@@ -13,7 +13,7 @@ export const useTheme = () => {
   const { setItem, getItem } = useStorage();
   const themeNameAtt = 'theme';
   const onInit = async () => {
-    const themeName: any = await getItem(themeNameAtt) || 'dark';
+    const themeName: any = await getItem(themeNameAtt) || 'light';
     onSetTheme(themeName);
   }
   const onSetTheme = (name: ThemeName) => {

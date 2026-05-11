@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme';
 import { cn } from '@/utils/appUtil';
-import { onMounted, ref, useTemplateRef } from 'vue-lynx';
+import { onMounted, ref, useTemplateRef } from 'vue';
 
 const props = withDefaults(
   defineProps<{

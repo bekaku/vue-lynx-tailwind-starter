@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import BaseTextEllipsis from './BaseTextEllipsis.vue';
 
 import { cleanUrl, stripHtml } from '@/utils/appUtil';
 import { useBase } from '@/composables/useBase';
+import type { TextEllipsisProps } from '@/types/props';
 
 const props = defineProps<{
   content: string | undefined;
   class?: any;
+  ellipsis?: TextEllipsisProps;
 }>();
 const { openExternalUri } = useBase();
+
+const plainText = computed(() => {
+  return stripHtml(props.content || '');
+});
 const parsedContent = computed(() => {
   const rawHtml = props.content || '';
 
@@ -49,7 +56,7 @@ const parsedContent = computed(() => {
   return parts;
 });
 
-const handleLinkTap = (url: string | undefined) => {
+const handleLinkTap = (e: any, url: string | undefined) => {
   if (!url) {
     return;
   }
@@ -64,12 +71,44 @@ const handleLinkTap = (url: string | undefined) => {
 </script>
 
 <template>
-  <text class="flex-wrap leading-relaxed" :class="props.class" :style="{ lineHeight: '1.5em' }">
+  <BaseTextEllipsis
+    v-if="props.ellipsis && props.content"
+    v-bind="{...props.ellipsis, content: plainText}"
+  >
+    <template #default="{ textStyles, textMaxline }">
+      <text
+        class="flex-wrap leading-relaxed"
+        :class="props.class"
+        :style="{ lineHeight: '1.5em', ...textStyles }"
+        :text-maxline="textMaxline"
+      >
+        <template v-for="(part, index) in parsedContent" :key="index">
+          <text
+            v-if="part.type === 'link'"
+            class="text-primary font-medium active:opacity-70"
+            :catchtap="(e: any) => handleLinkTap(e, part.url)"
+          >
+            {{ part.content }}
+          </text>
+
+          <text v-else>
+            {{ part.content }}
+          </text>
+        </template>
+      </text>
+    </template>
+  </BaseTextEllipsis>
+  <text
+    v-else-if="props.content"
+    class="flex-wrap leading-relaxed"
+    :class="props.class"
+    :style="{ lineHeight: '1.5em' }"
+  >
     <template v-for="(part, index) in parsedContent" :key="index">
       <text
         v-if="part.type === 'link'"
         class="text-primary font-medium active:opacity-70"
-        @tap.stop="handleLinkTap(part.url)"
+        :catchtap="(e: any) => handleLinkTap(e, part.url)"
       >
         {{ part.content }}
       </text>

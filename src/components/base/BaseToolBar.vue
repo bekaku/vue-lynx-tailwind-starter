@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useBase } from '@/composables/useBase';
 import { useSafeArea } from '@/composables/useSafeArea';
-import type { TollbarProps } from '@/types/props';
+import type { ToolbarProps } from '@/types/props';
 import { cn } from '@/utils/appUtil';
 import BaseBackButton from './BaseBackButton.vue';
 const { safeAreaTop, safeAreaBottom } = useSafeArea();
 const { onNavigateTo } = useBase();
-const props = withDefaults(defineProps<TollbarProps>(), {
+const props = withDefaults(defineProps<ToolbarProps>(), {
   showBackButton: true,
 });
 

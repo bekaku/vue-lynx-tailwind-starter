@@ -2,7 +2,7 @@
 import { useDevice } from '@/composables/useDevice';
 import { useSafeArea } from '@/composables/useSafeArea';
 import { cn } from '@/utils/appUtil';
-import { computed, ref } from 'vue-lynx';
+import { computed, ref } from 'vue';
 
 const props = withDefaults(
   defineProps<{
@@ -18,10 +18,13 @@ const props = withDefaults(
   },
 );
 const { isWeb } = useDevice();
-const { safeAreaBottom } = useSafeArea();
+const { safeAreaBottom, safeAreaTop } = useSafeArea();
 const getOverlayStyle = computed(() => {
   if (!isWeb) {
-    return { position: 'fixed', paddingBottom: safeAreaBottom + 'px' };
+    return {
+      position: 'fixed',
+      paddingBottom: safeAreaBottom + 'px',
+    };
   }
   return {
     position: 'fixed',
@@ -124,13 +127,16 @@ const handleCatchTap = (e: any) => {
   >
     <view
       class="w-full h-full flex flex-col justify-end fade-in-animate"
-      :style="{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }"
+      :style="{
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        paddingTop: safeAreaTop + 'px',
+      }"
       @tap="(e: any) => overlayTap(e)"
     >
       <view
         :class="
           cn(
-            'relative w-full bg-card rounded-t-2xl pb-8 pt-3 px-4 flex flex-col slide-up-animate',
+            'relative w-full bg-card rounded-t-2xl pb-8 pt-3  flex flex-col slide-up-animate',
             props.class,
           )
         "

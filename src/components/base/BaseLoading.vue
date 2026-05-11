@@ -2,7 +2,7 @@
 import { useDevice } from '@/composables/useDevice';
 import { useSafeArea } from '@/composables/useSafeArea';
 import { cn } from '@/utils/appUtil';
-import { computed } from 'vue-lynx';
+import { computed } from 'vue';
 import BaseSpinner from './BaseSpinner.vue';
 
 const props = withDefaults(

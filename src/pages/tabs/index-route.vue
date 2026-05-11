@@ -13,7 +13,12 @@ const { onNavigateTo, isPathActive } = useBase();
 <template>
   <view class="w-full h-full flex flex-col bg-background">
     <view class="flex-1 overflow-hidden">
-      <RouterView />
+      <!-- <RouterView /> -->
+      <RouterView v-slot="{ Component, route }">
+        <KeepAlive :max="3">
+          <component :is="Component" :key="route.fullPath" />
+        </KeepAlive>
+      </RouterView>
     </view>
 
     <BaseTabBar class="py-1">

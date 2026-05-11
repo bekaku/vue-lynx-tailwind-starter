@@ -28,8 +28,8 @@
   --color-success-foreground: rgba(255, 255, 255, 1);
   --color-muted: rgb(113, 113, 123);
   --color-muted-foreground: rgba(113, 113, 122, 1);
-  --color-border: rgb(244, 244, 245);
-  /* --color-border: rgb(228, 228, 231); */
+  /* --color-border: rgb(244, 244, 245); */
+  --color-border: rgb(228, 228, 231);
   --color-ripple: rgb(244, 244, 245);
   --text-body: rgb(24, 24, 27);
   --color-border-input: rgb(228, 228, 231);

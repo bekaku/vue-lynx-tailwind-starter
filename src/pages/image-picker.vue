@@ -4,11 +4,12 @@ import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
 import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseImage from '@/components/base/BaseImage.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import IconLucide from '@/components/IconLucide.vue';
 import { useDevice } from '@/composables/useDevice';
-import { ref } from 'vue-lynx';
+import { Camera, Image } from 'lucide-static';
+import { ref } from 'vue';
 const { isNativeAvailable } = useDevice();
 const selectedImageUri = ref<string | null>(null);
 const photoUri = ref<string | null>(null);
@@ -152,7 +153,7 @@ const uploadImage = async (fileUri: string) => {
           :label="isLoading ? 'Opening...' : 'Select a photo from the album.'"
         >
           <template #start>
-            <IconLucide name="image" dark class="mr-1" />
+            <BaseIcon :name="Image" class="mr-1" />
           </template>
         </BaseButton>
       </BaseCard>
@@ -180,7 +181,7 @@ const uploadImage = async (fileUri: string) => {
           "
         >
           <template #start>
-            <IconLucide name="image" dark class="mr-1" />
+            <BaseIcon :name="Image" class="mr-1" />
           </template>
         </BaseButton>
       </BaseCard>
@@ -213,7 +214,7 @@ const uploadImage = async (fileUri: string) => {
           :label="isLoading ? 'Opening...' : 'Take a photo from camera.'"
         >
           <template #start>
-            <IconLucide name="camera" dark class="mr-1" />
+            <BaseIcon :name="Camera" class="mr-1" />
           </template>
         </BaseButton>
       </BaseCard>

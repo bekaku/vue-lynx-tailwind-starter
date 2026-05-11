@@ -3,11 +3,12 @@ import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseCardFooter from '@/components/base/BaseCardFooter.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseInput from '@/components/base/BaseInput.vue';
 import BaseTextarea from '@/components/base/BaseTextarea.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import IconLucide from '@/components/IconLucide.vue';
-import { onMounted, ref } from 'vue-lynx';
+import { Eraser, PencilLine } from 'lucide-static';
+import { onMounted, ref } from 'vue';
 
 const inputValue = ref('');
 const inputValue2 = ref('');
@@ -120,10 +121,10 @@ const handleConfirm = (e: any) => {
             placeholder="Basic Input"
           >
             <template #start>
-              <IconLucide name="messageCircle" />
+              <BaseIcon :name="PencilLine" />
             </template>
             <template #end>
-              <IconLucide name="house" />
+              <BaseIcon :name="Eraser" />
             </template>
             <template #bottom>
               <text class="text-[0.8rem] text-muted-foreground">

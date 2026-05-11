@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import { reactive, ref } from 'vue-lynx';
+import { reactive, ref } from 'vue';
 
 const counterA = ref(0) // plain @tap — inner tap fires both inner and outer handlers (+2)
 const counterB = ref(0) // :catchtap — inner tap only fires inner handler (+1)

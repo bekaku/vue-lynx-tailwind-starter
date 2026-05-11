@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { onMounted, ref } from 'vue-lynx'
+import { onMounted, ref } from 'vue'
 import { useDevice } from './useDevice'
 
 

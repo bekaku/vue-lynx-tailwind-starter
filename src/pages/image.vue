@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BaseAvatar from '@/components/base/BaseAvatar.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
-import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
 import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
 import BaseImage from '@/components/base/BaseImage.vue';

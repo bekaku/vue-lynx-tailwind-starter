@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import IconLucide from '@/components/IconLucide.vue';
 import ThemeToggle from '@/components/ThemeToggle.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
 import BaseIcon from '@/components/base/BaseIcon.vue';
@@ -10,7 +9,13 @@ import { useScrollRestore } from '@/composables/useScrollRestore';
 import { useTheme } from '@/composables/useTheme';
 import type { LabelValue } from '@/types/common';
 import { BadgeCheck, ChevronRight, SunMoon } from 'lucide-static';
-import { onMounted, ref, useTemplateRef } from 'vue-lynx';
+import {
+  onActivated,
+  onDeactivated,
+  onMounted,
+  ref,
+  useTemplateRef,
+} from 'vue';
 const { scrollTop, onScroll } = useScrollRestore();
 const { isDark } = useTheme();
 const { platform } = useDevice();
@@ -42,6 +47,7 @@ const menuItems = ref<LabelValue<any>[]>([
   { label: 'Native LocalStorage', value: '/native-local-storage' },
   { label: 'Notfound', value: '/not-foudn' },
   { label: 'Popover', value: '/popover' },
+  { label: 'Pull to refresh', value: '/pull-to-refresh' },
   { label: 'Users', value: '/user-list' },
   { label: 'Skeleton', value: '/skeleton' },
   { label: 'Scroll view', value: '/scroll-view' },
@@ -49,10 +55,20 @@ const menuItems = ref<LabelValue<any>[]>([
   { label: 'Tailwind CSS', value: '/tailwind' },
   { label: 'Tabs Route', value: '/tabs-route' },
   { label: 'Tabs Keepalive', value: '/tabs-keepalive' },
+  { label: 'Text ellipsis', value: '/text-ellipsis' },
+  { label: 'Transition', value: '/transition' },
 ]);
 
 onMounted(() => {
   // const info = lynx.getSystemInfoSync();
+  console.log('index.vue > onMounted');
+});
+onActivated(() => {
+  console.log('index.vue > onActivated');
+});
+
+onDeactivated(() => {
+  console.log('index.vue > onDeactivated');
 });
 const handleTheme = (e: any) => {
   console.log('index.vue > handleTheme', e);
@@ -69,13 +85,19 @@ const handleLongpress = (e: any) => {
 <template>
   <view class="w-full h-full flex flex-col bg-background">
     <BaseToolBar :show-back-button="false" title="Vue Lynx" />
+    <!-- <scroll-view
+      :class="['flex-1 w-full']"
+      scroll-orientation="vertical"
+            :scroll-top="scrollTop"
+      @scroll="onScroll"
+    > -->
     <scroll-view
       :class="['flex-1 w-full']"
       scroll-orientation="vertical"
       :scroll-top="scrollTop"
       @scroll="onScroll"
     >
-      <BaseCard class="w-full">
+      <BaseCard class="w-full px-2">
         <view class="flex flex-col p-[14px]">
           <text class="text-xl font-bold tracking-tight">Vue Lynx </text>
           <text class="text-sm text-muted">
@@ -91,10 +113,7 @@ const handleLongpress = (e: any) => {
         >
           <template #start>
             <view class="flex items-center justify-center">
-              <BaseIcon
-              :name="SunMoon"
-              :size="26"
-            />
+              <BaseIcon :name="SunMoon" :size="26" />
             </view>
           </template>
           <template #end>
@@ -126,7 +145,6 @@ const handleLongpress = (e: any) => {
           <template #end>
             <view class="w-8 h-8 flex items-center justify-center">
               <BaseIcon :size="14" :name="ChevronRight" color="#71717b" />
-              <!-- <IconLucide :size="14" name="chevronRight" /> -->
             </view>
           </template>
         </BaseItem>

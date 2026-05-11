@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDevice } from '@/composables/useDevice';
-import { computed } from 'vue-lynx';
+import { computed } from 'vue';
 import BaseImage from '../base/BaseImage.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
 const { isWeb } = useDevice();

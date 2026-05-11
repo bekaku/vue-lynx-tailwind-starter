@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { useDevice } from '@/composables/useDevice';
 import { pluralize } from '@/utils/appUtil';
-import { ChevronDown, ChevronUp, EllipsisVertical, Heart, MessageCircleMore } from 'lucide-static';
-import { ref } from 'vue-lynx';
+import {
+  ChevronDown,
+  ChevronUp,
+  EllipsisVertical,
+  Heart,
+  MessageCircleMore,
+} from 'lucide-static';
+import { ref } from 'vue';
 import BaseAvatar from '../base/BaseAvatar.vue';
 import BaseButton from '../base/BaseButton.vue';
 import BaseContentText from '../base/BaseContentText.vue';
 import BaseIcon from '../base/BaseIcon.vue';
 import BaseItem from '../base/BaseItem.vue';
-import IconLucide from '../IconLucide.vue';
 
 interface CommentData {
   id: number;
@@ -22,6 +27,7 @@ defineProps<{
   comment: CommentData;
   depth?: number;
   index?: number;
+  isChild?: boolean;
 }>();
 const { isAndroid } = useDevice();
 const open = ref(false);
@@ -38,19 +44,18 @@ const onUserTap = (e: any, user?: string) => {
     :style="{ paddingLeft: `${(depth ?? 0) * 10}px` }"
   >
     <view
-      class="absolute top-0 bottom-0 w-[1px] bg-border"
-      :style="{ left: `${(depth ?? 0) * 10}px` }"
+      class="absolute top-0 bottom-0 w-[14px] border-r border-border rounded-xs"
+      :class="[isChild ? '' : '']"
+      :style="{
+        left: `${(depth ?? 0) * 10}px`,
+        top: '14px',
+        bottom: '14px',
+      }"
     ></view>
-    <BaseItem
-      :separator="false"
-      class="pl-0 bg-transparent"
-      top
-    >
+    <BaseItem :separator="false" class="pl-0 bg-transparent" top>
       <template #start>
         <BaseAvatar
-          :class="[
-            depth && depth > 0 ? 'h-[24px] w-[24px]' : 'h-[32px] w-[32px]',
-          ]"
+          :class="[isChild ? 'h-[24px] w-[24px]' : 'h-[32px] w-[32px]']"
           :src="
             index
               ? index % 2 !== 0
@@ -69,35 +74,32 @@ const onUserTap = (e: any, user?: string) => {
           {{ comment.user }}
         </text>
         <text class="text-muted" :style="{ fontSize: '0.9em' }">
-          {{
-            comment.time_ago
-          }}
+          {{ comment.time_ago }}
         </text>
       </view>
-       <view
-        class="rounded-lg active:opacity-80 self-start max-w-full"
-      >
-
-      <BaseContentText :content="comment.content" />
+      <view class="rounded-lg active:opacity-80 self-start max-w-full">
+        <BaseContentText
+          :content="comment.content"
+          :ellipsis="{ rows: 3, showMore: true }"
+        />
         <!-- <text :style="{ lineHeight: '1.5em' }">
           {{ stripHtml(comment.content) }}
         </text> -->
       </view>
       <template #end>
-          
         <BaseButton
           size="icon"
           variant="ghost"
           rounded
           class="h-[18px] w-[18px]"
         >
-           <BaseIcon :name="EllipsisVertical" :size="16"/>
+          <BaseIcon :name="EllipsisVertical" :size="16" />
         </BaseButton>
       </template>
     </BaseItem>
 
     <!-- Comment body -->
-    <view :style="{marginLeft:depth && depth > 0 ?'40px':'48px'}">
+    <view :style="{ marginLeft: depth && depth > 0 ? '40px' : '48px' }">
       <!-- <view
         class="bg-content-item py-[0.5em] px-[0.5em] rounded-lg active:opacity-80 self-start max-w-full"
       >
@@ -110,20 +112,23 @@ const onUserTap = (e: any, user?: string) => {
       >
         <view class="active:bg-ripple rounded-sm flex gap-1 items-center">
           <text class="text-sm text-muted">Love it</text>
-           <BaseIcon :name="Heart" :size="16"/>
+          <BaseIcon :name="Heart" :size="16" />
           <text class="text-sm text-muted">1.9k</text>
         </view>
 
         <text class="text-sm text-muted">|</text>
         <view class="active:bg-ripple rounded-sm flex gap-1 items-center">
           <text class="text-sm text-muted">Reply it</text>
-          <BaseIcon :name="MessageCircleMore" :size="16"/>
+          <BaseIcon :name="MessageCircleMore" :size="16" />
           <text class="text-sm text-muted">{{ comment.comments.length }}</text>
         </view>
       </view>
 
       <!-- Toggle children -->
-      <view v-if="comment.comments && comment.comments.length" :style="{paddingLeft:'0.5em'}">
+      <view
+        v-if="comment.comments && comment.comments.length"
+        :style="{ paddingLeft: '0.5em' }"
+      >
         <view
           :style="{
             borderRadius: '4px',
@@ -133,9 +138,8 @@ const onUserTap = (e: any, user?: string) => {
           class="bg-content-item flex gap-2 active:bg-ripple"
           @tap="open = !open"
         >
-          <!-- <IconLucide :name="open ? 'chevronUp' : 'chevronDown'" :size="16" /> -->
 
-          <BaseIcon :name="open ? ChevronUp : ChevronDown" :size="16"/>
+          <BaseIcon :name="open ? ChevronUp : ChevronDown" :size="16" />
           <text class="text-muted" :style="{ fontSize: '0.9em' }">
             {{
               (!open ? 'View ' : 'Hide ') +
@@ -154,6 +158,7 @@ const onUserTap = (e: any, user?: string) => {
         :index="index"
         :comment="child"
         :depth="(depth ?? 0) + 1"
+        is-child
       />
     </template>
   </view>

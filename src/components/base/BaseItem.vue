@@ -63,7 +63,7 @@ const handleLongpress = (e: any) => {
     @tap="handleTap"
   >
     <view
-      class="flex flex-row flex-1 gap-2"
+      class="flex flex-row flex-1 gap-1.5"
       :class="cn(!props.top ? 'items-center' : 'items-start')"
     >
       <slot v-if="$slots.start" name="start" />

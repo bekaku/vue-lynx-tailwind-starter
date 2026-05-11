@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { computed } from 'vue-lynx';
+import { computed } from 'vue';
 import type { ThemeName } from '@/types/common';
 
 export const useThemeStore = defineStore('themeStore', () => {
@@ -9,7 +9,7 @@ export const useThemeStore = defineStore('themeStore', () => {
   const currentTheme = ref<ThemeName>('light');
 
   const themeClass = computed(() => `theme-${currentTheme.value}`);
-  const isDark = computed(() => currentTheme.value === 'dark');
+  const isDark = computed<boolean>(() => currentTheme.value === 'dark');
 
   function setTheme(name: ThemeName) {
     currentTheme.value = name;

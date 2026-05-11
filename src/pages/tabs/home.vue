@@ -5,7 +5,7 @@ import BasePage from '@/components/base/BasePage.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
-import { onMounted, ref } from 'vue-lynx';
+import { onMounted, ref } from 'vue';
 const status = ref('mounted')
 const route = useRoute();
 const counter = ref<number>(0)

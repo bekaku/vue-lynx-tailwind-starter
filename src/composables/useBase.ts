@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { computed } from 'vue-lynx';
+import { computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useDevice } from './useDevice';
 

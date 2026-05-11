@@ -2,7 +2,7 @@
 import BaseToggle from '@/components/base/BaseToggle.vue';
 import { useTheme } from '@/composables/useTheme';
 import { useThemeStore } from '@/stores/themeStore';
-import { ref } from 'vue-lynx';
+import { ref } from 'vue';
 const { onSetTheme } = useTheme();
 const themeStore = useThemeStore();
 const props = withDefaults(
@@ -11,7 +11,7 @@ const props = withDefaults(
   }>(),
   {},
 );
-const darkEnabled = ref(themeStore.isDark);
+const darkEnabled = ref<boolean>(themeStore.isDark);
 
 const handleTab = (dark: boolean) => {
   if (props.disabled) {

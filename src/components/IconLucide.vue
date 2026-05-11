@@ -5,7 +5,7 @@ import BaseImage from './base/BaseImage.vue';
 
 import { useTheme } from '@/composables/useTheme';
 import type { LucideIconProps } from '@/types/props';
-import { computed } from 'vue-lynx';
+import { computed } from 'vue';
 
 const props = withDefaults(defineProps<LucideIconProps>(), {
   size: 24,

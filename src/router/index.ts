@@ -38,6 +38,9 @@ import FetchDataFeedDetail from '../pages/fetch-data/feed-detail.vue';
 import Loading from '../pages/loading.vue';
 import Skeleton from '../pages/skeleton.vue';
 import TestPage from '../pages/test/index.vue';
+import PullToRefresh from '../pages/pull-to-refresh.vue';
+import TextEllipsis from '../pages/text-ellipsis.vue';
+import Transition from '../pages/transition.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
@@ -45,7 +48,7 @@ const router = createRouter({
     history: createMemoryHistory(),
     routes: [
         // { path: '/', redirect: '/fetch-data/feed-detail/48080587' },
-        { path: '/', redirect: '/Home' },
+        { path: '/', redirect: '/home' },
         { path: '/home', name: 'Home', component: Home },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },
         { path: '/alert', name: 'Alert', component: Alert },
@@ -71,10 +74,10 @@ const router = createRouter({
         { path: '/list-waterfall', name: 'ListWaterfall', component: ListWaterfall },
         { path: '/native-local-storage', name: 'NativeLocalStorage', component: NativeLocalStorage },
         { path: '/popover', name: 'Popover', component: Popover },
+        { path: '/pull-to-refresh', name: 'PullToRefresh', component: PullToRefresh },
         { path: '/scroll-view', name: 'ScrollView', component: ScrollView },
         { path: '/skeleton', name: 'Skeleton', component: Skeleton },
         { path: '/store', name: 'store', component: Store },
-        { path: '/test', name: 'TestPage', component: TestPage },
         { path: '/tailwind', name: 'tailwind', component: Tailwind },
         { path: '/tabs-keepalive', name: 'TabsKeepalive', component: TabsKeepalive },
         {
@@ -99,6 +102,9 @@ const router = createRouter({
                 },
             ]
         },
+        { path: '/test', name: 'TestPage', component: TestPage },
+        { path: '/text-ellipsis', name: 'TextEllipsis', component: TextEllipsis },
+        { path: '/transition', name: 'Transition', component: Transition },
         { path: '/user-list', name: 'user-list', component: UserList },
         { path: '/users-detail/:id', name: 'user-detail', component: UserDetail },
         {

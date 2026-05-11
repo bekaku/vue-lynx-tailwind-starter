@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseLoading from '@/components/base/BaseLoading.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import { ref } from 'vue-lynx';
+import { ref } from 'vue';
 const isOpen = ref(false);
 const handleShow = (e: any) => {
   console.log('action-sheet.vue > handleShow');

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { onMounted, onUnmounted } from 'vue-lynx'
+import { onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 declare const lynx: any;
 export function useAndroidBack() {

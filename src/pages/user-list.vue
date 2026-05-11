@@ -5,8 +5,9 @@ import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
 import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
 import BaseItem from '@/components/base/BaseItem.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import IconLucide from '@/components/IconLucide.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import { useScrollRestore } from '@/composables/useScrollRestore';
+import { ChevronRight } from 'lucide-static';
 const { scrollTop, onScroll } = useScrollRestore();
 const users = [
   {
@@ -160,7 +161,7 @@ const users = [
           </template>
           <template #end>
             <view class="w-8 h-8 flex items-center justify-center">
-              <IconLucide :size="14" name="chevronRight" />
+              <BaseIcon :size="14" :name="ChevronRight" color="#71717b" />
             </view>
           </template>
         </BaseItem>

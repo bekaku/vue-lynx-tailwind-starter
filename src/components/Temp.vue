@@ -67,12 +67,17 @@ defineExpose({
         </view>
     <slot v-if="$slots.start" name="start" />
     <view :catchtap="handleCatchTap" :class="$style.card"></view>
-    <view :class="[$style.card, isAndroid ? 'android-padding-fix' : '']"></view>
+    <view class="card-scoped" :class="[$style.card, isAndroid ? 'android-padding-fix' : '']"></view>
   </view>
 </template>
 
 <style module>
 .card {
+  background: #fff;
+}
+</style>
+<style scoped>
+.card-scoped {
   background: #fff;
 }
 </style>

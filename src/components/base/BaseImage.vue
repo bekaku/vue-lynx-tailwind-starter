@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDevice } from '@/composables/useDevice';
-import { computed } from 'vue-lynx';
+import { computed } from 'vue';
 
 const props = withDefaults(
   defineProps<{

@@ -4,7 +4,7 @@ import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseLoading from '@/components/base/BaseLoading.vue';
 import BaseSkeleton from '@/components/base/BaseSkeleton.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import { ref } from 'vue-lynx';
+import { ref } from 'vue';
 const isLoading = ref(false);
 const handleShow = (e: any) => {
   isLoading.value = true;

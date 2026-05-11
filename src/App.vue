@@ -2,10 +2,11 @@
 import { useAndroidBack } from '@/composables/useAndroidBack';
 import { useSafeArea } from '@/composables/useSafeArea';
 import { useTheme } from '@/composables/useTheme';
-import { onMounted } from 'vue-lynx';
+import { onMounted } from 'vue';
 import { RouterView } from 'vue-router';
 const { themeClass, onInit } = useTheme();
 const { safeAreaBottom } = useSafeArea();
+
 useAndroidBack();
 onMounted(() => {
   onInit();
@@ -14,18 +15,29 @@ onMounted(() => {
 
 <template>
   <view
-    class="w-full h-full bg-background"
+    class="w-full h-full bg-background app-container"
     :class="themeClass"
     :style="{
       paddingBottom: safeAreaBottom + 'px',
     }"
   >
-    <RouterView />
+    <!-- <RouterView /> -->
+
+
+    <RouterView v-slot="{ Component, route }">
+      <KeepAlive :max="5">
+        <Component :is="Component" :key="route.fullPath" />
+      </KeepAlive>
+    </RouterView>
 
     <!-- <RouterView v-slot="{ Component, route }">
-      <Transition name="fade" mode="out-in" :duration="200">
-        <component :is="Component" :key="route.fullPath" />
+      <Transition :name="transitionName">
+        <KeepAlive :max="5">
+          <Component :is="Component" :key="route.fullPath" />
+        </KeepAlive>
       </Transition>
     </RouterView> -->
   </view>
 </template>
+<style scoped>
+</style>

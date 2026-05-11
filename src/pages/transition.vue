@@ -67,7 +67,7 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="slide-right">
-            <text v-if="slideRight" class="text-xl font-semibold p-4">{{
+            <text v-if="slideRight" class=" p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>
@@ -81,7 +81,7 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="slide-up">
-            <text v-if="slideUp" class="text-xl font-semibold p-4">{{
+            <text v-if="slideUp" class=" p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>
@@ -95,7 +95,7 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="slide-down">
-            <text v-if="slideDown" class="text-xl font-semibold p-4">{{
+            <text v-if="slideDown" class=" p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>
@@ -109,7 +109,7 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="zoom">
-            <text v-if="zoom" class="text-xl font-semibold p-4">{{
+            <text v-if="zoom" class=" p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>

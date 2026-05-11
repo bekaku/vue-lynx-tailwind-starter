@@ -1,4 +1,5 @@
-import { reactive, ref, onMounted } from 'vue-lynx'
+import { onActivated } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const scrollStore = reactive<Record<string, number>>({})
@@ -17,6 +18,9 @@ export function useScrollRestore() {
 
     onMounted(() => {
         scrollTop.value = scrollStore[route.path] ?? 0
+    })
+    onActivated(() => {
+      scrollTop.value = scrollStore[route.path] ?? 0
     })
 
     return {

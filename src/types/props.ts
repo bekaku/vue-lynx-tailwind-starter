@@ -76,9 +76,17 @@ export interface IconProps {
     svgClass?: string ;
     auto?: boolean ;
 }
-export interface TollbarProps {
+export interface ToolbarProps {
     class?: string;
     title?: string;
     showBackButton?: boolean;
     backButton?: BackButtonProps
+}
+export interface TextEllipsisProps {
+    content?: string;
+    rows?: number | string;
+    expandText?: string;
+    collapseText?: string;
+    charsPerLine?: number | string;
+    showMore?: boolean;
 }

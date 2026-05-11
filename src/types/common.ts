@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AvatarProps, LucideIconProps, RBACProps } from "./props";
+import type { AvatarProps, IconProps, LucideIconProps, RBACProps } from "./props";
 export type AppColor = 'primary' | 'secondary' | 'destructive' | 'success' | 'muted' | 'border' | 'ring' | 'background' | 'foreground' | 'card';
 export type ThemeName = 'dark' | 'light';
 export type FileMimeType = 'IMAGE' | 'VIDEO' | 'FILE' | 'DIRECTORY';
@@ -17,6 +17,7 @@ export interface LabelValue<Type> {
   description?: string;
   avatar?: AvatarProps;
   lucideIcon?: LucideIconProps;
+  icon?: IconProps;
   fetch?: boolean;
   value?: Type;
   border?: boolean;
@@ -100,14 +101,14 @@ export interface ImageDto {
   thumbnail: string;
 }
 export interface VideoSrc {
-    src?: string
-    type?: string
-    size?: number
+  src?: string
+  type?: string
+  size?: number
 }
 export interface VideoTrack {
-    kind?: string
-    label?: string
-    srclang?: string
-    src?: string
-    default?: boolean
+  kind?: string
+  label?: string
+  srclang?: string
+  src?: string
+  default?: boolean
 }

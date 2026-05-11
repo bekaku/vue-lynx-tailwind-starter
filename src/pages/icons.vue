@@ -14,22 +14,8 @@ import { mdiAbugidaThai } from '@quasar/extras/mdi-v7';
 import { Airplay, Bell, Crown, Download, Eraser, PhoneCall, User } from 'lucide-static';
 
 const icons: BaseLucideIcon[] = [
-  'arrowLeft',
   'camera',
-  'chevronDown',
-  'chevronUp',
-  'chevronLeft',
-  'chevronRight',
-  'ellipsisVertical',
-  'messageCircle',
-  'heart',
   'house',
-  'image',
-  'settings',
-  'sunMoon',
-  'trash',
-  'user',
-  'x',
 ];
 </script>
 

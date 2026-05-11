@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import IconLucide from '@/components/IconLucide.vue';
 import BaseAlert from '@/components/base/BaseAlert.vue';
 import BaseAlertAlt from '@/components/base/BaseAlertAlt.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
+import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useTheme } from '@/composables/useTheme';
+import { Trash } from 'lucide-static';
 const { isDark } = useTheme();
 </script>
 
@@ -36,7 +37,7 @@ const { isDark } = useTheme();
         <view class="flex flex-col gap-2 p-2">
           <BaseAlertAlt type="is-primary" message="This is primary!!">
             <template #start>
-              <IconLucide name="house" dark />
+              <BaseIcon :name="Trash" />
             </template>
             <template #end>
               <BaseButton

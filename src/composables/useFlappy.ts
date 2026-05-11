@@ -1,7 +1,7 @@
-import { onUnmounted, ref } from 'vue-lynx'
+import { onUnmounted, ref } from 'vue'
 
-import { createFlappy } from '../lib/flappy.js'
-import type { FlappyOptions } from '../lib/flappy.js'
+import { createFlappy } from '@/libs/flappy.js'
+import type { FlappyOptions } from '@/libs/flappy.js'
 
 /**
  * Vue composable for flappy-bird physics.

@@ -15,7 +15,7 @@ import {
   useQueryClient,
 } from '@tanstack/vue-query';
 import { ChevronLeft, ChevronRight } from 'lucide-static';
-import { computed, onMounted, ref, useTemplateRef } from 'vue-lynx';
+import { computed, onMounted, ref, useTemplateRef } from 'vue';
 
 interface FeedItem {
   id: number;

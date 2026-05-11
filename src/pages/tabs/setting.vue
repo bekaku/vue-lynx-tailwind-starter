@@ -4,7 +4,7 @@ import BaseCard from '@/components/base/BaseCard.vue';
 import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BasePage from '@/components/base/BasePage.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import { onMounted, ref } from 'vue-lynx';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();

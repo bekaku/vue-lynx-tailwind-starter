@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue-lynx';
+import { ref, computed } from 'vue';
 import { useBase } from '@/composables/useBase';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
