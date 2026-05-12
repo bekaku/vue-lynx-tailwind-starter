@@ -5,10 +5,13 @@ import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useTheme } from '@/composables/useTheme';
 import { Trash } from 'lucide-static';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 const { isDark } = useTheme();
 const isOpen = ref(false);
 const eventItems = ref<string[]>([]);
+onMounted(() => {
+  console.log('action-sheet.vue > onMounted');
+});
 const handleAction = (e: any, actionName: string) => {
   console.log('User clicked:', actionName);
   isOpen.value = false; // สั่งปิด Action Sheet

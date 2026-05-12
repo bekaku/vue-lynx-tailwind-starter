@@ -12,6 +12,7 @@ const { isAndroid } = useDevice();
 const props = withDefaults(defineProps<ToolbarProps>(), {
   showBackButton: true,
   top: false,
+  titleLeft: false,
 });
 
 const onTab = () => {
@@ -41,7 +42,7 @@ const onTab = () => {
       </slot>
     </view>
 
-    <view class="flex flex-1 flex-row items-center justify-start">
+    <view class="flex flex-1 flex-row items-center " :class="!props.titleLeft ? 'justify-center' : 'justify-start'">
       <slot>
         <view>
           <BaseTextEllipsis

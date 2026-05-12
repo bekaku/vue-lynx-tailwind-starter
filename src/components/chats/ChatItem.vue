@@ -243,10 +243,9 @@ const handleLongpressText = (e: any) => {
       >
         <BaseContentText
           v-if="item.chatMsg"
-          class="mb-1 active:opacity-70"
+          class="mb-1"
           :text-class="messageTextColor"
           :content="item.chatMsg || ''"
-          @longpress="handleLongpressText"
         />
 
         <view

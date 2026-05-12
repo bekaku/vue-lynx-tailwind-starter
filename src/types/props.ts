@@ -82,6 +82,7 @@ export interface ToolbarProps {
     showBackButton?: boolean;
     backButton?: BackButtonProps
     top?: boolean
+    titleLeft?: boolean
 }
 export interface TextEllipsisProps {
     content?: string;

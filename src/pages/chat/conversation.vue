@@ -160,6 +160,7 @@ const onMicTap = () => {
     <BaseToolBar
       title="Chat Page Test Page 2 this is just test long title bar to see how it looks"
       top
+      title-left
     >
       <view class="flex flex-col flex-1 justify-start">
         <BaseTextEllipsis

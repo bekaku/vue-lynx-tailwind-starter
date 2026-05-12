@@ -49,9 +49,9 @@ const router = createRouter({
     // memory history (similar to React Router's MemoryRouter).
     history: createMemoryHistory(),
     routes: [
-        // { path: '/', redirect: '/fetch-data/feed-detail/48080587' },
+        // { path: '/', redirect: '/fetch-data/feed-detail/48106024' },
         { path: '/', redirect: '/home' },
-        { path: '/home', name: 'Home', component: Home },
+        { path: '/home', name: 'Home', component: Home, meta: { keepAlive: true } },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },
         { path: '/alert', name: 'Alert', component: Alert },
         { path: '/button', name: 'ComponentsButton', component: ComponentsButton },
@@ -62,12 +62,15 @@ const router = createRouter({
                 {
                     path: '',
                     name: 'ChatPage',
-                    component: ChatPage
+                    component: ChatPage,
+                    meta: {
+                        keepAlive: true
+                    }
                 },
                 {
                     path: 'conversation/:id',
                     name: 'ChatConversation',
-                    component: ChatConversation
+                    component: ChatConversation,
                 },
             ]
         },
@@ -75,7 +78,12 @@ const router = createRouter({
         { path: '/confirm-dialog', name: 'ConfirmDialog', component: ConfirmDialog },
         { path: '/dialog', name: 'Dialog', component: Dialog },
         { path: '/event-modifier', name: 'EventModifier', component: EventModifier },
-        { path: '/fetch-data/feed', name: 'FetchDataFeed', component: FetchDataFeed },
+        {
+            path: '/fetch-data/feed', name: 'FetchDataFeed', component: FetchDataFeed,
+            meta: {
+                keepAlive: true
+            }
+        },
         { path: '/fetch-data/feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
         { path: '/grid', name: 'Grid', component: Grid },
         { path: '/input', name: 'ComponentsInput', component: ComponentsInput },
@@ -105,17 +113,26 @@ const router = createRouter({
                 {
                     path: '',
                     name: 'tabs-home',
-                    component: TabsHome
+                    component: TabsHome,
+                    meta: {
+                        keepAlive: true
+                    }
                 },
                 {
                     path: 'chat',
                     name: 'tabs-chat',
-                    component: TabsChat
+                    component: TabsChat,
+                    meta: {
+                        keepAlive: true
+                    }
                 },
                 {
                     path: 'settings',
                     name: 'tabs-settings',
-                    component: TabsSetting
+                    component: TabsSetting,
+                    meta: {
+                        keepAlive: true
+                    }
                 },
             ]
         },

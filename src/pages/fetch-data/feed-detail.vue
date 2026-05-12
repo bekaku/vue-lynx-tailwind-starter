@@ -218,7 +218,7 @@ const onScroll = (e: any) => {
           </view>
 
           <BaseCard flat :margin="false" square class="my-[15px]">
-            <view :style="{ paddingLeft: '16px', paddingRight: '16px' }">
+            <view :style="{ paddingLeft: '16px', paddingRight: '16px', paddingBottom: '16px' }">
               <!-- <view
                 class="flex flex-row items-center"
                 :style="{ gap: '4px', position: 'sticky', top: '0px' }"

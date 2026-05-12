@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useDevice } from '@/composables/useDevice';
 import { pluralize } from '@/utils/appUtil';
 import {
   ChevronDown,
@@ -29,7 +28,6 @@ defineProps<{
   index?: number;
   isChild?: boolean;
 }>();
-const { isAndroid } = useDevice();
 const open = ref(false);
 
 const onUserTap = (e: any, user?: string) => {
@@ -41,17 +39,19 @@ const onUserTap = (e: any, user?: string) => {
   <view
     v-if="comment && comment.user"
     class="relative flex flex-col"
-    :style="{ paddingLeft: `${(depth ?? 0) * 10}px` }"
+    :style="{ paddingLeft: `${(isChild ? 1 : 0) * 16}px` }"
   >
+  <!-- :style="{ paddingLeft: `${(depth ?? 1) * 10}px` }" -->
     <view
-      class="absolute top-0 bottom-0 w-[14px] border-r border-border rounded-xs"
-      :class="[isChild ? '' : '']"
+      class="absolute top-0 bottom-0 w-[14px] border-border"
+      :class="[isChild ? 'border-r border-t ml-[4px]' : 'border-r']"
       :style="{
-        left: `${(depth ?? 0) * 10}px`,
+        left: `${(isChild ? 1 : 0) * 10}px` ,
         top: '14px',
         bottom: '14px',
       }"
     ></view>
+      <!-- left: `${(depth ?? 0) * 10}px`, -->
     <BaseItem :separator="false" class="pl-0 bg-transparent" top>
       <template #start>
         <BaseAvatar
@@ -71,7 +71,7 @@ const onUserTap = (e: any, user?: string) => {
           class="text-base font-semibold"
           :catchtap="(event: any) => onUserTap(event, comment?.user)"
         >
-          {{ comment.user }}
+          {{ comment.user +' depth '+`${depth}`}}
         </text>
         <text class="text-muted" :style="{ fontSize: '0.9em' }">
           {{ comment.time_ago }}
@@ -131,8 +131,8 @@ const onUserTap = (e: any, user?: string) => {
       >
         <view
           :style="{
-            borderRadius: '4px',
-            padding: '0.3em 0.5em',
+            borderRadius: '10px',
+            padding: '8px',
             alignSelf: 'flex-start',
           }"
           class="bg-content-item flex gap-2 active:bg-ripple"

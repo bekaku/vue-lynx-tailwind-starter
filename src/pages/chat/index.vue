@@ -53,9 +53,9 @@ const dataList = ref<GroupChatDto[]>([...chatHistoryListApi.dataList]);
             />
           </template>
 
-          <view class="flex flex-col gap-1">
+          <view class="flex flex-col items-start gap-0">
             <BaseTextEllipsis
-              :class="isAndroid ? 'py-[-14px]' : ''"
+              :class="isAndroid ? 'py-[-18px]' : ''"
               :rows="1"
               :content="`${item.chatType == 'GROUP' ? '(' + item.totalMembers + ') ' : ''}${
                 item.groupName ? item.groupName : 'Untitled Group'
@@ -67,7 +67,7 @@ const dataList = ref<GroupChatDto[]>([...chatHistoryListApi.dataList]);
             >
               <BaseTextEllipsis
                 text-class="text-sm text-muted"
-                :class="isAndroid ? 'py-[-14px]' : ''"
+                :class="isAndroid ? 'py-[-18px]' : ''"
                 :rows="1"
                 :content="item.latestMessage"
               />

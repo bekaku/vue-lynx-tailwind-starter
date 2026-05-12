@@ -78,7 +78,7 @@ const handleTheme = (e: any) => {
   }
 };
 const handleLongpress = (e: any) => {
-  longpress.value = true;
+  longpress.value = !longpress.value;
   console.log('index.vue > handleLongpress', e);
 };
 </script>

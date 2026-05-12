@@ -61,20 +61,15 @@ const handleLinkTap = (e: any, url: string | undefined) => {
   if (!url) {
     return;
   }
-  if (typeof window !== 'undefined') {
-    // รันบน Browser
-    window.open(url, '_blank');
-  } else {
-    console.log('Open link Native:', url);
-    openExternalUri(url);
-  }
+  console.log('Open link Native:', url);
+  openExternalUri(url);
 };
 </script>
 
 <template>
   <BaseTextEllipsis
     v-if="props.ellipsis && props.content"
-    v-bind="{...props.ellipsis, content: plainText}"
+    v-bind="{ ...props.ellipsis, content: plainText }"
   >
     <template #default="{ textStyles, textMaxline }">
       <text
