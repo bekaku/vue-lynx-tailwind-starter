@@ -1,35 +1,7 @@
-<template>
-  <view class="flex flex-col w-full">
-    <slot
-      :is-expanded="isExpanded"
-      :text-styles="textStyles"
-      :text-maxline="!isExpanded ? Number(rows) : -1"
-    >
-      <text
-        class="leading-normal"
-        :style="textStyles"
-        :text-maxline="!isExpanded ? Number(rows) : -1"
-      >
-        {{ content }}
-      </text>
-    </slot>
-
-    <view
-      v-if="showMore && isOverflowing"
-      class="self-start active:opacity-70"
-      :class="isAndroid ? 'mt-[-10px]' : 'mt-[4px]'"
-      @tap="toggleExpand"
-    >
-      <text class="text-sm font-semibold text-primary">
-        {{ isExpanded ? collapseText : expandText }}
-      </text>
-    </view>
-  </view>
-</template>
-
 <script setup lang="ts">
 import { useDevice } from '@/composables/useDevice';
 import type { TextEllipsisProps } from '@/types/props';
+import { cn } from '@/utils/appUtil';
 import { ref, computed } from 'vue';
 
 const emit = defineEmits<{
@@ -43,6 +15,7 @@ const props = withDefaults(defineProps<TextEllipsisProps>(), {
   collapseText: 'Show less',
   charsPerLine: 55,
   showMore: false,
+  lineHeight: '1.5em',
 });
 
 const isExpanded = ref(false);
@@ -63,7 +36,7 @@ const textStyles = computed(() => {
     // across different Lynx core versions, ensuring it stays as a string.
     lineClamp: String(props.rows),
     WebkitLineClamp: String(props.rows),
-    lineHeight: '1.5em'
+    lineHeight: props.lineHeight,
   };
 });
 
@@ -90,3 +63,32 @@ const toggleExpand = () => {
   emit('on-change', isExpanded.value);
 };
 </script>
+<template>
+  <view class="flex flex-col w-full" :class="props.class">
+    <slot
+      :is-expanded="isExpanded"
+      :text-styles="textStyles"
+      :text-maxline="!isExpanded ? Number(rows) : -1"
+    >
+      <text
+        class=""
+        :class="cn('leading-normal', props.textClass)"
+        :style="textStyles"
+        :text-maxline="!isExpanded ? Number(rows) : -1"
+      >
+        {{ content }}
+      </text>
+    </slot>
+
+    <view
+      v-if="showMore && isOverflowing"
+      class="self-start active:opacity-70"
+      :class="isAndroid ? 'mt-[-10px]' : 'mt-[4px]'"
+      @tap="toggleExpand"
+    >
+      <text class="text-sm font-semibold text-primary">
+        {{ isExpanded ? collapseText : expandText }}
+      </text>
+    </view>
+  </view>
+</template>

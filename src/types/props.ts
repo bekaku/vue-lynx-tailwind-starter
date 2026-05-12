@@ -81,6 +81,7 @@ export interface ToolbarProps {
     title?: string;
     showBackButton?: boolean;
     backButton?: BackButtonProps
+    top?: boolean
 }
 export interface TextEllipsisProps {
     content?: string;
@@ -89,4 +90,7 @@ export interface TextEllipsisProps {
     collapseText?: string;
     charsPerLine?: number | string;
     showMore?: boolean;
+    class?: string;
+    textClass?: string;
+    lineHeight?: string;
 }

@@ -11,6 +11,7 @@ interface Props {
   disabled?: boolean;
   whitespaceNowrap?: boolean;
   titleBold?: boolean;
+  titleLines?: number;
   class?: string;
   to?: string;
   id?: string;
@@ -24,6 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
   separator: true,
   titleBold: true,
   whitespaceNowrap: false,
+  titleLines: -1,
 });
 const { onNavigateTo } = useBase();
 const { isAndroid } = useDevice();
@@ -33,7 +35,7 @@ const emit = defineEmits<{
 }>();
 
 const handleTap = (e: any) => {
-  if (props.button && !props.disabled) {
+  if (!props.disabled) {
     if (props.to) {
       onNavigateTo(props.to);
     }
@@ -75,6 +77,7 @@ const handleLongpress = (e: any) => {
             'whitespace-nowrap': whitespaceNowrap,
             'font-medium': titleBold,
           }"
+          :text-maxline="titleLines"
         >
           {{ title }}
         </text>

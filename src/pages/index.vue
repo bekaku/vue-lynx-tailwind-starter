@@ -27,6 +27,7 @@ const menuItems = ref<LabelValue<any>[]>([
   { label: 'Alert', value: '/alert' },
   { label: 'Badge', value: '/badge' },
   { label: 'Button', value: '/button' },
+  { label: 'Chat', value: '/chat' },
   { label: 'Card', value: '/card' },
   { label: 'Confirm dialog', value: '/confirm-dialog' },
   { label: 'Dialog', value: '/dialog' },

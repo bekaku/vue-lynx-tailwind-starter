@@ -153,7 +153,7 @@ const uploadImage = async (fileUri: string) => {
           :label="isLoading ? 'Opening...' : 'Select a photo from the album.'"
         >
           <template #start>
-            <BaseIcon :name="Image" class="mr-1" />
+            <BaseIcon :name="Image" color="#fff" :auto="false" class="mr-1" />
           </template>
         </BaseButton>
       </BaseCard>
@@ -181,7 +181,7 @@ const uploadImage = async (fileUri: string) => {
           "
         >
           <template #start>
-            <BaseIcon :name="Image" class="mr-1" />
+            <BaseIcon :name="Image"  color="#fff" :auto="false" class="mr-1" />
           </template>
         </BaseButton>
       </BaseCard>
@@ -211,6 +211,7 @@ const uploadImage = async (fileUri: string) => {
         <BaseButton
           @tap="handleTakePhoto"
           class="m-3"
+          color="#fff" :auto="false"
           :label="isLoading ? 'Opening...' : 'Take a photo from camera.'"
         >
           <template #start>

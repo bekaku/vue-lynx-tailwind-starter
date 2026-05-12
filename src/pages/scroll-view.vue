@@ -5,7 +5,7 @@ import { ref } from 'vue';
 
 import ScrollItem from '@/components/test/ScrollItem.vue';
 import StickyItem from '@/components/test/StickyItem.vue';
-import { images } from '@/libs/mock/images';
+import { images } from '@/libs/mock/files';
 import BaseButton from '@/components/base/BaseButton.vue';
 const myScrollViewRef = ref<any>(null);
 

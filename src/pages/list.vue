@@ -3,7 +3,7 @@ import BaseToolBar from '@/components/base/BaseToolBar.vue';
 
 import BaseButton from '@/components/base/BaseButton.vue';
 import ScrollItem from '@/components/test/ScrollItem.vue';
-import { images } from '@/libs/mock/images';
+import { images } from '@/libs/mock/files';
 import { ref } from 'vue';
 
 const myListRef = ref<any>(null);

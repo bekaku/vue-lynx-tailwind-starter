@@ -9,6 +9,7 @@ import type { TextEllipsisProps } from '@/types/props';
 const props = defineProps<{
   content: string | undefined;
   class?: any;
+  textClass?: any;
   ellipsis?: TextEllipsisProps;
 }>();
 const { openExternalUri } = useBase();
@@ -113,7 +114,7 @@ const handleLinkTap = (e: any, url: string | undefined) => {
         {{ part.content }}
       </text>
 
-      <text v-else>
+      <text :class="props.textClass" v-else>
         {{ part.content }}
       </text>
     </template>

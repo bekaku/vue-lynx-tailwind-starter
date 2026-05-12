@@ -15,7 +15,7 @@ const props = withDefaults(
     iosAutoCorrect?: boolean;
     iosSpellCheck?: boolean;
     label?: string;
-    maxlength?: number;
+    maxlength?: number | undefined;
     placeholder?: string;
     readonly?: boolean;
     showSoftInputOnFocus?: boolean;
@@ -24,6 +24,10 @@ const props = withDefaults(
     enableScrollBar?: boolean;
     lineSpacing?: number | any | any;
     maxlines?: number;
+    transparent?: boolean;
+    border?: boolean;
+    autoGrow?: boolean;
+    dense?: boolean;
   }>(),
   {
     confirmType: 'send',
@@ -32,13 +36,17 @@ const props = withDefaults(
     iosAutoCorrect: true,
     iosSpellCheck: true,
     readonly: undefined,
-    maxlength: 140,
+    maxlength: 255,
     showSoftInputOnFocus: true,
     type: 'text',
     bounces: true,
     enableScrollBar: false,
     lineSpacing: undefined,
-    maxlines: 4,
+    maxlines: 20,
+    transparent: false,
+    border: true,
+    autoGrow: false,
+    dense: false,
   },
 );
 const emit = defineEmits<{
@@ -58,9 +66,10 @@ const val = ref(props.modelValue);
 onMounted(async () => {
   await nextTick();
 });
-const onManualSetVal = async (val: string) => {
+const onSetValue = async (val: string) => {
+  console.log('BaseTextArea.vue > onSetValue');
   await nextTick();
-  if (appTextareaRef.value && val) {
+  if (appTextareaRef.value) {
     appTextareaRef.value
       .invoke({
         method: 'setValue',
@@ -98,11 +107,15 @@ watch(
   val,
   (newValue, oldValue) => {
     if (newValue) {
-      onManualSetVal(newValue);
+      onSetValue(newValue);
     }
   },
   { once: true, immediate: true },
 );
+
+defineExpose({
+  onSetValue,
+});
 </script>
 <template>
   <view :class="cn('flex flex-col w-full gap-1.5', props.class)">
@@ -121,8 +134,10 @@ watch(
     <view
       :class="
         cn(
-          'flex flex-col w-full rounded-lg bg-input border text-sm transition-all p-2',
-          'border-inputborder',
+          'flex flex-col w-full rounded-lg   text-sm transition-all',
+          border ? 'border border-inputborder' : '',
+          !dense ? 'p-2' : 'p-0',
+          !transparent ? 'bg-input' : 'bg-transparent',
           isFocused ? 'border-primary ring-1 ring-primary' : '',
           props.disabled ? 'opacity-50 cursor-not-allowed' : '',
         )
@@ -132,7 +147,8 @@ watch(
         ref="appTextareaRef"
         :class="
           cn(
-            'flex-1 min-h-[80px] bg-transparent border-0 border-none outline-none placeholder:text-muted-foreground text-sm',
+            'flex-1 bg-transparent border-0 border-none outline-none placeholder:text-muted-foreground text-sm',
+            !autoGrow ? 'min-h-[80px]' : 'min-h-[20px]',
             'focus:outline-none focus:ring-0 focus:border-transparent',
             !isDark ? 'text-zinc-900' : 'text-zinc-200',
             props.textareaClass,
@@ -151,40 +167,9 @@ watch(
         :iosAutoCorrect="props.iosAutoCorrect"
         :iosSpellCheck="props.iosSpellCheck"
         :showSoftInputOnFocus="props.showSoftInputOnFocus"
+        :auto-height="props.autoGrow"
         :bindinput="handleInput"
       />
-
-      <!-- <textarea
-        ref="appTextareaRef"
-        :class="
-          cn(
-            'flex-1 min-h-[80px] bg-transparent border-0 border-none outline-none placeholder:text-muted-foreground text-sm',
-            'focus:outline-none focus:ring-0 focus:border-transparent',
-            !isDark ? 'text-zinc-900' : 'text-zinc-200',
-            props.textareaClass,
-          )
-        "
-        style="border: none; outline: none; box-shadow: none"
-        :type="props.type"
-        :disabled="props.disabled"
-        :readonly="props.readonly"
-        :placeholder="props.placeholder"
-        :value="props.modelValue"
-        :maxlength="props.maxlength"
-        :bounces="props.bounces"
-        :enableScrollBar="props.enableScrollBar"
-        :lineSpacing="props.lineSpacing"
-        :maxlines="props.maxlines"
-        :inputFilter="props.inputFilter"
-        :iosAutoCorrect="props.iosAutoCorrect"
-        :iosSpellCheck="props.iosSpellCheck"
-        :showSoftInputOnFocus="props.showSoftInputOnFocus"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @input="handleInput"
-        :bindinput="handleInput"
-        @confirm="emit('confirm', $event)"
-      /> -->
     </view>
 
     <view v-if="$slots.bottom" class="mt-0.5">

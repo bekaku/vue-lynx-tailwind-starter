@@ -41,6 +41,8 @@ import TestPage from '../pages/test/index.vue';
 import PullToRefresh from '../pages/pull-to-refresh.vue';
 import TextEllipsis from '../pages/text-ellipsis.vue';
 import Transition from '../pages/transition.vue';
+import ChatPage from '../pages/chat/index.vue';
+import ChatConversation from '../pages/chat/conversation.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
@@ -54,6 +56,21 @@ const router = createRouter({
         { path: '/alert', name: 'Alert', component: Alert },
         { path: '/button', name: 'ComponentsButton', component: ComponentsButton },
         { path: '/badge', name: 'Badge', component: Badge },
+        {
+            path: '/chat',
+            children: [
+                {
+                    path: '',
+                    name: 'ChatPage',
+                    component: ChatPage
+                },
+                {
+                    path: 'conversation/:id',
+                    name: 'ChatConversation',
+                    component: ChatConversation
+                },
+            ]
+        },
         { path: '/card', name: 'ComponentsCard', component: ComponentsCard },
         { path: '/confirm-dialog', name: 'ConfirmDialog', component: ConfirmDialog },
         { path: '/dialog', name: 'Dialog', component: Dialog },

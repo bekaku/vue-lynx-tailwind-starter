@@ -7,7 +7,7 @@ import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import type { LabelValue } from '@/types/common';
 import { ref } from 'vue';
 
-import { images } from '@/libs/mock/images';
+import { images } from '@/libs/mock/files';
 import ScrollItem from '@/components/test/ScrollItem.vue';
 import StickyItem from '@/components/test/StickyItem.vue';
 

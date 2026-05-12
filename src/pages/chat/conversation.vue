@@ -6,12 +6,26 @@ import ChatItem from '@/components/chats/ChatItem.vue';
 import { useDevice } from '@/composables/useDevice';
 import { chatMessageListApi } from '@/libs/mock/chats';
 import type { GroupChatMsgDto } from '@/types/common';
-import { nextTick, ref, useTemplateRef, onMounted } from 'vue';
+import { nextTick, ref, useTemplateRef, onMounted, computed } from 'vue';
 import BaseButton from '@/components/base/BaseButton.vue';
 import BaseIcon from '@/components/base/BaseIcon.vue';
-import { EllipsisVertical, Phone, Video } from 'lucide-static';
+import BaseTextarea from '@/components/base/BaseTextarea.vue';
+import {
+  EllipsisVertical,
+  Mic,
+  Phone,
+  Plus,
+  Send,
+  Smile,
+  Video,
+} from 'lucide-static';
+import { useBase } from '@/composables/useBase';
+import { biEmojiSmile } from '@quasar/extras/bootstrap-icons';
+import ChatInput from '@/components/chats/ChatInput.vue';
 
 const { isAndroid } = useDevice();
+const { getParam } = useBase();
+const pageId = computed<string>(() => getParam('id'));
 const chatContentScrollViewRef = useTemplateRef<any>(
   'chatContentScrollViewRef',
 );
@@ -20,6 +34,10 @@ const hasMoreData = ref(true);
 const totalPage = ref(0);
 const isLoading = ref(false);
 const firstLoad = ref(false);
+
+const inputText = ref('');
+
+const currentUserId = 1;
 onMounted(async () => {
   await nextTick();
   setTimeout(() => {
@@ -66,7 +84,9 @@ const onScrolltoupper = (e: any) => {
     }, 50);
   }, 1500);
 };
-const onScroll = (e: any) => {};
+const onScroll = (e: any) => {
+//   console.log('onScroll', e);
+};
 const onScrollToItem = (targetIndex: number, isSmooth: boolean = true) => {
   if (chatContentScrollViewRef.value) {
     chatContentScrollViewRef.value
@@ -93,19 +113,60 @@ const onScrollToTop = (isSmooth: boolean = false) => {
   }
   onScrollToItem(0, isSmooth);
 };
+
+const onSendMsg = async (message: string) => {
+  if (!message) {
+    return;
+  }
+  const msg = message.trim();
+  if (!msg) return;
+
+  const newMessage = {
+    id: Date.now(),
+    chatMsg: msg,
+    msgDateTime: new Date().toISOString(),
+    readCount: 0,
+    sent: true,
+    sendUser: {
+      id: currentUserId,
+      email: 'myemail@test.com',
+      name: 'Chanawee',
+      active: true,
+    },
+  };
+
+  dataList.value.push(newMessage);
+
+  inputText.value = '';
+
+  await nextTick();
+  onScrollToBottom(true);
+};
+const onAttachTap = () => {
+  console.log('Open attachment menu');
+};
+
+const onEmojiKeyboardTap = () => {
+  console.log('Open emoji keyboard');
+};
+
+const onMicTap = () => {
+  console.log('Start voice record');
+};
 </script>
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
     <BaseToolBar
       title="Chat Page Test Page 2 this is just test long title bar to see how it looks"
+      top
     >
       <view class="flex flex-col flex-1 justify-start">
         <BaseTextEllipsis
           :class="isAndroid ? 'py-[-14px]' : ''"
           text-class="font-semibold text-lg"
           :rows="1"
-          content="Chat Page"
+          :content="`Conversation Page Id: ${pageId}`"
         />
         <view class="flex flex-row">
           <text class="text-xs text-muted">Group 1</text>
@@ -148,12 +209,6 @@ const onScrollToTop = (isSmooth: boolean = false) => {
       @scrolltoupper="onScrolltoupper"
       @scroll="onScroll"
     >
-      <!-- <view
-        v-if="isLoading"
-        class="w-full py-4 flex flex-row justify-center items-center"
-      >
-        <BaseSpinner show />
-      </view> -->
       <ChatItem
         v-for="(item, index) in dataList"
         :key="`chat-${item.id}-${index}`"
@@ -161,5 +216,67 @@ const onScrollToTop = (isSmooth: boolean = false) => {
         :index="index"
       />
     </scroll-view>
+
+    <ChatInput @on-send="onSendMsg"/>
+
+    <!-- <view
+      class="w-full bg-card px-4 py-3 flex flex-row items-center border-t border-gray-200"
+    >
+      <view class="p-2 mr-1 active:opacity-70 rounded-full" @tap="onAttachTap">
+        <BaseIcon :name="Plus" :size="24" color="#2b7fff" :auto="false" />
+      </view>
+
+      <view
+        class="flex-1 bg-gray-100 rounded-lg px-4 py-2 flex flex-row items-center min-h-[40px]"
+      >
+        <BaseTextarea
+          textarea-class="flex-1 bg-transparent py-0 text-base max-h-[120px]"
+          placeholder="Type a message..."
+          auto-grow
+          dense
+          transparent
+          :border="false"
+          :maxlength="1000"
+          :maxlines="6"
+          v-model="inputText"
+        >
+        </BaseTextarea>
+
+        <view
+          class="p-1 active:opacity-70 ml-1 rounded-full"
+          @tap="onEmojiKeyboardTap"
+        >
+          <BaseIcon
+            :name="biEmojiSmile"
+            icon-set="quasar-bootstrap-icons"
+            :size="20"
+            color="#2b7fff"
+            :auto="false"
+          />
+        </view>
+      </view>
+
+      <view
+        v-if="inputText.trim().length > 0"
+        class="ml-3 w-10 h-10 rounded-full bg-primary flex items-center justify-center active:opacity-70"
+        @tap="onSendMsg"
+      >
+        <BaseIcon
+          :name="Send"
+          :size="18"
+          color="#fff"
+          :auto="false"
+          style="margin-left: 2px"
+        />
+      </view>
+
+      <view
+        v-else
+        class="p-2 ml-1 active:opacity-70 rounded-full"
+        @tap="onMicTap"
+      >
+        <BaseIcon :name="Mic" :size="24" color="#2b7fff" :auto="false" />
+      </view>
+    </view> -->
   </view>
 </template>
