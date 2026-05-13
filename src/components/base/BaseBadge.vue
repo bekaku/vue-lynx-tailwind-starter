@@ -68,9 +68,3 @@ const { isAndroid } = useDevice();
     </view>
   </view>
 </template>
-
-<style module>
-.badgeText {
-  color: #fff !important;
-}
-</style>

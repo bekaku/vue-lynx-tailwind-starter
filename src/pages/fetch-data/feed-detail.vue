@@ -88,20 +88,16 @@ const onScrollToTop = () => {
   }
   onScrollToItem(0);
 };
-const onScroll = (e: any) => {
-  console.log('onScroll', e);
-};
 </script>
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <BaseToolBar title="Item Detail" />
+    <BaseToolBar :title="data?.title || 'Detail'" />
     <view class="flex-1 flex flex-col">
       <scroll-view
         ref="feedScrollViewRef"
         :class="['flex-1 w-full']"
         scroll-orientation="vertical"
-        @scroll="onScroll"
       >
         <view v-if="isLoading">
           <!-- <BaseSpinner show /> -->
@@ -170,11 +166,13 @@ const onScroll = (e: any) => {
               >
                 {{ toHost(data.url) }}
               </text>
-              <view class="flex flex-row flex-wrap items-center mt-[8px] gap-[4px]">
+              <view
+                class="flex flex-row flex-wrap items-center mt-[8px] gap-[4px]"
+              >
                 <text class="text-muted text-sm">
                   {{ data.points }} points | by
                 </text>
-                 <BaseIcon :name="User" :size="15" color="#71717a" />
+                <BaseIcon :name="User" :size="15" color="#71717a" />
                 <text
                   class="text-muted text-sm underline"
                   :catchtap="(event: any) => onUserTap(event, data?.user)"
@@ -218,21 +216,13 @@ const onScroll = (e: any) => {
           </view>
 
           <BaseCard flat :margin="false" square class="my-[15px]">
-            <view :style="{ paddingLeft: '16px', paddingRight: '16px', paddingBottom: '16px' }">
-              <!-- <view
-                class="flex flex-row items-center"
-                :style="{ gap: '4px', position: 'sticky', top: '0px' }"
-                sticky
-                :flatten="false"
-              >
-                <text class="text-md text-muted pt-3">
-                  {{
-                    data.comments && data.comments.length
-                      ? data.comments.length + ' comments'
-                      : 'No comments yet'
-                  }}
-                </text>
-              </view> -->
+            <view
+              :style="{
+                paddingLeft: '8px',
+                paddingRight: '8px',
+                paddingBottom: '16px',
+              }"
+            >
               <CommentItem
                 v-for="(comment, index) in data.comments"
                 :key="comment.id"

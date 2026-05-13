@@ -69,7 +69,7 @@ const handleShow = (e: any) => {
           :catchtap="(e: any) => handleAction(e, 'delete')"
         >
           <template #start>
-            <BaseIcon color="#fff" :auto="false" :name="Trash" />
+            <BaseIcon color="#fff" :auto-dark="false" :name="Trash" />
           </template>
         </BaseButton>
         <BaseButton

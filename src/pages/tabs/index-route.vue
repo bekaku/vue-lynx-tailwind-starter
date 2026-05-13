@@ -31,7 +31,7 @@ const { onNavigateTo, isPathActive } = useBase();
           <BaseIcon
             :name="House"
             :color="!isPathActive('/tabs-route') ? '#18181b' : '#3b82f6'"
-            :auto="!isPathActive('/tabs-route')"
+            :auto-dark="!isPathActive('/tabs-route')"
           />
         </template>
       </BaseTabButton>
@@ -45,7 +45,7 @@ const { onNavigateTo, isPathActive } = useBase();
           <BaseIcon
             :name="MessageCircle"
             :color="!isPathActive('/tabs-route/chat') ? '#18181b' : '#3b82f6'"
-            :auto="!isPathActive('/tabs-route/chat')"
+            :auto-dark="!isPathActive('/tabs-route/chat')"
           />
         </template>
       </BaseTabButton>
@@ -61,7 +61,7 @@ const { onNavigateTo, isPathActive } = useBase();
             :color="
               !isPathActive('/tabs-route/settings') ? '#18181b' : '#3b82f6'
             "
-            :auto="!isPathActive('/tabs-route/settings')"
+            :auto-dark="!isPathActive('/tabs-route/settings')"
           />
         </template>
       </BaseTabButton>

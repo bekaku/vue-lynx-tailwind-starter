@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<IconProps>(), {
   iconSet: 'svg',
   size: 24,
   color: '#18181b',
-  auto: true,
+  autoDark: true,
 });
 
 const svgRawString = computed(() => {
@@ -24,13 +24,13 @@ const svgRawString = computed(() => {
   if (props.iconSet === 'svg') {
     let modifiedSvg = rawName;
 
-    modifiedSvg = modifiedSvg.split('currentColor').join(props.auto && isDark.value ? '#fff' : props.color);
+    modifiedSvg = modifiedSvg.split('currentColor').join(props.autoDark && isDark.value ? '#fff' : props.color);
 
     modifiedSvg = modifiedSvg.replace(/fill="([^"]+)"/gi, (match, val) => {
-      return val === 'none' ? match : `fill="${props.auto && isDark.value ? '#fff' : props.color}"`;
+      return val === 'none' ? match : `fill="${props.autoDark && isDark.value ? '#fff' : props.color}"`;
     });
     modifiedSvg = modifiedSvg.replace(/stroke="([^"]+)"/gi, (match, val) => {
-      return val === 'none' ? match : `stroke="${props.auto && isDark.value ? '#fff' : props.color}"`;
+      return val === 'none' ? match : `stroke="${props.autoDark && isDark.value ? '#fff' : props.color}"`;
     });
 
     modifiedSvg = modifiedSvg.replace(
@@ -73,7 +73,7 @@ const svgRawString = computed(() => {
     if (rawName) p.push(rawName);
   }
 
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${props.size}" height="${props.size}" fill="${props.auto && isDark.value ? '#fff' : props.color}" viewBox="${getViewBox.value}">`;
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${props.size}" height="${props.size}" fill="${props.autoDark && isDark.value ? '#fff' : props.color}" viewBox="${getViewBox.value}">`;
 
   if (p.length > 0) {
     for (const ic of p) {

@@ -44,7 +44,7 @@ const props = withDefaults(
     lineSpacing: undefined,
     maxlines: 20,
     transparent: false,
-    border: true,
+    border: false,
     autoGrow: false,
     dense: false,
   },

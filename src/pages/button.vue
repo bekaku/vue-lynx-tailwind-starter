@@ -38,7 +38,7 @@ const handleTab = () => {
         <view class="flex flex-row justify-start gap-2 p-4">
           <BaseButton class="flex-none" rounded label="Rounded" />
           <BaseButton rounded size="icon">
-              <BaseIcon :name="MessageCircle" :auto="false" color="#fff" />
+              <BaseIcon :name="MessageCircle" :auto-dark="false" color="#fff" />
           </BaseButton>
           <BaseButton variant="ghost" rounded size="icon">
             <BaseIcon :name="Camera"/>
@@ -63,7 +63,7 @@ const handleTab = () => {
 
           <BaseButton label="Icon left">
             <template #start>
-               <BaseIcon :name="MessageCircle" :auto="false" color="#fff" class="mr-1"/>
+               <BaseIcon :name="MessageCircle" :auto-dark="false" color="#fff" class="mr-1"/>
             </template>
           </BaseButton>
 

@@ -78,7 +78,7 @@ public class YourApplication extends Application {
             }
         });
         // 打开 Lynx Debug 开关
-        LynxEnv.inst().enableLynxDebug(true);
+        LynxEnv.inst().enableLynxDebug(false);
         // 打开 Lynx DevTool 开关
         LynxEnv.inst().enableDevtool(true);
         // 打开 Lynx LogBox 开关

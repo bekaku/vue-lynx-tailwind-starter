@@ -74,7 +74,7 @@ export interface IconProps {
     additionalReplce?: string
     class?: string | string[];
     svgClass?: string ;
-    auto?: boolean ;
+    autoDark?: boolean ;
 }
 export interface ToolbarProps {
     class?: string;

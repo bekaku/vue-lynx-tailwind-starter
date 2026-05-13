@@ -12,7 +12,7 @@ const props = withDefaults(
   }>(),
   {
     border: true,
-    flat: false,
+    flat: true,
     square: false,
     margin: true,
   },

@@ -67,7 +67,7 @@ const icons: BaseLucideIcon[] = [
               :name="Airplay"
               :size="32"
               color="#ff6467"
-              :auto="false"
+              :auto-dark="false"
             />
           </view>
         </BaseCardContent>

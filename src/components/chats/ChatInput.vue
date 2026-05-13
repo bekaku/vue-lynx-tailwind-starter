@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import BaseIcon from '@/components/base/BaseIcon.vue';
-import BaseTextarea from '@/components/base/BaseTextarea.vue';
 import BasePopover from '@/components/base/BasePopover.vue';
-import BaseButton from '@/components/base/BaseButton.vue';
+import BaseTextarea from '@/components/base/BaseTextarea.vue';
 import { useTheme } from '@/composables/useTheme';
 import { biEmojiSmile } from '@quasar/extras/bootstrap-icons';
 import { Camera, Image, Mic, Plus, Send } from 'lucide-static';
@@ -60,7 +59,7 @@ const onMicTap = () => {
     <view class="p-2 mr-1 active:opacity-70 rounded-full">
       <BasePopover position="top-left">
         <template #trigger="{ isOpen }">
-          <BaseIcon :name="Plus" :size="24" color="#2b7fff" :auto="false" />
+          <BaseIcon :name="Plus" :size="24" color="#2b7fff" :auto-dark="false"/>
         </template>
 
         <template #default="{ close }">
@@ -126,7 +125,7 @@ const onMicTap = () => {
           icon-set="quasar-bootstrap-icons"
           :size="20"
           color="#2b7fff"
-          :auto="false"
+          :auto-dark="false"
         />
       </view>
     </view>
@@ -140,7 +139,7 @@ const onMicTap = () => {
         :name="Send"
         :size="18"
         color="#fff"
-        :auto="false"
+        :auto-dark="false"
         style="margin-left: 2px"
       />
     </view>
@@ -150,7 +149,7 @@ const onMicTap = () => {
       class="p-2 ml-1 active:opacity-70 rounded-full"
       @tap="onMicTap"
     >
-      <BaseIcon :name="Mic" :size="24" color="#2b7fff" :auto="false" />
+      <BaseIcon :name="Mic" :size="24" color="#2b7fff" :auto-dark="false" />
     </view>
   </view>
 </template>

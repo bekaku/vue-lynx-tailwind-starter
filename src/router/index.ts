@@ -43,6 +43,7 @@ import TextEllipsis from '../pages/text-ellipsis.vue';
 import Transition from '../pages/transition.vue';
 import ChatPage from '../pages/chat/index.vue';
 import ChatConversation from '../pages/chat/conversation.vue';
+import Echarts from '../pages/echarts.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
@@ -77,14 +78,29 @@ const router = createRouter({
         { path: '/card', name: 'ComponentsCard', component: ComponentsCard },
         { path: '/confirm-dialog', name: 'ConfirmDialog', component: ConfirmDialog },
         { path: '/dialog', name: 'Dialog', component: Dialog },
+        { path: '/echarts', name: 'Echarts', component: Echarts },
         { path: '/event-modifier', name: 'EventModifier', component: EventModifier },
         {
-            path: '/fetch-data/feed', name: 'FetchDataFeed', component: FetchDataFeed,
-            meta: {
-                keepAlive: true
-            }
+            path: '/fetch-data',
+            children: [
+                {
+                    path: '',
+                    name: 'FetchDataFeed',
+                    component: FetchDataFeed,
+                    meta: {
+                        keepAlive: true
+                    }
+                },
+                { path: 'feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
+            ]
         },
-        { path: '/fetch-data/feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
+        // {
+        //     path: '/fetch-data/feed', name: 'FetchDataFeed', component: FetchDataFeed,
+        //     meta: {
+        //         keepAlive: true
+        //     }
+        // },
+        // { path: '/fetch-data/feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
         { path: '/grid', name: 'Grid', component: Grid },
         { path: '/input', name: 'ComponentsInput', component: ComponentsInput },
         { path: '/inifinite-load', name: 'InifiniteLoadPage', component: InifiniteLoadPage },

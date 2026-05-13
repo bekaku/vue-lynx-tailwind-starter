@@ -41,7 +41,7 @@ const handleMenuItemClick = (itemName: string) => {
               <text class="text-white"> Options</text>
               <BaseIcon
                 color="#fff"
-                :auto="false"
+                :auto-dark="false"
                 :name="isOpen ? ChevronUp : ChevronDown"
               />
             </BaseButton>
@@ -96,7 +96,7 @@ const handleMenuItemClick = (itemName: string) => {
               <text class="text-white"> bottom-left</text>
               <BaseIcon
                 color="#fff"
-                :auto="false"
+                :auto-dark="false"
                 :name="isOpen ? ChevronUp : ChevronDown"
               />
             </BaseButton>
@@ -114,7 +114,7 @@ const handleMenuItemClick = (itemName: string) => {
               <text class="text-white"> bottom-right</text>
               <BaseIcon
                 color="#fff"
-                :auto="false"
+                :auto-dark="false"
                 :name="isOpen ? ChevronUp : ChevronDown"
               />
             </BaseButton>
@@ -132,7 +132,7 @@ const handleMenuItemClick = (itemName: string) => {
               <text class="text-white"> top-left</text>
               <BaseIcon
                 color="#fff"
-                :auto="false"
+                :auto-dark="false"
                 :name="isOpen ? ChevronUp : ChevronDown"
               />
             </BaseButton>
@@ -150,7 +150,7 @@ const handleMenuItemClick = (itemName: string) => {
               <text class="text-white"> top-right</text>
               <BaseIcon
                 color="#fff"
-                :auto="false"
+                :auto-dark="false"
                 :name="isOpen ? ChevronUp : ChevronDown"
               />
             </BaseButton>

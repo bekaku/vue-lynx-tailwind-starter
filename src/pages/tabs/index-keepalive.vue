@@ -67,7 +67,7 @@ const switchTab = (tabName: 'home' | 'chat' | 'settings') => {
           <BaseIcon
             :name="House"
             :color="activeTab !== 'home' ? '#18181b' : '#3b82f6'"
-            :auto="activeTab !== 'home'"
+            :auto-dark="activeTab !== 'home'"
           />
         </template>
       </BaseTabButton>
@@ -81,7 +81,7 @@ const switchTab = (tabName: 'home' | 'chat' | 'settings') => {
           <BaseIcon
             :name="MessageCircle"
             :color="activeTab !== 'chat' ? '#18181b' : '#3b82f6'"
-            :auto="activeTab !== 'chat'"
+            :auto-dark="activeTab !== 'chat'"
           />
         </template>
       </BaseTabButton>
@@ -95,7 +95,7 @@ const switchTab = (tabName: 'home' | 'chat' | 'settings') => {
           <BaseIcon
             :name="Cog"
             :color="activeTab !== 'settings' ? '#18181b' : '#3b82f6'"
-            :auto="activeTab !== 'settings'"
+            :auto-dark="activeTab !== 'settings'"
           />
         </template>
       </BaseTabButton>

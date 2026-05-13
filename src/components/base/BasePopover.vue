@@ -58,7 +58,7 @@ const getPositionStyle = (pos: string) => {
     <view
       class="self-start"
       :catchtap="toggle"
-      :class="isAndroid ? 'py-[-14px]' : ''"
+      :class="isAndroid ? 'py-[-10px]' : 'py-2'"
     >
       <slot name="trigger" :isOpen="isVisible" />
     </view>

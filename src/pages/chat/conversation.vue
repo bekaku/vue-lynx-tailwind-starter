@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import BaseSpinner from '@/components/base/BaseSpinner.vue';
-import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import BaseTextEllipsis from '@/components/base/BaseTextEllipsis.vue';
-import ChatItem from '@/components/chats/ChatItem.vue';
-import { useDevice } from '@/composables/useDevice';
-import { chatMessageListApi } from '@/libs/mock/chats';
-import type { GroupChatMsgDto } from '@/types/common';
-import { nextTick, ref, useTemplateRef, onMounted, computed } from 'vue';
 import BaseButton from '@/components/base/BaseButton.vue';
 import BaseIcon from '@/components/base/BaseIcon.vue';
-import BaseTextarea from '@/components/base/BaseTextarea.vue';
-import {
-  EllipsisVertical,
-  Mic,
-  Phone,
-  Plus,
-  Send,
-  Smile,
-  Video,
-} from 'lucide-static';
-import { useBase } from '@/composables/useBase';
-import { biEmojiSmile } from '@quasar/extras/bootstrap-icons';
+import BasePopover from '@/components/base/BasePopover.vue';
+import BaseSpinner from '@/components/base/BaseSpinner.vue';
+import BaseTextEllipsis from '@/components/base/BaseTextEllipsis.vue';
+import BaseToolBar from '@/components/base/BaseToolBar.vue';
+import ChatAvatar from '@/components/chats/ChatAvatar.vue';
 import ChatInput from '@/components/chats/ChatInput.vue';
-
+import ChatItem from '@/components/chats/ChatItem.vue';
+import ChatMenu from '@/components/chats/ChatMenu.vue';
+import { useBase } from '@/composables/useBase';
+import { useDevice } from '@/composables/useDevice';
+import { chatHistoryListApi, chatMessageListApi } from '@/libs/mock/chats';
+import type { GroupChatDto, GroupChatMsgDto } from '@/types/common';
+import { biStarFill } from '@quasar/extras/bootstrap-icons';
+import { EllipsisVertical, Phone, Video, VolumeOff } from 'lucide-static';
+import { computed, nextTick, onMounted, ref, useTemplateRef } from 'vue';
+defineEmits<{
+  'toggle-mute': [chatId: number | string];
+  'toggle-pin': [chatId: number | string];
+  'toggle-fav': [chatId: number | string];
+  'toggle-chat': [chatId: number | string];
+  'delete-chat': [chatId: number | string];
+  'leave-group': [chatId: number | string];
+  'invite-people': [chatId: number | string];
+}>();
 const { isAndroid } = useDevice();
 const { getParam } = useBase();
 const pageId = computed<string>(() => getParam('id'));
@@ -38,7 +40,11 @@ const firstLoad = ref(false);
 const inputText = ref('');
 
 const currentUserId = 1;
+const groupItem = ref<GroupChatDto>();
 onMounted(async () => {
+  groupItem.value = chatHistoryListApi.dataList.find(
+    (item) => item.id == pageId.value,
+  );
   await nextTick();
   setTimeout(() => {
     onScrollToBottom(false);
@@ -85,7 +91,7 @@ const onScrolltoupper = (e: any) => {
   }, 1500);
 };
 const onScroll = (e: any) => {
-//   console.log('onScroll', e);
+  //   console.log('onScroll', e);
 };
 const onScrollToItem = (targetIndex: number, isSmooth: boolean = true) => {
   if (chatContentScrollViewRef.value) {
@@ -153,6 +159,40 @@ const onEmojiKeyboardTap = () => {
 const onMicTap = () => {
   console.log('Start voice record');
 };
+
+const toggleMute = (chatId: number | string) => {
+  if (!chatId || !groupItem.value) {
+    return;
+  }
+  groupItem.value.muteNotify = !groupItem.value.muteNotify;
+};
+const togglePin = (chatId: number | string) => {
+  if (!chatId || !groupItem.value) {
+    return;
+  }
+  groupItem.value.pin = !groupItem.value.pin;
+};
+const toggleFav = (chatId: number | string) => {
+  if (!chatId || !groupItem.value) {
+    return;
+  }
+  groupItem.value.favorite = !groupItem.value.favorite;
+};
+const invitePeople = (chatId: number | string) => {
+  if (!chatId || !groupItem.value) {
+    return;
+  }
+};
+const deleteChat = async (chatId: number | string) => {
+  if (!chatId || !groupItem.value) {
+    return;
+  }
+};
+const leaveGroup = async (chatId: number | string) => {
+  if (!chatId || !groupItem.value) {
+    return;
+  }
+};
 </script>
 
 <template>
@@ -162,39 +202,138 @@ const onMicTap = () => {
       top
       title-left
     >
-      <view class="flex flex-col flex-1 justify-start">
-        <BaseTextEllipsis
-          :class="isAndroid ? 'py-[-14px]' : ''"
-          text-class="font-semibold text-lg"
-          :rows="1"
-          :content="`Conversation Page Id: ${pageId}`"
-        />
-        <view class="flex flex-row">
-          <text class="text-xs text-muted">Group 1</text>
+      <view class="flex flex-row flex-1 gap-1 justify-start">
+        <view class="mt-1 mr-1">
+          <ChatAvatar :item="groupItem" />
+        </view>
+        <view class="flex flex-col flex-1 justify-start">
+          <BaseTextEllipsis
+            :class="isAndroid ? 'py-[-14px]' : ''"
+            text-class="font-semibold text-md"
+            :rows="1"
+            :content="groupItem?.groupName || 'Untitled Group'"
+          >
+            <template #default="{ textStyles, textMaxline }">
+              <view class="flex flex-row items-center">
+                <text
+                  class="flex-wrap leading-relaxed font-semibold text-md"
+                  :style="{ lineHeight: '1.5em', ...textStyles }"
+                  :text-maxline="textMaxline"
+                >
+                  {{ groupItem?.groupName || 'Untitled Group' }}
+                </text>
+                <BaseIcon
+                  v-if="groupItem?.favorite"
+                  :name="biStarFill"
+                  icon-set="quasar-bootstrap-icons"
+                  color="#f59e0b"
+                  :size="12"
+                  :auto-dark="false"
+                  class="ml-[2px]"
+                />
+                <BaseIcon
+                  v-if="groupItem?.muteNotify"
+                  :name="VolumeOff"
+                  :size="12"
+                  color="#a1a1aa"
+                  class="ml-[2px]"
+                />
+              </view>
+            </template>
+          </BaseTextEllipsis>
+          <view class="flex flex-row items-center gap-1">
+            <text class="text-xs text-muted">
+              {{
+                groupItem?.chatType == 'PERSONAL'
+                  ? 'Software engineer'
+                  : 'Group'
+              }}
+            </text>
+          </view>
         </view>
       </view>
       <template #end>
-        <view class="flex flex-row gap-1">
+        <view class="flex flex-row gap-1.5 pr-2">
           <BaseButton variant="ghost" rounded size="icon" class="h-8 w-8">
-            <BaseIcon :name="Phone" :size="18" color="#2b7fff" :auto="false" />
-          </BaseButton>
-          <BaseButton variant="ghost" rounded size="icon" class="h-8 w-8">
-            <BaseIcon :name="Video" :size="18" color="#2b7fff" :auto="false" />
+            <BaseIcon
+              :name="Phone"
+              :size="18"
+              color="#2b7fff"
+              :auto-dark="false"
+            />
           </BaseButton>
           <BaseButton variant="ghost" rounded size="icon" class="h-8 w-8">
             <BaseIcon
-              :name="EllipsisVertical"
+              :name="Video"
               :size="18"
               color="#2b7fff"
-              :auto="false"
+              :auto-dark="false"
             />
           </BaseButton>
+
+          <BasePopover position="bottom-right">
+            <template #trigger="{ isOpen }">
+              <BaseIcon
+                :name="EllipsisVertical"
+                :size="18"
+                color="#2b7fff"
+                :auto-dark="false"
+              />
+            </template>
+
+            <template #default="{ close }">
+              <ChatMenu
+                v-if="groupItem && groupItem.id"
+                :chat-id="groupItem.id"
+                :chat-type="groupItem.chatType"
+                :pin="groupItem.pin"
+                :mute-notify="groupItem.muteNotify"
+                :favorite="groupItem.favorite"
+                @toggle-pin="
+                  (chatId: number | string) => {
+                    togglePin(chatId);
+                    close();
+                  }
+                "
+                @toggle-mute="
+                  (chatId: number | string) => {
+                    toggleMute(chatId);
+                    close();
+                  }
+                "
+                @toggle-fav="
+                  (chatId: number | string) => {
+                    toggleFav(chatId);
+                    close();
+                  }
+                "
+                @delete-chat="
+                  (chatId: number | string) => {
+                    deleteChat(chatId);
+                    close();
+                  }
+                "
+                @leave-group="
+                  (chatId: number | string) => {
+                    leaveGroup(chatId);
+                    close();
+                  }
+                "
+                @invite-people="
+                  (chatId: number | string) => {
+                    invitePeople(chatId);
+                    close();
+                  }
+                "
+              />
+            </template>
+          </BasePopover>
         </view>
       </template>
     </BaseToolBar>
     <view
       v-if="isLoading"
-      class="absolute top-[70px] left-0 w-full flex flex-row justify-center z-50 pointer-events-none"
+      class="absolute top-[85px] left-0 w-full flex flex-row justify-center z-50 pointer-events-none"
     >
       <view class="bg-black/40 p-2 rounded-md flex flex-row gap-2 items-center">
         <BaseSpinner width="18px" show />
@@ -218,66 +357,6 @@ const onMicTap = () => {
       />
     </scroll-view>
 
-    <ChatInput @on-send="onSendMsg"/>
-
-    <!-- <view
-      class="w-full bg-card px-4 py-3 flex flex-row items-center border-t border-gray-200"
-    >
-      <view class="p-2 mr-1 active:opacity-70 rounded-full" @tap="onAttachTap">
-        <BaseIcon :name="Plus" :size="24" color="#2b7fff" :auto="false" />
-      </view>
-
-      <view
-        class="flex-1 bg-gray-100 rounded-lg px-4 py-2 flex flex-row items-center min-h-[40px]"
-      >
-        <BaseTextarea
-          textarea-class="flex-1 bg-transparent py-0 text-base max-h-[120px]"
-          placeholder="Type a message..."
-          auto-grow
-          dense
-          transparent
-          :border="false"
-          :maxlength="1000"
-          :maxlines="6"
-          v-model="inputText"
-        >
-        </BaseTextarea>
-
-        <view
-          class="p-1 active:opacity-70 ml-1 rounded-full"
-          @tap="onEmojiKeyboardTap"
-        >
-          <BaseIcon
-            :name="biEmojiSmile"
-            icon-set="quasar-bootstrap-icons"
-            :size="20"
-            color="#2b7fff"
-            :auto="false"
-          />
-        </view>
-      </view>
-
-      <view
-        v-if="inputText.trim().length > 0"
-        class="ml-3 w-10 h-10 rounded-full bg-primary flex items-center justify-center active:opacity-70"
-        @tap="onSendMsg"
-      >
-        <BaseIcon
-          :name="Send"
-          :size="18"
-          color="#fff"
-          :auto="false"
-          style="margin-left: 2px"
-        />
-      </view>
-
-      <view
-        v-else
-        class="p-2 ml-1 active:opacity-70 rounded-full"
-        @tap="onMicTap"
-      >
-        <BaseIcon :name="Mic" :size="24" color="#2b7fff" :auto="false" />
-      </view>
-    </view> -->
+    <ChatInput @on-send="onSendMsg" />
   </view>
 </template>

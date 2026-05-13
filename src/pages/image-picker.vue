@@ -8,26 +8,21 @@ import BaseIcon from '@/components/base/BaseIcon.vue';
 import BaseImage from '@/components/base/BaseImage.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import { useDevice } from '@/composables/useDevice';
+import { useFillePicker } from '@/composables/useFillePicker';
 import { Camera, Image } from 'lucide-static';
 import { ref } from 'vue';
 const { isNativeAvailable } = useDevice();
 const selectedImageUri = ref<string | null>(null);
 const photoUri = ref<string | null>(null);
 const selectedImages = ref<string[]>([]);
-const isLoading = ref(false);
+const { isLoading, onPickImage, onPickMultiple, onTakePhoto } =
+  useFillePicker();
 
 const handlePickImage = async () => {
-  if (!isNativeAvailable) {
-    console.warn('ImagePickerModule is not available.');
-    return;
-  }
   isLoading.value = true;
   try {
-    const uri = await NativeModules.ImagePickerModule.pickImage();
-    console.log('✅ Select a picture. (Finished) URI:', uri);
-    selectedImageUri.value = uri;
-    //upload to server
-    // uploadImage(uri);
+    const uri = await onPickImage();
+    selectedImageUri.value = uri || '';
   } catch (error) {
     console.error('❌ Image selection failed or was cancelled.:', error);
   } finally {
@@ -36,18 +31,10 @@ const handlePickImage = async () => {
 };
 
 const handlePickMultiple = async () => {
-  if (!isNativeAvailable) {
-    console.warn('ImagePickerModule is not available.');
-    return;
-  }
   isLoading.value = true;
   try {
-    const uris = await NativeModules.ImagePickerModule.pickMultipleImages();
-
-    console.log('✅ Select all picture:', uris.length, 'images');
-    console.log('All files:', uris);
-
-    selectedImages.value = uris;
+    const uris = await onPickMultiple();
+    selectedImages.value = uris || [];
   } catch (error) {
     console.error('❌ Image selection failed:', error);
   } finally {
@@ -57,12 +44,8 @@ const handlePickMultiple = async () => {
 
 const handleTakePhoto = async () => {
   try {
-    const photoUriResponse = await NativeModules.ImagePickerModule.takePhoto();
-    console.log(
-      '📸 Photo taken successfully. The file is located at:',
-      photoUriResponse,
-    );
-    photoUri.value = photoUriResponse;
+    const photoUriResponse = await onTakePhoto();
+    photoUri.value = photoUriResponse || '';
   } catch (error) {
     console.error('❌ Cancellation or photo taking failed.:', error);
   }
@@ -74,15 +57,15 @@ const uploadImage = async (fileUri: string) => {
     // ใส่ URI ตรงๆ เข้าไปได้เลยครับ
     formData.append('file', {
       uri: fileUri,
-      name: 'upload.jpg', 
-      type: 'image/jpeg' 
+      name: 'upload.jpg',
+      type: 'image/jpeg'
     } as any);
 
     const response = await fetch('https://api.yourdomain.com/upload', {
       method: 'POST',
       body: formData,
     });
-    
+
     console.log("อัพโหลดสำเร็จ!");
   } catch (error) {
     console.error("อัพโหลดพัง:", error);
@@ -93,7 +76,7 @@ const uploadImage = async (fileUri: string) => {
   try {
     const formData = new FormData();
 
-    // 🌟 กฎพิเศษของ Mobile: ห้ามโยน String เปล่าๆ 
+    // 🌟 กฎพิเศษของ Mobile: ห้ามโยน String เปล่าๆ
     // ต้องสร้าง Object หน้าตาแบบนี้ยัดลงไป เพื่อให้ Native Bridge รู้ว่า "อ้อ นี่คือไฟล์นะ ไปดึงมาซะ!"
     const fileObj = {
       uri: fileUri,           // Path file:// ที่เราเพิ่งทำกันมา
@@ -102,7 +85,7 @@ const uploadImage = async (fileUri: string) => {
     };
 
     // ต้องใส่ as any เพราะ TypeScript ฝั่ง Web จะไม่รู้จัก Object แบบนี้ใน FormData
-    formData.append('file', fileObj as any); 
+    formData.append('file', fileObj as any);
 
     // 🌟 ยิง Axios โลด!
     const response = await axios.post('https://api.yourserver.com/upload', formData, {
@@ -150,10 +133,15 @@ const uploadImage = async (fileUri: string) => {
         <BaseButton
           @tap="handlePickImage"
           class="m-3"
-          :label="isLoading ? 'Opening...' : 'Select a photo from the album.'"
+          :label="isLoading ? 'Opening...' : 'Select a photo.'"
         >
           <template #start>
-            <BaseIcon :name="Image" color="#fff" :auto="false" class="mr-1" />
+            <BaseIcon
+              :name="Image"
+              color="#fff"
+              :auto-dark="false"
+              class="mr-1"
+            />
           </template>
         </BaseButton>
       </BaseCard>
@@ -177,11 +165,16 @@ const uploadImage = async (fileUri: string) => {
           @tap="handlePickMultiple"
           class="m-3"
           :label="
-            isLoading ? 'Opening...' : 'Select multiple photo from the album.'
+            isLoading ? 'Opening...' : 'Select multiple photo.'
           "
         >
           <template #start>
-            <BaseIcon :name="Image"  color="#fff" :auto="false" class="mr-1" />
+            <BaseIcon
+              :name="Image"
+              color="#fff"
+              :auto-dark="false"
+              class="mr-1"
+            />
           </template>
         </BaseButton>
       </BaseCard>
@@ -211,11 +204,10 @@ const uploadImage = async (fileUri: string) => {
         <BaseButton
           @tap="handleTakePhoto"
           class="m-3"
-          color="#fff" :auto="false"
-          :label="isLoading ? 'Opening...' : 'Take a photo from camera.'"
+          :label="isLoading ? 'Opening...' : 'Take a photo.'"
         >
           <template #start>
-            <BaseIcon :name="Camera" class="mr-1" />
+            <BaseIcon color="#fff" :name="Camera" class="mr-1" />
           </template>
         </BaseButton>
       </BaseCard>

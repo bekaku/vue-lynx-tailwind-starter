@@ -24,7 +24,7 @@ const handleTab = () => {
   <view class="w-full h-full flex flex-col bg-background">
     <BaseToolBar title="BaseCard" />
     <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
-      <BaseCard class="w-full">
+      <BaseCard class="w-full" :flat="false">
         <BaseCardHeader>
           <BaseCardTitle>Basic Card</BaseCardTitle>
           <BaseCardDescription>
@@ -42,7 +42,7 @@ const handleTab = () => {
           <BaseButton variant="default" label="Deploy" class="flex-1" />
         </BaseCardFooter>
       </BaseCard>
-      <BaseCard class="w-full">
+      <BaseCard class="w-full" :flat="false">
         <BaseImage
           class="w-full h-[150px]"
           src="https://images.unsplash.com/photo-1734983234384-5a3edcec48ce?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

@@ -13,6 +13,7 @@ interface Props {
   titleBold?: boolean;
   titleLines?: number;
   class?: string;
+  titleClass?: string;
   to?: string;
   id?: string;
   index?: number;
@@ -51,7 +52,7 @@ const handleLongpress = (e: any) => {
   <view
     :class="
       cn(
-        'flex flex-row items-center justify-between  px-[14px] bg-card',
+        'flex flex-row items-center justify-between  pl-[14px] pr-[14px] bg-card',
         props.button && !props.disabled ? 'active:bg-ripple' : '',
         props.disabled ? 'opacity-50' : '',
         props.separator ? 'border-b border-border' : '',
@@ -73,10 +74,13 @@ const handleLongpress = (e: any) => {
       <view class="flex flex-col flex-1 justify-start">
         <text
           v-if="title"
-          :class="{
-            'whitespace-nowrap': whitespaceNowrap,
-            'font-medium': titleBold,
-          }"
+          :class="
+            cn(
+              whitespaceNowrap ? 'whitespace-nowrap' : '',
+              titleBold ? 'font-medium' : '',
+              props.titleClass,
+            )
+          "
           :text-maxline="titleLines"
         >
           {{ title }}

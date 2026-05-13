@@ -15,7 +15,7 @@ onMounted(() => {
 
 <template>
   <view
-    class="w-full h-full bg-background app-container"
+    class="w-full h-full bg-background"
     :class="themeClass"
     :style="{
       paddingBottom: safeAreaBottom + 'px',
@@ -23,22 +23,30 @@ onMounted(() => {
   >
     <!-- <RouterView /> -->
 
-
     <RouterView v-slot="{ Component, route }">
-      <KeepAlive :max="5">
-        <Component :is="Component" :key="route.fullPath" v-if="route.meta.keepAlive===true" />
+      <KeepAlive v-if="route.meta.keepAlive === true" :max="5">
+        <Component :is="Component" :key="route.fullPath" />
       </KeepAlive>
-      <Component :is="Component" :key="route.fullPath" v-if="!route.meta.keepAlive===true" />
+      <Component
+        v-else-if="!route.meta.keepAlive === true"
+        :is="Component"
+        :key="route.fullPath"
+      />
     </RouterView>
 
     <!-- <RouterView v-slot="{ Component, route }">
-      <Transition :name="transitionName">
-        <KeepAlive :max="5">
-          <Component :is="Component" :key="route.fullPath" />
-        </KeepAlive>
-      </Transition>
+      <KeepAlive :max="5">
+        <Component
+          :is="Component"
+          :key="route.fullPath"
+          v-if="route.meta.keepAlive === true"
+        />
+      </KeepAlive>
+      <Component
+        :is="Component"
+        :key="route.fullPath"
+        v-if="!route.meta.keepAlive === true"
+      />
     </RouterView> -->
   </view>
 </template>
-<style scoped>
-</style>

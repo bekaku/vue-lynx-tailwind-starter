@@ -13,6 +13,7 @@ import BaseButton from '../base/BaseButton.vue';
 import BaseContentText from '../base/BaseContentText.vue';
 import BaseIcon from '../base/BaseIcon.vue';
 import BaseItem from '../base/BaseItem.vue';
+import { useDevice } from '@/composables/useDevice';
 
 interface CommentData {
   id: number;
@@ -29,7 +30,7 @@ defineProps<{
   isChild?: boolean;
 }>();
 const open = ref(false);
-
+const { isAndroid } = useDevice();
 const onUserTap = (e: any, user?: string) => {
   console.log('onUserTap', user, e);
 };
@@ -41,18 +42,23 @@ const onUserTap = (e: any, user?: string) => {
     class="relative flex flex-col"
     :style="{ paddingLeft: `${(isChild ? 1 : 0) * 16}px` }"
   >
-  <!-- :style="{ paddingLeft: `${(depth ?? 1) * 10}px` }" -->
+    <!-- :style="{ paddingLeft: `${(depth ?? 1) * 10}px` }" -->
     <view
       class="absolute top-0 bottom-0 w-[14px] border-border"
       :class="[isChild ? 'border-r border-t ml-[4px]' : 'border-r']"
       :style="{
-        left: `${(isChild ? 1 : 0) * 10}px` ,
+        left: `${(isChild ? 1 : 0) * 10}px`,
         top: '14px',
         bottom: '14px',
       }"
     ></view>
-      <!-- left: `${(depth ?? 0) * 10}px`, -->
-    <BaseItem :separator="false" class="pl-0 bg-transparent" top>
+    <!-- left: `${(depth ?? 0) * 10}px`, -->
+    <BaseItem
+      :separator="false"
+      class="pl-0 bg-transparent"
+      :class="isAndroid ? 'pb-[-4px]' : ''"
+      top
+    >
       <template #start>
         <BaseAvatar
           :class="[isChild ? 'h-[24px] w-[24px]' : 'h-[32px] w-[32px]']"
@@ -71,20 +77,18 @@ const onUserTap = (e: any, user?: string) => {
           class="text-base font-semibold"
           :catchtap="(event: any) => onUserTap(event, comment?.user)"
         >
-          {{ comment.user +' depth '+`${depth}`}}
+          {{ comment.user }}
         </text>
         <text class="text-muted" :style="{ fontSize: '0.9em' }">
           {{ comment.time_ago }}
         </text>
       </view>
-      <view class="rounded-lg active:opacity-80 self-start max-w-full">
+      <view class="active:opacity-80 self-start max-w-full pt-0">
         <BaseContentText
+          :class="isAndroid ? 'pt-[-8px]' : ''"
           :content="comment.content"
           :ellipsis="{ rows: 3, showMore: true }"
         />
-        <!-- <text :style="{ lineHeight: '1.5em' }">
-          {{ stripHtml(comment.content) }}
-        </text> -->
       </view>
       <template #end>
         <BaseButton
@@ -99,7 +103,7 @@ const onUserTap = (e: any, user?: string) => {
     </BaseItem>
 
     <!-- Comment body -->
-    <view :style="{ marginLeft: depth && depth > 0 ? '40px' : '48px' }">
+    <view :style="{ marginLeft: depth && depth > 0 ? '36px' : '44px' }">
       <!-- <view
         class="bg-content-item py-[0.5em] px-[0.5em] rounded-lg active:opacity-80 self-start max-w-full"
       >
@@ -138,7 +142,6 @@ const onUserTap = (e: any, user?: string) => {
           class="bg-content-item flex gap-2 active:bg-ripple"
           @tap="open = !open"
         >
-
           <BaseIcon :name="open ? ChevronUp : ChevronDown" :size="16" />
           <text class="text-muted" :style="{ fontSize: '0.9em' }">
             {{

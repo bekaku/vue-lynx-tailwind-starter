@@ -134,64 +134,68 @@ const goNext = () => {
     <view class="flex flex-col">
       <scroll-view
         scroll-orientation="horizontal"
-        class="bg-primary py-2 text-white flex justify-center"
+        class="py-2 flex justify-center bg-card"
       >
         <BaseButton
           v-for="key in feedKeys"
           :key="key"
-          text-class="text-white"
+          :text-class="key === currentFeed ? 'text-primary' : ''"
           rounded
-          :class="key === currentFeed ? 'bg-primary-400' : ''"
+          :variant="key === currentFeed ? 'link' : 'ghost'"
           :label="validFeeds[key].title"
           @tap="onLoadFeedData(key)"
         />
       </scroll-view>
       <!-- Pagination nav -->
-      <view
-        class="bg-hn-card flex flex-row items-center justify-center border-b border-border"
-        :style="{ padding: '15px 30px', gap: '1em' }"
-      >
-        <BaseButton
-          variant="ghost"
-          size="sm"
-          label="prev"
-          :disabled="!hasPrev"
-          text-class="text-primary"
-          @tap="goPrev"
-        >
-          <template #start>
-            <BaseIcon :name="ChevronLeft" color="#2b7fff" ::auto="false" />
-          </template>
-        </BaseButton>
-
-        <text :style="{ fontSize: '15px' }"> {{ page }}/{{ maxPage }} </text>
-
-        <BaseButton
-          variant="ghost"
-          size="sm"
-          label="more"
-          :disabled="!hasNext"
-          text-class="text-primary"
-          @tap="goNext"
-        >
-          <template #start>
-            <BaseIcon
-              :name="ChevronRight"
-              color="#2b7fff"
-              :auto="false"
-            />
-          </template>
-        </BaseButton>
-      </view>
     </view>
     <view class="flex-1 flex flex-col">
       <scroll-view
         ref="feedScrollViewRef"
-        :class="['flex-1 w-full']"
+        :class="['flex-1 w-full bg-card']"
         scroll-orientation="vertical"
         :scroll-top="scrollTop"
         @scroll="onScroll"
       >
+        <view
+          class="flex flex-row items-center justify-center border-b border-border"
+          :style="{ padding: '4px', gap: '1em' }"
+        >
+          <BaseButton
+            variant="ghost"
+            size="sm"
+            label="prev"
+            :disabled="!hasPrev"
+            text-class="text-primary"
+            @tap="goPrev"
+          >
+            <template #start>
+              <BaseIcon
+                :name="ChevronLeft"
+                color="#2b7fff"
+                ::auto-dark="false"
+              />
+            </template>
+          </BaseButton>
+
+          <text :style="{ fontSize: '15px' }"> {{ page }}/{{ maxPage }} </text>
+
+          <BaseButton
+            variant="ghost"
+            size="sm"
+            label="more"
+            :disabled="!hasNext"
+            text-class="text-primary"
+            @tap="goNext"
+          >
+            <template #start>
+              <BaseIcon
+                :name="ChevronRight"
+                color="#2b7fff"
+                :auto-dark="false"
+              />
+            </template>
+          </BaseButton>
+        </view>
         <view v-if="isLoading || isFetching" class="flex justify-center py-2">
           <BaseSpinner show />
         </view>

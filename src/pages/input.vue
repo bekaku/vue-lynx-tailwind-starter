@@ -65,9 +65,10 @@ const handleConfirm = (e: any) => {
           <text class="font-bold">Custom Native Element</text>
           <view
             class="flex flex-col justify-center items-center w-full"
-            :style="{ height: '55px' }"
+            :style="{ height: '85px' }"
           >
-            <explorer-input
+            <explorer-input 
+            
               :style="{
                 display: 'flex',
                 alignItems: 'flex-start',

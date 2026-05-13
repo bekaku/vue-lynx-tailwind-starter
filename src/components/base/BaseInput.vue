@@ -18,6 +18,8 @@ const props = withDefaults(
     maxlength?: number;
     placeholder?: string;
     readonly?: boolean;
+    border?: boolean;
+    transparent?: boolean;
     showSoftInputOnFocus?: boolean;
     type?: 'number' | 'text' | 'digit' | 'password' | 'tel' | 'email';
   }>(),
@@ -31,6 +33,8 @@ const props = withDefaults(
     maxlength: 140,
     showSoftInputOnFocus: true,
     type: 'text',
+    border: false,
+    transparent: false,
   },
 );
 const emit = defineEmits<{
@@ -84,8 +88,9 @@ const handleBlur = (e: any) => {
     <view
       :class="
         cn(
-          'flex flex-row items-center w-full h-10 rounded-lg bg-input border px-2 py-2 gap-2 text-sm transition-all shadow-sm',
-          'border-inputborder',
+          'flex flex-row items-center w-full h-10 rounded-lg   px-2 py-2 gap-2 text-sm transition-all shadow-sm',
+          !transparent ? 'bg-input' : 'bg-transparent',
+          border ? 'border border-inputborder' : '',
           isFocused ? 'border-primary ring-1 ring-primary' : '',
           props.disabled ? 'opacity-50 cursor-not-allowed' : '',
         )
@@ -97,7 +102,7 @@ const handleBlur = (e: any) => {
         ref="appInputRef"
         :class="
           cn(
-            'flex-1 h-full bg-transparent border-none outline-none p-0 placeholder:text-muted text-sm',
+            'flex-1 h-full bg-transparent border-none outline-none p-0 placeholder:text-muted',
             !isDark ? 'text-zinc-900' : 'text-zinc-200',
             props.inputClass,
           )

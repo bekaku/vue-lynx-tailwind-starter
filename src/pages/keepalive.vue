@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import BaseCard from '@/components/base/BaseCard.vue';
-import BaseCardContent from '@/components/base/BaseCardContent.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 
-import { ref, shallowRef } from 'vue';
 import Counter from '@/components/test/Counter.vue';
+import { ref, shallowRef } from 'vue';
 
 // Tab switching
 const tabs = ['Tab A', 'Tab B', 'Tab C'] as const;
@@ -35,7 +33,6 @@ function switchTab(index: number) {
       :style="{
         width: '100%',
         height: '100%',
-        backgroundColor: '#f0f0f0',
         padding: '16px',
       }"
     >
@@ -50,7 +47,7 @@ function switchTab(index: number) {
           :style="{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }"
           >1. State Preservation</text
         >
-        <text :style="{ fontSize: '12px', color: '#666', marginBottom: '8px' }">
+        <text :style="{ fontSize: '12px', marginBottom: '8px' }">
           Increment the counter, switch tabs, then switch back — the count is
           preserved.
         </text>
@@ -64,7 +61,6 @@ function switchTab(index: number) {
             :style="{
               padding: '8px',
               marginRight: '4px',
-              borderRadius: '4px',
               backgroundColor: activeTab === i ? '#4a90d9' : '#ddd',
             }"
           >
@@ -94,7 +90,7 @@ function switchTab(index: number) {
           :style="{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }"
           >2. Include Filter</text
         >
-        <text :style="{ fontSize: '12px', color: '#666', marginBottom: '8px' }">
+        <text :style="{ fontSize: '12px', marginBottom: '8px' }">
           Only Tab A and Tab B are cached. Tab C re-mounts every time.
         </text>
 
@@ -106,7 +102,6 @@ function switchTab(index: number) {
             :style="{
               padding: '8px',
               marginRight: '4px',
-              borderRadius: '4px',
               backgroundColor: activeTab === i ? '#e67e22' : '#ddd',
             }"
           >
@@ -135,7 +130,7 @@ function switchTab(index: number) {
           :style="{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }"
           >3. Max Cache Size (max=1)</text
         >
-        <text :style="{ fontSize: '12px', color: '#666', marginBottom: '8px' }">
+        <text :style="{ fontSize: '12px',  marginBottom: '8px' }">
           Only the most recently visited tab is cached. Older tabs lose their
           state.
         </text>
@@ -148,7 +143,6 @@ function switchTab(index: number) {
             :style="{
               padding: '8px',
               marginRight: '4px',
-              borderRadius: '4px',
               backgroundColor: activeTab === i ? '#27ae60' : '#ddd',
             }"
           >

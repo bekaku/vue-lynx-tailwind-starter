@@ -1,55 +1,17 @@
-<template>
-  <view
-    class="relative flex-1 w-full h-full overflow-hidden bg-transparent"
-    @touchstart="onTouchStart"
-    @touchmove="onTouchMove"
-    @touchend="onTouchEnd"
-  >
-    <view
-      class="absolute top-0 left-0 w-full flex flex-row justify-center items-center overflow-hidden"
-      :style="{
-        height: `${Math.min(pullDistance, 80)}px`,
-        transition: isPulling ? 'none' : 'height 0.3s ease-out',
-      }"
-    >
-      <view class="flex flex-row items-center gap-2">
-        <BaseSpinner :show="isRefreshing" width="20px" />
-        <text class="text-sm text-muted">
-          {{
-            isRefreshing
-              ? 'Refreshing...'
-              : pullDistance > 60
-                ? 'Release to refresh'
-                : 'Pull down to refresh'
-          }}
-        </text>
-      </view>
-    </view>
-
-    <scroll-view
-      class="flex-1 w-full h-full"
-      :style="{
-        transform: `translateY(${Math.min(pullDistance, 80)}px)`,
-        transition: isPulling ? 'none' : 'transform 0.3s ease-out',
-      }"
-      scroll-y
-      @scroll="onScroll"
-    >
-      <slot />
-    </scroll-view>
-  </view>
-</template>
-
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, useTemplateRef, watch } from 'vue';
 import BaseSpinner from './BaseSpinner.vue';
 
 const props = defineProps<{
   isRefreshing: boolean;
+  class?: string;
+  scrollClass?: string;
 }>();
 
 const emit = defineEmits<{
-  (e: 'refresh'): void;
+  refresh: [void];
+  scrolltoupper: [e: any];
+  scrolltolower: [e: any];
 }>();
 
 // State variables for touch tracking
@@ -58,10 +20,18 @@ const startY = ref(0);
 const scrollTop = ref(0);
 const isPulling = ref(false);
 
+const basePullToRefeshRef = useTemplateRef<any>('basePullToRefeshRef');
 const onScroll = (e: any) => {
   // Track scroll position to ensure we only pull from the very top.
   // We use 0 as a fallback just in case the detail object is missing.
   scrollTop.value = e.detail?.scrollTop || 0;
+};
+
+const onScrolltoupper = (e: any) => {
+  emit('scrolltoupper', e);
+};
+const onScrolltolower = (e: any) => {
+  emit('scrolltolower', e);
 };
 
 const onTouchStart = (e: any) => {
@@ -113,3 +83,49 @@ watch(
   },
 );
 </script>
+<template>
+  <view
+    class="relative flex-1 w-full h-full overflow-hidden bg-transparent"
+    :class="props.class"
+    @touchstart="onTouchStart"
+    @touchmove="onTouchMove"
+    @touchend="onTouchEnd"
+  >
+    <view
+      class="absolute top-0 left-0 w-full flex flex-row justify-center items-center overflow-hidden"
+      :style="{
+        height: `${Math.min(pullDistance, 80)}px`,
+        transition: isPulling ? 'none' : 'height 0.3s ease-out',
+      }"
+    >
+      <view class="flex flex-row items-center gap-2">
+        <BaseSpinner :show="isRefreshing" width="20px" />
+        <text class="text-sm text-muted">
+          {{
+            isRefreshing
+              ? 'Refreshing...'
+              : pullDistance > 60
+                ? 'Release to refresh'
+                : 'Pull down to refresh'
+          }}
+        </text>
+      </view>
+    </view>
+
+    <scroll-view
+      ref="basePullToRefeshRef"
+      class="flex-1 w-full h-full"
+      :class="props.scrollClass"
+      :style="{
+        transform: `translateY(${Math.min(pullDistance, 80)}px)`,
+        transition: isPulling ? 'none' : 'transform 0.3s ease-out',
+      }"
+      scroll-y
+      @scroll="onScroll"
+      @scrolltoupper="onScrolltoupper"
+      @scrolltolower="onScrolltolower"
+    >
+      <slot />
+    </scroll-view>
+  </view>
+</template>

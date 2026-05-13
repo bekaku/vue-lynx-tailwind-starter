@@ -34,7 +34,7 @@ const { isDark } = useTheme();
 
         <BaseBadge variant="destructive">
           <view class="flex flex-row gap-[2px] items-center">
-            <BaseIcon :name="Bell" :auto="false" color="#fff" :size="16" />
+            <BaseIcon :name="Bell" :auto-dark="false" color="#fff" :size="16" />
             <text class="text-white text-xs"> 50 </text>
           </view>
         </BaseBadge>
