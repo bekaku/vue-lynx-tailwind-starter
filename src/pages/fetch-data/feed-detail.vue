@@ -92,7 +92,7 @@ const onScrollToTop = () => {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <BaseToolBar :title="data?.title || 'Detail'" />
+    <BaseToolBar title="Detail" />
     <view class="flex-1 flex flex-col">
       <scroll-view
         ref="feedScrollViewRef"

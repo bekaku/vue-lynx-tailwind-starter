@@ -85,7 +85,7 @@ const onUserTap = (e: any, user?: string) => {
       </view>
       <view class="active:opacity-80 self-start max-w-full pt-0">
         <BaseContentText
-          :class="isAndroid ? 'pt-[-8px]' : ''"
+          :class="isAndroid ? 'pt-[-4px]' : ''"
           :content="comment.content"
           :ellipsis="{ rows: 3, showMore: true }"
         />

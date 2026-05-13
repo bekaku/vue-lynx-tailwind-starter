@@ -33,3 +33,4 @@ android/app/src/main/assets/public/
 /plugins
 android/.idea/compiler.xml
 android/app/src/main/assets/*
+ios/main.lynx.bundle
