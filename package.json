@@ -9,7 +9,9 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "preview": "rspeedy preview",
-    "sync:android": "shx rm -rf android/app/src/main/assets && shx mkdir -p android/app/src/main/assets && shx cp -r dist/* android/app/src/main/assets/"
+    "sync:android": "shx rm -rf android/app/src/main/assets && shx mkdir -p android/app/src/main/assets && shx cp -r dist/* android/app/src/main/assets/",
+    "sync:ios": "shx rm -rf ios/assets && shx mkdir -p ios/assets && shx cp -r dist/* ios/assets/",
+    "sync": "npm run sync:android && npm run sync:ios"
   },
   "dependencies": {
     "@quasar/extras": "^1.18.0",

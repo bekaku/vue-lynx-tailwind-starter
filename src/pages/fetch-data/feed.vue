@@ -96,7 +96,6 @@ const onLoadData = async (): Promise<void> => {
       addResponseData: false,
     });
 
-    console.log('response', response);
     data.value.push(...response);
     await nextTick();
     if (!firstLoad.value) {

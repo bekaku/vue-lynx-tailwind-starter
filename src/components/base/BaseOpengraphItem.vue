@@ -5,6 +5,7 @@ import BaseImage from './BaseImage.vue';
 import BaseIcon from './BaseIcon.vue';
 import BaseContentText from './BaseContentText.vue';
 import { SquareArrowOutUpRight } from 'lucide-static';
+import { useDevice } from '@/composables/useDevice';
 
 const props = withDefaults(
   defineProps<{
@@ -26,6 +27,7 @@ const props = withDefaults(
     imageMaxHeight: '150px',
   },
 );
+const {isAndroid} = useDevice();
 const onTap = (e: any) => {
   console.log('onTap', e);
 };
@@ -47,12 +49,14 @@ const onTap = (e: any) => {
         <text v-if="item.domain" class="text-sm"> {{ item.domain }}</text>
         <BaseContentText
           v-if="item.title"
+          :class="isAndroid ? 'pt-[-14px] pb-[-14px]' : ''"
           :content="item.title"
           :ellipsis="{ rows: 1 }"
         />
         <BaseContentText
           v-if="item.desc"
           text-class="text-sm text-muted"
+           :class="isAndroid ? 'pt-[-14px] pb-[-14px]' : ''"
           :content="item.desc"
           :ellipsis="{ rows: 2 }"
         />

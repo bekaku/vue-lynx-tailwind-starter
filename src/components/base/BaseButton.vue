@@ -90,6 +90,7 @@ const handleTap = (e: any) => {
 const handleCatchTap = (e: any) => {
   if (!props.disabled) {
     emit('catchtap', e);
+    emit('tap', e);
   }
 };
 </script>

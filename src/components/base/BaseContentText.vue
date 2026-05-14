@@ -75,7 +75,6 @@ const handleLinkTap = (e: any, url: string | undefined) => {
     <template #default="{ textStyles, textMaxline }">
       <text
         class="flex-wrap leading-relaxed"
-        :class="props.class"
         :style="{ lineHeight: '1.5em', ...textStyles }"
         :text-maxline="textMaxline"
       >
@@ -89,7 +88,7 @@ const handleLinkTap = (e: any, url: string | undefined) => {
           </text>
 
           <text v-else :class="props.textClass">
-            {{ part.content }}
+            {{ part.content  }}
           </text>
         </template>
       </text>
