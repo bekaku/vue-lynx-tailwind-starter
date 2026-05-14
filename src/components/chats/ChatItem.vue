@@ -153,17 +153,21 @@ const getGridItemStyle = (index: number) => {
 
   // Single image: full width
   if (count === 1) {
-    return { width: '160px', height: '160px' };
+    return { width: '100%', height: '160px' };
+    // return { width: '160px', height: '160px' };
   }
 
   // 2 or more images: 2 columns
-  // (240px total width - 118px - 118px = 4px horizontal space handled by justify-between)
   return {
-    width: '118px',
+    width: 'calc(50% - 2px)',
     height: '118px',
-    // Add a 4px vertical gap ONLY to the items in the first row (index 0 and 1)
-    marginBottom: index < 2 ? '4px' : '0',
+    // marginBottom: index < 2 ? '4px' : '0',
   };
+  // return {
+  //   width: '118px',
+  //   height: '118px',
+  //   marginBottom: index < 2 ? '4px' : '0',
+  // };
 };
 
 // --- Event Handlers ---
@@ -248,7 +252,7 @@ const handleLongpressText = (e: any) => {
           :content="item.chatMsg || ''"
         />
 
-        <view
+        <!-- <view
           v-if="hasFilesImage"
           class="flex flex-row flex-wrap justify-between"
           :style="{ width: gridWidth }"
@@ -256,7 +260,7 @@ const handleLongpressText = (e: any) => {
           <view
             v-for="(file, index) in displayFilesImage"
             :key="index"
-            class="relative overflow-hidden rounded-md"
+            class="relative overflow-hidden rounded-sm"
             :style="getGridItemStyle(index)"
             @tap="onMediaTap(file, index)"
           >
@@ -267,20 +271,52 @@ const handleLongpressText = (e: any) => {
                 file.fileManager?.filePath
               "
               class="w-full h-full"
-              fit="cover"
+              fit="aspectFill"
             />
 
             <view
               v-if="index === 3 && extraFilesImageCount > 0"
-              class="absolute top-0 left-0 w-full h-full flex flex-row items-center justify-center z-10"
-              :style="{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }"
+              class="absolute top-0 bg-black/50 left-0 w-full h-full flex flex-row items-center justify-center z-11"
             >
-              <text class="text-white text-xl font-bold"
-                >+{{ extraFilesImageCount }}</text
-              >
+              <text class="text-white text-xl font-bold">
+                +{{ extraFilesImageCount }}
+              </text>
+            </view>
+          </view>
+        </view> -->
+
+        <view
+          v-if="hasFilesImage"
+          class="flex flex-row flex-wrap"
+          :style="{ width: gridWidth }"
+        >
+          <view
+            v-for="(file, index) in displayFilesImage"
+            :key="index"
+            class="rounded-lg border border-border overflow-hidden relative"
+            @tap="onMediaTap(file, index)"
+            :style="getGridItemStyle(index)"
+          >
+            <BaseImage
+              v-if="file.fileManager"
+              :src="
+                file.fileManager?.fileThumbnailPath ||
+                file.fileManager?.filePath
+              "
+              class="w-full h-full"
+              fit="aspectFill"
+            />
+            <view
+              v-if="index === 3 && extraFilesImageCount > 0"
+              class="absolute top-0 bg-black/50 left-0 w-full h-full rounded-lg flex flex-row items-center justify-center z-11"
+            >
+              <text class="text-white text-xl font-bold">
+                +{{ extraFilesImageCount }}
+              </text>
             </view>
           </view>
         </view>
+
         <view
           v-if="hasFiles"
           class="flex flex-col gap-2"

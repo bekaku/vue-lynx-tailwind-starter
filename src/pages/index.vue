@@ -129,12 +129,12 @@ const handleLongpress = (e: any) => {
 
 <template>
   <view class="w-full h-full flex flex-col bg-background">
-    <BaseToolBar :show-back-button="false" title="Home" title-left>
+    <BaseToolBar :show-back-button="false" title="Home" title-left :border="false">
       <template #start>
         <BaseImage
           :src="!isDark ? logoBlack : logoWhite"
           :style="{ width: '32px', height: '32px' }"
-          fit="fill"
+          fit="scaleToFill"
           class="mr-2"
         />
       </template>
@@ -163,7 +163,7 @@ const handleLongpress = (e: any) => {
       :scroll-top="scrollTop"
       @scroll="onScroll"
     >
-      <view class="flex flex-col p-4">
+      <view class="flex flex-col px-[24px] pt-[14px]">
         <text class="text-xl font-bold tracking-tight">Vue Lynx </text>
         <text class="text-sm text-muted">
           Vue Lynx Starter Template By Chanavee platform : {{ platform }}

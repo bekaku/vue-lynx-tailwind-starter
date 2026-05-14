@@ -185,6 +185,14 @@ export interface LabelValue<Type> {
   children?: LabelValue<Type>[];
 }
 
+export interface OgMeta {
+  domain: string
+  url: string
+  title?: string
+  desc?: string
+  image?: string
+  imageAlt?: string
+}
 export interface UserDto extends Id {
   email: string
   username?: string | null

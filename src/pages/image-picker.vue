@@ -121,7 +121,7 @@ const uploadImage = async (fileUri: string) => {
                 v-if="selectedImageUri"
                 :src="selectedImageUri"
                 class="w-full h-full"
-                fit="cover"
+                fit="aspectFill"
               />
               <text v-else class="text-muted-foreground">
                 No image has been selected yet.
@@ -157,7 +157,7 @@ const uploadImage = async (fileUri: string) => {
               :key="index"
               class="w-24 h-24 bg-muted rounded-md overflow-hidden"
             >
-              <BaseImage :src="uri" class="w-full h-full" fit="cover" />
+              <BaseImage :src="uri" class="w-full h-full" fit="aspectFill" />
             </view>
           </view>
         </BaseCardContent>
@@ -192,7 +192,7 @@ const uploadImage = async (fileUri: string) => {
                 v-if="photoUri"
                 :src="photoUri"
                 class="w-full h-full"
-                fit="cover"
+                fit="aspectFill"
               />
               <text v-else class="text-muted-foreground">
                 No image has been take yet.

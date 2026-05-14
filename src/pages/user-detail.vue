@@ -54,7 +54,7 @@ const user = computed(() => users[userId.value]);
             <BaseImage
               :src="user.image"
               class="w-full h-[10rem] bg-background rounded-lg"
-              fit="scale-down"
+              fit="aspectFit"
             />
           </view>
           <text

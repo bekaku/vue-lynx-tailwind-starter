@@ -72,31 +72,30 @@ const onAvatarTap = (e: any) => {
           <BaseImage
             src="https://github.com/shadcn.png"
             class="w-full h-[10rem] bg-background"
-            fit="cover"
+            fit="aspectFill"
           />
           <text>contain</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"
-            fit="contain"
+            fit="aspectFit"
           />
           <text>fill</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"
-            fit="fill"
+            fit="scaleToFill"
           />
           <text>none</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"
-            fit="none"
           />
           <text>scale-down</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"
-            fit="scale-down"
+            fit="aspectFit"
           />
         </view>
       </BaseCard>

@@ -19,7 +19,7 @@ const props = withDefaults(
       height: props.width,
       borderRadius: '14px',
       borderWidth: '3px',
-      borderColor: '#eee',
+      borderColor: 'var(--color-border)',
       borderTopColor: 'var(--color-primary)',
       animationName: 'spin',
       animationDuration: '0.8s',

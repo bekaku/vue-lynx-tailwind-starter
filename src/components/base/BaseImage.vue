@@ -5,11 +5,11 @@ import { computed } from 'vue';
 const props = withDefaults(
   defineProps<{
     src: string;
-    fit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+    fit?: 'scaleToFill' | 'aspectFill' | 'aspectFit' | 'center';
     class?: string;
   }>(),
   {
-    fit: 'fill',
+    fit: 'scaleToFill',
   },
 );
 const emit = defineEmits<{
@@ -21,18 +21,12 @@ const emit = defineEmits<{
   tap: [event: any];
 }>();
 const { isAndroid } = useDevice();
-const nativeMode = computed(() => {
-  switch (props.fit) {
-    case 'cover':
-      return 'aspectFill';
-    case 'contain':
-    case 'scale-down':
-      return 'aspectFit';
-    case 'fill':
-    default:
-      return 'scaleToFill';
-  }
-});
+
+/* 
+cover : aspectFill
+contain, scale-down : aspectFit
+fill : scaleToFill
+*/
 </script>
 
 <template>
@@ -40,7 +34,7 @@ const nativeMode = computed(() => {
     v-if="isAndroid"
     :src="props.src"
     :class="props.class"
-    :fit="nativeMode"
+    :fit="fit"
     @tap="emit('tap', $event)"
     @error="emit('error', $event)"
     @load="emit('load', $event)"
@@ -49,7 +43,7 @@ const nativeMode = computed(() => {
     v-else
     :src="props.src"
     :class="props.class"
-    :mode="nativeMode"
+    :mode="fit"
     @tap="emit('tap', $event)"
     @currentloopcomplete="emit('currentloopcomplete', $event)"
     @error="emit('error', $event)"

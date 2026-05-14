@@ -13,7 +13,7 @@ import type { GroupChatDto } from '@/types/common';
 import { formattedTime } from '@/utils/dateUtil';
 import { biStarFill } from '@quasar/extras/bootstrap-icons';
 import { Inbox, Search, VolumeOff, VolumeX } from 'lucide-static';
-import { ref, computed } from 'vue';
+import { ref, computed, useTemplateRef, onMounted, nextTick } from 'vue';
 import BaseAlert from '@/components/base/BaseAlert.vue';
 import BaseActionSheet from '@/components/base/BaseActionSheet.vue';
 import ChatMenu from '@/components/chats/ChatMenu.vue';
@@ -23,9 +23,14 @@ const { isDark } = useTheme();
 const search = ref('');
 const { isAndroid } = useDevice();
 const dataList = ref<GroupChatDto[]>([...chatHistoryListApi.dataList]);
-
+const searchTextRef =
+  useTemplateRef<InstanceType<typeof BaseInput>>('searchTextRef');
 const openMenu = ref(false);
 const currentTapItem = ref<GroupChatDto>();
+
+onMounted(async () => {
+  await nextTick();
+});
 const filterChats = computed<GroupChatDto[]>(() => {
   return dataList.value.filter((item) => {
     if (!search.value) {
@@ -97,7 +102,14 @@ const leaveGroup = async (chatId: number | string) => {
 };
 
 const isLoading = ref(false);
+
+const onBlurSearchText = () => {
+  if (searchTextRef.value) {
+    searchTextRef.value.blur();
+  }
+};
 const onReload = async () => {
+  onBlurSearchText();
   isLoading.value = true;
   await new Promise((resolve) => setTimeout(resolve, 1500));
   isLoading.value = false;
@@ -121,7 +133,11 @@ const onReload = async () => {
       :lower-threshold-item-count="2"
     > -->
       <view class="mx-6 mb-6">
-        <BaseInput v-model="search" placeholder="Search chats">
+        <BaseInput
+          ref="searchTextRef"
+          v-model="search"
+          placeholder="Search chats"
+        >
           <template #start>
             <BaseIcon :name="Search" />
           </template>

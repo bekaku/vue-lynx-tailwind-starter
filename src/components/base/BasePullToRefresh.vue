@@ -10,8 +10,11 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   refresh: [void];
+  scroll: [void];
   scrolltoupper: [e: any];
   scrolltolower: [e: any];
+  touchend: [void];
+  touchstart: [void];
 }>();
 
 // State variables for touch tracking
@@ -25,6 +28,7 @@ const onScroll = (e: any) => {
   // Track scroll position to ensure we only pull from the very top.
   // We use 0 as a fallback just in case the detail object is missing.
   scrollTop.value = e.detail?.scrollTop || 0;
+  emit('scroll')
 };
 
 const onScrolltoupper = (e: any) => {
@@ -41,6 +45,7 @@ const onTouchStart = (e: any) => {
 
   isPulling.value = true;
   startY.value = e.touches[0].clientY;
+  emit('touchstart')
 };
 
 const onTouchMove = (e: any) => {
@@ -69,6 +74,7 @@ const onTouchEnd = () => {
     // Snap back to 0 if the user didn't pull far enough
     pullDistance.value = 0;
   }
+  emit('touchend')
 };
 
 // Listen to the parent's isRefreshing prop.

@@ -65,7 +65,7 @@ const getStickyStyle = computed(() => {
       <BaseImage
         :style="{ width: '100%', height: '120px' }"
         :src="src"
-        fit="cover"
+        fit="aspectFill"
       />
       <view class="p-2">
         <text class="text-xs">
@@ -82,7 +82,7 @@ const getStickyStyle = computed(() => {
     <BaseImage
       :style="{ width: '100%', height: '120px' }"
       :src="src"
-      fit="cover"
+      fit="aspectFill"
     />
     <view class="p-2">
       <text class="text-xs">
@@ -94,6 +94,6 @@ const getStickyStyle = computed(() => {
     <text class="px-[3px] text-xs bg-black text-white">
       {{ `item-${props.index}` }}
     </text>
-    <BaseImage class="w-full h-[150px]" :src="src" fit="scale-down" />
+    <BaseImage class="w-full h-[150px]" :src="src" fit="aspectFit" />
   </view> -->
 </template>

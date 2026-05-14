@@ -8,26 +8,30 @@ const BASE_URL = 'https://api.hackerwebapp.com';
 interface RequestConfig extends Omit<RequestInit, 'body'> {
     baseUrl?: string;
     body?: any;
+    addResponseData?: boolean;
     params?: Record<string, string>;
 }
 export interface UseApiReturn<T> {
     data: ShallowRef<T | null>;
     isLoading: Ref<boolean>;
     error: Ref<string | null>;
+    addedCount: Ref<number>;
     execute: (endpoint: string, config?: RequestConfig) => Promise<T>;
 }
 export function useFetch<T>(): UseApiReturn<T> {
     const data = shallowRef<T | null>(null);
     const isLoading = ref(false);
     const error = ref<string | null>(null);
+    const addedCount = ref<number>(0);
     const { getItem } = useStorage();
 
     const execute = async (endpoint: string, config: RequestConfig = {}) => {
         isLoading.value = true;
         error.value = null;
+        addedCount.value = 0
 
         try {
-            // 1. จัดการ Query Parameters (?id=1&name=test)
+            // 1. manage Query Parameters (?id=1&name=test)
             let url = `${config.baseUrl || BASE_URL}${endpoint}`;
             if (config.params) {
                 const query = new URLSearchParams(config.params).toString();
@@ -62,7 +66,11 @@ export function useFetch<T>(): UseApiReturn<T> {
             }
 
             const result = await response.json();
-            data.value = result;
+            if (config.addResponseData == undefined || config.addResponseData == true) {
+                data.value = result;
+            }
+
+            addedCount.value = Array.isArray(result) ? result.length : 1
             return result;
 
         } catch (err: any) {
@@ -73,5 +81,5 @@ export function useFetch<T>(): UseApiReturn<T> {
         }
     };
 
-    return { data, isLoading, error, execute };
+    return { data, isLoading, error, execute, addedCount };
 };

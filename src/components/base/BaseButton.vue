@@ -79,11 +79,17 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   (e: 'tap', payload: any): void;
+  (e: 'catchtap', payload: any): void;
 }>();
 
 const handleTap = (e: any) => {
   if (!props.disabled) {
     emit('tap', e);
+  }
+};
+const handleCatchTap = (e: any) => {
+  if (!props.disabled) {
+    emit('catchtap', e);
   }
 };
 </script>
@@ -94,6 +100,7 @@ const handleTap = (e: any) => {
     props.disabled ? 'opacity-50 pointer-events-none' : 'active:opacity-80',
     props.class)"
     @tap="handleTap"
+    :catchtap="handleCatchTap"
   >
     <slot v-if="$slots.start" name="start" />
     <slot>

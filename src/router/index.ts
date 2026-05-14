@@ -94,13 +94,6 @@ const router = createRouter({
                 { path: 'feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
             ]
         },
-        // {
-        //     path: '/fetch-data/feed', name: 'FetchDataFeed', component: FetchDataFeed,
-        //     meta: {
-        //         keepAlive: true
-        //     }
-        // },
-        // { path: '/fetch-data/feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
         { path: '/grid', name: 'Grid', component: Grid },
         { path: '/input', name: 'ComponentsInput', component: ComponentsInput },
         { path: '/inifinite-load', name: 'InifiniteLoadPage', component: InifiniteLoadPage },

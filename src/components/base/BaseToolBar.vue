@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<ToolbarProps>(), {
   showBackButton: true,
   top: false,
   titleLeft: true,
+  border: true,
 });
 
 const onTab = () => {
@@ -24,8 +25,9 @@ const onTab = () => {
   <view
     :class="
       cn(
-        'flex flex-row  justify-between w-full min-h-14 px-2 pb-[8px]  border-b border-border bg-card',
+        'flex flex-row  justify-between w-full min-h-14 px-2 pb-[8px] bg-card',
         !props.top ? 'items-center' : 'items-start',
+        props.border ? 'border-b border-border' : '',
         props.class,
       )
     "

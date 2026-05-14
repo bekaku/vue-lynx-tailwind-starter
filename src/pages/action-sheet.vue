@@ -63,25 +63,27 @@ const handleShow = (e: any) => {
         :class="['flex-1 w-full gap-2 px-2']"
         scroll-orientation="vertical"
       >
-        <BaseButton
-          variant="destructive"
-          label="Delete"
-          :catchtap="(e: any) => handleAction(e, 'delete')"
-        >
-          <template #start>
-            <BaseIcon color="#fff" :auto-dark="false" :name="Trash" />
-          </template>
-        </BaseButton>
-        <BaseButton
-          variant="secondary"
-          label="Archive"
-          :catchtap="(e: any) => handleAction(e, 'archive')"
-        />
-        <BaseButton
-          variant="outline"
-          label="Cancel"
-          :catchtap="(e: any) => handleCatchTapClose(e)"
-        />
+        <view class="flex flex-col gap-2">
+          <BaseButton
+            variant="destructive"
+            label="Delete"
+            :catchtap="(e: any) => handleAction(e, 'delete')"
+          >
+            <template #start>
+              <BaseIcon color="#fff" :auto-dark="false" :name="Trash" />
+            </template>
+          </BaseButton>
+          <BaseButton
+            variant="secondary"
+            label="Archive"
+            :catchtap="(e: any) => handleAction(e, 'archive')"
+          />
+          <BaseButton
+            variant="outline"
+            label="Cancel"
+            :catchtap="(e: any) => handleCatchTapClose(e)"
+          />
+        </view>
       </scroll-view>
     </BaseActionSheet>
   </view>

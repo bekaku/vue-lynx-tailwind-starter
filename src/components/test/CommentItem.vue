@@ -104,13 +104,6 @@ const onUserTap = (e: any, user?: string) => {
 
     <!-- Comment body -->
     <view :style="{ marginLeft: depth && depth > 0 ? '36px' : '44px' }">
-      <!-- <view
-        class="bg-content-item py-[0.5em] px-[0.5em] rounded-lg active:opacity-80 self-start max-w-full"
-      >
-        <text :style="{ lineHeight: '1.5em' }">
-          {{ stripHtml(comment.content) }}
-        </text>
-      </view> -->
       <view
         class="flex flex-row mb-[0.5em] py-[0.5em] px-[0.5em] gap-2 items-center"
       >

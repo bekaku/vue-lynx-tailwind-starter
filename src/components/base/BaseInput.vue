@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme';
 import { cn } from '@/utils/appUtil';
-import { onMounted, ref, useTemplateRef } from 'vue';
+import { nextTick, onMounted, ref, useTemplateRef } from 'vue';
 
 const props = withDefaults(
   defineProps<{
@@ -62,6 +62,7 @@ const handleInput = (e: any) => {
   emit('input', e);
 };
 const handleFocus = (e: any) => {
+  console.log('handleFocus', e);
   isFocused.value = true;
   emit('focus', e);
 };
@@ -70,6 +71,33 @@ const handleBlur = (e: any) => {
   isFocused.value = false;
   emit('blur', e);
 };
+
+const blur = async () => {
+  console.log('BaseInput.vue > blur');
+  await nextTick();
+  if (appInputRef.value) {
+    appInputRef.value
+      .invoke({
+        method: 'blur',
+      })
+      .exec();
+  }
+};
+const focus = async () => {
+  console.log('BaseInput.vue > focus');
+  await nextTick();
+  if (appInputRef.value) {
+    appInputRef.value
+      .invoke({
+        method: 'focus',
+      })
+      .exec();
+  }
+};
+defineExpose({
+  blur,
+  focus,
+});
 </script>
 <template>
   <view :class="cn('flex flex-col w-full gap-1.5', props.class)">

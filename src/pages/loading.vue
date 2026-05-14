@@ -23,7 +23,7 @@ const handleShow = (e: any) => {
 
     <BaseLoading
       v-model:visible="isOpen"
-      description="Please wait while loading this will hide after 3 seconds..."
+      description="This will hide after 3 seconds..."
     />
   </view>
 </template>

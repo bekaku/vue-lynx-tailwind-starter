@@ -70,7 +70,7 @@ const handleLinkTap = (e: any, url: string | undefined) => {
   <BaseTextEllipsis
     v-if="props.ellipsis && props.content"
     v-bind="{ ...props.ellipsis, content: plainText }"
-     :class="props.class"
+    :class="props.class"
   >
     <template #default="{ textStyles, textMaxline }">
       <text
@@ -88,7 +88,7 @@ const handleLinkTap = (e: any, url: string | undefined) => {
             {{ part.content }}
           </text>
 
-          <text v-else>
+          <text v-else :class="props.textClass">
             {{ part.content }}
           </text>
         </template>
