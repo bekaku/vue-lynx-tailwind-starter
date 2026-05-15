@@ -16,7 +16,7 @@ import {
   useQueryClient,
 } from '@tanstack/vue-query';
 import { ChevronLeft, ChevronRight, Siren } from 'lucide-static';
-import { computed, nextTick, onMounted, ref, useTemplateRef } from 'vue';
+import { computed, nextTick, onActivated, onDeactivated, onMounted, ref, useTemplateRef } from 'vue';
 
 interface FeedItem {
   id: number;
@@ -56,7 +56,15 @@ const hasNext = computed(() => page.value < maxPage.value);
 
 const firstLoad = ref(false);
 onMounted(async () => {
+  console.log('feed.vue > onMounted');
   await onLoadData();
+});
+onActivated(() => {
+  console.log('feed.vue > onActivated');
+});
+
+onDeactivated(() => {
+  console.log('feed.vue > onDeactivated');
 });
 //transtack query available
 // const { data, isLoading, isFetching, isError, } = useQuery({

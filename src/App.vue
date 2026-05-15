@@ -23,7 +23,7 @@ onMounted(() => {
   >
     <!-- <RouterView /> -->
 
-    <RouterView v-slot="{ Component, route }">
+    <!-- <RouterView v-slot="{ Component, route }">
       <KeepAlive v-if="route.meta.keepAlive === true" :max="5">
         <Component :is="Component" :key="route.fullPath" />
       </KeepAlive>
@@ -32,9 +32,9 @@ onMounted(() => {
         :is="Component"
         :key="route.fullPath"
       />
-    </RouterView>
+    </RouterView> -->
 
-    <!-- <RouterView v-slot="{ Component, route }">
+    <RouterView v-slot="{ Component, route }">
       <KeepAlive :max="5">
         <Component
           :is="Component"
@@ -47,6 +47,6 @@ onMounted(() => {
         :key="route.fullPath"
         v-if="!route.meta.keepAlive === true"
       />
-    </RouterView> -->
+    </RouterView>
   </view>
 </template>

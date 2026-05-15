@@ -106,7 +106,7 @@ const getExampletItems = computed(() => {
 });
 onMounted(() => {
   // const info = lynx.getSystemInfoSync();
-  console.log('index.vue > onMounted');
+  console.log('index.vue > onMounted', 'logoBlack', logoBlack);
 });
 onActivated(() => {
   console.log('index.vue > onActivated');
@@ -168,6 +168,7 @@ const handleLongpress = (e: any) => {
         <text class="text-sm text-muted">
           Vue Lynx Starter Template By Chanavee platform : {{ platform }}
         </text>
+        <text>{{ logoBlack }}</text>
       </view>
 
       <BaseCard class="w-full px-2" flat>
