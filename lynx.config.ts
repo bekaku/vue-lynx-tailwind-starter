@@ -20,6 +20,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  output:{
+    // assetPrefix:'',
+    dataUriLimit:10*1024*1024,//10MB
+  },
   plugins: [
     pluginQRCode({
       schema(url) {

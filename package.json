@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "rspeedy build",
+     "_build": "rspeedy build && node scripts/fix-assets.js",
     "dev": "rspeedy dev",
     "format": "prettier --write .",
     "lint": "eslint .",
