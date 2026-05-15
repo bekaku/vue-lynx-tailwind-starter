@@ -1,4 +1,3 @@
-
 import Foundation
 
 @objcMembers
@@ -8,11 +7,19 @@ public final class NativeLocalStorageModule: NSObject, LynxModule {
         return "NativeLocalStorageModule"
     }
 
-    public static var methodLookup: [String : String] {
+    public static var methodLookup: [String: String] {
         return [
-            "setStorageItem": NSStringFromSelector(#selector(setStorageItem(_:value:))),
-            "getStorageItem": NSStringFromSelector(#selector(getStorageItem(_:completion:))),
-            "clearStorage": NSStringFromSelector(#selector(clearStorage))
+            "setStorageItem": NSStringFromSelector(
+                #selector(setStorageItem(_:value:))
+            ),
+            "getStorageItem": NSStringFromSelector(
+                #selector(getStorageItem(_:completion:))
+            ),
+            "clearStorage": NSStringFromSelector(#selector(clearStorage)),
+            "removeStorageItem": NSStringFromSelector(
+                #selector(removeStorageItem(_:completion:))
+            ),
+
         ]
     }
 
@@ -20,16 +27,28 @@ public final class NativeLocalStorageModule: NSObject, LynxModule {
     private static let storageKey = "MyLocalStorage"
 
     public init(param: Any) {
-      guard let suite = UserDefaults(suiteName: NativeLocalStorageModule.storageKey) else {
-          fatalError("Failed to initialize UserDefaults with suiteName: \(NativeLocalStorageModule.storageKey)")
-      }
-      localStorage = suite
-      super.init()
+        guard
+            let suite = UserDefaults(
+                suiteName: NativeLocalStorageModule.storageKey
+            )
+        else {
+            fatalError(
+                "Failed to initialize UserDefaults with suiteName: \(NativeLocalStorageModule.storageKey)"
+            )
+        }
+        localStorage = suite
+        super.init()
     }
 
     public override init() {
-        guard let suite = UserDefaults(suiteName: NativeLocalStorageModule.storageKey) else {
-            fatalError("Failed to initialize UserDefaults with suiteName: \(NativeLocalStorageModule.storageKey)")
+        guard
+            let suite = UserDefaults(
+                suiteName: NativeLocalStorageModule.storageKey
+            )
+        else {
+            fatalError(
+                "Failed to initialize UserDefaults with suiteName: \(NativeLocalStorageModule.storageKey)"
+            )
         }
         localStorage = suite
         super.init()
@@ -39,14 +58,21 @@ public final class NativeLocalStorageModule: NSObject, LynxModule {
         localStorage.set(value, forKey: key)
     }
 
-    @objc func getStorageItem(_ key: String, completion:(NSString) -> Void) {
-      if let value = localStorage.string(forKey: key) {
-          completion(value as NSString)
-      } else {
-          completion("" as NSString)
-      }
+    @objc func getStorageItem(_ key: String, completion: (NSString) -> Void) {
+        if let value = localStorage.string(forKey: key) {
+            completion(value as NSString)
+        } else {
+            completion("" as NSString)
+        }
     }
-    
+
+    @objc func removeStorageItem(
+        _ key: String,
+        completion: @escaping LynxCallbackBlock
+    ) {
+        localStorage.removeObject(forKey: key)
+        completion([true])
+    }
 
     func clearStorage() {
         localStorage.dictionaryRepresentation().keys.forEach {

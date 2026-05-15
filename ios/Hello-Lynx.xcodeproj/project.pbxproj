@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		213F4E5D2FB7232300C83E50 /* NativeLocalStorageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F4E5C2FB7231C00C83E50 /* NativeLocalStorageModule.swift */; };
+		213F4E602FB72EA000C83E50 /* DeviceInfoModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F4E5F2FB72E9B00C83E50 /* DeviceInfoModule.swift */; };
 		219B1D932FB6F47E00E2AA45 /* main.lynx.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 219B1D902FB6F47D00E2AA45 /* main.lynx.bundle */; };
 		2B94A3C92D6613730060892C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94A3C82D6613730060892C /* AppDelegate.swift */; };
 		2B94A3CB2D6613730060892C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94A3CA2D6613730060892C /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		213F4E5C2FB7231C00C83E50 /* NativeLocalStorageModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLocalStorageModule.swift; sourceTree = "<group>"; };
+		213F4E5F2FB72E9B00C83E50 /* DeviceInfoModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoModule.swift; sourceTree = "<group>"; };
 		219B1D902FB6F47D00E2AA45 /* main.lynx.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; name = main.lynx.bundle; path = assets/main.lynx.bundle; sourceTree = "<group>"; };
 		2B94A3C52D6613730060892C /* Hello-Lynx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello-Lynx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B94A3C82D6613730060892C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		213F4E592FB71EE100C83E50 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				213F4E5F2FB72E9B00C83E50 /* DeviceInfoModule.swift */,
 				213F4E5C2FB7231C00C83E50 /* NativeLocalStorageModule.swift */,
 			);
 			path = modules;
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B94A3DD2D6614980060892C /* DemoLynxProvider.swift in Sources */,
+				213F4E602FB72EA000C83E50 /* DeviceInfoModule.swift in Sources */,
 				2B94A3CD2D6613730060892C /* ViewController.swift in Sources */,
 				2B94A3C92D6613730060892C /* AppDelegate.swift in Sources */,
 				2B94A3CB2D6613730060892C /* SceneDelegate.swift in Sources */,

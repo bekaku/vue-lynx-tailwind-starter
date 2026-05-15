@@ -51,7 +51,7 @@ const router = createRouter({
     history: createMemoryHistory(),
     routes: [
         // { path: '/', redirect: '/fetch-data/feed-detail/48106024' },
-        { path: '/', redirect: '/test' },
+        { path: '/', redirect: '/home' },
         { path: '/home', name: 'Home', component: Home, meta: { keepAlive: true } },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },
         { path: '/alert', name: 'Alert', component: Alert },
