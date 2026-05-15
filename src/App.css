@@ -82,12 +82,14 @@
 }
 @layer base {
   text {
-    @apply font-sans;
+    /* @apply font-sans; */
+    font-family: system;
     color: var(--text-body);
     font-size: 15px;
   }
   input {
-    @apply font-sans;
+    /* @apply font-sans; */
+    font-family: system;
     color: var(--text-body);
     font-size: 15px;
   }

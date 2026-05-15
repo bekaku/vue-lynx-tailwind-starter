@@ -21,7 +21,7 @@ import BaseButton from '@/components/base/BaseButton.vue';
 import BasePullToRefresh from '@/components/base/BasePullToRefresh.vue';
 const { isDark } = useTheme();
 const search = ref('');
-const { isAndroid } = useDevice();
+const { isAndroid, isIos } = useDevice();
 const dataList = ref<GroupChatDto[]>([...chatHistoryListApi.dataList]);
 const searchTextRef =
   useTemplateRef<InstanceType<typeof BaseInput>>('searchTextRef');
@@ -121,7 +121,7 @@ const onReload = async () => {
     <BaseToolBar title="Chat" />
 
     <BasePullToRefresh
-      scroll-class="bg-card py-4 flex-1"
+      scroll-class="flex-1 w-full overflow-hidden"
       :is-refreshing="isLoading"
       @refresh="onReload"
     >
@@ -159,8 +159,8 @@ const onReload = async () => {
             <ChatAvatar :item="item" />
           </template>
 
-          <view class="flex flex-col items-start gap-0">
-            <view class="flex flex-row gap-1 items-center">
+          <view class="flex flex-col items-start gap-0 ">
+            <view class="flex flex-row gap-1 items-center ">
               <BaseIcon
                 v-if="item?.favorite"
                 :name="biStarFill"
@@ -171,7 +171,7 @@ const onReload = async () => {
                 class="ml-[2px]"
               />
               <BaseTextEllipsis
-                :class="isAndroid ? 'py-[-18px]' : ''"
+                :class="isAndroid ? 'py-[-18px]' : isIos ? 'py-[-10px]' : ''"
                 :rows="1"
                 :content="`${item.chatType == 'GROUP' ? '(' + item.totalMembers + ') ' : ''}${
                   item.groupName ? item.groupName : 'Untitled Group'
@@ -191,7 +191,7 @@ const onReload = async () => {
               />
               <BaseTextEllipsis
                 text-class="text-sm text-muted"
-                :class="isAndroid ? 'py-[-18px]' : ''"
+                :class="isAndroid ? 'py-[-18px]' : isIos ? 'py-[-10px]' : ''"
                 :rows="1"
                 :content="item.latestMessage"
               />
@@ -200,7 +200,7 @@ const onReload = async () => {
               <text class="text-sm text-muted">{{
                 item.latestMessageType
               }}</text>
-            </template>
+            </template> 
           </view>
 
           <template #end>

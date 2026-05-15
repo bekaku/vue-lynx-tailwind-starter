@@ -164,11 +164,10 @@ const handleLongpress = (e: any) => {
       @scroll="onScroll"
     >
       <view class="flex flex-col px-[24px] pt-[14px]">
-        <text class="text-xl font-bold tracking-tight">Vue Lynx </text>
+        <text class="text-xl font-bold tracking-tight">Vue Lynx xx </text>
         <text class="text-sm text-muted">
           Vue Lynx Starter Template By Chanavee platform : {{ platform }}
         </text>
-        <text>{{ logoBlack }}</text>
       </view>
 
       <BaseCard class="w-full px-2" flat>

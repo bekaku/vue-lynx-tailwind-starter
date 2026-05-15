@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useDevice } from '@/composables/useDevice';
-import { computed } from 'vue';
+import { cn } from '@/utils/appUtil';
+import { computed, ref } from 'vue';
 
 const props = withDefaults(
   defineProps<{
@@ -21,12 +22,15 @@ const emit = defineEmits<{
   tap: [event: any];
 }>();
 const { isAndroid } = useDevice();
-
+const haseError=ref(false)
 /* 
 cover : aspectFill
 contain, scale-down : aspectFit
 fill : scaleToFill
 */
+const onError = (e: any) => {
+  emit('error', e);
+};
 </script>
 
 <template>
@@ -42,11 +46,11 @@ fill : scaleToFill
   <image
     v-else
     :src="props.src"
-    :class="props.class"
+    :class="cn(props.class)"
     :mode="fit"
     @tap="emit('tap', $event)"
     @currentloopcomplete="emit('currentloopcomplete', $event)"
-    @error="emit('error', $event)"
+    @error="onError"
     @finalloopcomplete="emit('finalloopcomplete', $event)"
     @load="emit('load', $event)"
     @startplay="emit('startplay', $event)"

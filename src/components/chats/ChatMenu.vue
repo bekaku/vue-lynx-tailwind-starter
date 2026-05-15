@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseItem from '@/components/base/BaseItem.vue';
 import BaseIcon from '@/components/base/BaseIcon.vue';
+import BaseItem from '@/components/base/BaseItem.vue';
 import type { ChatType } from '@/types/common';
 import {
   LogOut,
@@ -10,8 +10,7 @@ import {
   Trash,
   UserPlus,
   Volume2,
-  VolumeOff,
-  VolumeX,
+  VolumeOff
 } from 'lucide-static';
 
 const { chatId, chatType } = defineProps<{
@@ -78,7 +77,7 @@ const leaveGroup = async () => {
       @tap="toggleMute"
     >
       <template #start>
-        <BaseIcon :name="!muteNotify ? Volume2 : VolumeOff" />
+        <BaseIcon :size="18" :name="!muteNotify ? Volume2 : VolumeOff" />
       </template>
     </BaseItem>
     <BaseItem
