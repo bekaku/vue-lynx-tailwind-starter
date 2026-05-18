@@ -5,13 +5,13 @@ const props = defineProps<{ class?: string }>();
 </script>
 
 <template>
-  <text :class="cn('text-sm',$style.cardDescriptionText, props.class)">
+  <text :class="cn('text-sm cardDescriptionText', props.class)">
     <slot />
   </text>
 </template>
 
-<style module>
-.cardDescriptionText text {
+<style scoped>
+.cardDescriptionText {
   color: var(--color-muted);
 }
 </style>
