@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   titleLines: -1,
 });
 const { onNavigateTo } = useBase();
-const { isAndroid } = useDevice();
+const { isAndroid, isIos } = useDevice();
 const emit = defineEmits<{
   (e: 'tap', payload: any): void;
   (e: 'longpress', payload: any): void;
@@ -56,7 +56,7 @@ const handleLongpress = (e: any) => {
         props.button && !props.disabled ? 'active:bg-ripple' : '',
         props.disabled ? 'opacity-50' : '',
         props.separator ? 'border-b border-border' : '',
-        !isAndroid ? 'py-2' : 'py-2',
+        isAndroid ? 'py-2' : isIos ? 'py-2' : 'py-2',
         !props.top ? 'items-center' : 'items-start',
         props.class,
       )
@@ -93,7 +93,7 @@ const handleLongpress = (e: any) => {
         >
           {{ description }}
         </text>
-        <view v-if="$slots.default" :class="isAndroid ? 'py-[-14px]' : ''">
+        <view v-if="$slots.default" :class="isAndroid ? 'py-[-14px]' : isIos ? 'py-[-14px]' : ''">
           <slot />
         </view>
       </view>

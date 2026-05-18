@@ -28,7 +28,7 @@ const onScroll = (e: any) => {
   // Track scroll position to ensure we only pull from the very top.
   // We use 0 as a fallback just in case the detail object is missing.
   scrollTop.value = e.detail?.scrollTop || 0;
-  emit('scroll')
+  emit('scroll');
 };
 
 const onScrolltoupper = (e: any) => {
@@ -45,12 +45,14 @@ const onTouchStart = (e: any) => {
 
   isPulling.value = true;
   startY.value = e.touches[0].clientY;
-  emit('touchstart')
+  emit('touchstart');
 };
 
 const onTouchMove = (e: any) => {
   if (!isPulling.value || props.isRefreshing) return;
-
+  if (scrollTop.value > 0) {
+    return;
+  }
   const currentY = e.touches[0].clientY;
   const distance = currentY - startY.value;
 
@@ -74,7 +76,7 @@ const onTouchEnd = () => {
     // Snap back to 0 if the user didn't pull far enough
     pullDistance.value = 0;
   }
-  emit('touchend')
+  emit('touchend');
 };
 
 // Listen to the parent's isRefreshing prop.
@@ -126,7 +128,8 @@ watch(
         transform: `translateY(${Math.min(pullDistance, 80)}px)`,
         transition: isPulling ? 'none' : 'transform 0.3s ease-out',
       }"
-      scroll-y
+      scroll-orientation="vertical"
+      :bounces="false"
       @scroll="onScroll"
       @scrolltoupper="onScrolltoupper"
       @scrolltolower="onScrolltolower"

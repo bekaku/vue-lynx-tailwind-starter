@@ -1,0 +1,24 @@
+source 'https://cdn.cocoapods.org/'
+
+platform :ios, '10.0'
+
+target 'Hello-Lynx' do
+  pod 'Lynx', '3.6.0', :subspecs => [
+    'Framework',
+  ]
+
+
+  # integrate image-service, log-service, and http-service
+  pod 'LynxService', '3.6.0', :subspecs => [
+      'Image',
+      'Log',
+      'Http',
+  ]
+
+  # ImageService dependencies:
+  pod 'SDWebImage','5.15.5'
+  pod 'SDWebImageWebPCoder', '0.11.0'
+
+  # XElement
+  pod 'XElement', '3.6.0'
+end
