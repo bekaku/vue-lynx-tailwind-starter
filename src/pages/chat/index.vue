@@ -21,7 +21,6 @@ import BaseButton from '@/components/base/BaseButton.vue';
 import BasePullToRefresh from '@/components/base/BasePullToRefresh.vue';
 const { isDark } = useTheme();
 const search = ref('');
-const { isAndroid, isIos } = useDevice();
 const dataList = ref<GroupChatDto[]>([...chatHistoryListApi.dataList]);
 const searchTextRef =
   useTemplateRef<InstanceType<typeof BaseInput>>('searchTextRef');
@@ -121,7 +120,7 @@ const onReload = async () => {
     <BaseToolBar title="Chat" />
 
     <BasePullToRefresh
-      scroll-class="flex-1 w-full overflow-hidden"
+      scroll-class="flex-1 w-full overflow-hidden bg-card"
       :is-refreshing="isLoading"
       @refresh="onReload"
     >
@@ -132,7 +131,7 @@ const onReload = async () => {
       :style="{ width: '100%', height: '100%' }"
       :lower-threshold-item-count="2"
     > -->
-      <view class="mx-6 mb-6">
+      <view class="mx-6 mb-6 mt-6">
         <BaseInput
           ref="searchTextRef"
           v-model="search"
@@ -171,8 +170,8 @@ const onReload = async () => {
                 class="ml-[2px]"
               />
               <BaseTextEllipsis
-                :class="isAndroid ? 'py-[-18px]' : isIos ? 'py-[-10px]' : ''"
                 :rows="1"
+                text-class="text-lg app-text"
                 :content="`${item.chatType == 'GROUP' ? '(' + item.totalMembers + ') ' : ''}${
                   item.groupName ? item.groupName : 'Untitled Group'
                 }`"
@@ -191,7 +190,6 @@ const onReload = async () => {
               />
               <BaseTextEllipsis
                 text-class="text-sm text-muted"
-                :class="isAndroid ? 'py-[-18px]' : isIos ? 'py-[-10px]' : ''"
                 :rows="1"
                 :content="item.latestMessage"
               />

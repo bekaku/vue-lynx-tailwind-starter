@@ -51,7 +51,7 @@ onMounted(async () => {
     <BaseCard>
       <BaseCardContent>
         <view class="flex flex-col p-4 gap-4">
-          <text>ชื่อที่บันทึกไว้: {{ savedUsername }}</text>
+          <text class="app-text">Save name: {{ savedUsername }}</text>
 
           <!-- สมมติว่านี่คือ Input -->
           <!-- <input v-model="username" placeholder="พิมพ์ชื่อ..." /> -->

@@ -26,7 +26,7 @@ const emit = defineEmits<{
   requestclose: [e: any];
   showoverlay: [e: any];
 }>();
-const { isWeb, isAndroid } = useDevice();
+const { isWeb } = useDevice();
 const { safeAreaBottom } = useSafeArea();
 const getOverlayStyle = computed(() => {
   if (!isWeb) {
@@ -102,7 +102,6 @@ const onRequestClose = (e: any) => {
 
         <view
           v-if="$slots.default"
-          :class="{ 'android-padding-fix': isAndroid }"
         >
           <slot />
         </view>

@@ -34,10 +34,10 @@ const emit = defineEmits<{
   requestclose: [e: any];
   showoverlay: [e: any];
 }>();
-const { isWeb, isAndroid } = useDevice();
+const { isNative } = useDevice();
 const { safeAreaBottom } = useSafeArea();
 const getOverlayStyle = computed(() => {
-  if (!isWeb) {
+  if (isNative) {
     return { position: 'fixed', paddingBottom: safeAreaBottom + 'px' };
   }
   return {
@@ -110,13 +110,13 @@ const onRequestClose = (e: any) => {
           )
         "
       >
-        <text v-if="props.title" class="text-lg font-semibold mb-2">
+        <text v-if="props.title" class="app-text text-lg font-semibold mb-2">
           {{ props.title }}
         </text>
         <text v-if="props.description" class="text-sm text-muted mb-6">
           {{ props.description }}
         </text>
-        <view :class="{ 'android-padding-fix': isAndroid }">
+        <view>
           <slot />
         </view>
         <view class="flex flex-row justify-end gap-3 mt-2 w-full">

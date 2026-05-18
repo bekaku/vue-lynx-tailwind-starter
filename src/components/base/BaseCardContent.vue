@@ -5,15 +5,10 @@ import { defaultAndroidPaddingFix } from '@/libs/constant';
 import { useDevice } from '@/composables/useDevice';
 
 const props = defineProps<{ class?: string }>();
-const { isAndroid } = useDevice();
 </script>
 
 <template>
-  <view
-    :class="
-      cn('flex flex-col px-4', isAndroid ? 'py-[-14px]' : 'pt-[8px] pb-[16px]', props.class)
-    "
-  >
+  <view :class="cn('flex flex-col px-4 py-[16px]', props.class)">
     <slot />
   </view>
 </template>

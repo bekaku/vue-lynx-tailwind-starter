@@ -162,7 +162,7 @@ const handleCatchTap = (e: any) => {
           class="flex flex-col items-center mb-4 gap-1 px-4"
           :catchtap="(e: any) => handleCatchTap(e)"
         >
-          <text v-if="props.title" class="text-base font-semibold text-center">
+          <text v-if="props.title" class="app-text text-base font-semibold text-center">
             {{ props.title }}
           </text>
           <text v-if="props.description" class="text-sm text-muted text-center">

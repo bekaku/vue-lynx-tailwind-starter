@@ -49,7 +49,7 @@ const handleMenuItemClick = (itemName: string) => {
 
           <template #default="{ close }">
             <view class="flex flex-col w-full">
-              <text class="ml-3 font-semibold"> Set up profile </text>
+              <text class="app-text ml-3 font-semibold"> Set up profile </text>
 
               <BaseItem
                 v-for="(item, index) in menuItems"
@@ -104,7 +104,7 @@ const handleMenuItemClick = (itemName: string) => {
 
           <template #default="{ close }">
             <view class="flex flex-col w-full">
-              <text class="font-semibold"> . </text>
+              <text class="app-text font-semibold"> . </text>
             </view>
           </template>
         </BasePopover>
@@ -122,7 +122,7 @@ const handleMenuItemClick = (itemName: string) => {
 
           <template #default="{ close }">
             <view class="flex flex-col w-full">
-              <text class="font-semibold"> . </text>
+              <text class="app-text font-semibold"> . </text>
             </view>
           </template>
         </BasePopover>
@@ -140,7 +140,7 @@ const handleMenuItemClick = (itemName: string) => {
 
           <template #default="{ close }">
             <view class="flex flex-col w-full">
-              <text class="font-semibold"> . </text>
+              <text class="app-text font-semibold"> . </text>
             </view>
           </template>
         </BasePopover>
@@ -158,7 +158,7 @@ const handleMenuItemClick = (itemName: string) => {
 
           <template #default="{ close }">
             <view class="flex flex-col w-full">
-              <text class="font-semibold"> . </text>
+              <text class="app-text font-semibold"> . </text>
             </view>
           </template>
         </BasePopover>

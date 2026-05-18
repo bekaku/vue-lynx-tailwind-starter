@@ -45,7 +45,7 @@ const show = ref(true);
     <view class="p-2 flex flex-row flex-wrap items-center gap-1">
       <slot name="start" />
       <slot>
-        <text>
+        <text class="app-text">
           {{ props.message ? props.message : '' }}
         </text>
       </slot>

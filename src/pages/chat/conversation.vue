@@ -25,7 +25,6 @@ defineEmits<{
   'leave-group': [chatId: number | string];
   'invite-people': [chatId: number | string];
 }>();
-const { isAndroid } = useDevice();
 const { getParam } = useBase();
 const pageId = computed<string>(() => getParam('id'));
 const chatContentScrollViewRef = useTemplateRef<any>(
@@ -208,7 +207,6 @@ const leaveGroup = async (chatId: number | string) => {
         </view>
         <view class="flex flex-col flex-1 justify-start">
           <BaseTextEllipsis
-            :class="isAndroid ? 'py-[-14px]' : ''"
             text-class="font-semibold text-md"
             :rows="1"
             :content="groupItem?.groupName || 'Untitled Group'"
@@ -216,7 +214,7 @@ const leaveGroup = async (chatId: number | string) => {
             <template #default="{ textStyles, textMaxline }">
               <view class="flex flex-row items-center">
                 <text
-                  class="flex-wrap leading-relaxed font-semibold text-md"
+                  class="app-text flex-wrap leading-relaxed font-semibold text-md"
                   :style="{ lineHeight: '1.5em', ...textStyles }"
                   :text-maxline="textMaxline"
                 >

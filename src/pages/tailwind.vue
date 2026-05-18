@@ -58,7 +58,7 @@ const onManulSetTheme = (t: any) => {
       <view class="p-6 flex flex-col gap-6">
         <!-- Header -->
         <view class="flex flex-col gap-1">
-          <text class="text-2xl font-bold">Settings Example</text>
+          <text class="app-text text-2xl font-bold">Settings Example</text>
           <text class="text-muted text-sm">
             Manage your account and preferences.
           </text>

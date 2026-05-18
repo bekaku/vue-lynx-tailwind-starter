@@ -44,7 +44,6 @@ import Transition from '../pages/transition.vue';
 import ChatPage from '../pages/chat/index.vue';
 import ChatConversation from '../pages/chat/conversation.vue';
 import Echarts from '../pages/echarts.vue';
-import PaddingProblem from '../pages/test/padding-problem.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
@@ -52,9 +51,7 @@ const router = createRouter({
     history: createMemoryHistory(),
     routes: [
         // { path: '/', redirect: '/fetch-data/feed-detail/48106024' },
-        // { path: '/', redirect: '/home' },
-        { path: '/', redirect: '/padding-problem' },
-        { path: '/padding-problem', name: 'PaddingProblem', component: PaddingProblem },
+        { path: '/', redirect: '/home' },
         { path: '/home', name: 'Home', component: Home, meta: { keepAlive: true } },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },
         { path: '/alert', name: 'Alert', component: Alert },
@@ -67,9 +64,6 @@ const router = createRouter({
                     path: '',
                     name: 'ChatPage',
                     component: ChatPage,
-                    meta: {
-                        keepAlive: true
-                    }
                 },
                 {
                     path: 'conversation/:id',

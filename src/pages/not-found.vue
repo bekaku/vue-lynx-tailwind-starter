@@ -11,7 +11,7 @@ const goHome = () => {
   <view
     class="w-full h-full flex flex-col items-center justify-center bg-background p-4"
   >
-    <text class="text-6xl font-bold mb-2">404</text>
+    <text class="app-text text-6xl font-bold mb-2">404</text>
     <text class="text-lg text-zinc-500 mb-8">Oops! BasePage not found.</text>
 
     <BaseButton label="Back to Home" @tap="goHome" />

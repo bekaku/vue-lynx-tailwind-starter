@@ -123,7 +123,7 @@ defineExpose({
       v-if="label"
       :class="
         cn(
-          'text-sm font-medium leading-none',
+          'app-text text-sm font-medium leading-none',
           props.disabled ? 'opacity-70' : '',
         )
       "

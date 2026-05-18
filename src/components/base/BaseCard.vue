@@ -17,7 +17,6 @@ const props = withDefaults(
     margin: true,
   },
 );
-const {isAndroid} = useDevice();
 </script>
 
 <template>
@@ -29,7 +28,6 @@ const {isAndroid} = useDevice();
           !square ? 'rounded-xl' : '',
           !flat ? 'shadow-sm' : '',
           border && !flat ? 'border border-border' : '',
-          isAndroid ? 'py-[-18px]' : '',
           props.class,
         )
       "

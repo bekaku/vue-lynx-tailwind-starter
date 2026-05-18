@@ -155,7 +155,7 @@ const onScrollToTop = () => {
                 :style="{
                   lineHeight: '1.3em',
                 }"
-                class="text-2xl font-bold"
+                class="app-text text-2xl font-bold"
               >
                 {{ data.title }}
               </text>
@@ -188,6 +188,7 @@ const onScrollToTop = () => {
 
               <view class="py-[0.5em]">
                 <BaseContentText
+                text-class="app-text"
                   :ellipsis="{ rows: 3, showMore: true }"
                   :content="data.content"
                 />

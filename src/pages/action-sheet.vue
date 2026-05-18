@@ -48,7 +48,7 @@ const handleShow = (e: any) => {
         Open Action Sheet isOpen : {{ isOpen }}
       </text>
     </view>
-    <text class="p-2"> eventItems {{ eventItems }}</text>
+    <text class="p-2 app-text"> eventItems {{ eventItems }}</text>
 
     <BaseActionSheet
       v-model:visible="isOpen"

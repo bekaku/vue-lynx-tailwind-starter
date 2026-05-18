@@ -21,7 +21,9 @@ const { isDark } = useTheme();
         </BaseBadge>
 
         <BaseBadge variant="secondary">
-          <text class="text-xs" :class="!isDark ? 'text-zinc-900' : 'text-zinc-100'"
+          <text
+            class="text-xs"
+            :class="!isDark ? 'text-zinc-900' : 'text-zinc-100'"
             >Secondary</text
           >
         </BaseBadge>
@@ -30,7 +32,7 @@ const { isDark } = useTheme();
           <text class="text-white text-xs">Destructive</text>
         </BaseBadge>
 
-        <BaseBadge variant="outline">Outline</BaseBadge>
+        <BaseBadge text-class="app-text" variant="outline" label="Outline" />
 
         <BaseBadge variant="destructive">
           <view class="flex flex-row gap-[2px] items-center">
@@ -40,7 +42,7 @@ const { isDark } = useTheme();
         </BaseBadge>
 
         <BaseBadge class="bg-green-500" text-class="text-lg ">
-          <text class="text-white text-xs"> Custom Size </text>
+          <text class="text-white text-lg"> Custom Size </text>
         </BaseBadge>
       </view>
 
@@ -80,7 +82,9 @@ const { isDark } = useTheme();
             fallback="CN"
             class="h-16 w-16"
           />
-          <BaseBadge label="New" class="absolute -top-2 -left-2" />
+          <BaseBadge  class="absolute -top-2 -left-2">
+            <text class="text-white text-xs">New</text>
+          </BaseBadge>
         </view>
 
         <view class="relative flex">

@@ -23,7 +23,7 @@ const text =
     <view class="flex h-full flex-1 flex-col gap-4">
       <scroll-view :class="['flex-1 w-full pb-[100px]']" scroll-orientation="vertical">
         <BaseCard class="w-full">
-          <text class="p-4">Fade :{{ fade }}</text>
+          <text class="app-text p-4">Fade :{{ fade }}</text>
 
           <BaseButton
             variant="ghost"
@@ -35,13 +35,13 @@ const text =
               v-if="fade"
               :style="{ padding: '12px', borderRadius: '4px' }"
             >
-                  <text :style="{ fontSize: '13px' }">{{ text }}</text>
+                  <text class="app-text" :style="{ fontSize: '13px' }">{{ text }}</text>
             </view>
           </BaseTransitionWrapper>
         </BaseCard>
 
         <BaseCard class="w-full">
-          <text class="p-4">Slide Left :{{ slideLeft }}</text>
+          <text class="app-text p-4">Slide Left :{{ slideLeft }}</text>
 
           <BaseButton
             :label="slideLeft ? 'Hide me' : ' Show me'"
@@ -53,13 +53,13 @@ const text =
               v-if="slideLeft"
               :style="{ padding: '12px', borderRadius: '4px' }"
             >
-              <text :style="{ fontSize: '13px' }">{{ text }}</text>
+              <text class="app-text" :style="{ fontSize: '13px' }">{{ text }}</text>
             </view>
           </BaseTransitionWrapper>
         </BaseCard>
 
         <BaseCard class="w-full">
-          <text class="p-4">Slide Right :{{ slideRight }}</text>
+          <text class="app-text p-4">Slide Right :{{ slideRight }}</text>
 
           <BaseButton
             :label="slideRight ? 'Hide me' : ' Show me'"
@@ -67,13 +67,13 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="slide-right">
-            <text v-if="slideRight" class=" p-4">{{
+            <text v-if="slideRight" class="app-text p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>
         </BaseCard>
         <BaseCard class="w-full">
-          <text class="p-4">Slide Up :{{ slideUp }}</text>
+          <text class="app-text p-4">Slide Up :{{ slideUp }}</text>
 
           <BaseButton
             :label="slideUp ? 'Hide me' : ' Show me'"
@@ -81,13 +81,13 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="slide-up">
-            <text v-if="slideUp" class=" p-4">{{
+            <text v-if="slideUp" class="app-text p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>
         </BaseCard>
         <BaseCard class="w-full">
-          <text class="p-4">Slide down :{{ slideDown }}</text>
+          <text class="app-text p-4">Slide down :{{ slideDown }}</text>
 
           <BaseButton
             :label="slideDown ? 'Hide me' : ' Show me'"
@@ -95,13 +95,13 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="slide-down">
-            <text v-if="slideDown" class=" p-4">{{
+            <text v-if="slideDown" class="app-text p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>
         </BaseCard>
         <BaseCard class="w-full">
-          <text class="p-4">Zoom :{{ zoom }}</text>
+          <text class="app-text p-4">Zoom :{{ zoom }}</text>
 
           <BaseButton
             :label="zoom ? 'Hide me' : ' Show me'"
@@ -109,20 +109,20 @@ const text =
             variant="ghost"
           />
           <BaseTransitionWrapper name="zoom">
-            <text v-if="zoom" class=" p-4">{{
+            <text v-if="zoom" class="app-text p-4">{{
               text
             }}</text>
           </BaseTransitionWrapper>
         </BaseCard>
         <BaseCard class="w-full">
-          <text class="p-4">Bounce :{{ bounce }}</text>
+          <text class="app-text p-4">Bounce :{{ bounce }}</text>
           <BaseButton
             :label="bounce ? 'Hide me' : ' Show me'"
             @tap="bounce = !bounce"
             variant="ghost"
           />
           <BaseTransitionWrapper name="bounce">
-            <text v-if="bounce" class="font-semibold p-4">{{ text }}</text>
+            <text v-if="bounce" class="app-text font-semibold p-4">{{ text }}</text>
           </BaseTransitionWrapper>
         </BaseCard>
       </scroll-view>

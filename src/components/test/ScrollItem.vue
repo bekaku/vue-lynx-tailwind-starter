@@ -68,7 +68,7 @@ const getStickyStyle = computed(() => {
         fit="aspectFill"
       />
       <view class="p-2">
-        <text class="text-xs">
+        <text class="app-text text-xs">
           {{ `item-${props.index}-sticky-${sticky}` }}
         </text>
       </view>
@@ -85,7 +85,7 @@ const getStickyStyle = computed(() => {
       fit="aspectFill"
     />
     <view class="p-2">
-      <text class="text-xs">
+      <text class="app-text text-xs">
         {{ `item-${props.index}` }}
       </text>
     </view>

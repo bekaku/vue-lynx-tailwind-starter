@@ -13,7 +13,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <view v-bind="$attrs" :class="cn('pl-4 pt-2 text-xl font-semibold tracking-tight', props.class)">
+  <text v-bind="$attrs" :class="cn('app-text pl-4 pt-2 text-xl font-semibold tracking-tight', props.class)">
     <slot />
-  </view>
+  </text>
 </template>

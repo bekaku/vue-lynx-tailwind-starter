@@ -441,7 +441,7 @@ const route = useRoute();
               <text class="text-zinc-900 text-xs">🌙</text>
             </view>
             <view class="pl-2">
-              <text class="text-lg font-semibold">Spencer Sharp</text>
+              <text class="app-text text-lg font-semibold">Spencer Sharp</text>
               <text class="text-sm text-muted">Working on the future of astronaut recruitment at Space
                 Recruit.
               </text>
@@ -491,7 +491,7 @@ const route = useRoute();
               <text class="text-zinc-900 text-xs">🌙</text>
             </view>
             <view class="pl-2">
-              <text class="text-lg font-semibold">Spencer Sharp</text>
+              <text class="app-text text-lg font-semibold">Spencer Sharp</text>
               <text class="text-sm text-muted">Working on the future of astronaut recruitment at Space
                 Recruit.
               </text>

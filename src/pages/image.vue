@@ -68,30 +68,30 @@ const onAvatarTap = (e: any) => {
           <text class="text-muted p-2 ">Fit Mode</text>
         </view>
         <view class="flex flex-col flex-wrap items-center gap-2 p-2">
-          <text>cover</text>
+          <text class="app-text">cover</text>
           <BaseImage
             src="https://github.com/shadcn.png"
             class="w-full h-[10rem] bg-background"
             fit="aspectFill"
           />
-          <text>contain</text>
+          <text class="app-text">contain</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"
             fit="aspectFit"
           />
-          <text>fill</text>
+          <text class="app-text">fill</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"
             fit="scaleToFill"
           />
-          <text>none</text>
+          <text class="app-text">none</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"
           />
-          <text>scale-down</text>
+          <text class="app-text">scale-down</text>
           <BaseImage
             src="https://github.com/shadcn.png"
              class="w-full h-[10rem] bg-background"

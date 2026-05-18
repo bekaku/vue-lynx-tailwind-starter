@@ -7,7 +7,6 @@ import { ref, computed } from 'vue';
 const emit = defineEmits<{
   'on-change': [v: boolean];
 }>();
-const { isAndroid } = useDevice();
 // Define props with default values to match your required usage
 const props = withDefaults(defineProps<TextEllipsisProps>(), {
   rows: -1,
@@ -71,7 +70,6 @@ const toggleExpand = () => {
       :text-maxline="!isExpanded ? Number(rows) : -1"
     >
       <text
-        class=""
         :class="cn('leading-normal', props.textClass)"
         :style="textStyles"
         :text-maxline="!isExpanded ? Number(rows) : -1"
@@ -82,8 +80,7 @@ const toggleExpand = () => {
 
     <view
       v-if="showMore && isOverflowing"
-      class="self-start active:opacity-70"
-      :class="isAndroid ? 'mt-[-10px]' : 'mt-[4px]'"
+      class="self-start active:opacity-70 mt-[4px]"
       @tap="toggleExpand"
     >
       <text class="text-sm font-semibold text-primary">

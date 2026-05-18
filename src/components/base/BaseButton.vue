@@ -89,7 +89,7 @@ const handleTap = (e: any) => {
 };
 const handleCatchTap = (e: any) => {
   if (!props.disabled) {
-    emit('catchtap', e);
+    // emit('catchtap', e);
     emit('tap', e);
   }
 };
@@ -101,8 +101,8 @@ const handleCatchTap = (e: any) => {
     props.disabled ? 'opacity-50 pointer-events-none' : 'active:opacity-80',
     props.class)"
     @tap="handleTap"
-    :catchtap="handleCatchTap"
   >
+  <!-- :catchtap="handleCatchTap" -->
     <slot v-if="$slots.start" name="start" />
     <slot>
       <text

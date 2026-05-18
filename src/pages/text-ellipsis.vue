@@ -20,6 +20,7 @@ const longText =
         rows="3"
         :content="longText"
         show-more
+        text-class="app-text"
         expand-text="Read more"
         collapse-text="Show less"
       />

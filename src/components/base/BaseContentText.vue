@@ -96,7 +96,7 @@ const handleLinkTap = (e: any, url: string | undefined) => {
   </BaseTextEllipsis>
   <text
     v-else-if="props.content"
-    class="flex-wrap leading-relaxed"
+    class="flex-wrap leading-relaxed app-text"
     :class="props.class"
     :style="{ lineHeight: '1.5em' }"
   >

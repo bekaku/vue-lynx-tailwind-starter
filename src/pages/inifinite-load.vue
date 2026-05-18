@@ -83,12 +83,12 @@ const onSnap = (e: any) => {
         key="loading"
       >
         <view class="w-full">
-          <text>{{ `Load More Data...` }}</text>
+          <text class="app-text">{{ `Load More Data...` }}</text>
         </view>
       </list-item>
       <list-item v-else item-key="no-more" key="no-more">
         <view class="w-full">
-          <text>{{ `No More Data...` }}</text>
+          <text class="app-text">{{ `No More Data...` }}</text>
         </view>
       </list-item> -->
     </list>

@@ -29,7 +29,6 @@ const props = withDefaults(defineProps<Props>(), {
   titleLines: -1,
 });
 const { onNavigateTo } = useBase();
-const { isAndroid, isIos } = useDevice();
 const emit = defineEmits<{
   (e: 'tap', payload: any): void;
   (e: 'longpress', payload: any): void;
@@ -52,11 +51,10 @@ const handleLongpress = (e: any) => {
   <view
     :class="
       cn(
-        'flex flex-row items-center justify-between  pl-[14px] pr-[14px] bg-card',
+        'flex flex-row items-center justify-between  pl-[14px] pr-[14px] bg-card py-2',
         props.button && !props.disabled ? 'active:bg-ripple' : '',
         props.disabled ? 'opacity-50' : '',
         props.separator ? 'border-b border-border' : '',
-        isAndroid ? 'py-2' : isIos ? 'py-2' : 'py-2',
         !props.top ? 'items-center' : 'items-start',
         props.class,
       )
@@ -76,6 +74,7 @@ const handleLongpress = (e: any) => {
           v-if="title"
           :class="
             cn(
+              'app-text',
               whitespaceNowrap ? 'whitespace-nowrap' : '',
               titleBold ? 'font-medium' : '',
               props.titleClass,
@@ -93,7 +92,7 @@ const handleLongpress = (e: any) => {
         >
           {{ description }}
         </text>
-        <view v-if="$slots.default" :class="isAndroid ? 'py-[-14px]' : isIos ? 'py-[-14px]' : ''">
+        <view v-if="$slots.default">
           <slot />
         </view>
       </view>

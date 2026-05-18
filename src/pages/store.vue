@@ -14,7 +14,7 @@ const counter = useCounterStore();
 
     <BaseCard>
       <BaseCardContent>
-        <text
+        <text class="app-text"
           :style="{
             fontSize: '16px',
             fontWeight: 'bold',
@@ -24,8 +24,8 @@ const counter = useCounterStore();
           Counter Store
         </text>
 
-        <text class="my-2 text-lg"> Count: {{ counter.count }} </text>
-        <text class="mb-2 text-lg"> Double: {{ counter.doubleCount }} </text>
+        <text class="app-text my-2 text-lg"> Count: {{ counter.count }} </text>
+        <text class="app-text mb-2 text-lg"> Double: {{ counter.doubleCount }} </text>
 
         <view :style="{ display: 'flex', flexDirection: 'row', gap: '8px' }">
           <text

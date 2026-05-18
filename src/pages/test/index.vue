@@ -11,7 +11,7 @@ const {safeAreaBottom, safeAreaTop} = useSafeArea();
     <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
       <view class="p-4 flex flex-col gap-2 justify-center bg-card">
         <text class="text-muted">SAfe Area</text>
-        <text>
+        <text class="app-text">
          safeArea from native: {{ {safeAreaBottom, safeAreaTop} }}
         </text>
       </view>

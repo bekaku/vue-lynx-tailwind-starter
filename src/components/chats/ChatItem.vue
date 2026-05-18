@@ -332,7 +332,7 @@ const handleLongpressText = (e: any) => {
               @tap="onFileTap(f, index)"
             >
               <view class="h-m-[50px] overflow-hidden text-ellipsis">
-                <text :text-maxline="2">
+                <text class="app-text" :text-maxline="2">
                   {{ f.fileManager?.fileName }}
                 </text>
               </view>

@@ -32,6 +32,6 @@ const props = withDefaults(
     "
     :flatten="false"
   >
-    <text>{{ `Scroll-Item-${props.index}-sticky-${props.sticky}` }}</text>
+    <text class="app-text">{{ `Scroll-Item-${props.index}-sticky-${props.sticky}` }}</text>
   </view>
 </template>

@@ -68,10 +68,16 @@
   --color-muted-foreground: rgba(161, 161, 170, 1);
   /* --color-border: rgb(63, 63, 70); zinc-700*/
   /* --color-border: rgb(39, 39, 42); */
-  --color-border: rgb(82, 82, 92);/* zinc-600*/
+  --color-border: rgb(82, 82, 92); /* zinc-600*/
   --color-ripple: rgb(63, 63, 70);
   --text-body: #fff;
   --color-border-input: rgb(113, 113, 123);
+}
+
+.app-text {
+  color: var(--text-body);
+  /* font-family: system; */
+  /* font-size: 15px; */
 }
 .safe-area-view {
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
@@ -79,20 +85,6 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-}
-@layer base {
-  text {
-    /* @apply font-sans; */
-    font-family: system;
-    color: var(--text-body);
-    font-size: 15px;
-  }
-  input {
-    /* @apply font-sans; */
-    font-family: system;
-    color: var(--text-body);
-    font-size: 15px;
-  }
 }
 
 .bg-input {
@@ -185,8 +177,6 @@
     opacity: 1;
   }
 }
-
-
 
 /*Transitions*/
 .fade-enter-active,

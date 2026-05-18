@@ -32,7 +32,6 @@ const props = defineProps<{
   index?: number;
 }>();
 const { onNavigateTo } = useBase();
-const { isAndroid } = useDevice();
 
 const opengraphItem: OgMeta = {
   domain: 'youtube.com',
@@ -57,15 +56,10 @@ const onItemTap = (e: any) => {
 <template>
   <view
     v-if="item"
-    class="flex flex-col gap-2 border-b border-border active:bg-ripple"
-    :class="isAndroid ? 'pb-2 mb-2' : 'pb-2 mb-[14px]'"
+    class="flex flex-col gap-2 border-b border-border active:bg-ripple pb-2 mb-[14px]"
     @tap="onItemTap"
   >
-    <BaseItem
-      :separator="false"
-      class="bg-transparent"
-      :class="isAndroid ? 'pb-[-4px]' : 'py-0'"
-    >
+    <BaseItem :separator="false" class="bg-transparent py-0">
       <template #start>
         <BaseAvatar
           class="h-[32px] w-[32px]"
@@ -81,7 +75,7 @@ const onItemTap = (e: any) => {
       </template>
       <view class="flex flex-row items-center" :style="{ gap: '6px' }">
         <text
-          class="text-base font-semibold"
+          class="app-text text-base font-semibold"
           :catchtap="(event: any) => onUserTap(event, item?.user)"
         >
           {{ item.user || 'Anonymous' }}
@@ -110,7 +104,7 @@ const onItemTap = (e: any) => {
       :style="{ paddingLeft: '24px' }"
     >
       <BaseContentText
-        :class="isAndroid ? 'pt-[-4px] pb-[-4px]' : ''"
+        text-class="app-text"
         :content="item.title"
         :ellipsis="{ rows: 3, showMore: false }"
       />
@@ -125,10 +119,7 @@ const onItemTap = (e: any) => {
       class="flex flex-col self-start w-full pt-0 px-2"
       :style="{ paddingLeft: '24px' }"
     >
-      <view
-        class="flex flex-row gap-4 pr-4 w-full"
-        :class="!isAndroid ? 'pt-3' : 'mt-2'"
-      >
+      <view class="flex flex-row gap-4 pr-4 w-full mt-2">
         <view
           class="flex flex-row gap-1 border border-border rounded-full py-1 px-3 items-center"
         >

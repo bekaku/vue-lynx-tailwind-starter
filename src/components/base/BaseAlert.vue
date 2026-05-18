@@ -46,7 +46,7 @@ const props = withDefaults(
         v-if="props.title"
         :class="
           cn(
-            'text-base font-medium leading-none tracking-tight',
+            'app-text text-base font-medium leading-none tracking-tight',
             variant === 'destructive' ? 'text-destructive' : '',
           )
         "

@@ -33,7 +33,7 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <BaseContentText :content="contentText" />
+          <BaseContentText text-class="app-text" :content="contentText" />
         </BaseCardContent>
 
         <view class="h-[0.5px] w-full border-b border-border my-2"></view>
@@ -54,7 +54,7 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <BaseContentText :content="contentText" />
+          <BaseContentText text-class="app-text" :content="contentText" />
         </BaseCardContent>
 
         <view class="h-[0.5px] w-full border-b border-border my-2"></view>
@@ -71,7 +71,7 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <text :style="{ fontSize: '15px', lineHeight: '1.5em' }"
+          <text class="app-text" :style="{ fontSize: '15px', lineHeight: '1.5em' }"
             >Tailwind CSS includes a vast, beautiful color palette out of the
             box, carefully crafted by expert designers and suitable for a wide
             range of different design styles.</text
@@ -92,7 +92,7 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <text
+          <text class="app-text"
             >Tailwind CSS includes a vast, beautiful color palette out of the
             box, carefully crafted by expert designers and suitable for a wide
             range of different design styles.</text
@@ -113,7 +113,7 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <text
+          <text class="app-text"
             >Tailwind CSS includes a vast, beautiful color palette out of the
             box, carefully crafted by expert designers and suitable for a wide
             range of different design styles.</text
@@ -134,7 +134,7 @@ const handleTab = () => {
         </BaseCardHeader>
 
         <BaseCardContent class="pt-0">
-          <text
+          <text class="app-text"
             >Tailwind CSS includes a vast, beautiful color palette out of the
             box, carefully crafted by expert designers and suitable for a wide
             range of different design styles.</text

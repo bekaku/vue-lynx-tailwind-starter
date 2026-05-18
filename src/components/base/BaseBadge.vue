@@ -2,23 +2,20 @@
 import { useDevice } from '@/composables/useDevice';
 import { cn } from '@/utils/appUtil';
 import { cva, type VariantProps } from 'class-variance-authority';
-
-const badgeVariants = cva(
-  'flex flex-row items-center justify-center rounded-full border',
-  {
-    variants: {
-      variant: {
-        default: 'border-transparent bg-primary',
-        secondary: 'border-transparent bg-secondary',
-        destructive: 'border-transparent bg-destructive',
-        outline: 'border-border bg-transparent',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
+const { isNative } = useDevice();
+const badgeVariants = cva('flex flex-row items-center justify-center border', {
+  variants: {
+    variant: {
+      default: 'border-transparent bg-primary',
+      secondary: 'border-transparent bg-secondary',
+      destructive: 'border-transparent bg-destructive',
+      outline: 'border-border bg-transparent',
     },
   },
-);
+  defaultVariants: {
+    variant: 'default',
+  },
+});
 
 const textVariants = cva('text-xs leading-none', {
   variants: {
@@ -42,12 +39,13 @@ const props = withDefaults(
     class?: any;
     textClass?: any;
     label?: string;
+    round?: boolean;
   }>(),
   {
     variant: 'default',
+    round: false,
   },
 );
-const { isAndroid } = useDevice();
 </script>
 
 <template>
@@ -55,15 +53,17 @@ const { isAndroid } = useDevice();
     :class="
       cn(
         badgeVariants({ variant }),
-        isAndroid ? 'py-[-14px]' : 'py-[3px]',
-        'px-[5px]',
+        'px-[5px] rounded-full',
+        isNative ? 'py-[-14px]' : 'py-[3px]',
         props.class,
       )
     "
   >
     <view :class="cn(textVariants({ variant }))">
       <slot>
-        <text :class="props.textClass" class="text-xs">{{ props.label }}</text>
+        <text :class="props.textClass" class="app-text text-xs">{{
+          props.label
+        }}</text>
       </slot>
     </view>
   </view>

@@ -74,7 +74,7 @@ const onScrollToTop = () => {
     <BaseToolBar title="Scroll view" />
 
     <view class="my-[15px]">
-      <text class="font-bold px-4 pt-2">Horizontal</text>
+      <text class="app-text font-bold px-4 pt-2">Horizontal</text>
       <scroll-view
         scroll-orientation="horizontal"
         class="h-[170px] pl-[5px]"
@@ -95,7 +95,7 @@ const onScrollToTop = () => {
     </view>
 
     <view class="mt-[15px] flex-1 flex flex-col">
-      <text class="font-bold px-4 pt-2">Vertical</text>
+      <text class="app-text font-bold px-4 pt-2">Vertical</text>
       <view class="w-full flex p-2 gap-2">
         <BaseButton
           variant="outline"

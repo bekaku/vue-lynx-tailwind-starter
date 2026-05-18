@@ -18,7 +18,6 @@ const emit = defineEmits<{
 }>();
 
 const { isDark } = useTheme();
-const { isAndroid } = useDevice();
 </script>
 
 <template>
@@ -31,7 +30,7 @@ const { isAndroid } = useDevice();
     "
     @tap="emit('tap')"
   >
-    <view :class="isAndroid ? 'android-padding-fix' : ''">
+    <view>
       <slot name="icon" />
     </view>
 

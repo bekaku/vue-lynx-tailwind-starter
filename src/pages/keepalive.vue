@@ -36,18 +36,18 @@ function switchTab(index: number) {
         padding: '16px',
       }"
     >
-      <text
+      <text class="app-text"
         :style="{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }"
         >KeepAlive Demo</text
       >
 
       <!-- 1. Basic KeepAlive — state preservation -->
       <view :style="{ marginBottom: '24px' }">
-        <text
+        <text class="app-text"
           :style="{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }"
           >1. State Preservation</text
         >
-        <text :style="{ fontSize: '12px', marginBottom: '8px' }">
+        <text class="app-text" :style="{ fontSize: '12px', marginBottom: '8px' }">
           Increment the counter, switch tabs, then switch back — the count is
           preserved.
         </text>
@@ -64,7 +64,7 @@ function switchTab(index: number) {
               backgroundColor: activeTab === i ? '#4a90d9' : '#ddd',
             }"
           >
-            <text
+            <text class="app-text"
               :style="{
                 color: activeTab === i ? '#fff' : '#333',
                 fontSize: '13px',
@@ -86,11 +86,11 @@ function switchTab(index: number) {
 
       <!-- 2. KeepAlive with include -->
       <view :style="{ marginBottom: '24px' }">
-        <text
+        <text class="app-text"
           :style="{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }"
           >2. Include Filter</text
         >
-        <text :style="{ fontSize: '12px', marginBottom: '8px' }">
+        <text class="app-text" :style="{ fontSize: '12px', marginBottom: '8px' }">
           Only Tab A and Tab B are cached. Tab C re-mounts every time.
         </text>
 
@@ -105,7 +105,7 @@ function switchTab(index: number) {
               backgroundColor: activeTab === i ? '#e67e22' : '#ddd',
             }"
           >
-            <text
+            <text class="app-text"
               :style="{
                 color: activeTab === i ? '#fff' : '#333',
                 fontSize: '13px',
@@ -126,11 +126,11 @@ function switchTab(index: number) {
 
       <!-- 3. KeepAlive with max -->
       <view :style="{ marginBottom: '24px' }">
-        <text
+        <text class="app-text"
           :style="{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }"
           >3. Max Cache Size (max=1)</text
         >
-        <text :style="{ fontSize: '12px',  marginBottom: '8px' }">
+        <text class="app-text" :style="{ fontSize: '12px',  marginBottom: '8px' }">
           Only the most recently visited tab is cached. Older tabs lose their
           state.
         </text>
@@ -146,7 +146,7 @@ function switchTab(index: number) {
               backgroundColor: activeTab === i ? '#27ae60' : '#ddd',
             }"
           >
-            <text
+            <text class="app-text"
               :style="{
                 color: activeTab === i ? '#fff' : '#333',
                 fontSize: '13px',

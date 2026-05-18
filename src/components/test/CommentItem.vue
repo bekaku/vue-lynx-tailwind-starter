@@ -30,7 +30,6 @@ defineProps<{
   isChild?: boolean;
 }>();
 const open = ref(false);
-const { isAndroid } = useDevice();
 const onUserTap = (e: any, user?: string) => {
   console.log('onUserTap', user, e);
 };
@@ -53,12 +52,7 @@ const onUserTap = (e: any, user?: string) => {
       }"
     ></view>
     <!-- left: `${(depth ?? 0) * 10}px`, -->
-    <BaseItem
-      :separator="false"
-      class="pl-0 bg-transparent"
-      :class="isAndroid ? 'pb-[-4px]' : ''"
-      top
-    >
+    <BaseItem :separator="false" class="pl-0 bg-transparent" top>
       <template #start>
         <BaseAvatar
           :class="[isChild ? 'h-[24px] w-[24px]' : 'h-[32px] w-[32px]']"
@@ -74,7 +68,7 @@ const onUserTap = (e: any, user?: string) => {
       </template>
       <view class="flex flex-row items-center" :style="{ gap: '6px' }">
         <text
-          class="text-base font-semibold"
+          class="app-text text-base font-semibold"
           :catchtap="(event: any) => onUserTap(event, comment?.user)"
         >
           {{ comment.user }}
@@ -85,7 +79,7 @@ const onUserTap = (e: any, user?: string) => {
       </view>
       <view class="active:opacity-80 self-start max-w-full pt-0">
         <BaseContentText
-          :class="isAndroid ? 'pt-[-4px]' : ''"
+          text-class="app-text"
           :content="comment.content"
           :ellipsis="{ rows: 3, showMore: true }"
         />

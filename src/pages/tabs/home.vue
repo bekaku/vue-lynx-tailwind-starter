@@ -21,6 +21,7 @@ onMounted(()=>{
     <BaseCard>
       <BaseCardContent>
         <text
+        class="app-text"
           :style="{
             fontSize: '20px',
             fontWeight: 'bold',
@@ -29,17 +30,17 @@ onMounted(()=>{
         >
           Home
         </text>
-        <text :style="{ fontSize: '14px', color: '#555', lineHeight: '20px' }">
+        <text class="app-text" :style="{ fontSize: '14px', lineHeight: '20px' }">
           Vue Router works in Lynx by using createMemoryHistory() instead of
           createWebHistory(). This avoids any dependency on window.location or
           the History API.
         </text>
-        <text :style="{ fontSize: '12px', color: '#999', marginTop: '12px' }">
+        <text class="app-text" :style="{ fontSize: '12px', marginTop: '12px' }">
           Current path: {{ route.fullPath }}
         </text>
 
         <view class="p-4 flex flex-row gap-2">
-          <text>{{ counter }}</text>
+          <text class="app-text">{{ counter }}</text>
           <BaseButton label="-" class="bg-red-500" @tap="counter--"/>
           <BaseButton label="+" class="bg-green-500" @tap="counter++"/>
         </view>

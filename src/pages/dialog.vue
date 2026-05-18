@@ -46,7 +46,7 @@ const handleShow = (e: any) => {
       </text>
     </view>
 
-     <text class="p-2"> eventItems {{ eventItems }}</text>
+     <text class="app-text p-2"> eventItems {{ eventItems }}</text>
 
     <BaseDialog
       v-model:visible="isOpen"

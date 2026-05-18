@@ -53,7 +53,7 @@ const onScrolltolower = (e: any) => {
           >
             <ScrollItem :index="index" :virtical="true" :src="item.filePath" />
             <!-- <view class="w-full p-2">
-              <text class="bg-red-300">{{ `normal span item ${index}` }}</text>
+              <text class="app-text bg-red-300">{{ `normal span item ${index}` }}</text>
             </view> -->
           </list-item>
         </template>

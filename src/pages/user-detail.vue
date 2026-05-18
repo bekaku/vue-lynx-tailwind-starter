@@ -58,16 +58,19 @@ const user = computed(() => users[userId.value]);
             />
           </view>
           <text
-            :style="{ fontSize: '22px', fontWeight: 'bold',}"
+            class="app-text"
+            :style="{ fontSize: '22px', fontWeight: 'bold' }"
           >
             {{ user.name }}
           </text>
           <text
+            class="app-text"
             :style="{ fontSize: '13px', color: '#1a73e8', marginTop: '4px' }"
           >
             {{ user.role }}
           </text>
           <text
+            class="app-text"
             :style="{
               fontSize: '14px',
               color: '#555',

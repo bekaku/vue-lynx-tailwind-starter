@@ -62,7 +62,7 @@ const handleConfirm = (e: any) => {
     <scroll-view :class="['flex-1 w-full']" scroll-orientation="vertical">
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Custom Native Element</text>
+          <text class="app-text font-bold">Custom Native Element</text>
           <view
             class="flex flex-col justify-center items-center w-full"
             :style="{ height: '85px' }"
@@ -93,7 +93,7 @@ const handleConfirm = (e: any) => {
 
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Build in Element</text>
+          <text class="app-text font-bold">Build in Element</text>
           <text class="text-sm text-muted">'{{ inputValue2 }}'</text>
 
           <view class="w-full p-3 m-2 border-inputborder bg-input rounded-md">
@@ -111,7 +111,7 @@ const handleConfirm = (e: any) => {
       </BaseCard>
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Component Input</text>
+          <text class="app-text font-bold">Component Input</text>
           <text class="text-sm text-muted">'{{ inputValue3 }}'</text>
 
           <BaseInput
@@ -128,7 +128,7 @@ const handleConfirm = (e: any) => {
               <BaseIcon :name="Eraser" />
             </template>
             <template #bottom>
-              <text class="text-[0.8rem] text-muted-foreground">
+              <text class="app-text text-[0.8rem] text-muted-foreground">
                 This name will be visible to other users.
               </text>
             </template>
@@ -148,7 +148,7 @@ const handleConfirm = (e: any) => {
 
       <BaseCard>
         <BaseCardContent>
-          <text class="font-bold">Component Textarea</text>
+          <text class="app-text font-bold">Component Textarea</text>
           <text class="text-sm text-muted">'{{ inputTextarea }}'</text>
 
           <BaseTextarea

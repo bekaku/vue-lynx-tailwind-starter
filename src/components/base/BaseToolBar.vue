@@ -8,7 +8,6 @@ import BaseTextEllipsis from './BaseTextEllipsis.vue';
 import { useDevice } from '@/composables/useDevice';
 const { safeAreaTop, safeAreaBottom } = useSafeArea();
 const { onNavigateTo } = useBase();
-const { isAndroid } = useDevice();
 const props = withDefaults(defineProps<ToolbarProps>(), {
   showBackButton: true,
   top: false,
@@ -40,7 +39,7 @@ const onTab = () => {
       class="flex flex-row relative h-max items-end justify-start"
     >
       <slot name="start">
-        <BaseBackButton v-if="showBackButton" v-bind="props.backButton" />
+        <BaseBackButton class="mr-2" v-if="showBackButton" v-bind="props.backButton" />
       </slot>
     </view>
 
@@ -49,14 +48,13 @@ const onTab = () => {
         <view>
           <BaseTextEllipsis
             v-if="props.title"
-            :class="isAndroid ? 'py-[-14px]' : ''"
-            text-class="font-semibold text-2xl"
+            text-class="app-text font-semibold text-3xl"
             :rows="1"
             :content="props.title"
           />
         </view>
 
-        <!-- <text v-if="props.title" class="font-semibold text-lg">{{
+        <!-- <text v-if="props.title" class="app-text font-semibold text-lg">{{
           props.title
         }}</text> -->
       </slot>
