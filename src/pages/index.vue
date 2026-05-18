@@ -168,7 +168,6 @@ const handleLongpress = (e: any) => {
         <text class="text-sm text-muted">
           Vue Lynx Starter Template By Chanavee platform : {{ platform }}
         </text>
-        <text>{{ logoBlack }}</text>
       </view>
 
       <BaseCard class="w-full px-2" flat>

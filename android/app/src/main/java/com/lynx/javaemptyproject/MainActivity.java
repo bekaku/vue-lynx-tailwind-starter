@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String url = "main.lynx.bundle";
+//        String url = "main.lynx.bundle";
+        String url = "http://192.168.7.117:3000/main.lynx.bundle";
 //        String url = "http://10.0.2.2:3000/main.lynx.bundle";
-//        String url = "http://192.168.7.124:3000/main.lynx.bundle";
 //        String url = "http://192.168.1.106:3000/main.lynx.bundle";
         lynxView.renderTemplateUrl(url, TemplateData.empty());
 

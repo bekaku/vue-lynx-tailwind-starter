@@ -12,5 +12,5 @@
   "vueCompilerOptions": {
     "plugins": ["vue-lynx/types/volar-plugin"]
   },
-  "include": ["./**/*.ts", "./**/*.vue", "postcss.config.js"]
+  "include": ["./**/*.ts", "./**/*.vue", "postcss.config.js", "pages/test/padding-problem.vue"]
 }

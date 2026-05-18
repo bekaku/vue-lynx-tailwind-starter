@@ -51,4 +51,18 @@ fill : scaleToFill
     @load="emit('load', $event)"
     @startplay="emit('startplay', $event)"
   />
+
+
+
+   <!-- <image
+    :src="props.src"
+    :class="props.class"
+    :mode="fit"
+    @tap="emit('tap', $event)"
+    @currentloopcomplete="emit('currentloopcomplete', $event)"
+    @error="emit('error', $event)"
+    @finalloopcomplete="emit('finalloopcomplete', $event)"
+    @load="emit('load', $event)"
+    @startplay="emit('startplay', $event)"
+  />  -->
 </template>
