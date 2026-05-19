@@ -38,10 +38,10 @@ const onScrolltolower = (e: any) => {
             :full-span="true"
             :key="`list-item-${index}`"
             :item-key="`list-item-${index}`"
-            class="w-full test-border"
+            class="w-full"
             :style="{ width: '100%' }"
           >
-            <view class="w-full bg-red-300 py-2">
+            <view class="w-full bg-red-300 py-2 my-2">
               <text class="text-black px-2">{{ `full span item` }}</text>
             </view>
           </list-item>
@@ -52,9 +52,6 @@ const onScrolltolower = (e: any) => {
             :item-key="`list-item-${index}`"
           >
             <ScrollItem :index="index" :virtical="true" :src="item.filePath" />
-            <!-- <view class="w-full p-2">
-              <text class="app-text bg-red-300">{{ `normal span item ${index}` }}</text>
-            </view> -->
           </list-item>
         </template>
       </template>

@@ -73,7 +73,7 @@ const onScrollToTop = () => {
   <view class="w-full h-full flex flex-col bg-background">
     <BaseToolBar title="Scroll view" />
 
-    <view class="my-[15px]">
+    <view class="my-2">
       <text class="app-text font-bold px-4 pt-2">Horizontal</text>
       <scroll-view
         scroll-orientation="horizontal"
@@ -99,19 +99,15 @@ const onScrollToTop = () => {
       <view class="w-full flex p-2 gap-2">
         <BaseButton
           variant="outline"
-          label="Scroll to item 8"
+          label="to item 8"
           @tap="onScrollToItem(8)"
         />
         <BaseButton
           variant="outline"
-          label="Scroll to bottom"
+          label="to bottom"
           @tap="onScrollToBottom()"
         />
-        <BaseButton
-          variant="outline"
-          label="Scroll to top"
-          @tap="onScrollToTop()"
-        />
+        <BaseButton variant="outline" label="to top" @tap="onScrollToTop()" />
       </view>
       <scroll-view
         ref="myScrollViewRef"

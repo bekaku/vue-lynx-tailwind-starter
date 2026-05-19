@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import BaseAlert from '@/components/base/BaseAlert.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
-import BaseCard from '@/components/base/BaseCard.vue';
 import BaseIcon from '@/components/base/BaseIcon.vue';
-import BaseItem from '@/components/base/BaseItem.vue';
-import BaseLoading from '@/components/base/BaseLoading.vue';
 import BaseSpinner from '@/components/base/BaseSpinner.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
 import FeedItem from '@/components/test/FeedItem.vue';
 import { useFetch } from '@/composables/useFetch';
 import { useScrollRestore } from '@/composables/useScrollRestore';
 import {
-  keepPreviousData,
-  useQuery,
-  useQueryClient,
+  useQueryClient
 } from '@tanstack/vue-query';
-import { ChevronLeft, ChevronRight, Siren } from 'lucide-static';
+import { Siren } from 'lucide-static';
 import { computed, nextTick, onActivated, onDeactivated, onMounted, ref, useTemplateRef } from 'vue';
 
 interface FeedItem {
@@ -192,7 +187,7 @@ const onScrolltolower = (e: any) => {
         />
       </scroll-view>
     </view>
-    <view class="flex-1 flex flex-col">
+    <view class="flex-1 flex flex-col bg-card">
       <view v-if="!firstLoad" class="flex justify-center py-2">
         <BaseSpinner show />
       </view>

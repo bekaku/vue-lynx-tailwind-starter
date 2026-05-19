@@ -347,12 +347,9 @@ const leaveGroup = async (chatId: number | string) => {
       @scrolltoupper="onScrolltoupper"
       @scroll="onScroll"
     >
-      <ChatItem
-        v-for="(item, index) in dataList"
-        :key="`chat-${item.id}-${index}`"
-        :item="item"
-        :index="index"
-      />
+      <view v-for="(item, index) in dataList" :key="`chat-${item.id}-${index}`">
+        <ChatItem :item="item" :index="index" />
+      </view>
     </scroll-view>
 
     <ChatInput @on-send="onSendMsg" />

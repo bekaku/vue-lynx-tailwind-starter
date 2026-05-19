@@ -94,6 +94,7 @@ const onSnap = (e: any) => {
     </list>
 
     <view
+      v-if="isLoading || !hasMoreData"
       class="absolute p-2 rounded-md"
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -103,10 +104,10 @@ const onSnap = (e: any) => {
       }"
     >
       <view class="flex flex-col justify-center w-full">
-        <text v-if="hasMoreData" class="text-white">
-          {{ !isLoading ? 'Load More Data...' : 'Loading...' }}
-        </text>
-        <text v-else class="text-white">{{ `No More Data...` }}</text>
+        <text v-if="isLoading" class="text-white"> Loading... </text>
+        <text v-else-if="!hasMoreData" class="text-white">{{
+          `No More Data...`
+        }}</text>
       </view>
     </view>
   </view>

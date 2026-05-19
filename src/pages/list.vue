@@ -69,27 +69,27 @@ const onScrollToTop = () => {
   <view class="w-full h-full flex flex-col bg-background">
     <BaseToolBar title="List" />
 
-    <view class="w-full flex p-2 gap-2">
+    <view class="w-full flex p-2 gap-2 justify-center">
       <BaseButton
         variant="outline"
-        label="Scroll to item 5"
+        label="to item 5"
         @tap="onScrollToItem(5)"
       />
       <BaseButton
         variant="outline"
-        label="Scroll to bottom"
+        label="to bottom"
         @tap="onScrollToBottom()"
       />
       <BaseButton
         variant="outline"
-        label="Scroll to top"
+        label="to top"
         @tap="onScrollToTop()"
       />
     </view>
 
     <list
       ref="myListRef"
-      class="h-full w-full flex-1 px-2"
+      class="h-full w-full flex-1 px-2 pb-4"
       scroll-orientation="vertical"
       list-type="single"
       :span-count="1"

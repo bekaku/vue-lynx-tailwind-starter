@@ -44,31 +44,15 @@ const getStickyStyle = computed(() => {
 });
 </script>
 <template>
-  <!-- <view
-    v-if="virtical"
-    :style="getStickyStyle"
-    class="my-2 overflow-hidden border border-border"
-    :class="[props.sticky ? 'bg-red-300' : 'bg-black']"
-    :flatten="false"
-  >
-    <text class="px-[3px] text-xs bg-black text-white">
-      {{ `item-${props.index}-sticky-${sticky}` }}
-    </text>
-    <BaseImage
-      :style="{ width: 'calc(100% - 10px)', height: '140px' }"
-      :src="src"
-      fit="scale-down"
-    />
-  </view> -->
-  <view v-if="virtical" :style="getStickyStyle" :flatten="false">
-    <BaseCard :margin="false">
+  <view v-if="virtical" :style="getStickyStyle" class="my-2" :flatten="false">
+    <BaseCard class="mx-2" :margin="false">
       <BaseImage
-        :style="{ width: '100%', height: '120px' }"
+        :style="{ width: '100%', height: props.height }"
         :src="src"
         fit="aspectFill"
       />
-      <view class="p-2">
-        <text class="app-text text-xs">
+      <view class="p-2 bg-black/50" style="position: absolute;bottom: 0;">
+        <text class="text-white text-xs">
           {{ `item-${props.index}-sticky-${sticky}` }}
         </text>
       </view>
