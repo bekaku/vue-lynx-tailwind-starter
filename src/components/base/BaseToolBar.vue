@@ -48,7 +48,7 @@ const onTab = () => {
         <view>
           <BaseTextEllipsis
             v-if="props.title"
-            text-class="app-text font-semibold text-3xl"
+            text-class="app-text font-semibold text-2xl"
             :rows="1"
             :content="props.title"
           />

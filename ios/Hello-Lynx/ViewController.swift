@@ -57,17 +57,19 @@ class ViewController: UIViewController {
         }
         print("-----End DEBUG------")
 
-        //work
-        lynxView.loadTemplate(fromURL: "main.lynx", initData: nil)
+        //production run
+//        lynxView.loadTemplate(fromURL: "main.lynx", initData: nil)
 
-//        let devServerURL = "http://127.0.0.1:3000/main.lynx.bundle"
-//        if let url = devServerURL.addingPercentEncoding(
-//            withAllowedCharacters: .urlQueryAllowed
-//        ) {
-//            lynxView.loadTemplate(fromURL: url, initData: nil)
-//            print("🚀 Download Dev files via Hot Reload from: \(url)")
-//        } else {
-//            print("❌ Wrong URL format")
-//        }
+        
+        // Run via Dev server
+        let devServerURL = "http://127.0.0.1:3000/main.lynx.bundle"
+        if let url = devServerURL.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ) {
+            lynxView.loadTemplate(fromURL: url, initData: nil)
+            print("🚀 Download Dev files via Dev server from: \(url)")
+        } else {
+            print("❌ Wrong URL format")
+        }
     }
 }

@@ -54,7 +54,7 @@ const props = withDefaults(
       cn(
         badgeVariants({ variant }),
         'px-[5px] rounded-full',
-        isNative ? 'py-[-14px]' : 'py-[3px]',
+        isNative ? 'py-[-10px]' : 'py-[3px]',
         props.class,
       )
     "
