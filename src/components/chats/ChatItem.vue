@@ -1,21 +1,23 @@
 <script setup lang="ts">
-import type {
-  FileManager,
-  GroupChatFileDto,
-  GroupChatMsgDto,
-} from '@/types/common';
-import { computed } from 'vue';
-import BaseImage from '../base/BaseImage.vue';
+import { useTheme } from '@/composables/useTheme';
+import type { GroupChatFileDto, GroupChatMsgDto } from '@/types/common';
+import { formattedDateTime } from '@/utils/dateUtil';
+import { Download, EllipsisVertical, File, Heart } from 'lucide-static';
+import { computed, ref, watch } from 'vue';
 import BaseAvatar from '../base/BaseAvatar.vue';
 import BaseContentText from '../base/BaseContentText.vue';
-import { useTheme } from '@/composables/useTheme';
-import { Download, EllipsisVertical, File, Heart, Smile } from 'lucide-static';
 import BaseIcon from '../base/BaseIcon.vue';
+import BaseImage from '../base/BaseImage.vue';
 import BaseItem from '../base/BaseItem.vue';
-import { formattedDateTime } from '@/utils/dateUtil';
+import ChatMessageReply from './ChatMessageReply.vue';
+import { useChatStore } from '@/stores/chatStore';
 
+const chatStore = useChatStore();
 // --- Props & Emits ---
 const { isDark } = useTheme();
+
+const isFocus = ref(false);
+const messageFocusTimeout = ref<any>(null);
 const props = withDefaults(
   defineProps<{
     item: GroupChatMsgDto;
@@ -28,8 +30,9 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: 'on-save-all', files: GroupChatFileDto[]): void;
-  (e: 'on-media-tap', file: GroupChatFileDto, index: number): void;
+  'on-save-all': [files: GroupChatFileDto[]];
+  'on-media-tap': [file: GroupChatFileDto, index: number];
+  'on-focus-message-reply': [id: number | string];
 }>();
 
 // --- Computed Properties ---
@@ -74,7 +77,7 @@ const messageBg = computed(() => {
     ? 'bg-primary-100'
     : isDark.value
       ? 'bg-zinc-700'
-      : 'bg-zinc-200';
+      : 'bg-zinc-100';
 });
 const senderName = computed(() => {
   return props.item.sendUser?.username || 'Unknown User';
@@ -200,189 +203,226 @@ const onEmojiTap = (e: any) => {
 const handleLongpressText = (e: any) => {
   console.log('handleLongpressText', e);
 };
+
+const onReplyClick = (messageId: number | string) => {
+  emit('on-focus-message-reply', messageId);
+};
+
+const setMessageFucusAsync = (active: boolean) => {
+  return new Promise((resolve) => {
+    messageFocusTimeout.value = setTimeout(() => {
+      isFocus.value = active;
+      resolve(true);
+    }, 500);
+  });
+};
+const onMessageFocus = async () => {
+  isFocus.value = true;
+  await setMessageFucusAsync(false);
+  await setMessageFucusAsync(true);
+  await setMessageFucusAsync(false);
+  await setMessageFucusAsync(true);
+  await setMessageFucusAsync(false);
+  clearTimeout(messageFocusTimeout.value);
+  messageFocusTimeout.value = null;
+  chatStore.messageIdFocus = undefined;
+};
+watch(chatStore, (state) => {
+  if (
+    props.item &&
+    props.item.id &&
+    state &&
+    state.messageIdFocus &&
+    state.messageIdFocus == props.item.id
+  ) {
+    console.log('onMessageFocus', state.messageIdFocus);
+    onMessageFocus();
+  }
+});
 </script>
 <template>
-  <view
-    class="w-full flex flex-row mb-4 px-4"
-    :class="isMine ? 'justify-end' : 'justify-start'"
-  >
-    <BaseAvatar
-      v-if="!isMine"
-      :src="avatarSrc"
-      :fallback="item.id + ''"
-      class="w-8 h-8 rounded-full mr-3 shrink-0"
-      :catchtap="onUserTap"
+  <view class="w-full flex flex-col">
+    <ChatMessageReply
+      v-if="item.dtoReplyTo && !item.unsend"
+      :item="item.dtoReplyTo"
+      :sent="item.sent"
+      @on-tap="onReplyClick"
     />
-
     <view
-      v-if="isMine && !isMutedMessage"
-      class="flex flex-row items-end gap-1 mr-1 self-end mb-6"
+      class="w-full flex flex-row mb-4 px-4"
+      :class="isMine ? 'justify-end' : 'justify-start'"
     >
-      <view class="p-1 active:opacity-70 rounded-full" @tap="onEmojiTap">
-        <BaseIcon :name="Heart" :size="18" color="#57534e" />
-      </view>
-      <view class="p-1 active:opacity-70 rounded-full" @tap="onOptionsTap">
-        <BaseIcon :name="EllipsisVertical" :size="18" color="#57534e" />
-      </view>
-    </view>
-
-    <view class="flex flex-col max-w-[75%]">
-      <view
-        class="flex flex-row items-center mb-1"
-        :class="isMine ? 'justify-end' : 'justify-start'"
+      <BaseAvatar
+        v-if="!isMine"
+        :src="avatarSrc"
+        :fallback="item.id + ''"
+        class="w-8 h-8 rounded-full mr-3 shrink-0"
         :catchtap="onUserTap"
-      >
-        <text v-if="!isMine" class="text-sm font-semibold text-foreground mr-2">
-          {{ senderName }}
-        </text>
-        <!-- <text class="text-xs text-muted">{{ formattedTime }}</text> -->
-      </view>
+      />
 
       <view
-        class="p-3 flex flex-col"
-        :class="[
-          isMine ? 'rounded-2xl rounded-tr-sm' : 'rounded-2xl rounded-tl-sm',
-          messageBg,
-        ]"
+        v-if="isMine && !isMutedMessage"
+        class="flex flex-row items-end gap-1 mr-1 self-end mb-6"
       >
-        <BaseContentText
-          v-if="item.chatMsg"
-          class="mb-1"
-          :text-class="messageTextColor"
-          :content="item.chatMsg || ''"
-        />
+        <view class="p-1 active:opacity-70 rounded-full" @tap="onEmojiTap">
+          <BaseIcon :name="Heart" :size="18" color="#57534e" />
+        </view>
+        <view class="p-1 active:opacity-70 rounded-full" @tap="onOptionsTap">
+          <BaseIcon :name="EllipsisVertical" :size="18" color="#57534e" />
+        </view>
+      </view>
 
+      <view class="flex flex-col max-w-[75%]">
         <!-- <view
-          v-if="hasFilesImage"
-          class="flex flex-row flex-wrap justify-between"
-          :style="{ width: gridWidth }"
+          class="flex flex-row items-center mb-1"
+          :class="isMine ? 'justify-end' : 'justify-start'"
+          :catchtap="onUserTap"
         >
-          <view
-            v-for="(file, index) in displayFilesImage"
-            :key="index"
-            class="relative overflow-hidden rounded-sm"
-            :style="getGridItemStyle(index)"
-            @tap="onMediaTap(file, index)"
+          <text
+            v-if="!isMine"
+            class="text-sm font-semibold text-foreground mr-2"
           >
-            <BaseImage
-              v-if="file.fileManager"
-              :src="
-                file.fileManager?.fileThumbnailPath ||
-                file.fileManager?.filePath
-              "
-              class="w-full h-full"
-              fit="aspectFill"
-            />
-
-            <view
-              v-if="index === 3 && extraFilesImageCount > 0"
-              class="absolute top-0 bg-black/50 left-0 w-full h-full flex flex-row items-center justify-center z-11"
-            >
-              <text class="text-white text-xl font-bold">
-                +{{ extraFilesImageCount }}
-              </text>
-            </view>
-          </view>
+            {{ senderName }}
+          </text>
         </view> -->
 
         <view
-          v-if="hasFilesImage"
-          class="flex flex-row flex-wrap"
-          :style="{ width: gridWidth }"
+          class="p-3 flex flex-col"
+          :class="[
+            isMine ? 'rounded-2xl rounded-tr-sm' : 'rounded-2xl rounded-tl-sm',
+            isFocus ? 'message-focus' : '',
+            messageBg,
+          ]"
         >
           <view
-            v-for="(file, index) in displayFilesImage"
-            :key="index"
-            class="rounded-lg border border-border overflow-hidden relative"
-            @tap="onMediaTap(file, index)"
-            :style="getGridItemStyle(index)"
+            class="flex flex-row items-center mb-2"
+            :class="isMine ? 'justify-end' : 'justify-start'"
+            :catchtap="onUserTap"
           >
-            <BaseImage
-              v-if="file.fileManager"
-              :src="
-                file.fileManager?.fileThumbnailPath ||
-                file.fileManager?.filePath
-              "
-              class="w-full h-full"
-              fit="aspectFill"
-            />
-            <view
-              v-if="index === 3 && extraFilesImageCount > 0"
-              class="absolute top-0 bg-black/50 left-0 w-full h-full rounded-lg flex flex-row items-center justify-center z-11"
+            <text
+              v-if="!isMine"
+              class="text-sm font-bold app-text mr-2"
             >
-              <text class="text-white text-xl font-bold">
-                +{{ extraFilesImageCount }}
-              </text>
+              {{ senderName }}
+            </text>
+          </view>
+          <BaseContentText
+            v-if="item.chatMsg"
+            class="mb-1"
+            :text-class="messageTextColor"
+            :content="item.chatMsg || ''"
+          />
+
+          <view
+            v-if="hasFilesImage"
+            class="flex flex-row flex-wrap"
+            :style="{ width: gridWidth }"
+          >
+            <view
+              v-for="(file, index) in displayFilesImage"
+              :key="index"
+              class="rounded-lg border border-border overflow-hidden relative"
+              @tap="onMediaTap(file, index)"
+              :style="getGridItemStyle(index)"
+            >
+              <BaseImage
+                v-if="file.fileManager"
+                :src="
+                  file.fileManager?.fileThumbnailPath ||
+                  file.fileManager?.filePath
+                "
+                class="w-full h-full"
+                fit="aspectFill"
+              />
+              <view
+                v-if="index === 3 && extraFilesImageCount > 0"
+                class="absolute top-0 bg-black/50 left-0 w-full h-full rounded-lg flex flex-row items-center justify-center z-11"
+              >
+                <text class="text-white text-xl font-bold">
+                  +{{ extraFilesImageCount }}
+                </text>
+              </view>
             </view>
           </view>
+
+          <view
+            v-if="hasFiles"
+            class="flex flex-col gap-2"
+            :style="{ width: 'auto' }"
+          >
+            <template v-for="(f, index) in getFilesItems" :key="index">
+              <BaseItem
+                class="rounded-md overflow-hidden"
+                button
+                :separator="false"
+                :title-bold="false"
+                :title-lines="2"
+                @tap="onFileTap(f, index)"
+              >
+                <view class="h-m-[50px] overflow-hidden text-ellipsis">
+                  <text class="app-text" :text-maxline="2">
+                    {{ f.fileManager?.fileName }}
+                  </text>
+                </view>
+                <template #start>
+                  <BaseIcon :name="File" />
+                </template>
+              </BaseItem>
+            </template>
+          </view>
+
+          <text
+            class="text-xs mt-1"
+            :class="isMine ? 'text-zinc-500' : 'text-muted'"
+            >{{ formattedTime }}</text
+          >
         </view>
 
         <view
-          v-if="hasFiles"
-          class="flex flex-col gap-2"
-          :style="{ width: 'auto' }"
+          class="flex flex-row items-center mt-1"
+          :class="isMine ? 'justify-end' : 'justify-between'"
         >
-          <template v-for="(f, index) in getFilesItems" :key="index">
-            <BaseItem
-              class="rounded-md overflow-hidden"
-              button
-              :separator="false"
-              :title-bold="false"
-              :title-lines="2"
-              @tap="onFileTap(f, index)"
-            >
-              <view class="h-m-[50px] overflow-hidden text-ellipsis">
-                <text class="app-text" :text-maxline="2">
-                  {{ f.fileManager?.fileName }}
-                </text>
-              </view>
-              <template #start>
-                <BaseIcon :name="File" />
-              </template>
-            </BaseItem>
-          </template>
-        </view>
+          <text class="text-xs text-muted">{{ statusText }}</text>
 
-        <text
-          class="text-xs mt-1"
-          :class="isMine ? 'text-zinc-500' : 'text-muted'"
-          >{{ formattedTime }}</text
-        >
+          <view
+            v-if="!isMine && hasFilesImage"
+            class="flex flex-row items-center active:opacity-70 ml-4"
+            @tap="onSaveAll"
+          >
+            <BaseIcon
+              :name="Download"
+              :size="16"
+              class="mr-2"
+              color="#2b7fff"
+            />
+            <text class="text-xs font-semibold text-primary">Save all</text>
+          </view>
+        </view>
       </view>
 
       <view
-        class="flex flex-row items-center mt-1"
-        :class="isMine ? 'justify-end' : 'justify-between'"
+        v-if="!isMine && !isMutedMessage"
+        class="flex flex-row items-center gap-1 ml-1 self-end mb-6"
       >
-        <text class="text-xs text-muted">{{ statusText }}</text>
-
-        <view
-          v-if="!isMine && hasFilesImage"
-          class="flex flex-row items-center active:opacity-70 ml-4"
-          @tap="onSaveAll"
-        >
-          <BaseIcon :name="Download" :size="16" class="mr-2" color="#2b7fff" />
-          <text class="text-xs font-semibold text-primary">Save all</text>
+        <view class="p-1 active:opacity-70 rounded-full" @tap="onOptionsTap">
+          <BaseIcon :name="EllipsisVertical" :size="18" color="#57534e" />
+        </view>
+        <view class="p-1 active:opacity-70 rounded-full" @tap="onEmojiTap">
+          <BaseIcon :name="Heart" :size="18" color="#57534e" />
         </view>
       </view>
+      <BaseAvatar
+        v-if="showSendAvatar && isMine"
+        :src="avatarSrc"
+        :fallback="item.id + ''"
+        class="w-8 h-8 rounded-full mr-3 shrink-0"
+      />
     </view>
-
-    <view
-      v-if="!isMine && !isMutedMessage"
-      class="flex flex-row items-center gap-1 ml-1 self-end mb-6"
-    >
-      <view class="p-1 active:opacity-70 rounded-full" @tap="onOptionsTap">
-        <BaseIcon :name="EllipsisVertical" :size="18" color="#57534e" />
-      </view>
-      <view class="p-1 active:opacity-70 rounded-full" @tap="onEmojiTap">
-        <BaseIcon :name="Heart" :size="18" color="#57534e" />
-      </view>
-    </view>
-    <BaseAvatar
-      v-if="showSendAvatar && isMine"
-      :src="avatarSrc"
-      :fallback="item.id + ''"
-      class="w-8 h-8 rounded-full mr-3 shrink-0"
-    />
   </view>
 </template>
+<style scoped>
+.message-focus {
+  border: 2px solid #f59e0b;
+  border-radius: 10px;
+}
+</style>

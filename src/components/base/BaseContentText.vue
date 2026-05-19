@@ -11,6 +11,7 @@ const props = defineProps<{
   class?: any;
   textClass?: any;
   ellipsis?: TextEllipsisProps;
+  lineHeight?: string;
 }>();
 const { openExternalUri } = useBase();
 
@@ -74,21 +75,21 @@ const handleLinkTap = (e: any, url: string | undefined) => {
   >
     <template #default="{ textStyles, textMaxline }">
       <text
-        class="flex-wrap leading-relaxed"
-        :style="{ lineHeight: '1.5em', ...textStyles }"
+        class="flex-wrap text-base leading-relaxed"
+        :style="{ lineHeight: lineHeight || '1.5em', ...textStyles }"
         :text-maxline="textMaxline"
       >
         <template v-for="(part, index) in parsedContent" :key="index">
           <text
             v-if="part.type === 'link'"
-            class="text-primary font-medium active:opacity-70"
+            class="text-primary text-base font-medium active:opacity-70"
             :catchtap="(e: any) => handleLinkTap(e, part.url)"
           >
             {{ part.content }}
           </text>
 
-          <text v-else :class="props.textClass">
-            {{ part.content  }}
+          <text v-else class="text-base" :class="props.textClass" :style="{ lineHeight: lineHeight || '1.5em'}">
+            {{ part.content }}
           </text>
         </template>
       </text>
@@ -96,20 +97,20 @@ const handleLinkTap = (e: any, url: string | undefined) => {
   </BaseTextEllipsis>
   <text
     v-else-if="props.content"
-    class="flex-wrap leading-relaxed app-text"
+    class="flex-wrap text-base leading-relaxed app-text"
     :class="props.class"
-    :style="{ lineHeight: '1.5em' }"
+    :style="{ lineHeight: lineHeight || '1.5em' }"
   >
     <template v-for="(part, index) in parsedContent" :key="index">
       <text
         v-if="part.type === 'link'"
-        class="text-primary font-medium active:opacity-70"
+        class="text-primary text-base font-medium active:opacity-70"
         :catchtap="(e: any) => handleLinkTap(e, part.url)"
       >
         {{ part.content }}
       </text>
 
-      <text :class="props.textClass" v-else>
+      <text class="text-base" :class="props.textClass" v-else>
         {{ part.content }}
       </text>
     </template>

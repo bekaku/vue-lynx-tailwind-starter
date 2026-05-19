@@ -50,7 +50,6 @@ const router = createRouter({
     // memory history (similar to React Router's MemoryRouter).
     history: createMemoryHistory(),
     routes: [
-        // { path: '/', redirect: '/fetch-data/feed-detail/48106024' },
         { path: '/', redirect: '/home' },
         { path: '/home', name: 'Home', component: Home, meta: { keepAlive: true } },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },

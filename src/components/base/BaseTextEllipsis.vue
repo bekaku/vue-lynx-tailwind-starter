@@ -70,7 +70,7 @@ const toggleExpand = () => {
       :text-maxline="!isExpanded ? Number(rows) : -1"
     >
       <text
-        :class="cn('leading-normal', props.textClass)"
+        :class="cn('leading-normal text-base', props.textClass)"
         :style="textStyles"
         :text-maxline="!isExpanded ? Number(rows) : -1"
       >

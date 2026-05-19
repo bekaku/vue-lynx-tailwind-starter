@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useDevice } from '@/composables/useDevice';
 import { cn } from '@/utils/appUtil';
 import { ref } from 'vue';
 

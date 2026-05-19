@@ -12,6 +12,7 @@ import ChatMenu from '@/components/chats/ChatMenu.vue';
 import { useBase } from '@/composables/useBase';
 import { useDevice } from '@/composables/useDevice';
 import { chatHistoryListApi, chatMessageListApi } from '@/libs/mock/chats';
+import { useChatStore } from '@/stores/chatStore';
 import type { GroupChatDto, GroupChatMsgDto } from '@/types/common';
 import { biStarFill } from '@quasar/extras/bootstrap-icons';
 import { EllipsisVertical, Phone, Video, VolumeOff } from 'lucide-static';
@@ -25,6 +26,8 @@ defineEmits<{
   'leave-group': [chatId: number | string];
   'invite-people': [chatId: number | string];
 }>();
+
+const chatStore = useChatStore();
 const { getParam } = useBase();
 const pageId = computed<string>(() => getParam('id'));
 const chatContentScrollViewRef = useTemplateRef<any>(
@@ -192,6 +195,25 @@ const leaveGroup = async (chatId: number | string) => {
     return;
   }
 };
+
+const findIndexByID = (messageId: number | string): Promise<number> => {
+  return new Promise((resolve) => {
+    const i = dataList.value.findIndex((t) => t.id == messageId);
+    resolve(i);
+  });
+};
+const onReplyClick = async (messageId: number | string) => {
+  if (!messageId) {
+    return;
+  }
+  const itemIndex = await findIndexByID(messageId);
+  if (itemIndex != undefined) {
+    chatStore.messageIdFocus = messageId;
+    onScrollToItem(itemIndex, false);
+  } else {
+    console.log('Show Message Dialog');
+  }
+};
 </script>
 
 <template>
@@ -335,7 +357,7 @@ const leaveGroup = async (chatId: number | string) => {
     >
       <view class="bg-black/40 p-2 rounded-md flex flex-row gap-2 items-center">
         <BaseSpinner width="18px" show />
-        <text class="text-xs text-white">Loading messages...</text>
+        <!-- <text class="text-xs text-white">Loading messages...</text> -->
       </view>
     </view>
     <scroll-view
@@ -348,7 +370,11 @@ const leaveGroup = async (chatId: number | string) => {
       @scroll="onScroll"
     >
       <view v-for="(item, index) in dataList" :key="`chat-${item.id}-${index}`">
-        <ChatItem :item="item" :index="index" />
+        <ChatItem
+          :item="item"
+          :index="index"
+          @on-focus-message-reply="onReplyClick"
+        />
       </view>
     </scroll-view>
 

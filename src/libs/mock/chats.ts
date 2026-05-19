@@ -343,22 +343,6 @@ export const chatMessageListApi: ApiResponse<GroupChatMsgDto> =
             liked: false,
             emojiType: null,
             reactionEngage: [],
-            dtoReplyTo: {
-                id: 667,
-                chatMsg: 'they will have to be a topic to see the deference of options and show the Silly things that the world on the way are not the same as you want me vuejs I don\'t want you change springboot I don\'t have any plans ',
-                msgDateTime: '2024-10-02 19:36:56',
-                groupId: 17,
-                readCount: 1,
-                unsend: false,
-                sent: false,
-                sendUser: userItems[0],
-                files: [],
-                liked: false,
-                emojiType: null,
-                reactionEngage: [],
-                dtoReplyTo: null,
-                chatMessageType: 'TEXT'
-            },
             chatMessageType: 'TEXT'
         },
         {
@@ -400,7 +384,22 @@ export const chatMessageListApi: ApiResponse<GroupChatMsgDto> =
                     emojiType: 'SAD'
                 }
             ],
-            dtoReplyTo: null,
+            dtoReplyTo: {
+                id: 663,
+                chatMsg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                msgDateTime: '2024-10-02 19:36:56',
+                groupId: 17,
+                readCount: 1,
+                unsend: false,
+                sent: false,
+                sendUser: userItems[0],
+                files: [],
+                liked: false,
+                emojiType: null,
+                reactionEngage: [],
+                dtoReplyTo: null,
+                chatMessageType: 'TEXT'
+            },
             chatMessageType: 'IMAGE'
         },
         {
@@ -441,7 +440,6 @@ export const chatMessageListApi: ApiResponse<GroupChatMsgDto> =
                     emojiType: 'WOW'
                 }
             ],
-            dtoReplyTo: null,
             chatMessageType: 'TEXT'
         },
         {
@@ -467,7 +465,22 @@ export const chatMessageListApi: ApiResponse<GroupChatMsgDto> =
                     emojiType: 'LAUGH'
                 }
             ],
-            dtoReplyTo: null,
+            dtoReplyTo: {
+                id: 663,
+                chatMsg: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                msgDateTime: '2024-10-02 19:36:56',
+                groupId: 17,
+                readCount: 1,
+                unsend: false,
+                sent: false,
+                sendUser: userItems[0],
+                files: [],
+                liked: false,
+                emojiType: null,
+                reactionEngage: [],
+                dtoReplyTo: null,
+                chatMessageType: 'TEXT'
+            },
             chatMessageType: 'IMAGE'
         }
     ],
