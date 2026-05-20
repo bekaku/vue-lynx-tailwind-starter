@@ -6,7 +6,8 @@ import BaseIcon from './BaseIcon.vue';
 import BaseContentText from './BaseContentText.vue';
 import { SquareArrowOutUpRight } from 'lucide-static';
 import { useDevice } from '@/composables/useDevice';
-
+import { useBase } from '@/composables/useBase';
+const { openExternalUri } = useBase();
 const props = withDefaults(
   defineProps<{
     item: OgMeta;
@@ -28,7 +29,10 @@ const props = withDefaults(
   },
 );
 const onTap = (e: any) => {
-  console.log('onTap', e);
+  console.log('onTap', e, props.item);
+  if (props.item && props.item.url) {
+    openExternalUri(props.item.url);
+  }
 };
 </script>
 <template>
@@ -45,7 +49,9 @@ const onTap = (e: any) => {
     />
     <view class="flex flex-row w-full py-2 px-3 bg-content-item">
       <view class="flex-1 flex flex-col">
-        <text v-if="item.domain" class="app-text text-sm"> {{ item.domain }}</text>
+        <text v-if="item.domain" class="app-text text-sm">
+          {{ item.domain }}</text
+        >
         <BaseContentText
           v-if="item.title"
           text-class="app-text"

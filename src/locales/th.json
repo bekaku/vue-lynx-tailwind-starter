@@ -1,0 +1,11 @@
+{
+  "base": {
+    "language": "ภาษา",
+    "translations": "เปลี่ยนภาษา",
+    "chooseLanguge": "เลือกภาษา"
+  },
+  "app": {
+    "welcome": "เทมเพลตเริ่มต้น Vue Lynx โดย ชนวีร์ กำลังทำงานบนแพลตฟอร์ม ({platform})",
+    "home": "หน้าหลัก"
+  }
+}

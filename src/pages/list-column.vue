@@ -1,15 +1,8 @@
 <script setup lang="ts">
-import BaseCard from '@/components/base/BaseCard.vue';
-import BaseCardContent from '@/components/base/BaseCardContent.vue';
-import BaseCardHeader from '@/components/base/BaseCardHeader.vue';
-import BaseCardTitle from '@/components/base/BaseCardTitle.vue';
 import BaseToolBar from '@/components/base/BaseToolBar.vue';
-import type { LabelValue } from '@/types/common';
-import { ref } from 'vue';
 
-import { images } from '@/libs/mock/files';
 import ScrollItem from '@/components/test/ScrollItem.vue';
-import StickyItem from '@/components/test/StickyItem.vue';
+import { images } from '@/libs/mock/files';
 
 const onScroll = (e: any) => {
   console.log('onScroll', e);

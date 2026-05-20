@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme';
 import { cn } from '@/utils/appUtil';
-import { nextTick, onMounted, ref, useTemplateRef } from 'vue';
+import { nextTick, onMounted, ref, useTemplateRef, watch } from 'vue';
 
 const props = withDefaults(
   defineProps<{
     modelValue?: string | number;
     disabled?: boolean;
+    dense?: boolean;
     id?: string;
     class?: string;
     inputClass?: string;
+    inputHolderClass?: string;
     confirmType?: 'search' | 'send' | 'go' | 'done' | 'next';
     inputFilter?: string;
     iosAutoCorrect?: boolean;
@@ -18,9 +20,10 @@ const props = withDefaults(
     maxlength?: number;
     placeholder?: string;
     readonly?: boolean;
-    border?: boolean;
+    bordered?: boolean;
     transparent?: boolean;
     showSoftInputOnFocus?: boolean;
+    shadow?: boolean;
     type?: 'number' | 'text' | 'digit' | 'password' | 'tel' | 'email';
   }>(),
   {
@@ -33,10 +36,13 @@ const props = withDefaults(
     maxlength: 140,
     showSoftInputOnFocus: true,
     type: 'text',
-    border: false,
+    bordered: false,
     transparent: false,
+    dense: true,
+    shadow: true,
   },
 );
+
 const emit = defineEmits<{
   'update:modelValue': [value: string];
   tap: [value: boolean, event: any];
@@ -48,7 +54,7 @@ const emit = defineEmits<{
 }>();
 const { isDark } = useTheme();
 const isFocused = ref(false);
-
+const inputValue = ref(props.modelValue);
 const appInputRef = useTemplateRef<any>('appInputRef');
 // onMounted(() => {
 //   console.log('appInputRef', appInputRef.value);
@@ -56,6 +62,26 @@ const appInputRef = useTemplateRef<any>('appInputRef');
 //     console.log('setValue', props.modelValue);
 //   }
 // });
+
+const onSetValue = async (val: string | number) => {
+  await nextTick();
+  if (appInputRef.value) {
+    appInputRef.value
+      .invoke({
+        method: 'setValue',
+        params: {
+          value: val,
+        },
+        // success: (res: any) => {
+        //   console.log('setValue success!');
+        // },
+        // fail: (err: any) => {
+        //   console.error('setValue error:', err);
+        // },
+      })
+      .exec();
+  }
+};
 const handleInput = (e: any) => {
   const currentValue = e.detail.value.trim();
   emit('update:modelValue', currentValue);
@@ -97,30 +123,46 @@ const focus = async () => {
 defineExpose({
   blur,
   focus,
+  onSetValue,
 });
+
+watch(
+  inputValue,
+  (newValue, oldValue) => {
+    if (newValue) {
+      onSetValue(newValue);
+    }
+  },
+  { once: true, immediate: true },
+);
 </script>
 <template>
   <view :class="cn('flex flex-col w-full gap-1.5', props.class)">
-    <text
-      v-if="label"
-      :class="
-        cn(
-          'app-text text-sm font-medium leading-none',
-          props.disabled ? 'opacity-70' : '',
-        )
-      "
-    >
-      {{ label }}
-    </text>
+    <slot name="label">
+      <text
+        v-if="label"
+        :class="
+          cn(
+            'app-text text-sm font-medium leading-none',
+            props.disabled ? 'opacity-70' : '',
+          )
+        "
+      >
+        {{ label }}
+      </text>
+    </slot>
 
     <view
       :class="
         cn(
-          'flex flex-row items-center w-full h-10 rounded-lg   px-2 py-2 gap-2 text-sm transition-all shadow-sm',
+          'flex flex-row items-center w-full  rounded-lg   px-2 py-2 gap-2 text-sm transition-all',
           !transparent ? 'bg-input' : 'bg-transparent',
-          border ? 'border border-inputborder' : '',
+          dense ? 'h-10' : 'h-[48px]',
+          bordered ? 'border border-inputborder' : '',
           isFocused ? 'border-primary ring-1 ring-primary' : '',
+          props.shadow ? 'shadow-sm' : '',
           props.disabled ? 'opacity-50 cursor-not-allowed' : '',
+          props.inputHolderClass,
         )
       "
     >
@@ -137,7 +179,6 @@ defineExpose({
         "
         :disabled="disabled"
         :placeholder="placeholder"
-        :value="modelValue"
         :type="type"
         :confirmType="confirmType"
         :maxlength="maxlength"

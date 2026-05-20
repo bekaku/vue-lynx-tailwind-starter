@@ -35,7 +35,6 @@ const handleModelValue = (e: any) => {
 const handleTap = (e: any) => {};
 const handleCatchTap = (e: any) => {};
 
-
 /*
 How to access to a child method from the parent
 
@@ -48,7 +47,7 @@ const childComponentRef = useTemplateRef<InstanceType<typeof ChildComponent>>('c
 </template>
  */
 defineExpose({
-  handleTap
+  handleTap,
 });
 </script>
 <template>
@@ -62,12 +61,15 @@ defineExpose({
     "
     @tap="handleTap"
   >
-   <view v-if="$slots.default" :class="isAndroid ? 'py-[-14px]' : ''">
-          <slot />
-        </view>
+    <view v-if="$slots.default" :class="isAndroid ? 'py-[-14px]' : ''">
+      <slot />
+    </view>
     <slot v-if="$slots.start" name="start" />
     <view :catchtap="handleCatchTap" :class="$style.card"></view>
-    <view class="card-scoped" :class="[$style.card, isAndroid ? 'android-padding-fix' : '']"></view>
+    <view
+      class="card-scoped"
+      :class="[$style.card, isAndroid ? 'android-padding-fix' : '']"
+    ></view>
   </view>
 </template>
 
@@ -77,7 +79,14 @@ defineExpose({
 }
 </style>
 <style scoped>
-.card-scoped {
-  background: #fff;
+.theme-light {
+  .card-scoped {
+    background: #fff;
+  }
+}
+.theme-dark {
+  .card-scoped {
+    background: #000;
+  }
 }
 </style>

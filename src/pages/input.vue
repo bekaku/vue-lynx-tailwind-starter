@@ -11,8 +11,8 @@ import { Eraser, PencilLine } from 'lucide-static';
 import { onMounted, ref } from 'vue';
 
 const inputValue = ref('');
-const inputValue2 = ref('');
-const inputValue3 = ref('');
+const inputValue2 = ref('inputValue2 initial value');
+const inputValue3 = ref('intial value');
 const inputNumber = ref(999);
 const inputTextarea = ref('default textarea value');
 
@@ -67,8 +67,7 @@ const handleConfirm = (e: any) => {
             class="flex flex-col justify-center items-center w-full"
             :style="{ height: '85px' }"
           >
-            <explorer-input 
-            
+            <explorer-input
               :style="{
                 display: 'flex',
                 alignItems: 'flex-start',
@@ -98,8 +97,9 @@ const handleConfirm = (e: any) => {
 
           <view class="w-full p-3 m-2 border-inputborder bg-input rounded-md">
             <input
-              placeholder="search"
-              :value="inputValue2"
+              v-model="inputValue2"
+              type="text"
+              placeholder="Type here"
               @input="handleInput2"
             />
           </view>

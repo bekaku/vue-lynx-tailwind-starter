@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "rspeedy build",
-     "_build": "rspeedy build && node scripts/fix-assets.js",
+    "_build": "rspeedy build && node scripts/fix-assets.js",
     "dev": "rspeedy dev",
     "format": "prettier --write .",
     "lint": "eslint .",
@@ -17,6 +17,7 @@
   "dependencies": {
     "@quasar/extras": "^1.18.0",
     "@tanstack/vue-query": "^5.100.9",
+    "axios": "^1.16.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "echarts": "^6.0.0",
@@ -25,6 +26,7 @@
     "tailwind-merge": "^3.5.0",
     "tslib": "^2.8.1",
     "vue": "^3.5.33",
+    "vue-i18n": "^11.4.4",
     "vue-lynx": "0.4.0",
     "vue-router": "^5.0.6"
   },

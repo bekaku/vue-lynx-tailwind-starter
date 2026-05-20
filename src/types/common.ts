@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AvatarProps, IconProps, LucideIconProps, RBACProps } from "./props";
+export type AppLocale = 'th' | 'en';
 export type AppColor = 'primary' | 'secondary' | 'destructive' | 'success' | 'muted' | 'border' | 'ring' | 'background' | 'foreground' | 'card';
 export type ChatHistoryTab = 'ALL' | 'GROUP' | 'FAVORITE';
 export type ChatSettingType =
@@ -164,6 +165,11 @@ export interface ImageDto {
   thumbnail: string;
 }
 
+export interface ILocales {
+  name: string
+  iso: AppLocale
+  flag: string
+}
 export interface LabelValue<Type> {
   label?: string;
   description?: string;

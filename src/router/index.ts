@@ -44,6 +44,10 @@ import Transition from '../pages/transition.vue';
 import ChatPage from '../pages/chat/index.vue';
 import ChatConversation from '../pages/chat/conversation.vue';
 import Echarts from '../pages/echarts.vue';
+import Login from '../pages/auth/login.vue';
+import Toast from '../pages/toast.vue';
+import SettingsLanguge from '../pages/settings/languge.vue';
+import axios from '../pages/fetch-data/fetch-axios.vue';
 
 const router = createRouter({
     // Lynx has no window.location / window.navigator, so we must use
@@ -53,6 +57,16 @@ const router = createRouter({
         { path: '/', redirect: '/home' },
         { path: '/home', name: 'Home', component: Home, meta: { keepAlive: true } },
         { path: '/action-sheet', name: 'ActionSheet', component: ActionSheet },
+        {
+            path: '/auth',
+            children: [
+                {
+                    path: '',
+                    name: 'Login',
+                    component: Login,
+                },
+            ]
+        },
         { path: '/alert', name: 'Alert', component: Alert },
         { path: '/button', name: 'ComponentsButton', component: ComponentsButton },
         { path: '/badge', name: 'Badge', component: Badge },
@@ -87,6 +101,7 @@ const router = createRouter({
                         keepAlive: true
                     }
                 },
+                { path: 'axios', name: 'Axios', component: axios },
                 { path: 'feed-detail/:id', name: 'FetchDataFeedDetail', component: FetchDataFeedDetail },
             ]
         },
@@ -106,6 +121,16 @@ const router = createRouter({
         { path: '/popover', name: 'Popover', component: Popover },
         { path: '/pull-to-refresh', name: 'PullToRefresh', component: PullToRefresh },
         { path: '/scroll-view', name: 'ScrollView', component: ScrollView },
+        {
+            path: '/settings',
+            children: [
+                {
+                    path: 'languge',
+                    name: 'SettingsLanguge',
+                    component: SettingsLanguge,
+                },
+            ]
+        },
         { path: '/skeleton', name: 'Skeleton', component: Skeleton },
         { path: '/store', name: 'store', component: Store },
         { path: '/tailwind', name: 'tailwind', component: Tailwind },
@@ -143,6 +168,7 @@ const router = createRouter({
         },
         { path: '/test', name: 'TestPage', component: TestPage },
         { path: '/text-ellipsis', name: 'TextEllipsis', component: TextEllipsis },
+        { path: '/toast', name: 'Toast', component: Toast },
         { path: '/transition', name: 'Transition', component: Transition },
         { path: '/user-list', name: 'user-list', component: UserList },
         { path: '/users-detail/:id', name: 'user-detail', component: UserDetail },

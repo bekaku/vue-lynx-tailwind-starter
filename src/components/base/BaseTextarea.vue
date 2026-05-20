@@ -67,7 +67,6 @@ onMounted(async () => {
   await nextTick();
 });
 const onSetValue = async (val: string) => {
-  console.log('BaseTextArea.vue > onSetValue');
   await nextTick();
   if (appTextareaRef.value) {
     appTextareaRef.value
@@ -76,12 +75,12 @@ const onSetValue = async (val: string) => {
         params: {
           value: val,
         },
-        success: (res: any) => {
-          console.log('setValue success!');
-        },
-        fail: (err: any) => {
-          console.error('setValue error:', err);
-        },
+        // success: (res: any) => {
+        //   console.log('setValue success!');
+        // },
+        // fail: (err: any) => {
+        //   console.error('setValue error:', err);
+        // },
       })
       .exec();
   }

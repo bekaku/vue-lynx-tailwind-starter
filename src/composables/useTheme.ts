@@ -12,7 +12,7 @@ export const useTheme = () => {
   const { isDark, themeClass } = storeToRefs(themeStore)
   const { setItem, getItem } = useStorage();
   const themeNameAtt = 'theme';
-  const onInit = async () => {
+  const onInitTheme = async () => {
     const themeName: any = await getItem(themeNameAtt) || 'light';
     onSetTheme(themeName);
   }
@@ -38,6 +38,6 @@ export const useTheme = () => {
     themeClass,
     onSetTheme,
     onSetStatusStyle,
-    onInit
+    onInitTheme
   };
 };

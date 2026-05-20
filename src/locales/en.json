@@ -1,0 +1,11 @@
+{
+  "base": {
+    "language": "Languages",
+    "translations": "Change language",
+    "chooseLanguge": "Select language"
+  },
+  "app": {
+    "welcome": "The Vue Lynx starter template by Chanavee is running on ({platform}).",
+    "home": "Home"
+  }
+}

@@ -50,6 +50,7 @@ export const useBase = () => {
 
   const openExternalUri = (uri: string) => {
     if (!isNativeAvailable || !uri) {
+      console.warn('Native is not available.');
       return;
     }
     NativeModules.AppModule.openUrl(uri);

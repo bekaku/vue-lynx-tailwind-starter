@@ -18,6 +18,7 @@ interface Props {
   id?: string;
   index?: number;
   top?: boolean;
+  dense?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -27,6 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   titleBold: true,
   whitespaceNowrap: false,
   titleLines: -1,
+  dense: false,
 });
 const { onNavigateTo } = useBase();
 const emit = defineEmits<{
@@ -51,11 +53,12 @@ const handleLongpress = (e: any) => {
   <view
     :class="
       cn(
-        'flex flex-row items-center justify-between  pl-[14px] pr-[14px] bg-card py-2',
+        'flex flex-row items-center justify-between  pl-[10px] pr-[10px] bg-card',
         props.button && !props.disabled ? 'active:bg-ripple' : '',
         props.disabled ? 'opacity-50' : '',
         props.separator ? 'border-b border-border' : '',
         !props.top ? 'items-center' : 'items-start',
+        props.dense ? 'py-2' : 'py-[10px]',
         props.class,
       )
     "
