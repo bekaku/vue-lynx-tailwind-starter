@@ -53,26 +53,22 @@ To view `console.log()`, inspect UI elements, and trace errors, you can use the 
 
 5. Go to the Console tab to monitor real-time logs and debug your JavaScript/Vue code.
 
-ิีbuild production app
-
+ิbuild production app
 ```bash
 pnpm build
 ```
 
 sync bundle to native android host
-
 ```bash
 pnpm sync:android
 ```
 
 sync bundle to native ios host
-
 ```bash
 pnpm sync:ios
 ```
 
-sync bundle to native host
-
+sync bundle to native both host
 ```bash
 pnpm sync
 ```
