@@ -53,7 +53,10 @@ To view `console.log()`, inspect UI elements, and trace errors, you can use the 
 
 5. Go to the Console tab to monitor real-time logs and debug your JavaScript/Vue code.
 
-ิbuild production app
+
+## Building
+
+build production app
 ```bash
 pnpm build
 ```
@@ -75,9 +78,9 @@ pnpm sync
 
 For Android chnage url MainActivity.java
 ```Java
-        String url = "main.lynx.bundle";// production
-        String url = "http://192.168.1.111:3000/main.lynx.bundle";//your dev server ip
-        String url = "http://10.0.2.2:3000/main.lynx.bundle";//your dev server ip via emulator
+    String url = "main.lynx.bundle";// production
+    String url = "http://192.168.1.111:3000/main.lynx.bundle";//your dev server ip
+    String url = "http://10.0.2.2:3000/main.lynx.bundle";//your dev server ip via emulator
 ```
 
 For iOS chnage url ViewController.swift
