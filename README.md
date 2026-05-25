@@ -76,14 +76,14 @@ sync bundle to native both host
 pnpm sync
 ```
 
-For Android chage url at MainActivity.java
+For Android  run url at MainActivity.java
 ```Java
     String url = "main.lynx.bundle";// production
     String url = "http://192.168.1.111:3000/main.lynx.bundle";//your dev server ip
     String url = "http://10.0.2.2:3000/main.lynx.bundle";//your dev server ip via emulator
 ```
 
-For iOS chage url at ViewController.swift
+For iOS chage run url at ViewController.swift
 ```Swift
     //production run
     lynxView.loadTemplate(fromURL: "main.lynx", initData: nil)
