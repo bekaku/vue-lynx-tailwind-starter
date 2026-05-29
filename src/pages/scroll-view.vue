@@ -9,8 +9,18 @@ import { images } from '@/libs/mock/files';
 import BaseButton from '@/components/base/BaseButton.vue';
 const myScrollViewRef = ref<any>(null);
 
+const currentIndex = ref(0);
+
 const onScroll = (e: any) => {
-  // console.log('onScroll', e);
+  console.log('onScroll', e);
+  const scrollTop = e.detail.scrollTop;
+  const itemHeight = 160; // Assume each item is 160px tall
+
+  const index = Math.round(scrollTop / itemHeight);
+  if (index >= 0) {
+    currentIndex.value =index;
+    console.log('Current Index:', currentIndex.value);
+  }
 };
 const onScrolltoupper = (e: any) => {
   // console.log('onScrolltoupper', e);
@@ -79,7 +89,6 @@ const onScrollToTop = () => {
         scroll-orientation="horizontal"
         class="h-[170px] pl-[5px]"
         :style="{ width: 'calc(100% - 10px)' }"
-        @scroll="onScroll"
         @scrolltoupper="onScrolltoupper"
         @scrolltolower="onScrolltolower"
       >
@@ -95,7 +104,9 @@ const onScrollToTop = () => {
     </view>
 
     <view class="mt-[15px] flex-1 flex flex-col">
-      <text class="app-text font-bold px-4 pt-2">Vertical</text>
+      <text class="app-text font-bold px-4 pt-2"
+        >Vertical current:{{ currentIndex }}</text
+      >
       <view class="w-full flex p-2 gap-2">
         <BaseButton
           variant="outline"
@@ -114,6 +125,7 @@ const onScrollToTop = () => {
         scroll-orientation="vertical"
         class="ml-[5px] pl-[5px] pb-[55px] px-2"
         :style="{ width: '100%', height: '100%' }"
+        :bounces="true"
         @scroll="onScroll"
         @scrolltoupper="onScrolltoupper"
         @scrolltolower="onScrolltolower"

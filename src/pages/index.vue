@@ -71,7 +71,7 @@ const { setLocale, locale, t, currenLocaleItem } = useLang();
 const { platform } = useDevice();
 const themeToggleRef = useTemplateRef<any>('themeToggleRef');
 const longpress = ref(false);
-// const globalProps = lynx.__globalProps;
+const globalProps = lynx.__globalProps;
 const menuItems = ref<LabelValue<any>[]>([
   {
     label: 'Action Sheet',
@@ -311,7 +311,7 @@ const getExampletItems = computed(() => {
 });
 onMounted(() => {
   // const info = lynx.getSystemInfoSync();
-  console.log('index.vue > onMounted');
+  console.log('index.vue > onMounted', {globalProps, SystemInfo});
 });
 onActivated(() => {
   console.log('index.vue > onActivated');
