@@ -1,0 +1,5 @@
+allowBuilds:
+  core-js: false
+  vue-demi: false
+overrides:
+  tslib: ^2.8.1

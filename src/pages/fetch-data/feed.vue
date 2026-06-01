@@ -90,6 +90,7 @@ const onLoadData = async (): Promise<void> => {
   if (!data.value) {
     data.value = [];
   }
+
   try {
     const currentFocus = data.value.length;
     console.log('currentFocus', currentFocus);
@@ -101,9 +102,6 @@ const onLoadData = async (): Promise<void> => {
 
     data.value.push(...response);
     await nextTick();
-    if (!firstLoad.value) {
-      firstLoad.value = true;
-    }
     setTimeout(() => {
       onScrollToItem(currentFocus);
     }, 50);
@@ -111,6 +109,10 @@ const onLoadData = async (): Promise<void> => {
   } catch (err) {
     console.error('Error:', err);
     return new Promise((resolve) => resolve());
+  }finally {
+      if (!firstLoad.value) {
+      firstLoad.value = true;
+    }
   }
 };
 const onUserTap = (e: any, user: string) => {

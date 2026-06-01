@@ -34,6 +34,11 @@
             </array>
         </dict>
     </dict>
+    
+    <key>NSCameraUsageDescription</key>
+    <string>Allow access to the camera to take a profile picture or attach proof.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Please grant me permission to access your image library to select images for upload.</string>
 
 </dict>
 </plist>

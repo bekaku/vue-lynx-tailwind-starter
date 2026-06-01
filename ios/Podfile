@@ -1,15 +1,15 @@
 source 'https://cdn.cocoapods.org/'
 
-platform :ios, '10.0'
+# 🌟 ปรับแพลตฟอร์มหลักขึ้นเป็น 12.0
+platform :ios, '12.0'
 
 target 'Hello-Lynx' do
-  pod 'Lynx', '3.6.0', :subspecs => [
+  pod 'Lynx', '3.8.0', :subspecs => [
     'Framework',
   ]
 
-
   # integrate image-service, log-service, and http-service
-  pod 'LynxService', '3.6.0', :subspecs => [
+  pod 'LynxService', '3.8.0', :subspecs => [
       'Image',
       'Log',
       'Http',
@@ -19,6 +19,27 @@ target 'Hello-Lynx' do
   pod 'SDWebImage','5.15.5'
   pod 'SDWebImageWebPCoder', '0.11.0'
 
+  pod 'PrimJS', '3.8.0', :subspecs => ['quickjs', 'napi']
+
   # XElement
-  pod 'XElement', '3.6.0'
+  pod 'XElement', '3.8.0'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      
+      # 🌟 1. บังคับอัปเดต Deployment Target ของทุก Pods เป็น 12.0 (ลบ Warning สีเหลือง)
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      
+      # ปิดการมอง Warning เป็น Error สำหรับ Pods ทั้งหมด
+      config.build_settings['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'NO'
+      
+      # 🌟 2. เปลี่ยนชื่อแฟล็กเป็นตัวที่ Xcode แนะนำเพื่อลบ Error สีแดง
+      config.build_settings['WARNING_CFLAGS'] ||= []
+      config.build_settings['WARNING_CFLAGS'] << '-Wno-error=c99-designator'
+      config.build_settings['WARNING_CFLAGS'] << '-Wno-objc-designated-initializers'
+      
+    end
+  end
 end

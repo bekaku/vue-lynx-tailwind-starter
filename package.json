@@ -47,10 +47,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "pnpm": {
-    "overrides": {
-      "tslib": "^2.8.1"
-    }
   }
 }

@@ -10,6 +10,7 @@
 		213F4E5D2FB7232300C83E50 /* NativeLocalStorageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F4E5C2FB7231C00C83E50 /* NativeLocalStorageModule.swift */; };
 		213F4E602FB72EA000C83E50 /* DeviceInfoModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F4E5F2FB72E9B00C83E50 /* DeviceInfoModule.swift */; };
 		219B1D932FB6F47E00E2AA45 /* main.lynx.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 219B1D902FB6F47D00E2AA45 /* main.lynx.bundle */; };
+		21E3BF4B2FCD881300E3E180 /* ImagePickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3BF4A2FCD881000E3E180 /* ImagePickerModule.swift */; };
 		2B94A3C92D6613730060892C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94A3C82D6613730060892C /* AppDelegate.swift */; };
 		2B94A3CB2D6613730060892C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94A3CA2D6613730060892C /* SceneDelegate.swift */; };
 		2B94A3CD2D6613730060892C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94A3CC2D6613730060892C /* ViewController.swift */; };
@@ -17,13 +18,15 @@
 		2B94A3D22D6613740060892C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B94A3D12D6613740060892C /* Assets.xcassets */; };
 		2B94A3D52D6613740060892C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2B94A3D42D6613740060892C /* Base */; };
 		2B94A3DD2D6614980060892C /* DemoLynxProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94A3DC2D6614980060892C /* DemoLynxProvider.swift */; };
-		A212EB15613606762EE6CCEE /* libPods-Hello-Lynx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98ED87B25A6E88CD5400BBD9 /* libPods-Hello-Lynx.a */; };
+		894A537C8A9C968151CEA006 /* libPods-Hello-Lynx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B179D6F1FA5573EFC4BFEF /* libPods-Hello-Lynx.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		195F099FB5452C214FBDDA7E /* Pods-Hello-Lynx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-Lynx.release.xcconfig"; path = "Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx.release.xcconfig"; sourceTree = "<group>"; };
 		213F4E5C2FB7231C00C83E50 /* NativeLocalStorageModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLocalStorageModule.swift; sourceTree = "<group>"; };
 		213F4E5F2FB72E9B00C83E50 /* DeviceInfoModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoModule.swift; sourceTree = "<group>"; };
 		219B1D902FB6F47D00E2AA45 /* main.lynx.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; name = main.lynx.bundle; path = assets/main.lynx.bundle; sourceTree = "<group>"; };
+		21E3BF4A2FCD881000E3E180 /* ImagePickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerModule.swift; sourceTree = "<group>"; };
 		2B94A3C52D6613730060892C /* Hello-Lynx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello-Lynx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B94A3C82D6613730060892C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B94A3CA2D6613730060892C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,9 +37,8 @@
 		2B94A3D62D6613740060892C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B94A3DC2D6614980060892C /* DemoLynxProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoLynxProvider.swift; sourceTree = "<group>"; };
 		2B94A3DE2D6614DC0060892C /* Hello-Lynx-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hello-Lynx-Bridging-Header.h"; sourceTree = "<group>"; };
-		3B7AB9A7EA67EA1544DC8698 /* Pods-Hello-Lynx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-Lynx.release.xcconfig"; path = "Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx.release.xcconfig"; sourceTree = "<group>"; };
-		98ED87B25A6E88CD5400BBD9 /* libPods-Hello-Lynx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hello-Lynx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D205E9FBBC0FC739D1E9ACEC /* Pods-Hello-Lynx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-Lynx.debug.xcconfig"; path = "Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx.debug.xcconfig"; sourceTree = "<group>"; };
+		66298A35A476723A86C0A2BD /* Pods-Hello-Lynx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-Lynx.debug.xcconfig"; path = "Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx.debug.xcconfig"; sourceTree = "<group>"; };
+		C4B179D6F1FA5573EFC4BFEF /* libPods-Hello-Lynx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hello-Lynx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,16 +46,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A212EB15613606762EE6CCEE /* libPods-Hello-Lynx.a in Frameworks */,
+				894A537C8A9C968151CEA006 /* libPods-Hello-Lynx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15C19B92E4DAA408B7AF4E7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4B179D6F1FA5573EFC4BFEF /* libPods-Hello-Lynx.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		213F4E592FB71EE100C83E50 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				21E3BF4A2FCD881000E3E180 /* ImagePickerModule.swift */,
 				213F4E5F2FB72E9B00C83E50 /* DeviceInfoModule.swift */,
 				213F4E5C2FB7231C00C83E50 /* NativeLocalStorageModule.swift */,
 			);
@@ -67,7 +78,7 @@
 				2B94A3C72D6613730060892C /* Hello-Lynx */,
 				2B94A3C62D6613730060892C /* Products */,
 				C6D18F00D0E7395AB3C4C81F /* Pods */,
-				D61D24AE61354812D928E793 /* Frameworks */,
+				15C19B92E4DAA408B7AF4E7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,18 +110,10 @@
 		C6D18F00D0E7395AB3C4C81F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D205E9FBBC0FC739D1E9ACEC /* Pods-Hello-Lynx.debug.xcconfig */,
-				3B7AB9A7EA67EA1544DC8698 /* Pods-Hello-Lynx.release.xcconfig */,
+				66298A35A476723A86C0A2BD /* Pods-Hello-Lynx.debug.xcconfig */,
+				195F099FB5452C214FBDDA7E /* Pods-Hello-Lynx.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		D61D24AE61354812D928E793 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				98ED87B25A6E88CD5400BBD9 /* libPods-Hello-Lynx.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,11 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B94A3D92D6613740060892C /* Build configuration list for PBXNativeTarget "Hello-Lynx" */;
 			buildPhases = (
-				D3A01BA731AB9936B0457F90 /* [CP] Check Pods Manifest.lock */,
+				46CF659B29A43183B90D58FA /* [CP] Check Pods Manifest.lock */,
 				2B94A3C12D6613730060892C /* Sources */,
 				2B94A3C22D6613730060892C /* Frameworks */,
 				2B94A3C32D6613730060892C /* Resources */,
-				24B8CF44E78DE3D0F5AAAA95 /* [CP] Copy Pods Resources */,
+				9BA1A3512D863DF70EC28658 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -143,7 +146,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					2B94A3C42D6613730060892C = {
 						CreatedOnToolsVersion = 15.3;
@@ -183,28 +186,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		24B8CF44E78DE3D0F5AAAA95 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D3A01BA731AB9936B0457F90 /* [CP] Check Pods Manifest.lock */ = {
+		46CF659B29A43183B90D58FA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -226,6 +208,27 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9BA1A3512D863DF70EC28658 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hello-Lynx/Pods-Hello-Lynx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B94A3DD2D6614980060892C /* DemoLynxProvider.swift in Sources */,
+				21E3BF4B2FCD881300E3E180 /* ImagePickerModule.swift in Sources */,
 				213F4E602FB72EA000C83E50 /* DeviceInfoModule.swift in Sources */,
 				2B94A3CD2D6613730060892C /* ViewController.swift in Sources */,
 				2B94A3C92D6613730060892C /* AppDelegate.swift in Sources */,
@@ -299,6 +303,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 53DJZDK42H;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -322,6 +327,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -362,6 +368,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 53DJZDK42H;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -378,6 +385,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -385,13 +393,12 @@
 		};
 		2B94A3DA2D6613740060892C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D205E9FBBC0FC739D1E9ACEC /* Pods-Hello-Lynx.debug.xcconfig */;
+			baseConfigurationReference = 66298A35A476723A86C0A2BD /* Pods-Hello-Lynx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 53DJZDK42H;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hello-Lynx/Info.plist";
@@ -416,13 +423,12 @@
 		};
 		2B94A3DB2D6613740060892C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B7AB9A7EA67EA1544DC8698 /* Pods-Hello-Lynx.release.xcconfig */;
+			baseConfigurationReference = 195F099FB5452C214FBDDA7E /* Pods-Hello-Lynx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 53DJZDK42H;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hello-Lynx/Info.plist";

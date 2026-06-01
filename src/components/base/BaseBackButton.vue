@@ -10,7 +10,6 @@ const { onNavigateTo, onBack } = useBase();
 const props = withDefaults(defineProps<BackButtonProps>(), {
   textClass: 'text-primary',
 });
-const { isIos } = useDevice();
 const onTab = () => {
   if (props.defaultHref) {
     onNavigateTo('/');
@@ -25,11 +24,11 @@ const onTab = () => {
     variant="ghost"
     size="icon"
     rounded
-    :label="isIos ? 'Back' : undefined"
+    :label="props.label ? props.label : undefined"
     :text-class="textClass"
     @tap="onTab"
   >
-    <template v-if="!isIos" #start>
+    <template #start>
       <BaseIcon :name="ArrowLeft" />
     </template>
   </BaseButton>

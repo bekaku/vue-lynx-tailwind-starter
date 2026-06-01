@@ -64,6 +64,7 @@ export interface BadgeProps {
 export interface BackButtonProps {
     textClass?: string;
     defaultHref?: string;
+    label?: string
 }
 
 export interface IconProps {

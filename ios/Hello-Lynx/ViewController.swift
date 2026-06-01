@@ -14,6 +14,7 @@ class ViewController: UIViewController {
 
             config.register(NativeLocalStorageModule.self)
             config.register(DeviceInfoModule.self)
+            config.register(ImagePickerModule.self)
 
             // 🌟 3. ยัด config กลับเข้าไปให้ builder
             builder.config = config
