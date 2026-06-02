@@ -101,6 +101,7 @@ const handleConfirm = (e: any) => {
               type="text"
               placeholder="Type here"
               @input="handleInput2"
+              
             />
           </view>
         </BaseCardContent>
